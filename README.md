@@ -1,9 +1,9 @@
 # Your Project's Title...
-Your project's description...
+Adobe Franklin impl of https://delta.com
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--delta--hlxsites.hlx.page/
+- Live: https://main--delta--hlxsites.hlx.live/
 
 ## Installation
 
