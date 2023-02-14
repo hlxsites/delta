@@ -12,33 +12,37 @@
 
  :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
+  --link-color: #4470c3;
+  --link-hover-color: #2d4f8d;
   --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
+  /* --overlay-background-color: #eee;
+  --highlight-background-color: #ccc; */
+  --text-color: #212529;
+  --heading-color: #0b1f66;
+  --button-color: #0b1f66;
+  
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --body-font-family: Whitney-Book, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  --heading-font-family: WhitneyCondensed-Semibold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  --button-font-family: Whitney-Semibold, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  /*--fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --body-font-size-m: 16px;
+  /* --body-font-size-s: 18px;
+  --body-font-size-xs: 16px; */
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
+  /* --heading-font-size-xxl: 48px;
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xs: 18px; */
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 47px;
 
 }
 
@@ -46,7 +50,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -64,6 +68,7 @@ h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
+  color: var(--heading-color);
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
@@ -108,28 +113,30 @@ pre {
 /* buttons */
 
 a.button:any-link, button {
-  font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
-  text-align: center;
+  padding: 1.5rem;
+  border: 2px solid #bac5d2;
+  font-family: var(--body-font-family);
+  font-size: 1rem;
   font-style: normal; 
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
-  margin: 16px 0;
-  white-space: nowrap;
+  color: var(--button-color);
+  background-color: var(--background-color);
   overflow: hidden;
+  text-align: center;
+  text-decoration: none;
   text-overflow: ellipsis;
-  border-radius: 30px;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: var(--link-hover-color);
+  background-color: #e6e6e6;
+  border-color: #0b1f66;
   cursor: pointer;
+  text-decoration: none;
 }
 
 button:disabled, button:disabled:hover {
@@ -235,3 +242,10 @@ main .section[data-section-status='initialized'] {
 main .section.highlight {
   background-color: var(--highlight-background-color);
 }
+
+@media (min-width: 375px) {}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {}
+@media (min-width: 1200px) {}
+@media (min-width: 1440px) {}
+@media (min-width: 1600px) {}
