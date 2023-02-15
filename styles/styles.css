@@ -15,8 +15,9 @@
   --link-color: #4470c3;
   --link-hover-color: #2d4f8d;
   --background-color: #fff;
-  /* --overlay-background-color: #eee;
-  --highlight-background-color: #ccc; */
+  /* --overlay-background-color: #eee; */
+  --highlight-background-color: #11172b;
+  --highlight-color: #ff;
   --text-color: #212529;
   --heading-color: #0b1f66;
   --button-color: #0b1f66;
@@ -42,7 +43,7 @@
   --heading-font-size-xs: 18px; */
 
   /* nav height */
-  --nav-height: 47px;
+  --nav-height: 243px;
 
 }
 
@@ -62,6 +63,13 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-color);
+}
+
+footer {
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-color);
 }
 
 h1, h2, h3,
@@ -144,6 +152,17 @@ button:disabled, button:disabled:hover {
   cursor: unset;
 }
 
+a.button.cta, button.cta {
+  background-color: #e51937;
+  border-color: #e51937;
+  color: #fff;
+}
+
+a.button.cta:hover, a.button.cta:focus, button.cta:hover, button.cta:focus {
+  background-color: #98012e;
+  border-color: #98012e;
+}
+
 a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
@@ -170,7 +189,8 @@ main input:hover {
 }
 
 main .section {
-  padding: 64px 16px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 main pre {
@@ -211,28 +231,6 @@ main img {
   height: auto;
 }
 
-@media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
-  }  
-}
-
-@media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
-  }
-  
-  .section > div {
-    max-width: 1200px;
-    margin: auto;
-  }
-}
-
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -243,9 +241,54 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-@media (min-width: 375px) {}
-@media (min-width: 768px) {}
-@media (min-width: 992px) {}
-@media (min-width: 1200px) {}
-@media (min-width: 1440px) {}
-@media (min-width: 1600px) {}
+@media (min-width: 375px) {
+  :root {
+    --nav-height: 259px;
+  }
+
+  main .section {
+    max-width: 375px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-height: 272px;
+  }
+
+  main .section {
+    max-width: 730px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --nav-height: 323px;
+  }
+
+  main .section {
+    max-width: 976px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 328px;
+  }
+
+  main .section {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1440px) {
+  main .section {
+    max-width: 1156px;
+  }
+}
+
+@media (min-width: 1600px) {
+  main .section {
+    max-width: 1180px;
+  }
+}
