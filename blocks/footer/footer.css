@@ -40,14 +40,14 @@ footer .footer.block div > div:last-of-type > ul {
 footer .footer.block div > div:last-of-type > ul > li {
   display: inline-block;
   margin: 0 1rem;
-  line-height: 2rem;
+  line-height: 32px;
 }
 
 footer .footer.block div > div:last-of-type > ul > li > a:hover {
   text-decoration: none;
 }
 
-footer .icon {
+footer .icon > svg {
   vertical-align: middle;
 }
 
