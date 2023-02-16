@@ -41,5 +41,10 @@ footer .footer.block div > div:last-of-type > ul > li {
   display: inline-block;
   margin: 0 1rem;
   vertical-align: middle;
-  line-height: 2rem;
+  line-height: 1.5rem;
 }
+
+footer .icon {
+  vertical-align: middle;
+}
+
