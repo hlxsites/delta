@@ -9,6 +9,10 @@ footer .footer {
   margin: auto;
 }
 
+footer .footer-wrapper {
+  background-color: var(--highlight-background-color);
+}
+
 footer .footer p {
   margin: 0;
 }
