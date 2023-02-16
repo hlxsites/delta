@@ -104,11 +104,21 @@ export default async function decorate(block) {
     nav.id = 'nav';
     nav.innerHTML = html;
 
-    const classes = ['brand', 'sections', 'tools'];
+    const classes = ['brand', 'planners', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
       if (section) section.classList.add(`nav-${c}`);
     });
+
+    const navBrand = nav.querySelector('.nav-brand');
+    if (navBrand) {
+      const picture = navBrand.querySelector('picture');
+      const link = navBrand.querySelector('a');
+      if (picture && link) {
+        link.innerHTML = '';
+        link.append(picture);
+      }
+    }
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
