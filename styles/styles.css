@@ -42,6 +42,7 @@
   /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
   /* body sizes */
+  --body-font-size-s: 14px;
   --body-font-size-m: 16px;
   --body-font-size-s: 15px;
   --body-font-size-xxs: 12px; 

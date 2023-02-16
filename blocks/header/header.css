@@ -155,6 +155,11 @@ header nav[aria-expanded=true] .nav-hamburger-icon::after {
   font-size: 14px;
 }
 
+.nav-tools {
+  font-family: Whitney-Bold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-size: 16px;
+}
+
 header nav[aria-expanded=true] .nav-sections {
   display: block;
   visibility: visible;
@@ -162,7 +167,8 @@ header nav[aria-expanded=true] .nav-sections {
 }
 
 .nav-planners ul,
-.nav-sections ul  {
+.nav-sections ul,
+.nav-tools ul  {
   list-style: none;
   padding-left: 0;
   font-size: var(--body-font-size-s);
@@ -170,7 +176,8 @@ header nav[aria-expanded=true] .nav-sections {
 }
 
 .nav-planners ul > li,
-.nav-sections ul > li {
+.nav-sections ul > li,
+.nav-tools ul > li {
   font-weight: 700;
 }
 
@@ -243,6 +250,10 @@ header nav[aria-expanded=true] .nav-sections {
     display: block;
   }
 
+  .nav-planners li:first-child {
+    display: none;
+  }
+
   .nav-sections {
     display: block;
     visibility: visible;
@@ -254,15 +265,17 @@ header nav[aria-expanded=true] .nav-sections {
   }
 
   .nav-planners ul,
-  .nav-sections ul {
+  .nav-sections ul,
+  .nav-tools ul {
     display: flex;
     gap: 0 24px;
     margin: 0;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--body-font-size-s);
   }
 
   .nav-planners > ul > li,
-  .nav-sections > ul > li {
+  .nav-sections > ul > li,
+  .nav-tools > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;

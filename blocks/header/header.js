@@ -115,8 +115,10 @@ export default async function decorate(block) {
       const picture = navBrand.querySelector('picture');
       const link = navBrand.querySelector('a');
       if (picture && link) {
+        navBrand.innerHTML = '';
         link.innerHTML = '';
         link.append(picture);
+        navBrand.append(link);
       }
     }
 
