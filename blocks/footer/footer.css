@@ -12,3 +12,42 @@ footer .footer {
 footer .footer p {
   margin: 0;
 }
+
+/* Copyright */
+footer .footer.block div > div:nth-last-of-type(3) {
+  color: darkgray;
+  text-align: center;
+}
+
+/* terms and conditions */
+footer .footer.block div > div:nth-last-of-type(2) {
+  color: darkgray;
+  text-decoration: none;
+  text-decoration-color: var(--link-color);
+  text-align: center;
+}
+
+/* social and language links */
+footer .footer.block div > div:last-of-type > ul {
+  white-space: nowrap;
+  overflow: hidden;
+  list-style-type: none;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-color: var(--link-color);
+}
+
+footer .footer.block div > div:last-of-type > ul > li {
+  display: inline-block;
+  margin: 0 1rem;
+  line-height: 32px;
+}
+
+footer .footer.block div > div:last-of-type > ul > li > a:hover {
+  text-decoration: none;
+}
+
+footer .icon > svg {
+  vertical-align: middle;
+}
+
