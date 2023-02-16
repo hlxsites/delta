@@ -12,3 +12,12 @@ footer .footer {
 footer .footer p {
   margin: 0;
 }
+
+@media (min-width: 900px) {
+  footer section ul {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--highlight-background-color);
+  }
+  
+}
