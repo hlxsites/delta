@@ -4,14 +4,13 @@
   width: 100%;
   max-width: 100vw;
   z-index: 2;
-  background-color: var(--background-color);
+  border-bottom: 1px solid #282f43;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   height: 47px;
-  border-bottom: 1px solid #282f43;
   padding: 11.5px 0;
   margin: 0;
   background-color: var(--highlight-background-color);
@@ -132,11 +131,20 @@ header nav[aria-expanded=true] .nav-hamburger-icon::after {
 }
 
 .nav-brand img {
-  width: 128px;
+  width: 120px;
   height: auto;
 }
 
 /* sections */
+.nav-planners {
+  font-family: Whitney-Semibold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.nav-planners ul > li {
+  text-transform: uppercase;
+}
+
 .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
@@ -153,6 +161,7 @@ header nav[aria-expanded=true] .nav-sections {
   align-self: start;
 }
 
+.nav-planners ul,
 .nav-sections ul  {
   list-style: none;
   padding-left: 0;
@@ -160,20 +169,19 @@ header nav[aria-expanded=true] .nav-sections {
   font-weight: 500;
 }
 
+.nav-planners ul > li,
 .nav-sections ul > li {
   font-weight: 700;
 }
 
+.nav-planners ul > li > ul,
 .nav-sections ul > li > ul {
   margin-top: 0;
 }
 
+.nav-planners ul > li > ul > li,
 .nav-sections ul > li > ul > li {
   font-weight: 500;
-}
-
-@media (min-width: 900px) {
-  
 }
 
 .nav-hamburger {
@@ -210,9 +218,15 @@ header nav[aria-expanded=true] .nav-sections {
 }
 
 @media (min-width: 992px) {
+  .header {
+    height: 100%;
+  }
+
   .header nav {
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+    height: 76px;
   }
 
   .header nav[aria-expanded=true] {
@@ -239,6 +253,7 @@ header nav[aria-expanded=true] .nav-sections {
     align-self: unset;
   }
 
+  .nav-planners ul,
   .nav-sections ul {
     display: flex;
     gap: 0 24px;
@@ -246,17 +261,20 @@ header nav[aria-expanded=true] .nav-sections {
     font-size: var(--body-font-size-xs);
   }
 
+  .nav-planners > ul > li,
   .nav-sections > ul > li {
     flex: 0 1 auto;
     position: relative;
     font-weight: 500;
   }
 
+  .nav-planners > ul > li > ul,
   .nav-sections > ul > li > ul {
     display: none;
     position: relative;
   }
 
+  .nav-planners > ul > li[aria-expanded=true] > ul,
   .nav-sections > ul > li[aria-expanded=true] > ul {
     display: block;
     position: absolute;
@@ -280,6 +298,7 @@ header nav[aria-expanded=true] .nav-sections {
     border-bottom: 8px solid var(--highlight-background-color);
   }
 
+  .nav-planners > ul > li > ul > li,
   .nav-sections > ul > li > ul > li {
     padding: 8px 0;
   }
