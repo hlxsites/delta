@@ -1,1 +1,136 @@
 /* below the fold CSS goes here */
+@font-face {
+    font-family: Whitney-Light;
+    src: url("/styles/fonts/A32A3E152E391B379.woff2") format("woff2"),
+         url("/styles/fonts/A32A3E152E391B379.woff") format("woff");
+    font-weight:300;
+    font-style:normal
+}
+
+@font-face { 
+    font-family: Whitney-LightItalic;
+    src: url("/styles/fonts/560247561D61316B0.woff2") format("woff2"),
+         url("/styles/fonts/560247561D61316B0.woff") format("woff");
+    font-weight: 300;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Book;
+    src: url("/styles/fonts/CB8837CA379681FED.woff2") format("woff2"),
+         url("/styles/fonts/CB8837CA379681FED.woff") format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-BookItalic;
+    src: url("/styles/fonts/C38C81DE2B6590D68.woff2") format("woff2"),
+         url("/styles/fonts/C38C81DE2B6590D68.woff") format("woff");
+    font-weight: 400;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Medium;
+    src: url("/styles/fonts/AABA9C13AF9C5C638.woff2") format("woff2"),
+         url("/styles/fonts/AABA9C13AF9C5C638.woff") format("woff");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-MediumItalic;
+    src: url("/styles/fonts/A5B691C26F8CABBC2.woff2") format("woff2"),
+        url("/styles/fonts/A5B691C26F8CABBC2.woff") format("woff");
+    font-weight: 500;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Semibold;
+    src: url("/styles/fonts/3955045D2CF71A4B6.woff2") format("woff2"),
+         url("/styles/fonts/3955045D2CF71A4B6.woff") format("woff");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-SemiboldItalic;
+    src: url("/styles/fonts/2AEF2F564D90434B1.woff2") format("woff2"),
+         url("/styles/fonts/2AEF2F564D90434B1.woff") format("woff");
+    font-weight: 600;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Bold;
+    src: url("/styles/fonts/5F3C862F467F43533.woff2") format("woff2"),
+         url("/styles/fonts/5F3C862F467F43533.woff") format("woff");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-Black;
+    src: url("/styles/fonts/A4735881B447BC24E.woff2") format("woff2"),
+         url("/styles/fonts/A4735881B447BC24E.woff") format("woff");
+    font-weight: 800;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Light;
+    src: url("/styles/fonts/0D9C4EC6CE739C59E.woff2") format("woff2"),
+         url("/styles/fonts/0D9C4EC6CE739C59E.woff") format("woff");
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Book;
+    src: url("/styles/fonts/D1471883735440A2A.woff2") format("woff2"),
+         url("/styles/fonts/D1471883735440A2A.woff") format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Medium;
+    src: url("/styles/fonts/5918DFA7BE09ECE71.woff2") format("woff2"),
+         url("/styles/fonts/5918DFA7BE09ECE71.woff") format("woff");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Semibold;
+    src: url("/styles/fonts/C2031C89118431E67.woff2") format("woff2"),
+         url("/styles/fonts/C2031C89118431E67.woff") format("woff");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Bold;
+    src: url("/styles/fonts/425789FA99F33DFE6.woff2") format("woff2"),
+         url("/styles/fonts/425789FA99F33DFE6.woff") format("woff");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Black;
+    src: url("/styles/fonts/B08100E88A772CF90.woff2") format("woff2"),
+         url("/styles/fonts/B08100E88A772CF90.woff") format("woff");
+    font-weight: 800;
+    font-style: normal
+}
+
+@font-face {
+    font-family: icomoon;
+    src: url("/styles/fonts/icomoon.woff") format("woff"),
+         url("/styles/fonts/icomoon.eot") format("embedded-opentype");
+    font-weight: 400;
+    font-style: normal
+}
