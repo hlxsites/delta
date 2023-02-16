@@ -44,6 +44,10 @@ footer .footer.block div > div:last-of-type > ul > li {
   line-height: 1.5rem;
 }
 
+footer .footer.block div > div:last-of-type > ul > li > a:hover {
+  text-decoration: none;
+}
+
 footer .icon {
   vertical-align: middle;
 }
