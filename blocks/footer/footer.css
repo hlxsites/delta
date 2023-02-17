@@ -18,6 +18,7 @@ footer .footer.block div:nth-child(1) > ul {
   display: flex;
   color: #fff;
   justify-content: center;
+  
 }
 
 footer .footer.block div:nth-child(1) > ul > li {
@@ -31,8 +32,22 @@ footer .footer.block div:nth-child(1) > ul > li > ul {
   margin-left: -40px;
 }
 
+footer .footer.block div:nth-child(1) > ul > li > ul > li > a {
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-family: Whitney-Medium, sans-serif;
+  line-height: 2.2rem;
+}
+
+footer .footer.block div:nth-child(1) > ul > li > ul > li > a:hover {
+  text-decoration: none;
+}
+
 strong {
   color: #7d8388;
+  font-size: 1.2rem;
+  font-family: Whitney-Semibold, sans-serif;
 }
 
 p a {
@@ -44,6 +59,7 @@ footer .footer.block div > div:nth-last-of-type(4) {
   color: darkgray;
   text-align: center;
   padding-top: 2rem;
+  font-size: .9rem;
 }
 
 /* terms and conditions */
@@ -54,6 +70,7 @@ footer .footer.block div > div:nth-last-of-type(3) {
   text-align: center;
   text-decoration-thickness: 0.01rem;
   padding-top: .5rem;
+  font-size: .9rem;
 }
 
 footer .footer.block div > div:nth-last-of-type(3) > p > a:hover {
