@@ -17,7 +17,7 @@ footer .footer p {
 footer .footer.block div > ul {
   display: flex;
   color: #fff;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 footer .footer.block div > ul > li {
@@ -32,7 +32,15 @@ footer .footer.block div > ul > li > ul {
 }
 
 strong {
-  color: #7d8388!important;
+  color: #7d8388;
+}
+
+/* p {
+  color: #7d8388;
+} */
+
+p a {
+  color: #fff!important;
 }
 
 /* Copyright */
