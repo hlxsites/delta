@@ -128,6 +128,12 @@ export default async function decorate(block) {
       }
     }
 
+    const navPlanner = nav.querySelector('.nav-planners');
+    if (navPlanner) {
+      const li = navPlanner.querySelector('li:nth-of-type(2)');
+      li.classList.add('active');
+    }
+
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {

@@ -15,8 +15,8 @@ header nav {
   margin: 0;
   background-color: var(--highlight-background-color);
   grid-template:
-    'hamburger - tools' 47px
-    'planners planners planners' 1fr / auto 1fr auto;
+    'hamburger tools' 47px
+    'planners planners' 91px / auto auto;
   align-items: center;
   gap: 0 2em;
   max-width: 1264px;
@@ -51,12 +51,12 @@ header nav p {
 }
 
 .nav-hamburger button {
-  height: 22px;
-  margin: 0;
+  height: 24px;
+  margin: 0 30px;
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
+  background-color: transparent;
   color: inherit;
   overflow: initial;
   text-overflow: initial;
@@ -136,15 +136,8 @@ header nav[aria-expanded=true] .nav-hamburger-icon::after {
 header img {
   display: none;
 }
-/* sections */
-.nav-planners {
-  font-family: Whitney-Semibold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
-  font-size: 16px;
-}
 
-.nav-planners ul > li {
-  text-transform: uppercase;
-}
+/* sections */
 
 .nav-sections {
   grid-area: sections;
@@ -152,13 +145,8 @@ header img {
   display: none;
   visibility: hidden;
   background-color: var(--overlay-color);
-  font-family: Whitney-Medium, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-family: Whitney-Medium, apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
-}
-
-.nav-tools {
-  font-family: Whitney-Bold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
-  font-size: 16px;
 }
 
 .nav-tools ul > li {
@@ -166,7 +154,8 @@ header img {
 }
 
 .nav-tools svg {
-  height: 30px;
+  height: 26px;
+  width: 36px;
   fill: #fff;
   vertical-align: middle;
 }
@@ -177,28 +166,6 @@ header nav[aria-expanded=true] .nav-sections {
   align-self: start;
 }
 
-.nav-planners ul,
-.nav-sections ul,
-.nav-tools ul  {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
-  font-weight: 500;
-}
-
-.nav-planners ul > li,
-.nav-sections ul > li,
-.nav-tools ul > li {
-  font-weight: 700;
-}
-
-.nav-planners ul > li > a,
-.nav-sections ul > li > a,
-.nav-tools ul > li > a {
-  white-space: nowrap;
-}
-
-
 .nav-planners ul > li > ul,
 .nav-sections ul > li > ul {
   margin-top: 0;
@@ -208,6 +175,62 @@ header nav[aria-expanded=true] .nav-sections {
 .nav-planners ul > li > ul > li,
 .nav-sections ul > li > ul > li {
   font-weight: 500;
+}
+
+
+/* =========== */
+
+.nav-planners ul,
+.nav-sections ul,
+.nav-tools ul {
+  display: flex;
+  justify-content: center;
+  gap: 0 14px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  list-style: none;
+}
+
+.nav-planners > ul > li,
+.nav-sections > ul > li,
+.nav-tools > ul > li {
+  flex: 0 1 auto;
+  position: relative;
+  padding: 7px 0;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav-planners > ul > li > a,
+.nav-sections > ul > li > a,
+.nav-tools > ul > li > a {
+  position: relative;
+  display: inline-block;
+  padding: 8px 0;
+  font-weight: 400;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.nav-planners > ul > li > a:hover,
+.nav-sections > ul > li > a:hover,
+.nav-tools > ul > li > a:hover {
+  text-decoration: none;
+}
+  
+.nav-planners > ul > li.active::after,
+.nav-sections > ul > li.active::after,
+.nav-tools > ul > li.active::after {
+  position: absolute;
+  display: block;
+  content: '';
+  border-bottom: 3px solid #e01933;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
 .nav-hamburger {
@@ -221,6 +244,22 @@ header nav[aria-expanded=true] .nav-sections {
 
 .nav-planners {
   grid-area: planners;
+  font-family: Whitney-Semibold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+}
+
+.nav-planners ul {
+  gap: 0 42px;
+  font-size: 13px;
+}
+
+.nav-planners ul > li {
+  padding: 4px 0;
+  text-transform: uppercase;
+}
+
+.nav-planners li:first-child,
+.nav-planners li:last-child {
+  display: none;
 }
 
 .nav-sections {
@@ -228,12 +267,25 @@ header nav[aria-expanded=true] .nav-sections {
   display: none;
 }
 
-header nav[aria-expanded=true] .nav-sections {
-  display: block;
-}
-
 .nav-tools {
   grid-area: tools;
+  padding-right: 20px;
+  font-family: Whitney-Bold, apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.nav-tools .button:any-link {
+  padding: 0 12px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.nav-tools > ul {
+  justify-content: end;
+}
+
+.nav-tools > ul > li:last-child {
+  display: none;
 }
 
 
@@ -241,6 +293,21 @@ header nav[aria-expanded=true] .nav-sections {
 }
 
 @media (min-width: 768px) {
+  header nav {
+    height: 46px;
+    grid-template:
+      'hamburger tools' 47px
+      'planners planners' 119px / auto auto;
+  }
+
+  .nav-planners ul {
+    gap: 0 46px;
+    font-size: 13px;
+  }
+
+  .nav-planners li:last-child {
+    display: list-item;
+  }
 }
 
 @media (min-width: 992px) {
@@ -251,11 +318,14 @@ header nav[aria-expanded=true] .nav-sections {
   .header nav {
     display: flex;
     justify-content: space-between;
-    gap: 0 10px;
+    gap: unset;
+    grid-template:
+      'hamburger - tools' 47px
+      'planners planners planners' 1fr / auto 1fr auto;
     height: 76px;
-    max-width: 1180px;
+    max-width: 976px;
     margin: 0 auto;
-    padding: 0 14px;
+    padding: 0 6px;
   }
 
   .header nav[aria-expanded=true] {
@@ -277,8 +347,8 @@ header nav[aria-expanded=true] .nav-sections {
     height: auto;
   }
 
-  .nav-planners li:first-child {
-    display: none;
+  .nav-planners {
+    position: relative;
   }
 
   .nav-sections {
@@ -290,33 +360,10 @@ header nav[aria-expanded=true] .nav-sections {
     align-self: unset;
   }
 
-  .nav-planners ul,
-  .nav-sections ul,
-  .nav-tools ul {
-    display: flex;
-    gap: 0 14px;
-    margin: 0;
-    align-items: center;
-    font-size: var(--body-font-size-s);
-  }
-
   .nav-planners > ul > li,
   .nav-sections > ul > li,
   .nav-tools > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-    padding: 19px 0;
-    white-space: nowrap;
-  }
-
-  .nav-planners > ul > li > a,
-  .nav-sections > ul > li > a,
-  .nav-tools > ul > li > a {
-    position: relative;
-    display: inline-block;
-    padding: 8px 0;
-    font-weight: 500;
-    line-height: 20px;
+    padding: 20px 0;
   }
 
   .nav-planners > ul > li > a:hover,
@@ -325,6 +372,9 @@ header nav[aria-expanded=true] .nav-sections {
     text-decoration: none;
   }
   
+  .nav-planners > ul > li.active::after,
+  .nav-sections > ul > li.active::after,
+  .nav-tools > ul > li.active::after,
   .nav-planners > ul > li:hover::after,
   .nav-sections > ul > li:hover::after,
   .nav-tools > ul > li:hover::after {
@@ -352,7 +402,10 @@ header nav[aria-expanded=true] .nav-sections {
     margin-top: 20px;
     padding: 1em;
     background-color: var(--highlight-background-color);
-    /* white-space: initial; */
+  }
+
+  .nav-planners ul {
+    gap: 0 14px;
   }
 
   .nav-sections > ul > li > ul::before {
@@ -372,14 +425,27 @@ header nav[aria-expanded=true] .nav-sections {
     padding: 8px 0;
   }
 
+  .nav-sections {
+    max-width: 214px;
+  }
+
+  .nav-tools {
+    padding-right: 0;
+  }
+
+  .nav-tools svg {
+    height: 30px;
+    width: 36px;
+  }
+
   .nav-tools .button:any-link {
     padding: 2.5px 7px;
-    font-size: 14px;
   }
 
   .nav-tools > ul > li:last-child {
     position: relative;
-    padding-left: 10px;
+    display: list-item;
+    margin-left: 10px;
   }
 
   .nav-tools > ul > li:last-child::before {
@@ -394,14 +460,43 @@ header nav[aria-expanded=true] .nav-sections {
 }
 
 @media (min-width: 1200px) {
+  .header nav {
+    margin: 0 auto;
+    padding: 0 15px;
+    height: 67px;
+    max-width: 1140px;
+  }
 
-  .nav-sections {
-    margin-left: 24px;
+  .nav-brand svg {
+    width: 144px;
+  }
+
+  .nav-planners > ul > li {
+    padding: 18px 0;
+  }
+
+  .nav-sections ul {
+    justify-content: start;
   }
 }
 
 @media (min-width: 1440px) {
+  .header nav {
+    height: 76px;
+    max-width: 1156px;
+    margin: 0 auto;
+  }
+
+  .nav-planners > ul > li,
+  .nav-sections > ul > li {
+    margin: 0;
+    padding: 20px 0;
+  }
 }
 
 @media (min-width: 1600px) {
+  .header nav {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
 }
