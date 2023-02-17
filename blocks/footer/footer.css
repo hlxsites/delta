@@ -13,10 +13,6 @@ footer .footer p {
   margin: 0;
 }
 
-footer .footer {
-  display: flex;
-}
-
 /* Info modal */
 footer .footer.block div > ul {
   display: flex;
@@ -38,6 +34,7 @@ footer .footer.block div > ul > li > ul {
 strong {
   color: #7d8388!important;
 }
+
 /* Copyright */
 footer .footer.block div > div:nth-last-of-type(3) {
   color: darkgray;
