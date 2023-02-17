@@ -3,6 +3,12 @@ import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+function decorateCTA(block) {
+  block.querySelectorAll('li>a>strong').forEach((strong) => {
+    strong.parentElement.classList.add('button');
+    strong.parentElement.classList.add('cta');
+  });
+}
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -149,6 +155,7 @@ export default async function decorate(block) {
     toggleMenu(nav, navSections, isDesktop.matches);
     isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
+    decorateCTA(nav);
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';

@@ -171,6 +171,7 @@ a.button.cta, button.cta {
   background-color: #e51937;
   border-color: #e51937;
   color: #fff;
+  font-family: var(--button-font-family);
 }
 
 a.button.cta:hover, a.button.cta:focus, button.cta:hover, button.cta:focus {
@@ -292,4 +293,18 @@ main .default-content-wrapper h2 {
 main .default-content-wrapper .default-content-eyebrow + h2 {
   margin-top: 0;
 } 
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-height: 271px;
+  }
+
+  main .section {
+    max-width: 1140px;
+  }
+
+  main .section .default-content-wrapper {
+    width: auto;
+  }
+}
 
