@@ -1,4 +1,4 @@
-.default-content-wrapper {
+/* .default-content-wrapper {
     text-align: center;
 }
 
@@ -14,7 +14,7 @@
     font-size: 52px;
     line-height: 54px;
     color: var(--heading-color);
-}
+} */
 
 .cards > ul {
     list-style: none;
@@ -31,12 +31,31 @@
     border: 0px solid var(--highlight-background-color);
 }
 
+.cards .cards-card-body::before {
+    background-color: var(--card-background-color);
+  }
+
 .cards .cards-card-body {
     margin: 0px;
     padding: 32px;
-    color: var(--card-text-color);
-    background-color: var(--card-background-color);
     font-family: Whitney-Book;
+    color: var(--card-text-color);
+    background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
+    background-color: var(--card-background-color);
+    background-position: 92% 50%!important;
+}
+
+.row .cards-card-body .cards-card-body-underline {
+    display: block;
+    width: 5.125rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    border: 0;
+    border-bottom: 0.1875rem solid #e3132c;
+}
+
+.cards .cards-card-body > p {
+    width: 92%
 }
 
 .cards .cards-card-image {
