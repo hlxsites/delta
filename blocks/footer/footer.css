@@ -14,19 +14,19 @@ footer .footer p {
 }
 
 /* Info modal */
-footer .footer.block div > ul {
+footer .footer.block div:nth-child(1) > ul {
   display: flex;
   color: #fff;
   justify-content: center;
 }
 
-footer .footer.block div > ul > li {
+footer .footer.block div:nth-child(1) > ul > li {
   display: inherit;
   flex-direction: column;
   margin-left: auto;
 }
 
-footer .footer.block div > ul > li > ul {
+footer .footer.block div:nth-child(1) > ul > li > ul {
   list-style: none;
   margin-left: -40px;
 }
@@ -35,42 +35,56 @@ strong {
   color: #7d8388;
 }
 
-/* p {
-  color: #7d8388;
-} */
-
 p a {
   color: #fff!important;
 }
 
 /* Copyright */
-footer .footer.block div > div:nth-last-of-type(3) {
+footer .footer.block div > div:nth-last-of-type(4) {
   color: darkgray;
   text-align: center;
+  padding-top: 2rem;
 }
 
 /* terms and conditions */
-footer .footer.block div > div:nth-last-of-type(2) {
+footer .footer.block div > div:nth-last-of-type(3) {
   color: darkgray;
   text-decoration: none;
   text-decoration-color: var(--link-color);
   text-align: center;
+  text-decoration-thickness: 0.01rem;
+  padding-top: .5rem;
 }
 
-/* social and language links */
+footer .footer.block div > div:nth-last-of-type(3) > p > a:hover {
+  text-decoration-thickness: 0.01rem;
+}
+
+/* website feedback */
+footer .footer.block div > div:nth-last-of-type(2) {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  padding-top: 1.2em;
+}
+
+/* social and language links - last */
 footer .footer.block div > div:last-of-type > ul {
   white-space: nowrap;
   overflow: hidden;
   list-style-type: none;
   text-align: center;
-  text-decoration: none;
-  text-decoration-color: var(--link-color);
 }
 
 footer .footer.block div > div:last-of-type > ul > li {
   display: inline-block;
   margin: 0 1rem;
-  line-height: 32px;
+}
+
+footer .footer.block div > div:last-of-type > ul > li > a {
+  color: white;
+  font-size: 1.rem;
+  vertical-align: middle;
 }
 
 footer .footer.block div > div:last-of-type > ul > li > a:hover {
@@ -79,5 +93,11 @@ footer .footer.block div > div:last-of-type > ul > li > a:hover {
 
 footer .icon > svg {
   vertical-align: middle;
+  padding: .25rem;
+}
+
+/* globe icon only */
+footer .icon-globe > svg {
+  fill: white;
 }
 
