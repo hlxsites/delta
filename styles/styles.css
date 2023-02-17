@@ -23,6 +23,7 @@
   --text-color: #212529;
   --heading-color: #0b1f66;
   --button-color: #0b1f66;
+  --hero-button-color: #e51937;
   
 
   /* fonts */
@@ -107,7 +108,8 @@ a:any-link {
 
 a:hover {
   text-decoration: underline;
-  color: var(--link-hover-color);
+  color: white;
+  text-decoration-thickness: 3px;
 }
 
 code, pre, samp {
@@ -295,6 +297,11 @@ main .section .default-content-wrapper p {
     margin-top: 20px;
     padding-left: unset;
     padding-right: unset;
+  }
+  
+  main .section.banner-container {
+    max-width: 100vw;
+    padding: 0;
   }
 }
 
