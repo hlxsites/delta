@@ -1,1 +1,128 @@
 /* below the fold CSS goes here */
+@font-face {
+    font-family: Whitney-Light;
+    src: url("./fonts/A32A3E152E391B379.woff2") format("woff2");
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-LightItalic;
+    src: url("./fonts/560247561D61316B0.woff2") format("woff2");
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Book;
+    src: url("./fonts/CB8837CA379681FED.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-BookItalic;
+    src: url("./fonts/C38C81DE2B6590D68.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Medium;
+    src: url("./fonts/AABA9C13AF9C5C638.woff2") format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-MediumItalic;
+    src: url("./fonts/A5B691C26F8CABBC2.woff2") format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Semibold;
+    src: url("./fonts/3955045D2CF71A4B6.woff2") format("woff2");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-SemiboldItalic;
+    src: url("./fonts/2AEF2F564D90434B1.woff2") format("woff2");
+    font-weight: 600;
+    font-display: swap;
+    font-style: italic
+}
+
+@font-face {
+    font-family: Whitney-Bold;
+    src: url("./fonts/5F3C862F467F43533.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Whitney-Black;
+    src: url("./fonts/A4735881B447BC24E.woff2") format("woff2");
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Light;
+    src: url("./fonts/0D9C4EC6CE739C59E.woff2") format("woff2");
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Book;
+    src: url("./fonts/D1471883735440A2A.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Medium;
+    src: url("./fonts/5918DFA7BE09ECE71.woff2") format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Semibold;
+    src: url("./fonts/C2031C89118431E67.woff2") format("woff2");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Bold;
+    src: url("./fonts/425789FA99F33DFE6.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal
+}
+
+@font-face {
+    font-family: WhitneyCondensed-Black;
+    src: url("./fonts/B08100E88A772CF90.woff2") format("woff2");
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal
+}
