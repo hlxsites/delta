@@ -26,11 +26,73 @@ header nav {
 
 header nav[aria-expanded=true] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'hamburger tools' 47px
+    'planners planners' 1fr
+    'sections sections' 1fr;
   overflow-y: auto;
   min-height: 100vh;
+  padding: 0 30px 30px;
+}
+
+header nav[aria-expanded=true] svg {
+  height: 22px;
+}
+
+header nav[aria-expanded=true] .nav-hamburger button {
+  margin: 0;
+}
+
+header nav[aria-expanded=true] .nav-sections ul ul {
+  display: none;
+}
+
+header nav[aria-expanded=true] .nav-tools {
+  padding: 0;
+}
+
+header nav[aria-expanded=true] .nav-tools li {
+  display: none;
+}
+
+header nav[aria-expanded=true] .nav-tools li:last-child {
+  display: list-item;
+}
+
+header nav[aria-expanded=true] .nav-planners {
+  margin-top: 30px;
+}
+
+header nav[aria-expanded=true] .nav-planners ul,
+header nav[aria-expanded=true] .nav-sections ul {
+  align-items: start;
+  flex-direction: column;
+}
+
+header nav[aria-expanded=true] .nav-planners li:first-child,
+header nav[aria-expanded=true] .nav-planners li:last-child {
+  display: list-item;
+}
+
+header nav[aria-expanded=true] .nav-planners > ul > li,
+header nav[aria-expanded=true] .nav-sections > ul > li {
+  width: 100%;
+  padding: 0 8px;
+  border-bottom: 1px solid #3a4351;
+}
+
+header nav[aria-expanded=true] .nav-planners a,
+header nav[aria-expanded=true] .nav-sections a {
+  display: block;
+  padding: 21px 24px;
+}
+
+header nav[aria-expanded=true] .nav-planners > ul > li.active a::after,
+header nav[aria-expanded=true] .nav-sections > ul > li.active a::after,
+header nav[aria-expanded=true] .nav-tools > ul > li.active a::after,
+header nav[aria-expanded=true] .nav-planners > ul > li.hover a::after,
+header nav[aria-expanded=true] .nav-sections > ul > li.hover a::after,
+header nav[aria-expanded=true] .nav-tools > ul > li.hover a::after {
+  display: none;
 }
 
 header nav a:any-link {
@@ -221,9 +283,9 @@ header nav[aria-expanded=true] .nav-sections {
   text-decoration: none;
 }
   
-.nav-planners > ul > li.active::after,
-.nav-sections > ul > li.active::after,
-.nav-tools > ul > li.active::after {
+.nav-planners > ul > li.active a::after,
+.nav-sections > ul > li.active a::after,
+.nav-tools > ul > li.active a::after {
   position: absolute;
   display: block;
   content: '';
@@ -372,11 +434,8 @@ header nav[aria-expanded=true] .nav-sections {
     text-decoration: none;
   }
   
-  .nav-planners > ul > li.active::after,
-  .nav-sections > ul > li.active::after,
-  .nav-tools > ul > li.active::after,
-  .nav-planners > ul > li:hover::after,
-  .nav-sections > ul > li:hover::after,
+  .nav-planners > ul > li:hover a::after,
+  .nav-sections > ul > li:hover a::after,
   .nav-tools > ul > li:hover::after {
     position: absolute;
     display: block;
@@ -384,6 +443,7 @@ header nav[aria-expanded=true] .nav-sections {
     border-bottom: 3px solid #e01933;
     width: 100%;
     bottom: 0;
+    left: 0;
   }
 
   .nav-planners > ul > li > ul,
@@ -457,6 +517,15 @@ header nav[aria-expanded=true] .nav-sections {
     vertical-align: middle;
     margin-left: -10px;
   }
+
+  .nav-planners > ul > li.active a::after,
+  .nav-sections > ul > li.active a::after,
+  .nav-tools > ul > li.active a::after,
+  .nav-planners > ul > li:hover a::after,
+  .nav-sections > ul > li:hover a::after,
+  .nav-tools > ul > li:hover::after {
+    bottom: -20px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -478,6 +547,15 @@ header nav[aria-expanded=true] .nav-sections {
   .nav-sections ul {
     justify-content: start;
   }
+
+  .nav-planners > ul > li.active a::after,
+  .nav-sections > ul > li.active a::after,
+  .nav-tools > ul > li.active a::after,
+  .nav-planners > ul > li:hover a::after,
+  .nav-sections > ul > li:hover a::after,
+  .nav-tools > ul > li:hover::after {
+    bottom: -16px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -491,6 +569,15 @@ header nav[aria-expanded=true] .nav-sections {
   .nav-sections > ul > li {
     margin: 0;
     padding: 20px 0;
+  }
+
+  .nav-planners > ul > li.active a::after,
+  .nav-sections > ul > li.active a::after,
+  .nav-tools > ul > li.active a::after,
+  .nav-planners > ul > li:hover a::after,
+  .nav-sections > ul > li:hover a::after,
+  .nav-tools > ul > li:hover::after {
+    bottom: -20px;
   }
 }
 
