@@ -11,7 +11,11 @@
  */
 
  :root {
-  /* colors */
+  /* design tokens colors */
+  --color-delta-blue-dark: #11172b;
+  --color-delta-gray: #7d8388;
+
+  /* semantic colors */
   --link-color: #4470c3;
   --link-hover-color: #2d4f8d;
   --background-color: #fff;
@@ -28,16 +32,17 @@
 
   /* fonts */
   --body-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-font-family: whitneycondensed-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --heading-bold-font-family: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
   /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
   /* body sizes */
   --body-font-size-m: 16px;
-
-  /* --body-font-size-s: 18px;
-  --body-font-size-xs: 16px; */
+  --body-font-size-s: 15px;
+  --body-font-size-xxs: 12px; 
 
   /* heading sizes */
 
@@ -249,7 +254,7 @@ main .section.highlight {
 }
 
 main .section .default-content-wrapper h2 {
-  font-family: Whitney-Bold;
+  font-family: var(--heading-bold-font-family);
   font-size: .9375rem;
   line-height: 1.375rem;
   color: var(--heading-color);
