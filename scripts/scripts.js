@@ -40,6 +40,15 @@ function buildAutoBlocks(main) {
   }
 }
 
+function decorateEyeBrows(main) {
+  main.querySelectorAll('.default-content-wrapper strong').forEach((s) => {
+    const p = s.closest('p');
+    if (p && s.textContent === p.textContent) {
+      p.classList.add('default-content-eyebrow');
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -52,6 +61,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateEyeBrows(main);
 }
 
 /**

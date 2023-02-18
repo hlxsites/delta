@@ -8,6 +8,12 @@
     position: relative;
 }
 
+.banner a:hover {
+    text-decoration: underline;
+    color: white;
+    text-decoration-thickness: 3px;      
+}
+
 .banner-slide .banner-image img {
     width: 100%;
     height: 370px;
