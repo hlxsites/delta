@@ -118,3 +118,19 @@ footer .icon-globe > svg {
   fill: white;
 }
 
+@media (max-width: 768px) {
+  footer .footer.block ul {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  footer .footer.block ul li {
+    margin: auto;
+  }
+
+  footer .footer.block ul > li > ul > li {
+    margin: initial;
+  }
+}
+
