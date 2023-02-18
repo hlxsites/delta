@@ -86,6 +86,7 @@ footer .footer-links > ul {
 footer .footer-links > ul > li {
   display: inherit;
   flex-direction: column;
+  padding-left: 0;
 }
 
 footer .footer-links > ul > li > ul {
@@ -115,6 +116,7 @@ footer .footer-links strong {
 
   footer .footer-links > ul > li {
     margin-left: auto;
+    margin-right: auto;
   }
 
   footer .footer {
