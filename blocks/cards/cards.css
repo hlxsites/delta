@@ -45,6 +45,10 @@
     background-position: 92% 50%!important;
 }
 
+.cards .cards-card-body hr {
+    display: none
+}
+
 .row .cards-card-body .cards-card-body-underline {
     display: block;
     width: 5.125rem;
