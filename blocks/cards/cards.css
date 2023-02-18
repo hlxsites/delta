@@ -29,15 +29,16 @@
 
 .cards > ul > li {
     border: 0px solid var(--highlight-background-color);
-}
-
-.cards .cards-card-body::before {
     background-color: var(--card-background-color);
-  }
+}
 
 .cards .cards-card-body {
     margin: 0px;
-    padding: 32px;
+    /* padding: 30px; */
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
     font-family: Whitney-Book;
     color: var(--card-text-color);
     background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
@@ -74,7 +75,15 @@
 
 .cards > ul > li img {
     width: 100%;
+    /* aspect-ratio: 4 / 3; */
     object-fit: cover;
+    height: 210px;
+}
+
+.row > ul > li img {
+    width: 100%;
+    object-fit: cover;
+    height: unset;
 }
 
 .row ul {
