@@ -10,14 +10,9 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else {
         div.className = 'cards-card-body';
-        
-        // Add horizontal line between p elements
-        const pElements = div.getElementsByTagName('p');
-        if (pElements.length === 2) {
-          const hr = document.createElement('hr');
-          hr.className = 'cards-card-body-underline'; // Add class to hr element
-          pElements[0].insertAdjacentElement('afterend', hr);
-        }
+        div.addEventListener('click', () => {
+          window.location.href = div.querySelector('a').href;
+        });
       }
     });
     ul.append(li);
