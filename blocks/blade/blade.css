@@ -31,13 +31,7 @@
 
 .blade .blade-body h3 {
     margin-top: 0;
-    letter-spacing: 1.4px;
 }
-
-.blade a:any-link {
-    color: var(--color-delta-blue);
-}
-
 
 .blade .blade-body p {
     margin-bottom: 0;
@@ -62,7 +56,7 @@
     }
 
     .blade .blade-image {
-        flex: 0 400px;
+        flex: 0 320px;
     }
     
     .blade .blade-body {
