@@ -15,7 +15,7 @@
     cursor: pointer;
     background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
     background-color: var(--overlay-background-color);
-    background-position: 96% 70%!important;
+    background-position: 96% 64%!important;
     font-family: var(--body-font-family);
     color: var(--heading-color);
 }
@@ -31,6 +31,7 @@
 
 .blade .blade-body p {
     margin-bottom: 0;
+    padding-right: 40px;
 }
 
 .blade .blade-body h3::after {
