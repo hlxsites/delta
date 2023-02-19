@@ -13,6 +13,7 @@
  :root {
   /* design tokens colors */
   --color-delta-blue-dark: #11172b;
+  --color-delta-blue: #0b1f66;
   --color-delta-gray: #7d8388;
   --color-delta-gray-light: #f6f6f7;
   --color-delta-red: #e51937;
@@ -26,9 +27,9 @@
 
   /* --highlight-color: #ff; */
   --text-color: #212529;
-  --heading-color: #0b1f66;
-  --button-color: #0b1f66;
-  --hero-button-color: #e51937;
+  --heading-color: var(--color-delta-blue);
+  --button-color: var(--color-delta-blue);
+  --hero-button-color: var(--color-delta-red);
   
 
   /* fonts */
@@ -275,11 +276,16 @@ main .default-content-wrapper {
 
 main .default-content-wrapper .default-content-eyebrow {
   font-family: var(--heading-bold-font-family);
+  color: var(--color-delta-blue);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
 }
 
 main .default-content-wrapper h2 {
   font-family: var(--body-font-family);
   font-weight: 400;
+  line-height: 54px;
+  margin-bottom: 60px;
 }
 
 main .default-content-wrapper .default-content-eyebrow + h2 {
