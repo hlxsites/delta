@@ -18,32 +18,14 @@
 }
 
 .cards .cards-card-body {
-    /* padding: 30px; */
     position: relative;
     cursor: pointer;
     background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
     background-position: 92% 50%!important;
-    padding-top: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 20px;
+    padding: 30px 30px 20px 30px;
     font-family: var(--body-font-family);
     color: var(--heading-color);
 }
-
-/* .cards .cards-card-body::after {
-    content: '';
-    border: 1px solid var(--color-delta-red);
-    border-width: 1px 1px 0 0;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 15px;
-    display: block;
-    position: absolute;
-    bottom: 45px;
-    right: 30px;
-} */
-
 
 .cards .cards-card-body p {
     padding-right: 30px;

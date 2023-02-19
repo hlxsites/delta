@@ -42,6 +42,11 @@
     width: 82px;
 }
 
+.blade img {
+    width: 100%;
+    object-fit: cover;
+}
+
 .blade-container > *:nth-child(2) img {
     width: 100%;
 }
@@ -51,11 +56,6 @@
     justify-content: center;
     display: flex;
     align-items: center;
-}
-
-.blade img {
-    width: 100%;
-    object-fit: cover;
 }
 
 @media (min-width: 992px) {
