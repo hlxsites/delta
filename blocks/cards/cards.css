@@ -1,5 +1,5 @@
 .cards {
-    margin: 30px auto;
+    margin: 50px auto;
 }
 
 .cards > ul {
@@ -7,7 +7,7 @@
     margin: 0 auto;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 32px;
     max-width: 1200px;
     justify-content: center;
@@ -18,12 +18,20 @@
 }
 
 .cards .cards-card-body {
-    padding: 30px;
+    /* padding: 30px; */
     position: relative;
     cursor: pointer;
+    background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
+    background-position: 92% 50%!important;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    font-family: var(--body-font-family);
+    color: var(--heading-color);
 }
 
-.cards .cards-card-body::after {
+/* .cards .cards-card-body::after {
     content: '';
     border: 1px solid var(--color-delta-red);
     border-width: 1px 1px 0 0;
@@ -34,7 +42,7 @@
     position: absolute;
     bottom: 45px;
     right: 30px;
-}
+} */
 
 
 .cards .cards-card-body p {
@@ -47,6 +55,13 @@
 
 .cards .cards-card-body > *:first-child {
     margin-top: 0;
+    font-size: 16px;
+    font-family: var(--heading-bold-font-family);
+    color: var(--heading-color);
+}
+
+.cards .cards-card-body > *:first-child > a {
+    color: var(--heading-color);
 }
 
 .cards > ul > li img {

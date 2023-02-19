@@ -10,27 +10,23 @@
 }
 
 .blade .blade-body {
-    background-color: var(--overlay-background-color);
     padding: 30px 46px 30px 30px;
     position: relative;
     cursor: pointer;
-}
-
-.blade .blade-body::after {
-    content: '';
-    border: 1px solid var(--color-delta-red);
-    border-width: 1px 1px 0 0;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 15px;
-    display: block;
-    position: absolute;
-    bottom: 45px;
-    right: 30px;
+    background: url("../../icons/carot-redpromo-quilt.svg") no-repeat;
+    background-color: var(--overlay-background-color);
+    background-position: 96% 70%!important;
+    font-family: var(--body-font-family);
+    color: var(--heading-color);
 }
 
 .blade .blade-body h3 {
     margin-top: 0;
+    letter-spacing: 1.4px;
+}
+
+.blade .blade-body > *:first-child > a {
+    color: var(--heading-color);
 }
 
 .blade .blade-body p {
@@ -46,7 +42,23 @@
     width: 82px;
 }
 
-@media (min-width: 900px) {
+.blade-container > *:nth-child(2) img {
+    width: 100%;
+}
+
+.blade-container > *:nth-child(2) .blade-image {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.blade img {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
     .blade > div {
         flex-direction: unset;
     }
@@ -56,10 +68,16 @@
     }
 
     .blade .blade-image {
-        flex: 0 320px;
+        flex: 0 390px;
     }
     
     .blade .blade-body {
         flex: 1;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .blade-container > *:nth-child(2) img {
+        width: 50%;
     }
 }

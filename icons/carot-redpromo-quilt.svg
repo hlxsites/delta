@@ -1,0 +1,14 @@
+<svg width="10" height="18" viewBox="0 0 10 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>carot-red</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-2318 -385)">
+<g id="carot-red">
+<g id="Page 1 Copy">
+<use xlink:href="#path0_fill" transform="translate(2318 385)" fill="#DF1E33"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 10 8.89655C 7.04112 11.9308 4.08133 14.9658 1.12245 18C 0.748265 17.6207 0.374184 17.2414 0 16.8621L 7.7551 9C 6.97286 8.17252 6.19041 7.34472 5.40816 6.51724C 3.60561 4.75872 1.80255 2.9999 0 1.24138C 0.340102 0.827586 0.680306 0.413793 1.02041 0C 4.01337 2.96524 7.00704 5.93131 10 8.89655Z"/>
+</defs>
+</svg>
