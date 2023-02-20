@@ -14,6 +14,14 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
+
+  const styles = ['links', 'copyright', 'legal', 'feedback', 'social-int'];
+  styles.forEach((style, i) => {
+    if (footer.children[i]) {
+      footer.children[i].classList.add(`footer-${style}`);
+    }
+  });
+
   await decorateIcons(footer);
   block.append(footer);
 }
