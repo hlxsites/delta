@@ -13,8 +13,10 @@
  :root {
   /* design tokens colors */
   --color-delta-blue-dark: #11172b;
+  --color-delta-blue-middle: #2d3641;
   --color-delta-blue: #0b1f66;
   --color-delta-gray: #7d8388;
+  --color-delta-gray-middle: #d2d3d5;
   --color-delta-gray-light: #f6f6f7;
   --color-delta-red: #e51937;
 
@@ -27,6 +29,7 @@
 
   /* --highlight-color: #ff; */
   --text-color: #212529;
+  --text-color-inverted: #fff;
   --heading-color: var(--color-delta-blue);
   --button-color: var(--color-delta-blue);
   --hero-button-color: var(--color-delta-red);
@@ -42,9 +45,8 @@
   /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
   /* body sizes */
-  --body-font-size-s: 14px;
-  --body-font-size-m: 16px;
   --body-font-size-s: 15px;
+  --body-font-size-m: 16px;
   --body-font-size-xxs: 12px; 
 
   /* heading sizes */
