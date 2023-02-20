@@ -1,0 +1,69 @@
+.blade {
+    max-width: 700px;
+    margin: 16px auto;
+}
+
+.blade > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.blade .blade-body {
+    background-color: var(--overlay-background-color);
+    padding: 30px 46px 30px 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.blade a:any-link {
+    color: var(--color-delta-blue);
+}
+
+.blade .blade-body::after {
+    content: '';
+    border: 1px solid var(--color-delta-red);
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 15px;
+    display: block;
+    position: absolute;
+    bottom: 45px;
+    right: 30px;
+}
+
+.blade .blade-body h3 {
+    margin-top: 0;
+}
+
+.blade .blade-body p {
+    margin-bottom: 0;
+}
+
+.blade .blade-body h3::after {
+    margin: 30px 0;
+    content: '';
+    display: block;
+    background-color: var(--color-delta-red);
+    height: 3px;
+    width: 82px;
+}
+
+@media (min-width: 900px) {
+    .blade > div {
+        flex-direction: unset;
+    }
+
+    .blade {
+        max-width: 1200px;
+    }
+
+    .blade .blade-image {
+        flex: 0 400px;
+    }
+    
+    .blade .blade-body {
+        flex: 1;
+    }
+}
