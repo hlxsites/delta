@@ -15,7 +15,7 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
 
-  const styles = ['links', 'copyright', 'legal', 'feedback', 'social-int'];
+  const styles = ['search-help-topics', 'links', 'copyright', 'legal', 'feedback', 'social-int'];
   styles.forEach((style, i) => {
     if (footer.children[i]) {
       footer.children[i].classList.add(`footer-${style}`);
