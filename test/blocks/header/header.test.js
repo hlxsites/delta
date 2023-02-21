@@ -39,7 +39,7 @@ describe('Header block', () => {
   });
 
   it('Section title shows and hides section on desktop', async () => {
-    await setViewport({ width: 900, height: 640 });
+    await setViewport({ width: 992, height: 640 });
     const sections = document.querySelector('.header .nav-sections');
     const title = sections.querySelector(':scope li');
     title.click();

@@ -1,8 +1,14 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
 // media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 992px)');
 
+function decorateCTA(block) {
+  block.querySelectorAll('li>a>strong').forEach((strong) => {
+    strong.parentElement.classList.add('button');
+    strong.parentElement.classList.add('cta');
+  });
+}
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -104,23 +110,46 @@ export default async function decorate(block) {
     nav.id = 'nav';
     nav.innerHTML = html;
 
-    const classes = ['brand', 'sections', 'tools'];
+    const classes = ['brand', 'planners', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
       if (section) section.classList.add(`nav-${c}`);
     });
+
+    const navBrand = nav.querySelector('.nav-brand');
+    if (navBrand) {
+      const picture = navBrand.querySelector('picture');
+      const link = navBrand.querySelector('a');
+      if (picture && link) {
+        navBrand.innerHTML = '';
+        link.innerHTML = '';
+        link.append(picture);
+        navBrand.append(link);
+      }
+    }
+
+    const navPlanner = nav.querySelector('.nav-planners');
+    if (navPlanner) {
+      const li = navPlanner.querySelector('li:nth-of-type(2)');
+      li.classList.add('active');
+    }
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('click', () => {
-          if (isDesktop.matches) {
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          }
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         });
+      });
+      // Hide all section menus when clicking outside of the header
+      document.addEventListener('click', (ev) => {
+        if (ev.target.closest('.header')) {
+          return;
+        }
+        toggleAllNavSections(navSections, false);
       });
     }
 
@@ -137,6 +166,7 @@ export default async function decorate(block) {
     toggleMenu(nav, navSections, isDesktop.matches);
     isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
+    decorateCTA(nav);
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';
