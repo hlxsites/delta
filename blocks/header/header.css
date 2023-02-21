@@ -280,8 +280,8 @@ header nav .nav-tools svg {
   text-decoration: none;
 }
   
-.nav-planners > ul > li.active a::after,
-.nav-sections > ul > li.active a::after {
+.nav-planners > ul > li.active > a::after,
+.nav-sections > ul > li.active > a::after {
   position: absolute;
   display: block;
   content: '';
@@ -318,7 +318,7 @@ header nav[aria-expanded=true] .nav-planners > ul > li,
 header nav[aria-expanded=true] .nav-sections > ul > li {
   width: 100%;
   padding: 0 8px;
-  border-bottom: 1px solid var(--color-delta-blue-dark);
+  border-bottom: 1px solid var(--color-delta-blue-middle);
 }
 
 header nav[aria-expanded=true] .nav-planners li:first-child,
@@ -449,8 +449,8 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
     text-decoration: none;
   }
   
-  .nav-planners > ul > li:hover a::after,
-  .nav-sections > ul > li:hover a::after {
+  .nav-planners > ul > li:hover > a::after,
+  .nav-sections > ul > li:hover > a::after {
     position: absolute;
     display: block;
     content: '';

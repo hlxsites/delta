@@ -133,6 +133,16 @@ header nav[aria-expanded=true] .nav-sections > ul > li > ul > li {
   line-height: 40px;
 }
 
+header nav[aria-expanded=true] .nav-planners > ul > li > ul a,
+header nav[aria-expanded=true] .nav-sections > ul > li > ul a {
+  padding: 0;
+}
+
+header nav[aria-expanded=true] .nav-planners > ul > li > ul br,
+header nav[aria-expanded=true] .nav-sections > ul > li > ul br {
+  display: none;
+}
+
 header nav[aria-expanded=true] .nav-sections > ul > li > ul > li > ul > li {
   color: var(--color-delta-gray-middle);
   font-family: Whitney-Book, apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -145,6 +155,10 @@ header nav[aria-expanded=true] .nav-sections > ul > li > ul > li:first-child > u
   font-family: var(--body-medium-font-family);
   font-size: 16px;
   font-weight: bold;
+}
+
+header nav[aria-expanded=true] .nav-sections ul li[aria-expanded=true] ul {
+  display: block;
 }
 
 @media (min-width: 992px) {
