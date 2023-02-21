@@ -189,6 +189,10 @@ header nav[aria-expanded=true] .nav-planners {
   font-size: 16px;
 }
 
+.nav-tools ul > li {
+  display: none;
+}
+
 header nav .nav-tools svg {
   height: 26px;
   width: 36px;
@@ -272,8 +276,7 @@ header nav .nav-tools svg {
 }
   
 .nav-planners > ul > li.active a::after,
-.nav-sections > ul > li.active a::after,
-.nav-tools > ul > li.active a::after {
+.nav-sections > ul > li.active a::after {
   position: absolute;
   display: block;
   content: '';
@@ -304,10 +307,6 @@ header nav[aria-expanded=true] .nav-sections ul {
 header nav[aria-expanded=true] .nav-sections > ul > li > ul {
   display: none;
   padding: 18px 0;
-}
-
-header nav[aria-expanded=true] .nav-tools li {
-  display: none;
 }
 
 header nav[aria-expanded=true] .nav-planners > ul > li,
@@ -416,6 +415,23 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
     align-self: unset;
   }
 
+  .nav-tools {
+    padding-right: 0;
+  }
+
+  .nav-tools svg {
+    height: 30px;
+    width: 36px;
+  }
+
+  .nav-tools ul > li {
+    display: list-item;
+  }
+
+  .nav-tools .button:any-link {
+    padding: 2.5px 7px;
+  }
+
   .nav-planners > ul > li,
   .nav-sections > ul > li,
   .nav-tools > ul > li {
@@ -429,8 +445,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   }
   
   .nav-planners > ul > li:hover a::after,
-  .nav-sections > ul > li:hover a::after,
-  .nav-tools > ul > li:hover::after {
+  .nav-sections > ul > li:hover a::after {
     position: absolute;
     display: block;
     content: '';
@@ -466,19 +481,6 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   .nav-planners > ul > li > ul > li,
   .nav-sections > ul > li > ul > li {
     padding: 8px 0;
-  }
-
-  .nav-tools {
-    padding-right: 0;
-  }
-
-  .nav-tools svg {
-    height: 30px;
-    width: 36px;
-  }
-
-  .nav-tools .button:any-link {
-    padding: 2.5px 7px;
   }
 
   .nav-tools > ul > li:last-child {
