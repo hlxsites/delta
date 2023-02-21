@@ -515,6 +515,11 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
     padding: 8px 0;
   }
 
+  header nav[aria-expanded=true] .nav-planners ul ul a:hover,
+  header nav[aria-expanded=true] .nav-sections ul ul a:hover {
+    text-decoration: underline;
+  }
+
   .nav-tools > ul > li:last-child::before {
     content: '';
     display: inline-block;

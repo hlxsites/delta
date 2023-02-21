@@ -150,6 +150,14 @@ header nav[aria-expanded=true] .nav-sections > ul > li > ul > li > ul > li {
   font-weight: normal;
 }
 
+header nav[aria-expanded=true] .nav-sections > ul > li > ul > li > ul > li a {
+  color: var(--color-delta-gray-middle);
+}
+
+header nav[aria-expanded=true] .nav-sections > ul > li > ul > li:first-of-type > ul > li a {
+  color: var(--text-color-inverted);
+}
+
 header nav[aria-expanded=true] .nav-sections > ul > li > ul > li:first-child > ul > li {
   color: var(--text-color-inverted);
   font-family: var(--body-medium-font-family);
