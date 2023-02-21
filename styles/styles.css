@@ -33,7 +33,6 @@
   --heading-color: var(--color-delta-blue);
   --button-color: var(--color-delta-blue);
   --hero-button-color: var(--color-delta-red);
-  
 
   /* fonts */
   --body-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
@@ -270,7 +269,6 @@ main .section.highlight {
   
   /* --heading-font-size-s: 20px;
    --heading-font-size-xs: 18px; */
-
   }
 }
 
