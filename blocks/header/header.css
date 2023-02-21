@@ -193,6 +193,11 @@ header nav[aria-expanded=true] .nav-planners {
   display: none;
 }
 
+.nav-tools .icon {
+  display: inline-block;
+  width: 36px;
+}
+
 header nav .nav-tools svg {
   height: 26px;
   width: 36px;
