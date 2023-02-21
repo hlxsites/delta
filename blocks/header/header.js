@@ -144,6 +144,13 @@ export default async function decorate(block) {
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         });
       });
+      // Hide all section menus when clicking outside of the header
+      document.addEventListener('click', (ev) => {
+        if (ev.target.closest('.header')) {
+          return;
+        }
+        toggleAllNavSections(navSections, false);
+      });
     }
 
     // hamburger for mobile
