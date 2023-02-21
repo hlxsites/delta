@@ -11,40 +11,50 @@
  */
 
  :root {
-  /* colors */
+  /* design tokens colors */
+  --color-delta-blue-dark: #11172b;
+  --color-delta-blue: #0b1f66;
+  --color-delta-gray: #7d8388;
+  --color-delta-gray-light: #f6f6f7;
+  --color-delta-red: #e51937;
+
+  /* semantic colors */
   --link-color: #4470c3;
   --link-hover-color: #2d4f8d;
   --background-color: #fff;
+  --overlay-background-color: var(--color-delta-gray-light);
   --highlight-background-color: #11172b;
 
   /* --highlight-color: #ff; */
   --text-color: #212529;
-  --heading-color: #0b1f66;
-  --button-color: #0b1f66;
-  --hero-button-color: #e51937;
-  
+  --heading-color: var(--color-delta-blue);
+  --button-color: var(--color-delta-blue);
+  --hero-button-color: var(--color-delta-red);
 
   /* fonts */
   --body-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-font-family: whitneycondensed-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --heading-bold-font-family: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
   /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
   /* body sizes */
   --body-font-size-m: 16px;
-
-  /* --body-font-size-s: 18px;
-  --body-font-size-xs: 16px; */
+  --body-font-size-s: 15px;
+  --body-font-size-xxs: 12px; 
 
   /* heading sizes */
 
-  /* --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px; */
+  /* --heading-font-size-xxl: 38px; */
+  --heading-font-size-xl: 38px;
+  --heading-font-size-l: 32px; 
+  --heading-font-size-m: 16px;
+  
+  /* --heading-font-size-s: 20px; */
+  
+  /* --heading-font-size-xs: 18px; */
 
   /* nav height */
   --nav-height: 243px;
@@ -87,9 +97,9 @@ h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
+h1 { font-size: var(--heading-font-size-xl) }
 h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
+h3 { font-size: var(--heading-font-size-m) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
@@ -104,10 +114,8 @@ a:any-link {
   text-decoration: none;
 }
 
-a:hover {
+main a:hover {
   text-decoration: underline;
-  color: white;
-  text-decoration-thickness: 3px;
 }
 
 code, pre, samp {
@@ -246,55 +254,39 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-@media (min-width: 375px) {
+@media (min-width: 900px) {
   :root {
-    --nav-height: 259px;
-  }
+  /* heading sizes */
 
-  main .section {
-    max-width: 375px;
-  }
-
-  main .section.banner-container {
-    max-width: 100vw;
-    padding: 0;
+  /* --heading-font-size-xxl: 38px; */
+  --heading-font-size-xl: 52px;
+  --heading-font-size-l: 52px; 
+  --heading-font-size-m: 16px;
+  
+  /* --heading-font-size-s: 20px;
+   --heading-font-size-xs: 18px; */
   }
 }
 
-@media (min-width: 768px) {
-  :root {
-    --nav-height: 272px;
-  }
-
-  main .section {
-    max-width: 730px;
-  }
+main .default-content-wrapper {
+  text-align: center;
 }
 
-@media (min-width: 992px) {
-  :root {
-    --nav-height: 323px;
-  }
-
-  main .section {
-    max-width: 976px;
-  }
+main .default-content-wrapper .default-content-eyebrow {
+  font-family: var(--heading-bold-font-family);
+  color: var(--color-delta-blue);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
 }
 
-@media (min-width: 1200px) {
-  :root {
-    --nav-height: 328px;
-  }
+main .default-content-wrapper h2 {
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  line-height: 54px;
+  margin-bottom: 60px;
 }
 
-@media (min-width: 1440px) {
-  main .section {
-    max-width: 1156px;
-  }
-}
+main .default-content-wrapper .default-content-eyebrow + h2 {
+  margin-top: 0;
+} 
 
-@media (min-width: 1600px) {
-  main .section {
-    max-width: 1180px;
-  }
-}

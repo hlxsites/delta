@@ -1,5 +1,6 @@
 .section.banner-container  {
     max-width: 100vw;
+    padding: 0;
 }
 
 .banner-slide {
@@ -8,10 +9,23 @@
     position: relative;
 }
 
+.banner a:hover {
+    text-decoration: underline;
+    color: white;
+    text-decoration-thickness: 3px;      
+}
+
+.banner-slide .banner-image picture {
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
 .banner-slide .banner-image img {
     width: 100%;
     height: 370px;
-    filter: brightness(60%)
+    filter: brightness(60%);
+    object-fit: cover;
+    object-position: 80%;
 }
 
 .banner-slide .banner-text {
@@ -107,7 +121,9 @@
 @media (min-width: 992px) {
     .banner-slide .banner-image img {
         height: 500px;
-        filter: brightness(80%)
+        filter: brightness(80%);
+        object-fit: cover;
+        object-position: unset;
     }
     
     .banner-slide .banner-text {
