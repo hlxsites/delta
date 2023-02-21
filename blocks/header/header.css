@@ -533,6 +533,15 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   .nav-tools > ul > li:hover::after {
     bottom: -20px;
   }
+  
+  header nav[aria-expanded=true] .nav-planners > ul > li.active a::after,
+  header nav[aria-expanded=true] .nav-sections > ul > li.active a::after,
+  header nav[aria-expanded=true] .nav-tools > ul > li.active a::after,
+  header nav[aria-expanded=true] .nav-planners > ul > li.hover a::after,
+  header nav[aria-expanded=true] .nav-sections > ul > li.hover a::after,
+  header nav[aria-expanded=true] .nav-tools > ul > li.hover a::after {
+    display: initial;
+  }
 }
 
 @media (min-width: 1200px) {
