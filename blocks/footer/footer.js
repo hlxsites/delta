@@ -22,6 +22,45 @@ export default async function decorate(block) {
     }
   });
 
-  await decorateIcons(footer);
+  const firstFooterDiv = footer.querySelector('.footer-links');
+  firstFooterDiv.classList.add('footer-menu');
+  const headings = firstFooterDiv.querySelectorAll('ul > li > strong');
+  headings.forEach((div) => {
+    div.classList.add('heading');
+  });
+
+  const menu = firstFooterDiv.querySelectorAll('ul > li > ul');
+  menu.forEach((div) => {
+    div.classList.add('menu');
+  });
+
+  const menuHeadings = footer.querySelectorAll('.heading');
+  const menuLists = footer.querySelectorAll('.menu');
+  menuHeadings.forEach((heading, index) => {
+    const caret = document.createElement('span');
+    caret.classList.add('caret');
+    caret.innerHTML = '&#8964;';
+    heading.appendChild(caret);
+    heading.addEventListener('click', () => {
+      const menuList = menuLists[index];
+      const isMenuListVisible = menuList.classList.contains('show');
+      menuLists.forEach((ul) => {
+        if (ul !== menuList && ul.classList.contains('show')) {
+          ul.classList.remove('show');
+          ul.previousElementSibling.querySelector('.caret').classList.remove('up');
+        }
+      });
+
+      if (!isMenuListVisible) {
+        menuList.classList.add('show');
+        caret.classList.add('up');
+      } else {
+        menuList.classList.remove('show');
+        caret.classList.remove('up');
+      }
+    });
+  });
+
+  decorateIcons(footer);
   block.append(footer);
 }
