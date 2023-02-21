@@ -370,7 +370,6 @@ export async function loadBlock(block) {
   const status = block.getAttribute('data-block-status');
   if (status !== 'loading' && status !== 'loaded') {
     block.setAttribute('data-block-status', 'loading');
-    const blockName = block.getAttribute('data-block-name');
     try {
       const cssLoaded = new Promise((resolve) => {
         loadCSS(cssPath, resolve);
