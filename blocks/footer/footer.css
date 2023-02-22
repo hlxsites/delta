@@ -94,6 +94,7 @@ footer .footer-links > ul {
   justify-content: center;
   flex-direction: column;
   padding-left: 0;
+  margin-top: 50px;
 }
 
 footer .footer-links > ul > li .menu {
@@ -141,6 +142,56 @@ footer .footer-links strong {
   font-family: var(--heading-bold-font-family);
   letter-spacing: 1px;
   cursor: pointer;
+}
+
+/* Search Help Topics */
+footer .footer-search-help-topics {
+  text-align: center;
+  color: white;
+  margin-bottom: 50px;
+}
+
+footer .footer-search-help-topics ul {
+  list-style: none;
+  margin-top: unset;
+}
+
+footer .footer-search-help-topics > ul > li:first-child {
+  display: flex;
+  font-size: 46px;
+  justify-content: center;
+}
+
+footer .footer-search-help-topics svg {
+  height: 32px;
+  width: 32px;
+  fill: var(--text-color-inverted);
+}
+
+footer .footer-search-help-topics > ul > li:not(:first-child) {
+  display: inline-flex;
+  font-size: 18px;
+  color: var(--color-delta-gray);;
+  margin-bottom: 20px;
+}
+
+footer .footer-search-help-topics > ul > li:not(:first-child) a:hover {
+  text-decoration: underline;
+}
+
+footer .footer-search-help-topics > ul > li > ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+footer .footer-search-help-topics::after {
+  content: '';
+  display: block;
+  background-color: var(--color-delta-gray);
+  height: 0.5px;
+  margin-left: max(40px, calc((100% - 1200px) / 2));
+  margin-right: max(40px, calc((100% - 1200px) / 2));
 }
 
 @media (min-width: 768px) {
@@ -209,3 +260,17 @@ footer .footer-links strong {
       max-width: 1200px;
     }
   }
+
+@media (max-width: 900px) {
+  footer .footer-search-help-topics > ul > li:first-child {
+    font-size: 24px;
+  }
+
+  footer .footer-search-help-topics > ul > li:not(:first-child) {
+    display: none;
+  }
+  
+  footer .footer-search-help-topics::after {
+    display: none;
+  }
+}
