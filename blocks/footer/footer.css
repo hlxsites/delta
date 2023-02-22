@@ -153,7 +153,7 @@ footer .footer-search-help-topics {
 
 footer .footer-search-help-topics ul {
   list-style: none;
-  margin-top: 0px;
+  margin-top: unset;
 }
 
 footer .footer-search-help-topics > ul > li:first-child {
@@ -172,7 +172,6 @@ footer .footer-search-help-topics > ul > li:not(:first-child) {
   display: inline-flex;
   font-size: 18px;
   color: var(--color-delta-gray);;
-  margin-top: 0px;
   margin-bottom: 20px;
 }
 
