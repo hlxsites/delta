@@ -140,9 +140,9 @@
   font-size: 13px;
 }
 
-@media (min-width: 375px) {}
+/* @media (min-width: 375px) {}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {} */
 
 @media (min-width: 992px) {
   .booking-widget {
