@@ -145,6 +145,7 @@ footer .footer-links > ul {
   justify-content: center;
   flex-direction: column;
   padding-left: 0;
+  margin-top: 50px;
 }
 
 footer .footer-links > ul > li .menu {
