@@ -6,6 +6,7 @@ export default async function decorate(block) {
   const parents = document.querySelectorAll('.banner-slide');
   parents.forEach((({ children }) => {
     children[0].classList.add('banner-image');
+    children[0].querySelector('img').loading = 'eager';
     children[1].classList.add('banner-text');
   }));
 
