@@ -37,6 +37,7 @@
   /* fonts */
   --body-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-light-font-family: whitney-light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-font-family: whitneycondensed-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-bold-font-family: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
@@ -60,7 +61,7 @@
   /* --heading-font-size-xs: 18px; */
 
   /* nav height */
-  --nav-height: 243px;
+  --nav-height: 153px;
 
 }
 
@@ -294,11 +295,13 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   margin-top: 0;
 } 
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   :root {
-    --nav-height: 271px;
+    --nav-height: 68px;
   }
+}
 
+@media (min-width: 1200px) {
   main .section {
     max-width: 1140px;
   }

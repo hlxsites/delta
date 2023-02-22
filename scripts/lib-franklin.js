@@ -507,7 +507,7 @@ export function decorateButtons(element) {
  * load LCP block and/or wait for LCP in default content.
  */
 export async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
+  const block = document.querySelector('.block:not(.booking-widget)');
   const hasLCPBlock = (block && lcpBlocks.includes(block.getAttribute('data-block-name')));
   if (hasLCPBlock) await loadBlock(block);
 
