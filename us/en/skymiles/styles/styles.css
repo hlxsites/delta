@@ -312,6 +312,13 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   }
 }
 
+.skymiles .default-content-wrapper {
+  font-family: var(--body-light-font-family);
+  font-size: 24px;
+  line-height: 28px;
+  text-align: left;
+}
+
 .skymiles .default-content-wrapper h1 {
   font-family: var(--heading-bold-font-family);
   font-size: 15px;
@@ -334,8 +341,4 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   bottom: 0;
   border-bottom: 3px solid var(--color-delta-red);
   width: 82px;
-}
-
-.skymiles .default-content-wrapper {
-  text-align: left;
 }
