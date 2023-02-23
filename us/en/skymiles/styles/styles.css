@@ -329,6 +329,9 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
 
 .skymiles .default-content-wrapper h2::after {
   content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
   border-bottom: 3px solid var(--color-delta-red);
   width: 82px;
 }
