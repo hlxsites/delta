@@ -314,7 +314,7 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
 
 .skymiles .default-content-wrapper {
   font-family: var(--body-light-font-family);
-  font-size: 24px;
+  font-size: 20px;
   line-height: 28px;
   text-align: left;
 }
@@ -330,8 +330,17 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   position: relative;
   padding-bottom: 30px;
   font-family: var(--heading-book-font-family);
+  font-size: 42px;
+  line-height: 50px;
+}
+
+.skymiles .section:first-child .default-content-wrapper:first-of-type h2:first-of-type {
   font-size: 52px;
   line-height: 62px;
+}
+
+.skymiles .section:first-child .default-content-wrapper:first-of-type p {
+  font-size: 24px;
 }
 
 .skymiles .default-content-wrapper h2::after {
@@ -341,4 +350,40 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   bottom: 0;
   border-bottom: 3px solid var(--color-delta-red);
   width: 82px;
+}
+
+.skymiles .default-content-wrapper ol,
+.skymiles .default-content-wrapper ul {
+  font-size: 20px;
+  line-height: 34px;
+}
+
+.skymiles .default-content-wrapper li {
+  padding-bottom: 8px;
+}
+
+.skymiles .default-content-wrapper p picture:only-child {
+  width: 100%;
+  margin: 0 15px;
+}
+
+.skymiles .columns {
+  margin: 0 15px;
+}
+
+.skymiles .columns > div {
+  gap: 30px;
+}
+
+.skymiles .section.highlight {
+  margin: 0;
+  padding: 2.5rem 0;
+  max-width: none;
+  background-color: var(--color-delta-gray-light);
+}
+
+.skymiles .section.highlight:last-child .default-content-wrapper {
+  margin: 0 auto;
+  max-width: 45rem;
+  text-align: center;
 }
