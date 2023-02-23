@@ -41,6 +41,7 @@
   --heading-font-family: whitneycondensed-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-bold-font-family: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --heading-book-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
   /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
 
@@ -311,12 +312,25 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   }
 }
 
-.skymiles h1 {
-
+.skymiles .default-content-wrapper h1 {
+  font-family: var(--heading-bold-font-family);
+  font-size: 15px;
+  letter-spacing: 1.4px;
+  line-height: 20px;
 }
 
-.skymiles h2 {
+.skymiles .default-content-wrapper h2 {
+  position: relative;
+  padding-bottom: 30px;
+  font-family: var(--heading-book-font-family);
+  font-size: 52px;
+  line-height: 62px;
+}
 
+.skymiles .default-content-wrapper h2::after {
+  content: '';
+  border-bottom: 3px solid var(--color-delta-red);
+  width: 82px;
 }
 
 .skymiles .default-content-wrapper {
