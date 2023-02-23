@@ -311,3 +311,14 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   }
 }
 
+.skymiles h1 {
+
+}
+
+.skymiles h2 {
+
+}
+
+.skymiles .default-content-wrapper {
+  text-align: left;
+}
