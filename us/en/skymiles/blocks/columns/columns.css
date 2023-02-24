@@ -1,15 +1,12 @@
 .columns > div {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .columns img {
     width: auto;
     height: 75px;
-}
-
-.columns > div {
-    text-align: center;
 }
 
 @media (min-width: 900px) {
