@@ -36,6 +36,28 @@ function decorateScreenReaderOnly(container) {
   });
 }
 
+function decorateHyperlinkImages(container) {
+  [...container.querySelectorAll('picture + br + a')]
+    .filter((a) => a.href === a.textContent)
+    .forEach((a) => {
+      const picture = a.previousElementSibling.previousElementSibling;
+      picture.remove();
+      a.previousElementSibling.remove();
+      const oncle = a.parentElement.nextElementSibling;
+      if (oncle.childElementCount === 1 && oncle.firstElementChild.nodeName === 'A') {
+        const figure = document.createElement('figure');
+        figure.append(picture);
+        const caption = document.createElement('figcaption');
+        caption.innerHTML = oncle.firstElementChild.innerHTML;
+        figure.append(caption);
+        a.innerHTML = figure.outerHTML;
+        oncle.remove();
+      } else {
+        a.innerHTML = picture.outerHTML;
+      }
+    });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -44,6 +66,7 @@ function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
     decorateScreenReaderOnly(main);
+    decorateHyperlinkImages(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
