@@ -88,6 +88,7 @@ footer {
 }
 
 .section {
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 0 15px;
   width: 100%;
