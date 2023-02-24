@@ -27,6 +27,15 @@ function buildHeroBlock(main) {
   }
 }
 
+function decorateScreenReaderOnly(container) {
+  [...container.querySelectorAll('del')].forEach((el) => {
+    const span = document.createElement('span');
+    span.classList.add('sr-only');
+    span.textContent = el.textContent;
+    el.replaceWith(span);
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -34,6 +43,7 @@ function buildHeroBlock(main) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    decorateScreenReaderOnly(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

@@ -35,37 +35,35 @@
   --hero-button-color: var(--color-delta-red);
 
   /* fonts */
-  --body-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-font-family: whitney-light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --body-light-font-family: whitney-light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --heading-font-family: whitneycondensed-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --heading-bold-font-family: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --heading-book-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-
-  /* --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace; */
+  --heading-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --heading-font-family-alt: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --link-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-s: 15px;
+  --body-font-size-xl: 24px;
+  --body-font-size-l: 1.25rem;
   --body-font-size-m: 16px;
+  --body-font-size-s: .875rem;
   --body-font-size-xxs: 12px; 
 
   /* heading sizes */
-
-  /* --heading-font-size-xxl: 38px; */
-  --heading-font-size-xl: 38px;
-  --heading-font-size-l: 32px; 
-  --heading-font-size-m: 16px;
-  
-  /* --heading-font-size-s: 20px; */
-  
-  /* --heading-font-size-xs: 18px; */
+  --heading-font-size-xxl: 3.25rem;
+  --heading-font-size-xl: 2.625rem;
+  --heading-font-size-l: 1.75rem; 
+  --heading-font-size-m: 1rem;
+  --heading-font-size-s: .9375rem;
+  --heading-font-size-xs: .875rem;
+  --heading-font-size-xxs: .8125rem;
 
   /* nav height */
   --nav-height: 111px;
 
 }
 
+/* Main blocks */
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -89,35 +87,61 @@ footer {
   color: var(--highlight-color);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+.section {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+/* progressive section appearance */
+.section[data-section-status='loading'],
+.section[data-section-status='initialized'] {
+  display: none;
+}
+
+.section.highlight {
+  background-color: var(--highlight-background-color);
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--heading-color);
-  line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
+  line-height: 1.2;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xl) }
+h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-m) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h3 { font-size: var(--heading-font-size-l) }
+h4 { font-size: var(--heading-font-size-s) }
+h5 { font-size: var(--heading-font-size-xs) }
+h6 { font-size: var(--heading-font-size-xxs) }
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  font-size: var(--body-font-size-m);
+  margin: 0 0 .875rem;
+}
+
+li {
+  padding: 0 0 .5rem;
+}
+
+p small {
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-s);
+  font-style: normal;
 }
 
 a:any-link {
   color: var(--link-color);
+  font-family: var(--link-font-family);
   text-decoration: none;
 }
 
-main a:hover {
+a:hover {
+  color: var(--link-hover-color);
   text-decoration: underline;
 }
 
@@ -130,12 +154,43 @@ code, samp {
   padding: .125em;
 }
 
+hr {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border: 0;
+  border-bottom: 1px solid var(--overlay-background-color);
+}
+
 pre {
   overflow: scroll;
 }
 
-/* buttons */
+main pre {
+  background-color: var(--overlay-background-color);
+  padding: 1em;
+  border-radius: .25em;
+  overflow-x: auto;
+  white-space: pre;
+}
 
+main blockquote {
+  font-style: italic;
+  margin: 3rem;
+  text-indent: -1rem;
+  hanging-punctuation: first;
+}
+
+main blockquote p::before {
+  content: "“";
+  line-height: 0;
+}
+
+main blockquote p::after {
+  content: "”";
+  line-height: 0;
+}
+
+/* buttons */
 a.button:any-link, button {
   display: inline-block;
   box-sizing: border-box;
@@ -184,9 +239,36 @@ a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
-} 
+}
 
+p em:only-child .button.secondary:only-child {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-family: var(--link-font-family);
+  font-size: 1rem;
+  text-transform: unset;
+}
 
+p em:only-child .button.secondary:only-child:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Utility classes */
+.sr-only:not(:focus, :active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+/* Forms and input styling */
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -205,98 +287,84 @@ main input:hover {
   border: 1px solid var(--text-color);
 }
 
-main .section {
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-main pre {
-  background-color: var(--overlay-background-color);
-  padding: 1em;
-  border-radius: .25em;
-  overflow-x: auto;
-  white-space: pre;
-}
-
-main blockquote {
-  font-style: italic;
-  margin: 3rem;
-  text-indent: -1rem;
-  hanging-punctuation: first;
-}
-
-main blockquote p::before {
-  content: "“";
-  line-height: 0;
-}
-
-main blockquote p::after {
-  content: "”";
-  line-height: 0;
-}
-
-hr {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
-}
-
+/* Media elements */
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
 }
 
-/* progressive section appearance */
-main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
-  display: none;
+/* Custom overrides for the fresh-air themed pages */
+.fresh-air h1 {
+  margin: 0;
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--heading-font-size-s);
 }
 
-main .section.highlight {
-  background-color: var(--highlight-background-color);
+.fresh-air h2 {
+  position: relative;
+  margin: 0 0 2rem;
+  padding-bottom: 2rem;
 }
 
-@media (min-width: 900px) {
-  :root {
-  /* heading sizes */
+.fresh-air h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 3px solid var(--color-delta-red);
+  width: 82px;
+}
 
-  /* --heading-font-size-xxl: 38px; */
-  --heading-font-size-xl: 52px;
-  --heading-font-size-l: 52px; 
-  --heading-font-size-m: 16px;
-  
-  /* --heading-font-size-s: 20px;
-   --heading-font-size-xs: 18px; */
+.fresh-air :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-l);
+}
+
+.fresh-air .default-content-wrapper h2 {
+  margin-top: 3rem;
+}
+
+.fresh-air .default-content-wrapper h2:first-of-type {
+  margin-top: 1.25rem;
+}
+
+.fresh-air .hero-container + .section h2:first-of-type {
+  font-size: var(--heading-font-size-xxl);
+}
+
+/* Responsive adaptation for larger screens. */
+@media (min-width: 375px) {
+  main .section {
+    max-width: 375px;
   }
 }
 
-main .default-content-wrapper {
-  text-align: center;
-}
+@media (min-width: 768px) {
+  main .section {
+    max-width: 730px;
+  }
 
-main .default-content-wrapper .default-content-eyebrow {
-  font-family: var(--heading-bold-font-family);
-  color: var(--color-delta-blue);
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-}
+  .fresh-air .default-content-wrapper h2 {
+    margin-top: 5rem;
+  }
 
-main .default-content-wrapper h2 {
-  font-family: var(--body-font-family);
-  font-weight: 400;
-  line-height: 54px;
-  margin-bottom: 60px;
-}
+  .fresh-air .default-content-wrapper h2:first-child {
+    margin-top: 0;
+  }
 
-main .default-content-wrapper .default-content-eyebrow + h2 {
-  margin-top: 0;
-} 
+  .fresh-air .hero-container + .section :is(p, dl, ol, ul, pre, blockquote) {
+    font-size: var(--body-font-size-xl);
+  }
+}
 
 @media (min-width: 992px) {
-  :root {
-    --nav-height: 68px;
+  main .section {
+    max-width: 976px;
+  }
+
+  p small {
+    font-size: var(--body-font-size-m);
+    font-style: normal;
   }
 }
 
@@ -304,8 +372,16 @@ main .default-content-wrapper .default-content-eyebrow + h2 {
   main .section {
     max-width: 1140px;
   }
+}
 
-  main .section .default-content-wrapper {
-    width: auto;
+@media (min-width: 1440px) {
+  main .section {
+    max-width: 1156px;
+  }
+}
+
+@media (min-width: 1600px) {
+  main .section {
+    max-width: 1180px;
   }
 }
