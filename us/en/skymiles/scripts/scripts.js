@@ -31,7 +31,7 @@ function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('del')].forEach((el) => {
     const span = document.createElement('span');
     span.classList.add('sr-only');
-    span.textContent = el.textContent;
+    span.innerHTML = el.innerHTML;
     el.replaceWith(span);
   });
 }
@@ -58,6 +58,21 @@ function decorateHyperlinkImages(container) {
     });
 }
 
+function decorateReferences(container) {
+  const REFERENCE_TOKENS = /(\*+|[†‡])/g;
+  [...container.querySelectorAll('p,a,li')]
+    .forEach((el) => {
+      el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
+    });
+  [...container.querySelectorAll('p')]
+    .filter((p) => p.children.length && [...p.children].every((c) => c.nodeName === 'EM' || c.firstChild.nodeName === 'EM'))
+    .forEach((el) => {
+      const small = document.createElement('small');
+      small.innerHTML = el.innerHTML.replace(/<\\?em>/g, '');
+      el.innerHTML = small.outerHTML;
+    });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -67,6 +82,7 @@ function buildAutoBlocks(main) {
     buildHeroBlock(main);
     decorateScreenReaderOnly(main);
     decorateHyperlinkImages(main);
+    decorateReferences(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
