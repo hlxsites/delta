@@ -7,7 +7,7 @@
     margin: 0 auto;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, 1fr);
     grid-gap: 32px;
     max-width: 1200px;
     justify-content: center;
@@ -21,24 +21,29 @@
     padding: 30px;
     position: relative;
     cursor: pointer;
+    padding-bottom: 15px;
 }
 
 .cards .cards-card-body::after {
     content: '';
-    border: 1px solid var(--color-delta-red);
-    border-width: 1.5px 1.5px 0 0;
+    border: 1px solid var(--color-delta-red); 
+    border-width: 1.5px 1.5px 0 0; 
     transform: rotate(45deg);
-    height: 13px;
-    width: 13px;
+    color: var(--color-delta-red);
+    height: 11px;
+    width: 11px;
     display: block;
     position: absolute;
     bottom: 45px;
     right: 30px;
+    top: 50%;
 }
-
 
 .cards .cards-card-body p {
     padding-right: 30px;
+    font-size: 15.5px;
+    color: #0b1f66;
+    font-weight: 700;
 }
 
 .cards .cards-card-image {
@@ -53,12 +58,30 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    height: 224px;
 }
 
 .cards h3 {
     font-family: var(--heading-bold-font-family);
+    font-size: 17px;
 }
 
 .cards a:any-link {
     color: var(--color-delta-blue);
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .cards > ul > li img {
+        height: 480px;
+    }
+}
+
+@media (min-width: 992px) {
+    .cards > ul {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cards > ul > li img {
+        height: unset;
+    }
 }
