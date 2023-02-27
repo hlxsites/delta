@@ -17,8 +17,10 @@
   --color-delta-blue: #0b1f66;
   --color-delta-gray: #7d8388;
   --color-delta-gray-middle: #d2d3d5;
+  --color-delta-gray-middle2: #e6e6e6;
   --color-delta-gray-light: #f6f6f7;
   --color-delta-red: #e51937;
+  --color-delta-red-dark: #98012e;
 
   /* semantic colors */
   --link-color: #4470c3;
@@ -192,18 +194,20 @@ main blockquote p::after {
 }
 
 /* buttons */
-a.button:any-link, button {
+.button:any-link, button {
   display: inline-block;
   box-sizing: border-box;
   padding: 1.5rem;
+  min-width: 340px;
   border: 2px solid #bac5d2;
-  font-family: var(--body-font-family);
+  background-color: var(--background-color);
+  cursor: pointer;
+  color: var(--button-color);
+  font-family: var(--button-font-family);
   font-size: 1rem;
   font-style: normal; 
   font-weight: 700;
-  cursor: pointer;
-  color: var(--button-color);
-  background-color: var(--background-color);
+  letter-spacing: 1.8px;
   overflow: hidden;
   text-align: center;
   text-decoration: none;
@@ -212,9 +216,9 @@ a.button:any-link, button {
   white-space: nowrap;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
-  background-color: #e6e6e6;
-  border-color: #0b1f66;
+.button:hover, .button:focus, button:hover, button:focus  {
+  background-color: var(--color-delta-gray-middle2);
+  border-color: var(--color-delta-blue);
   cursor: pointer;
   text-decoration: none;
 }
@@ -224,19 +228,18 @@ button:disabled, button:disabled:hover {
   cursor: unset;
 }
 
-a.button.cta, button.cta {
-  background-color: #e51937;
-  border-color: #e51937;
-  color: #fff;
-  font-family: var(--button-font-family);
+.button.cta, button.cta {
+  background-color: var(--color-delta-red);
+  border-color: var(--color-delta-red);
+  color: var(--text-color-inverted);
 }
 
-a.button.cta:hover, a.button.cta:focus, button.cta:hover, button.cta:focus {
-  background-color: #98012e;
-  border-color: #98012e;
+.button.cta:hover, .button.cta:focus, button.cta:hover, button.cta:focus {
+  background-color: var(--color-delta-red-dark);
+  border-color: var(--color-delta-red-dark);
 }
 
-a.button.secondary, button.secondary {
+.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
@@ -251,6 +254,7 @@ p em:only-child .button.secondary:only-child {
   font-family: var(--link-font-family);
   font-size: 1rem;
   text-transform: unset;
+  min-width: 0;
 }
 
 p em:only-child .button.secondary:only-child:hover {
@@ -341,6 +345,11 @@ main img {
 }
 
 @media (min-width: 768px) {
+  .button.cta, button.cta {
+    width: 340px;
+    display: block;
+  }
+
   main .section {
     max-width: 730px;
   }

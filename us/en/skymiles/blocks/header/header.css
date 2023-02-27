@@ -218,9 +218,11 @@ header nav .nav-tools svg {
 }
 
 .nav-tools .button:any-link {
+  min-width: 0;
   padding: 0 12px;
   font-size: 14px;
   vertical-align: middle;
+  width: auto;
 }
 
 .nav-planners ul,
