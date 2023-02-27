@@ -75,7 +75,7 @@ function decorateHyperlinkImages(container) {
 
 function decorateReferences(container) {
   const REFERENCE_TOKENS = /(\*+|[†‡¤])/g;
-  [...container.querySelectorAll('p,a,li')]
+  [...container.querySelectorAll('p,a,li,h3')]
     .forEach((el) => {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
     });
