@@ -271,11 +271,6 @@ p em:only-child .button.secondary:only-child {
   min-width: 0;
 }
 
-main .section .default-content-wrapper > p > small {
-  font-size: var(--body-font-size-l);
-  color: var(--color-delta-blue);
-}
-
 p em:only-child .button.secondary:only-child:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
