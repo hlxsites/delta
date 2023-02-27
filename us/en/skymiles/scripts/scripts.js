@@ -65,6 +65,7 @@ function decorateReferences(container) {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
     });
   [...container.querySelectorAll('p')]
+    .filter((p) => !p.classList.contains('button-container'))
     .filter((p) => p.children.length && [...p.children].every((c) => c.nodeName === 'EM' || c.firstChild.nodeName === 'EM'))
     .forEach((el) => {
       const small = document.createElement('small');
@@ -80,9 +81,6 @@ function decorateReferences(container) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
-    decorateScreenReaderOnly(main);
-    decorateHyperlinkImages(main);
-    decorateReferences(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -108,6 +106,9 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
+  decorateScreenReaderOnly(main);
+  decorateHyperlinkImages(main);
+  decorateReferences(main);
   decorateSections(main);
   decorateBlocks(main);
   decorateEyeBrows(main);
