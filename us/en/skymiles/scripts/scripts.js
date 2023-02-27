@@ -66,7 +66,7 @@ function decorateReferences(container) {
     });
   [...container.querySelectorAll('p')]
     .filter((p) => !p.classList.contains('button-container'))
-    .filter((p) => p.children.length && [...p.children].every((c) => c.nodeName === 'EM' || c.firstChild.nodeName === 'EM'))
+    .filter((p) => p.children.length && [...p.children].every((c) => c.nodeName === 'EM' || (c.firstChild && c.firstChild.nodeName === 'EM')))
     .forEach((el) => {
       const small = document.createElement('small');
       small.innerHTML = el.innerHTML.replace(/<\\?em>/g, '');
