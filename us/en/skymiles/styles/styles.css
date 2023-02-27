@@ -194,11 +194,15 @@ main blockquote p::after {
 }
 
 /* buttons */
+.button-container {
+  text-align: center;
+}
+
 .button:any-link, button {
   display: inline-block;
   box-sizing: border-box;
-  padding: 1.5rem;
-  min-width: 21.25rem;
+  padding: 1.5rem .75rem;
+  min-width: 16.875rem;
   border: 2px solid var(--color-delta-gray-middle);
   background-color: var(--background-color);
   cursor: pointer;
@@ -345,9 +349,15 @@ main img {
 }
 
 @media (min-width: 768px) {
-  .button.cta, button.cta {
-    width: 340px;
-    display: block;
+  .button-container {
+    text-align: inherit;
+    margin-top: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .button:any-link, button {
+    padding: 1.5rem;
+    min-width: 21.25rem;
   }
 
   main .section {
@@ -368,6 +378,12 @@ main img {
 }
 
 @media (min-width: 992px) {
+  .button-container {
+    text-align: inherit;
+    margin-top: 2rem;
+    padding: 0;
+  }
+
   main .section {
     max-width: 976px;
   }
