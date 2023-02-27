@@ -42,20 +42,6 @@ function buildHeroBlock(main) {
   main.prepend(section);
 }
 
-function buildCtaSection(main) {
-  [...main.children].forEach((section) => {
-    const p = section.querySelector('p');
-    const button = section.querySelector('.button-container');
-    if (section.childElementCount === 2 && p && button && (
-      // eslint-disable-next-line no-bitwise
-      p.compareDocumentPosition(button) & Node.DOCUMENT_POSITION_PRECEDING
-        // eslint-disable-next-line no-bitwise
-        || p.compareDocumentPosition(button) & Node.DOCUMENT_POSITION_FOLLOWING)) {
-      section.classList.add('section-cta');
-    }
-  });
-}
-
 function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('del')].forEach((el) => {
     const span = document.createElement('span');
@@ -110,7 +96,6 @@ function decorateReferences(container) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
-    buildCtaSection(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

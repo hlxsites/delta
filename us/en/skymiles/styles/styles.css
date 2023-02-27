@@ -357,14 +357,14 @@ main img {
   font-size: var(--heading-font-size-xxl);
 }
 
+.fresh-air .default-content-eyebrow {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+}
+
 .fresh-air .default-content-eyebrow strong {
   font-family: var(--body-font-family);
   font-weight: normal;
-}
-
-.fresh-air .default-content-eyebrow .button-container {
-  margin-top: 2.5rem;
-  margin-bottom: 3rem;
 }
 
 .fresh-air .default-content-eyebrow .button {
