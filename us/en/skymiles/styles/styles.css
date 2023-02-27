@@ -198,8 +198,8 @@ main blockquote p::after {
   display: inline-block;
   box-sizing: border-box;
   padding: 1.5rem;
-  min-width: 340px;
-  border: 2px solid #bac5d2;
+  min-width: 21.25rem;
+  border: 2px solid var(--color-delta-gray-middle);
   background-color: var(--background-color);
   cursor: pointer;
   color: var(--button-color);
@@ -241,7 +241,7 @@ button:disabled, button:disabled:hover {
 
 .button.secondary, button.secondary {
   background-color: unset;
-  border: 2px solid currentcolor;
+  border-color: currentcolor;
   color: var(--text-color)
 }
 
