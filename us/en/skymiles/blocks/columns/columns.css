@@ -20,6 +20,10 @@
     line-height: 2rem;
 }
 
+.columns-container .columns-wrapper {
+    margin-top: 30px;
+}
+
 @media (min-width: 768px) {
     .columns img {
         width: auto;
@@ -40,6 +44,7 @@
         flex: 1;
         margin-left: 2rem;
         margin-bottom: 1rem;
+        align-self: flex-start;
     }
 
     .columns > div > div > p > a > figure {
@@ -61,6 +66,10 @@
         margin-bottom: 50px;
         line-height: 25px;
         margin-top: 30px;
+    }
+
+    .columns-container .columns-wrapper {
+        margin-top: 40px;
     }
 }
 
