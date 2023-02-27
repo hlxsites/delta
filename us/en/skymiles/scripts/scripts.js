@@ -18,13 +18,28 @@ window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information 
 
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture] }));
-    main.prepend(section);
+  if (!h1 || !h1.previousElementSibling) {
+    return;
   }
+
+  const pictures = [];
+  let sibling = h1.previousElementSibling.firstElementChild;
+  while (sibling) {
+    if (sibling.nodeName === 'PICTURE') {
+      pictures.push(sibling);
+      sibling = sibling.nextElementSibling;
+    } else {
+      sibling = null;
+    }
+  }
+
+  if (!pictures.length) {
+    return;
+  }
+
+  const section = document.createElement('div');
+  section.append(buildBlock('hero', { elems: pictures }));
+  main.prepend(section);
 }
 
 function decorateScreenReaderOnly(container) {
