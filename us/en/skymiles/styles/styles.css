@@ -357,6 +357,12 @@ main img {
   font-weight: normal;
 }
 
+.fresh-air .default-content-eyebrow .button-container {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+
 /* Responsive adaptation for larger screens. */
 @media (min-width: 375px) {
   main .section {
