@@ -42,7 +42,7 @@
 .cards .cards-card-body p {
     padding-right: 30px;
     font-size: 15.5px;
-    color: #0b1f66;
+    color: var(--color-delta-blue);
     font-weight: 700;
 }
 
