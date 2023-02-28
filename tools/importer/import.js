@@ -12,7 +12,6 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-
 const createMetadata = (main, document) => {
   const meta = {};
 
