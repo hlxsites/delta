@@ -97,7 +97,7 @@ function decorateEyeBrows(main) {
 }
 
 function decoratePagerContainer(main) {
-  const lines = ['next', 'next-page-name', 'next-arrow']
+  const lines = ['next', 'next-page-name', 'next-arrow'];
 
   main.querySelectorAll('.pager-container h3').forEach((h3, i) => {
     h3.className = lines[i];
