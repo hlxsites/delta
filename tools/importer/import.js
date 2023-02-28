@@ -62,7 +62,19 @@ const anchorLinksToTOCBlock = (main, document) => {
   });
 };
 
+const convertSpanToImg = (main, document) => {
+  main.querySelectorAll('span[data-src]').forEach((span) => {
+    const img = document.createElement('img');
+    img.src = `http:${span.dataset.src}`;
+    span.replaceWith(img);
+  });
+};
+
 export default {
+  preprocess({ document }) {
+    convertSpanToImg(document.body, document);
+  },
+
   /**
    * Apply DOM operations to the provided document and return
    * the root element to be then transformed to Markdown.
