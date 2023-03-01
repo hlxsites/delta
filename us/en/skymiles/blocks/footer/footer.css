@@ -156,10 +156,24 @@ footer .footer-search-help-topics ul {
   margin-top: unset;
 }
 
-footer .footer-search-help-topics > ul > li:first-child {
+footer .footer-search-help-topics .caret {
+  display: none;  
+}
+
+footer .footer-search-help-topics .first-row {
   display: flex;
-  font-size: 46px;
   justify-content: center;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+footer .footer-search-help-topics .first-row ul {
+  margin-bottom: 0;
+  font-size: 46px;
+}
+
+footer .footer-search-help-topics .first-row .heading {
+  font-size: 46px;
 }
 
 footer .footer-search-help-topics svg {
@@ -168,18 +182,27 @@ footer .footer-search-help-topics svg {
   fill: var(--text-color-inverted);
 }
 
-footer .footer-search-help-topics > ul > li:not(:first-child) {
+footer .footer-search-help-topics .second-row {
   display: inline-flex;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: var(--color-delta-gray);;
   margin-bottom: 20px;
 }
 
-footer .footer-search-help-topics > ul > li:not(:first-child) a:hover {
+footer .footer-search-help-topics .second-row .heading {
+  font-family: var(--body-medium-font-family);
+}
+
+footer .footer-search-help-topics .second-row a {
+  font-family: var(--heading-font-family);
+  font-size: 1.125rem;
+}
+
+footer .footer-search-help-topics .second-row a:hover {
   text-decoration: underline;
 }
 
-footer .footer-search-help-topics > ul > li > ul {
+footer .footer-search-help-topics .second-row ul {
   display: flex;
   justify-content: space-between;
   gap: 40px;
@@ -262,11 +285,11 @@ footer .footer-search-help-topics::after {
   }
 
 @media (max-width: 900px) {
-  footer .footer-search-help-topics > ul > li:first-child {
+  footer .footer-search-help-topics .first-row .heading {
     font-size: 24px;
   }
 
-  footer .footer-search-help-topics > ul > li:not(:first-child) {
+  footer .footer-search-help-topics .second-row {
     display: none;
   }
   

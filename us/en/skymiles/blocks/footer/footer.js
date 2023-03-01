@@ -22,6 +22,19 @@ export default async function decorate(block) {
     }
   });
 
+  const searchHelpTopicsDiv = footer.querySelector('.footer-search-help-topics');
+
+  const searchPlaceholder = searchHelpTopicsDiv.querySelectorAll('ul > li > strong');
+  searchPlaceholder.forEach((div, i) => {
+    div.className = 'heading';
+  });
+
+  const rowNames = ['first-row', 'second-row'];
+  const searchRows = footer.querySelectorAll('.footer-search-help-topics > ul > li');
+  searchRows.forEach((div, i) => {
+    div.className = rowNames[i];
+  });
+
   const firstFooterDiv = footer.querySelector('.footer-links');
   firstFooterDiv.classList.add('footer-menu');
   const headings = firstFooterDiv.querySelectorAll('ul > li > strong');
