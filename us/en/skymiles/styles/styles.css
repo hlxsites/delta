@@ -125,7 +125,7 @@ h6 { font-size: var(--heading-font-size-xxs) }
 
 p, dl, ol, ul, pre, blockquote {
   font-size: var(--body-font-size-m);
-  margin: 0 0 .875rem;
+  margin: 0 0 1rem;
 }
 
 li {
@@ -136,6 +136,10 @@ p small {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-style: normal;
+}
+
+p:has(small:only-child) {
+  margin: 0;
 }
 
 a:any-link {
@@ -348,6 +352,11 @@ main img {
   font-size: var(--heading-font-size-xxl);
 }
 
+.fresh-air .default-content-eyebrow strong {
+  font-family: var(--body-font-family);
+  font-weight: normal;
+}
+
 /* Responsive adaptation for larger screens. */
 @media (min-width: 375px) {
   main .section {
@@ -359,7 +368,6 @@ main img {
   .button-container {
     text-align: inherit;
     margin-top: 2rem;
-    padding: 0 1.5rem;
   }
 
   .button:any-link, button {
