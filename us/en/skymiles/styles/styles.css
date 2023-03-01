@@ -45,8 +45,9 @@
   --link-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-xl: 24px;
-  --body-font-size-l: 1.25rem;
+  --body-font-size-xxl: 24px;
+  --body-font-size-xl: 1.25rem;
+  --body-font-size-l: 1.125rem;
   --body-font-size-m: 16px;
   --body-font-size-s: .875rem;
   --body-font-size-xxs: 12px; 
@@ -168,6 +169,10 @@ pre {
   overflow: scroll;
 }
 
+main strong {
+  font-family: var(--button-font-family);
+}
+
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
@@ -257,6 +262,7 @@ p em:only-child .button.secondary:only-child {
   color: var(--link-color);
   font-family: var(--link-font-family);
   font-size: 1rem;
+  letter-spacing: unset;
   text-transform: unset;
   min-width: 0;
 }
@@ -301,6 +307,7 @@ main img {
   max-width: 100%;
   width: auto;
   height: auto;
+  vertical-align: bottom;
 }
 
 /* Custom overrides for the fresh-air themed pages */
@@ -333,11 +340,11 @@ main img {
   margin-top: 3rem;
 }
 
-.fresh-air .default-content-wrapper h2:first-of-type {
+.fresh-air .default-content-wrapper h1 + h2 {
   margin-top: 1.25rem;
 }
 
-.fresh-air .hero-container + .section h2:first-of-type {
+.fresh-air .hero-container + .section h1 + h2 {
   font-size: var(--heading-font-size-xxl);
 }
 
@@ -372,8 +379,8 @@ main img {
     margin-top: 0;
   }
 
-  .fresh-air .hero-container + .section :is(p, dl, ol, ul, pre, blockquote) {
-    font-size: var(--body-font-size-xl);
+  .fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+    font-size: var(--body-font-size-xxl);
   }
 }
 

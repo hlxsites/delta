@@ -59,7 +59,7 @@ function decorateHyperlinkImages(container) {
 }
 
 function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡])/g;
+  const REFERENCE_TOKENS = /(\*+|[†‡¤])/g;
   [...container.querySelectorAll('p,a,li')]
     .forEach((el) => {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
@@ -102,6 +102,7 @@ function decorateEyeBrows(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  document.body.classList.add('fresh-air');
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
