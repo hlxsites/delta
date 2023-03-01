@@ -3,9 +3,10 @@
 main .hero-container > div {
   max-width: unset;
 }
-  
+
 main .section.hero-container {
   padding: 0;
+  max-width: unset;
 }
   
 main .hero {
