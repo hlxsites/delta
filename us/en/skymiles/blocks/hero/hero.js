@@ -1,9 +1,9 @@
 export default async function decorate(block) {
-  const pictureElement = document.createElement("picture");
+  const pictureElement = document.createElement('picture');
   const picture = document.querySelectorAll('picture');
 
   picture[1].querySelectorAll('source[media]').forEach((e) => {
-    e.setAttribute('media', "(min-width: 768px)");
+    e.setAttribute('media', '(min-width: 768px)');
     pictureElement.append(e);
   });
 
