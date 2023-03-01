@@ -23,9 +23,8 @@ export default async function decorate(block) {
   });
 
   const searchHelpTopicsDiv = footer.querySelector('.footer-search-help-topics');
-
   const searchPlaceholder = searchHelpTopicsDiv.querySelectorAll('ul > li > strong');
-  searchPlaceholder.forEach((div, i) => {
+  searchPlaceholder.forEach((div) => {
     div.className = 'heading';
   });
 
