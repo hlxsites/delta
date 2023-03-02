@@ -202,6 +202,14 @@ main blockquote p::after {
   line-height: 0;
 }
 
+main figure picture {
+  margin: 2rem 0;
+}
+
+main figure figcaption {
+  font-size: 1rem;
+}
+
 /* buttons */
 .button-container {
   text-align: center;
@@ -349,7 +357,11 @@ main img {
 }
 
 .fresh-air .hero-container + .section h1 + h2 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--heading-font-size-xl);
+}
+
+.fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xxl);
 }
 
 .fresh-air .default-content-eyebrow {
@@ -359,11 +371,12 @@ main img {
 
 .fresh-air .default-content-eyebrow strong {
   font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xl);
   font-weight: normal;
 }
 
-.fresh-air .default-content-eyebrow .button {
-  margin-top: 1.25rem;
+.fresh-air .default-content-eyebrow .button-container {
+  margin: 3rem 0 2rem;
 }
 
 
@@ -383,10 +396,19 @@ main img {
   .button:any-link, button {
     padding: 1.5rem;
     min-width: 21.25rem;
+    vertical-align: bottom;
   }
 
   main .section {
     max-width: 730px;
+  }
+
+  main figure picture {
+    margin: initial;
+  }
+
+  main figure figcaption {
+
   }
 
   .fresh-air .default-content-wrapper h2 {
@@ -395,6 +417,10 @@ main img {
 
   .fresh-air .default-content-wrapper h2:first-child {
     margin-top: 0;
+  }
+
+  .fresh-air .hero-container + .section h1 + h2 {
+    font-size: var(--heading-font-size-xxl);
   }
 
   .fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
