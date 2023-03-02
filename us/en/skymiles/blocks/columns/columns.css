@@ -20,10 +20,18 @@
     line-height: 2rem;
 }
 
+.columns-wrapper {
+    margin-top: 30px;
+}
+
 @media (min-width: 768px) {
     .columns img {
         width: auto;
         object-fit: scale-down;
+    }
+
+    .columns figure {
+        margin: 1rem;
     }
 
     .columns picture {
@@ -36,10 +44,15 @@
         flex-direction: unset;
     }
 
+    .columns-container .columns-wrapper {
+        margin-top: 40px;
+    }
+
     .columns > div > div {
         flex: 1;
         margin-left: 2rem;
         margin-bottom: 1rem;
+        align-self: flex-start;
     }
 
     .columns > div > div:first-of-type {
