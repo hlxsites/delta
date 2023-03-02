@@ -30,6 +30,10 @@
         object-fit: scale-down;
     }
 
+    .columns figure {
+        margin: 1rem;
+    }
+
     .columns picture {
         height: 6rem;
     }
