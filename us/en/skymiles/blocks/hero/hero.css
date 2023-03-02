@@ -36,3 +36,38 @@ main .hero::after {
   background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
   background-size: 75px 60px;
 }
+
+@media (min-width: 768px) {
+  main .hero div,
+  main .hero picture {
+    height: 288px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .hero div,
+  main .hero picture {
+    height: 192px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .hero div,
+  main .hero picture {
+    height: 240px;
+  }
+}
+
+@media (min-width: 1440px) {
+  main .hero div,
+  main .hero picture {
+    height: 288px;
+  }
+}
+
+@media (min-width: 1600px) {
+  main .hero div,
+  main .hero picture {
+    height: 320px;
+  }
+}
