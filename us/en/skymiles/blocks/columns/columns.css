@@ -1,11 +1,11 @@
+.columns-container {
+    margin-bottom: 3rem;
+}
+
 .columns > div {
     display: flex;
     flex-direction: column;
     text-align: center;
-}
-
-.columns > div > div {
-    margin-bottom: 2rem;
 }
 
 .columns picture {
