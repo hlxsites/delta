@@ -1,49 +1,63 @@
 .blade {
     max-width: 700px;
     margin: 16px auto;
+    color: var(--color-delta-blue);
 }
 
 .blade > div {
     display: flex;
+    border-bottom: 1px solid var(--color-delta-gray-middle2);
     flex-direction: column;
-    margin-bottom: 30px;
+    align-items: center;
 }
 
 .blade .blade-body {
-    background-color: var(--overlay-background-color);
-    padding: 30px 46px 30px 30px;
+    padding: 30px 0;
     position: relative;
-    cursor: pointer;
 }
 
 .blade a:any-link {
     color: var(--color-delta-blue);
 }
 
-.blade .blade-body::after {
-    content: '';
-    border: 1px solid var(--color-delta-red);
-    border-width: 1px 1px 0 0;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 15px;
-    display: block;
-    position: absolute;
-    bottom: 45px;
-    right: 30px;
+.blade .blade-body :is(h3, h4) {
+    margin-top: 0;
+    font-family: var(--heading-font-family);
+    letter-spacing: 3.2px;
 }
 
-.blade .blade-body h3 {
-    margin-top: 0;
-    letter-spacing: 1.4px;
+.blade .blade-body h3 { font-size: var(--body-font-size-xl); }
+.blade .blade-body h4 { font-size: var(--body-font-size-l); }
+
+.blade .blade-body :is(h3, h4) a {
+    font-family: inherit;
 }
 
 .blade .blade-body p {
     margin-bottom: 0;
+    font-size: var(--body-font-size-m);
 }
 
-.blade .blade-body h3::after {
-    margin: 30px 0;
+/* Emphasized variant */
+
+.blade.emphasized .blade-body {
+    padding: 2rem;
+    background-color: var(--overlay-background-color);
+}
+
+.blade.emphasized .blade-body :is(h3, h4){
+    letter-spacing: 1.4px;
+}
+
+.blade.emphasized .blade-body h3 { font-size: var(--body-font-size-xxl); }
+.blade.emphasized .blade-body h4 { font-size: var(--body-font-size-xl); }
+
+.blade.emphasized .blade-body :is(h3, h4) a {
+    font-family: var(--button-font-family);
+}
+
+.blade.emphasized .blade-body > :first-child::after {
+    margin: 2rem 0;
     content: '';
     display: block;
     background-color: var(--color-delta-red);
@@ -51,9 +65,34 @@
     width: 82px;
 }
 
+.blade.emphasized > div {
+    margin-bottom: 30px;
+    border: none;
+}
+
+/* Link variant */
+
+.blade.is-link .blade-body::after {
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    content: '';
+    border: 1px solid var(--color-delta-red);
+    border-width: 1px 1px 0 0;
+    transform: rotate(45deg);
+    display: block;
+    bottom: 3.5rem;
+    right: 1.5rem;
+}
+
+.blade.is-link .blade-body {
+    cursor: pointer;
+}
+
 @media (min-width: 900px) {
     .blade > div {
         flex-direction: unset;
+        align-items: stretch;
     }
 
     .blade {
@@ -61,10 +100,50 @@
     }
 
     .blade .blade-image {
-        flex: 0 400px;
+        position: relative;
+        flex: 5;
+    }
+
+    .blade .blade-image img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: scale-down;
     }
     
     .blade .blade-body {
-        flex: 1;
+        flex: 7;
+        padding: 4rem 2rem;
+    }
+
+    /* Link variant */
+
+    .blade.is-link .blade-body::after {
+        right: 2rem;
+    }
+
+    /* Alternating rows variant */
+
+    .blade.alternate > div:nth-child(2n) {
+        flex-direction: row-reverse;
+    }
+
+    /* Emphasized variant */
+
+    .blade.emphasized .blade-image {
+        flex: 4;
+    }
+
+    .blade.emphasized .blade-image img {
+        object-fit: cover;
+    }
+
+    .blade.emphasized .blade-body {
+        flex: 8;
+        padding: 2rem 3rem 3rem;
+    }
+
+    .blade.emphasized .blade-body p {
+        font-size: var(--body-font-size-l);
     }
 }
