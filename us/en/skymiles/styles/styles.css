@@ -19,6 +19,7 @@
   --color-delta-gray-middle: #d2d3d5;
   --color-delta-gray-middle2: #e6e6e6;
   --color-delta-gray-light: #f6f6f7;
+  --color-delta-gray-border: #dedfe1;
   --color-delta-red: #e51937;
   --color-delta-red-dark: #98012e;
 
@@ -67,6 +68,10 @@
 }
 
 /* Main blocks */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;

@@ -1,0 +1,32 @@
+.toc {
+  margin-bottom: 3rem;
+}
+
+.toc ul {
+  padding: 1.5rem 2.5rem 2rem;
+  background-color: var(--color-delta-gray-light);
+  border: 1px solid var(--color-delta-gray-border);
+  column-rule: 1px solid var(--color-delta-gray-border);
+  column-gap: 5rem;
+  column-count: 2;
+}
+
+.toc ul li {
+  font-size: 1.25rem;
+  font-family: var(--body-font-family);
+  padding-bottom: 0.5rem;
+  line-height: 2.5em;
+}
+
+.toc ul li a {
+  padding-bottom: 0.2em;
+  margin-left: 0.6em;
+  color: var(--color-delta-blue);
+  border-bottom: 1px dotted var(--color-delta-blue);
+}
+
+@media (max-width: 767px) {
+  .toc ul {
+    column-count: 1;
+  }
+}
