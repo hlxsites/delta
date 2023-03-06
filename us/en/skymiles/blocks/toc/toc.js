@@ -1,16 +1,29 @@
 export default function decorate(block) {
-  const headings = document.querySelectorAll('h3');
-  const toc = document.createElement('ul');
+  const currentToc = block.querySelector('ul');
+  const newToc = document.createElement('ul');
+  
+  [...currentToc.children].forEach((title) => {
+    const textTags = document.querySelectorAll('h1, h2, h3, h4, h5, h6', 'p');
+    let matchedTitle = null;
 
-  headings.forEach((heading) => {
-    const item = document.createElement('li');
-    const link = document.createElement('a');
+    for (let i = 0; i < textTags.length; i++) {
+      if (textTags[i].textContent.includes(title.textContent)) {
+        matchedTitle = textTags[i];
+        break;
+      }
+    }
 
-    link.href = `#${heading.id}`;
-    link.textContent = heading.textContent;
-    item.appendChild(link);
-    toc.appendChild(item);
+    /* Create a new ToC title with link */
+    if (matchedTitle) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+
+      link.href = `#${matchedTitle.id}`;
+      link.textContent = title.textContent;
+      item.appendChild(link);
+      newToc.appendChild(item);
+    }
   });
 
-  block.innerHTML = toc.outerHTML;
+  block.innerHTML = newToc.outerHTML;
 }
