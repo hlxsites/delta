@@ -43,7 +43,7 @@ function buildHeroBlock(main) {
 }
 
 function decorateInlineToggles(container) {
-  container.querySelectorAll('p:has(.icon-toggle:first-child)').forEach((p) => {
+  function createInlineToggle(p) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
     summary.innerHTML = p.innerHTML;
@@ -54,7 +54,12 @@ function decorateInlineToggles(container) {
       details.append(next);
     } while (next);
     p.replaceWith(details);
-  });
+  }
+  container.querySelectorAll('p:has(.icon-toggle:first-child)')
+    .forEach(createInlineToggle);
+  container.querySelectorAll('p')
+    .filter((p) => p.textContent.startsWith('> '))
+    .forEach(createInlineToggle);
 }
 
 function decorateScreenReaderOnly(container) {
