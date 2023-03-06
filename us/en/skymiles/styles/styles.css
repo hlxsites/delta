@@ -364,6 +364,10 @@ main img {
   font-size: var(--body-font-size-xxl);
 }
 
+.fresh-air .hero-container + .section h1 + h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xl);
+}
+
 .fresh-air .default-content-eyebrow {
   margin-top: 2.5rem;
   margin-bottom: 3rem;
@@ -417,10 +421,6 @@ main img {
 
   .fresh-air .hero-container + .section h1 + h2 {
     font-size: var(--heading-font-size-xxl);
-  }
-
-  .fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
-    font-size: var(--body-font-size-xxl);
   }
 }
 
