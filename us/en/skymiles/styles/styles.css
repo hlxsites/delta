@@ -227,6 +227,7 @@ main details::before {
   width: 1rem;
   background-size: contain;
   background-color: red;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask: center / contain no-repeat url('../icons/down-chevron.svg');
   mask: center / contain no-repeat url('../icons/down-chevron.svg');
 }
