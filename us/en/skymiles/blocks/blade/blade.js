@@ -5,12 +5,13 @@ export default function decorate(block) {
         div.className = 'blade-image';
       } else {
         div.className = 'blade-body';
-        const a = div.querySelector('a');
+        const a = div.querySelector('p:last-child > a:last-child');
         if (a) {
           block.classList.add('is-link');
           div.addEventListener('click', () => {
             window.location.href = div.querySelector('a').href;
           });
+          a.parentElement.style.display = 'none';
         }
       }
     });
