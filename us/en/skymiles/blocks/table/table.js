@@ -99,8 +99,10 @@ window.addEventListener('scroll', () => {
       return;
     }
     block.classList.toggle('is-sticky-nav', shouldStickyNav);
-    block.querySelector('button[data-role="next"]').style.right = shouldStickyNav
-      ? `${(window.innerWidth - rect.width) / 2}px`
-      : '';
+    if (block.querySelector('button[data-role="next"]')) {
+      block.querySelector('button[data-role="next"]').style.right = shouldStickyNav
+        ? `${(window.innerWidth - rect.width) / 2}px`
+        : '';
+    }
   });
 }, { passive: true });
