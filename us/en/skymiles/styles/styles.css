@@ -226,10 +226,11 @@ main details::before {
   height: 1.5rem;
   width: 1rem;
   background-size: contain;
-  background-color: red;
+  background-color: var(--color-delta-red);
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask: center / contain no-repeat url('../icons/down-chevron.svg');
   mask: center / contain no-repeat url('../icons/down-chevron.svg');
+  pointer-events: none;
 }
 
 main details[open]::before {
@@ -238,7 +239,8 @@ main details[open]::before {
 
 main details summary {
   display: inline-block;
-  margin: 2rem 0 2rem 2rem;
+  margin: 2rem 0;
+  padding-left: 2rem;
   color: var(--color-delta-blue);
   cursor: pointer;
   font-family: var(--link-font-family);
