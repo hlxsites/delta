@@ -40,7 +40,6 @@
 }
 
 .blade .blade-body p {
-    margin-bottom: 0;
     font-size: var(--body-font-size-m);
 }
 
