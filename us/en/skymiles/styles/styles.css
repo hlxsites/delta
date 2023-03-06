@@ -21,6 +21,7 @@
   --color-delta-gray-light: #f6f6f7;
   --color-delta-red: #e51937;
   --color-delta-red-dark: #98012e;
+  --color-delta-border: #dedfe1;
 
   /* semantic colors */
   --link-color: #4470c3;
@@ -384,6 +385,10 @@ main img {
 @media (min-width: 375px) {
   main .section {
     max-width: 375px;
+  }
+
+  main .section.accordion-container {
+    width: 100%;
   }
 }
 
