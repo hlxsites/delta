@@ -1,8 +1,11 @@
 export default function decorate(block) {
   const currentToc = block.querySelector('ul');
 
-  if (currentToc === null) {
-    const tocWrapper = document.querySelector('.toc-wrapper');
+  if (!!currentToc) {
+    return;
+  }
+
+  const tocWrapper = document.querySelector('.toc-wrapper');
     const toc = document.createElement('ul');
 
     let nextSiblingDiv = tocWrapper.nextElementSibling;
@@ -23,5 +26,4 @@ export default function decorate(block) {
       nextSiblingDiv = nextSiblingDiv.nextElementSibling;
     }
     block.innerHTML = toc.outerHTML;
-  }
 }
