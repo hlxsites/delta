@@ -22,27 +22,46 @@ function buildHeroBlock(main) {
     return;
   }
 
-  const pictures = [];
-  let sibling = h1.previousElementSibling.firstElementChild;
+  const elements = [];
+  let sibling = h1.previousElementSibling;
   while (sibling) {
-    if (sibling.nodeName === 'PICTURE') {
-      pictures.push(sibling);
-      sibling = sibling.nextElementSibling;
-    } else if (sibling.nodeName === 'BR') {
-      sibling = sibling.nextElementSibling;
-      sibling.previousElementSibling.remove();
-    } else {
-      sibling = null;
-    }
-  }
-
-  if (!pictures.length) {
-    return;
+    elements.push(sibling);
+    sibling = sibling.previousElementSibling;
   }
 
   const section = document.createElement('div');
-  section.append(buildBlock('hero', { elems: pictures }));
+  section.append(buildBlock('hero', { elems: elements }));
   main.prepend(section);
+}
+
+function createResponsiveImage(pictures, breakpoint = 768) {
+  pictures.sort((p1, p2) => {
+    const img1 = p1.querySelector('img');
+    const img2 = p2.querySelector('img');
+    return img1.width < img2.width;
+  });
+
+  const responsivePicture = document.createElement('picture');
+
+  responsivePicture.append(pictures[0].querySelector('source:not([media])'));
+  responsivePicture.append(pictures[0].querySelector('img'));
+
+  pictures[1].querySelectorAll('source[media]').forEach((e) => {
+    e.setAttribute('media', `(min-width: ${breakpoint}px)`);
+    responsivePicture.prepend(e);
+  });
+
+  return responsivePicture;
+}
+
+function decorateResponsiveImages(container) {
+  [...container.querySelectorAll('picture + picture, picture + br + picture')]
+    .map((p) => p.parentElement)
+    .filter((parent) => [...parent.children].every((c) => c.nodeName === 'PICTURE' || c.nodeName === 'BR'))
+    .forEach((parent) => {
+      const responsiveImage = createResponsiveImage([...parent.querySelectorAll('picture')]);
+      parent.innerHTML = responsiveImage.outerHTML;
+    });
 }
 
 function decorateInlineToggles(container) {
@@ -144,6 +163,7 @@ export function decorateMain(main) {
   decorateButtons(main);
   decorateInlineToggles(main);
   decorateIcons(main);
+  decorateResponsiveImages(main);
   buildAutoBlocks(main);
   decorateScreenReaderOnly(main);
   decorateHyperlinkImages(main);
