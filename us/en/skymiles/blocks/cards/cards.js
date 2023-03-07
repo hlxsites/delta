@@ -14,6 +14,9 @@ export default function decorate(block) {
         const a = div.querySelector('p:last-child > a:only-child');
         if (p && a && p.textContent === a.textContent) {
           li.classList.add('is-link');
+          if (a.href === a.textContent) {
+            a.parentElement.style.display = 'none';
+          }
           div.addEventListener('click', () => {
             window.location.href = div.querySelector('a').href;
           });
