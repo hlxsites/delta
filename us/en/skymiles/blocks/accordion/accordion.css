@@ -11,30 +11,37 @@
     padding: 10px;
 }
 
-.accordion-container .default-content-wrapper h4,
-.accordion-container .default-content-wrapper h5 {
-    display: inline-flex;
-    margin: 5px;
-    font-size: 16px;
-    font-family: var(--heading-font-family);
-    float: inline-end;
-    cursor: pointer;
-}
-
-.accordion-container .default-content-wrapper h4 {
-    padding-right: 10px;
-    border-right: 1px solid grey;
-}
-
-.accordion-container .default-content-wrapper h4:hover,
-.accordion-container .default-content-wrapper h5:hover {
-    text-decoration: underline;
-}
-
 .accordion-wrapper {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+}
+
+.accordion-wrapper .toolbar {
+    text-align: right;
+}
+
+.accordion-wrapper .toolbar .tertiary {
+    appearance: none;
+    border: none;
+    background: none;
+    margin: 0;
+    min-width: 4rem;
+    padding: 0.5rem;
+    text-transform: none;
+    letter-spacing: 0.01rem;
+}
+
+.accordion-wrapper .toolbar .tertiary:hover {
+    text-decoration: underline;
+}
+
+.text[aria-expanded="true"] {
+    display: block;
+}
+
+.text[aria-expanded="false"] {
+    display: none;
 }
 
 .accordion-section {

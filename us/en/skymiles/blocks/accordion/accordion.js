@@ -11,41 +11,62 @@ export default async function decorate(block) {
     children[1].classList.add('text');
   }));
 
-  const expand = document.querySelector('.accordion-container .default-content-wrapper h4');
-  expand.classList.add('bold');
-  const collapse = document.querySelector('.accordion-container .default-content-wrapper h5');
-  const wrappers = block.querySelectorAll('.accordion-section');
+  const parentWrapper = document.querySelectorAll('.accordion-wrapper');
 
-  // expand all accordions
-  expand.addEventListener('click', () => {
-    expand.classList.remove('bold');
-    collapse.classList.add('bold');
-    const wrapper = expand.parentElement.nextElementSibling;
-    const headers = wrapper.querySelectorAll('.header');
-    const texts = wrapper.querySelectorAll('.text');
-    texts.forEach((text) => {
-      text.classList.add('visible');
-    });
-    headers.forEach((header) => {
-      header.setAttribute('aria-expanded', 'false');
-    });
-  });
+  parentWrapper.forEach((wrapper) => {
+    if (!wrapper.querySelector('.toolbar')) {
+      // Create the toolbar div
+      const toolbar = document.createElement('div');
+      toolbar.classList.add('toolbar');
 
-  // collapse all accordions
-  collapse.addEventListener('click', () => {
-    collapse.classList.remove('bold');
-    expand.classList.add('bold');
-    const wrapper = collapse.parentElement.nextElementSibling;
-    const texts = wrapper.querySelectorAll('.text');
-    texts.forEach((text) => {
-      text.classList.remove('visible');
-    });
+      // Create the Expand All button
+      const expandButton = document.createElement('button');
+      expandButton.classList.add('tertiary');
+      expandButton.classList.add('expand');
+      expandButton.textContent = 'Expand All';
+      toolbar.appendChild(expandButton);
+
+      // Create the Collapse All button
+      const collapseButton = document.createElement('button');
+      collapseButton.classList.add('tertiary');
+      collapseButton.classList.add('collapse');
+      collapseButton.textContent = 'Collapse All';
+      toolbar.appendChild(collapseButton);
+
+      wrapper.insertBefore(toolbar, wrapper.querySelector('.accordion.block'));
+      const headers = wrapper.querySelectorAll('.header');
+
+      // add click events to expand and collapse buttons
+      expandButton.addEventListener('click', () => {
+        const texts = wrapper.querySelectorAll('.text');
+        for (let j = 0; j < texts.length; j += 1) {
+          const text = texts[j];
+          text.setAttribute('aria-expanded', 'true');
+        }
+        headers.forEach((header) => {
+          header.setAttribute('aria-expanded', 'true');
+        });
+      });
+
+      collapseButton.addEventListener('click', () => {
+        const texts = wrapper.querySelectorAll('.text');
+        for (let j = 0; j < texts.length; j += 1) {
+          const text = texts[j];
+          text.setAttribute('aria-expanded', 'false');
+        }
+        headers.forEach((header) => {
+          header.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   });
 
   // make content for accordion visible on header click
+  const wrappers = block.querySelectorAll('.accordion-section');
   wrappers.forEach((wrapper) => {
     const headers = wrapper.querySelectorAll('.header');
     headers.forEach((header) => {
+      header.setAttribute('role', 'button');
       header.addEventListener('click', () => {
         const text = header.nextElementSibling;
         text.classList.toggle('visible');
