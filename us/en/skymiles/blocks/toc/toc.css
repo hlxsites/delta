@@ -25,7 +25,7 @@
   border-bottom: 1px dotted var(--color-delta-blue);
 }
 
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   .toc ul {
     column-count: 2;
   }

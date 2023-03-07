@@ -1,29 +1,27 @@
 export default function decorate(block) {
   const currentToc = block.querySelector('ul');
-  const newToc = document.createElement('ul');
 
-  [...currentToc.children].forEach((title) => {
-    const textTags = document.querySelectorAll('h1, h2, h3, h4, h5, h6', 'p');
-    let matchedTitle = null;
+  if (currentToc === null) {
+    const tocWrapper = document.querySelector('.toc-wrapper');  
+    const toc = document.createElement("ul");
 
-    for (let i = 0; i < textTags.length; i += 1) {
-      if (textTags[i].textContent.includes(title.textContent)) {
-        matchedTitle = textTags[i];
-        break;
-      }
+    let nextSiblingDiv = tocWrapper.nextElementSibling;
+
+    while (nextSiblingDiv) {
+      const h2Tags = nextSiblingDiv.querySelectorAll('h2');
+
+      h2Tags.forEach((heading) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        
+        link.href = "#" + heading.id;
+        link.textContent = heading.textContent;
+        item.appendChild(link);
+        toc.appendChild(item);
+      });
+
+      nextSiblingDiv = nextSiblingDiv.nextElementSibling;
     }
-
-    /* Create a new ToC title with link */
-    if (matchedTitle) {
-      const item = document.createElement('li');
-      const link = document.createElement('a');
-
-      link.href = `#${matchedTitle.id}`;
-      link.textContent = title.textContent;
-      item.appendChild(link);
-      newToc.appendChild(item);
-    }
-  });
-
-  block.innerHTML = newToc.outerHTML;
+    block.innerHTML = toc.outerHTML;
+  }
 }
