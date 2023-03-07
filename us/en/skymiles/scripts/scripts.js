@@ -28,6 +28,9 @@ function buildHeroBlock(main) {
     if (sibling.nodeName === 'PICTURE') {
       pictures.push(sibling);
       sibling = sibling.nextElementSibling;
+    } else if (sibling.nodeName === 'BR') {
+      sibling = sibling.nextElementSibling;
+      sibling.previousElementSibling.remove();
     } else {
       sibling = null;
     }
@@ -73,8 +76,8 @@ function decorateHyperlinkImages(container) {
     });
 }
 
-function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡¤])/g;
+export function decorateReferences(container) {
+  const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
   [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
