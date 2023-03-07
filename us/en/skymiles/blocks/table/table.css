@@ -118,7 +118,7 @@
   border: none;
 }
 
-.table.silent tbody th {
+.table.silent tbody th:has(strong:only-child) {
   text-align: left;
 }
 
