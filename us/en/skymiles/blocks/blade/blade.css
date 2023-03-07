@@ -51,7 +51,7 @@
 }
 
 .blade.emphasized .blade-body :is(h3, h4){
-    font-family: WhitneyCondensed-Semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+    font-family: WhitneyCondensed-Semibold, -apple-system, blinkmacsystemfont, 'segoe ui', roboto, 'helvetica neue', arial, sans-serif;
     font-size: 1rem;
     letter-spacing: 1.4px;
 }

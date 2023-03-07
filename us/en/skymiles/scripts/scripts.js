@@ -45,6 +45,26 @@ function buildHeroBlock(main) {
   main.prepend(section);
 }
 
+function decorateInlineToggles(container) {
+  function createInlineToggle(p) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.innerHTML = p.innerHTML;
+    details.append(summary);
+    let next;
+    do {
+      next = p.nextElementSibling;
+      details.append(next);
+    } while (next);
+    p.replaceWith(details);
+  }
+  container.querySelectorAll('p:has(.icon-toggle:first-child)')
+    .forEach(createInlineToggle);
+  [...container.querySelectorAll('p')]
+    .filter((p) => p.textContent.startsWith('> '))
+    .forEach(createInlineToggle);
+}
+
 function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('del')].forEach((el) => {
     const span = document.createElement('span');
@@ -122,6 +142,7 @@ export function decorateMain(main) {
   document.body.classList.add('fresh-air');
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateInlineToggles(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateScreenReaderOnly(main);
