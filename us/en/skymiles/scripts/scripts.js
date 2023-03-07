@@ -57,7 +57,7 @@ function decorateInlineToggles(container) {
   }
   container.querySelectorAll('p:has(.icon-toggle:first-child)')
     .forEach(createInlineToggle);
-  container.querySelectorAll('p')
+  [...container.querySelectorAll('p')]
     .filter((p) => p.textContent.startsWith('> '))
     .forEach(createInlineToggle);
 }
