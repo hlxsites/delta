@@ -35,7 +35,7 @@
     }
 
     .columns picture {
-        height: 6rem;
+        min-height: 6rem;
     }
 
     .columns > div {
