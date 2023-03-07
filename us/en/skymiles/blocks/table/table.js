@@ -1,4 +1,5 @@
 import { decorateButtons, decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateReferences } from '../../scripts/scripts.js';
 
 function toggleVisibleColumns(block, indexes) {
   const width = 100 / indexes.length;
@@ -85,6 +86,7 @@ export default function decorate(block) {
 
   decorateIcons(block);
   decorateButtons(block);
+  decorateReferences(block);
 }
 
 window.addEventListener('scroll', () => {
