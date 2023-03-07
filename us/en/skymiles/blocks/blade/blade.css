@@ -21,8 +21,12 @@
     position: relative;
 }
 
-.blade a:any-link {
+.blade a:not(.button):any-link {
     color: var(--color-delta-blue);
+}
+
+.blade .button {
+    min-width: auto;
 }
 
 .blade .blade-body :is(h3, h4) {
@@ -123,6 +127,14 @@
         padding: 4rem 2rem;
     }
 
+    .blade .button-container {
+        margin: 0;
+    }
+
+    .blade .button {
+        min-width: 100%;
+    }
+
     /* Link variant */
 
     .blade.is-link .blade-body::after {
@@ -147,7 +159,7 @@
 
     .blade.emphasized .blade-body {
         flex: 8;
-        padding: 2rem 3rem 3rem;
+        padding: 2rem;
     }
 
     .blade.emphasized .blade-body p {

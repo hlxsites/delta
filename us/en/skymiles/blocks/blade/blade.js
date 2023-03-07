@@ -11,7 +11,9 @@ export default function decorate(block) {
           div.addEventListener('click', () => {
             window.location.href = div.querySelector('a').href;
           });
-          a.parentElement.style.display = 'none';
+          if (a.href === a.textContent) {
+            a.parentElement.style.display = 'none';
+          }
         }
       }
     });
