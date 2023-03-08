@@ -320,7 +320,8 @@ button:disabled, button:disabled:hover {
   color: var(--text-color)
 }
 
-p em:only-child .button.secondary:only-child {
+p > .button.secondary:only-child,
+p > em:only-child > .button.secondary:only-child {
   margin: 0;
   padding: 0;
   background: none;
@@ -333,7 +334,9 @@ p em:only-child .button.secondary:only-child {
   min-width: 0;
 }
 
-p em:only-child .button.secondary:only-child:hover {
+/* stylelint-disable-next-line no-descending-specificity */
+p > .button.secondary:only-child:hover,
+p > em:only-child > .button.secondary:only-child:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
