@@ -410,6 +410,10 @@ main img {
 }
 
 /* Custom overrides for the fresh-air themed pages */
+.fresh-air .hero-container + .section {
+  padding-top: 7.25rem
+}
+
 .fresh-air h1 {
   margin: 0;
   font-family: var(--heading-font-family-alt);
