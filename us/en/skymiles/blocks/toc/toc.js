@@ -1,7 +1,7 @@
 export default function decorate(block) {
   const currentToc = block.querySelector('ul');
 
-  if (!!currentToc) {
+  if (currentToc) {
     return;
   }
 
