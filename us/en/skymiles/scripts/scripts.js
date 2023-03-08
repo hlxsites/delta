@@ -17,13 +17,13 @@ const LCP_BLOCKS = ['banner']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  if (!h1 || !h1.previousElementSibling) {
+  const firstHeading = main.querySelector('h1,h2');
+  if (!firstHeading || !firstHeading.previousElementSibling) {
     return;
   }
 
   const elements = [];
-  let sibling = h1.previousElementSibling;
+  let sibling = firstHeading.previousElementSibling;
   while (sibling) {
     elements.push(sibling);
     sibling = sibling.previousElementSibling;
@@ -165,7 +165,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   decorateResponsiveImages(main);
   buildAutoBlocks(main);
-  decorateScreenReaderOnly(main);
+  // decorateScreenReaderOnly(main);
   decorateHyperlinkImages(main);
   decorateReferences(main);
   decorateSections(main);
