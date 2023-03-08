@@ -33,6 +33,15 @@
   font-family: var(--heading-font-family-alt);
 }
 
+.table tbody th:has(strong) {
+  text-align: left;
+}
+
+.table tbody th strong {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
 .table button[data-role="prev"],
 .table button[data-role="next"] {
   position: absolute;
@@ -116,10 +125,6 @@
 
 .table.silent :is(table, th, td) {
   border: none;
-}
-
-.table.silent tbody th:has(strong:only-child) {
-  text-align: left;
 }
 
 /* The emphasized table variant. */
