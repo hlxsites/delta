@@ -5,7 +5,7 @@ export default function decorate(block) {
         div.className = 'blade-image';
       } else {
         div.className = 'blade-body';
-        const a = div.querySelector('p:last-child > a:last-child');
+        const a = div.lastElementChild.querySelector('a:only-child:last-child');
         if (a) {
           block.classList.add('is-link');
           div.addEventListener('click', () => {
