@@ -21,10 +21,6 @@
     position: relative;
 }
 
-.blade a:not(.button):any-link {
-    color: var(--color-delta-blue);
-}
-
 .blade .button {
     min-width: auto;
 }
@@ -45,6 +41,10 @@
 
 .blade .blade-body p {
     font-size: var(--body-font-size-m);
+}
+
+.blade a:not(.button):any-link {
+    color: var(--color-delta-blue);
 }
 
 /* Emphasized variant */
