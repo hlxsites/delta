@@ -70,7 +70,7 @@
 }
 
 .cards a:any-link {
-    color: var(--color-delta-blue);
+    color: var(--link-color);
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
