@@ -44,7 +44,7 @@
 }
 
 .blade a:not(.button):any-link {
-    color: var(--color-delta-blue);
+    color: var(--link-color);
 }
 
 /* Emphasized variant */
@@ -74,6 +74,10 @@
     background-color: var(--color-delta-red);
     height: 3px;
     width: 82px;
+}
+
+.blade.emphasized a:not(.button):any-link {
+    color: var(--color-delta-blue);
 }
 
 .blade.emphasized > div {
