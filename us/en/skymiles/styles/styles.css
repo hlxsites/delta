@@ -37,7 +37,7 @@
   --hero-button-color: var(--color-delta-red);
 
   /* fonts */
-  --body-font-family: Whitney-Light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-font-family: whitney-light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --heading-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
