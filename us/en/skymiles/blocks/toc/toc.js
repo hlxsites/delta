@@ -16,6 +16,6 @@ export default function decorate(block) {
     item.appendChild(link);
     toc.appendChild(item);
   });
-  
+
   block.innerHTML = toc.outerHTML;
 }
