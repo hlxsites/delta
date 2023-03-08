@@ -68,6 +68,10 @@
 }
 
 /* Main blocks */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
