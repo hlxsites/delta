@@ -15,7 +15,6 @@
   font-size: 1.25rem;
   font-family: var(--body-font-family);
   padding-bottom: 0.5rem;
-  line-height: 2.5em;
 }
 
 .toc ul li a {
@@ -23,6 +22,12 @@
   margin-left: 0.6em;
   color: var(--color-delta-blue);
   border-bottom: 1px dotted var(--color-delta-blue);
+  line-height: 2.125rem;
+}
+
+.toc ul li a:hover {
+  border-bottom-style: solid;
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
