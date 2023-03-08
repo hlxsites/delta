@@ -112,6 +112,10 @@ footer {
   background-color: var(--highlight-background-color);
 }
 
+.default-content-wrapper {
+  overflow: auto;
+}
+
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
@@ -121,12 +125,17 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
+h4, h5, h6 {
+  font-family: var(--button-font-family);
+  font-weight: 900;
+}
+
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-s) }
-h5 { font-size: var(--heading-font-size-xs) }
-h6 { font-size: var(--heading-font-size-xxs) }
+h4 { font-size: var(--heading-font-size-m) }
+h5 { font-size: var(--heading-font-size-s) }
+h6 { font-size: var(--heading-font-size-xs) }
 
 p, dl, ol, ul, pre, blockquote {
   font-size: var(--body-font-size-m);
@@ -176,6 +185,27 @@ hr {
 
 pre {
   overflow: scroll;
+}
+
+main {
+  padding-bottom: 3rem;
+}
+
+main > .section {
+  position: relative;
+}
+
+main > .section:not(.hero-container):first-child::after,
+main > .section.hero-container + .section::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  content: '';
+  width: 75px;
+  height: 60px;
+  background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
+  background-size: cover;
 }
 
 main sup {
@@ -473,7 +503,7 @@ main img {
     margin-top: 5rem;
   }
 
-  .fresh-air .default-content-wrapper h2:first-child {
+  .fresh-air .default-content-wrapper h1 + h2:first-child {
     margin-top: 0;
   }
 
@@ -487,6 +517,12 @@ main img {
     text-align: inherit;
     margin-top: 2rem;
     padding: 0;
+  }
+
+  main > .section:not(.hero-container):first-child::after,
+  main > .section.hero-container + .section::after {
+    width: 125px;
+    height: 110px;
   }
 
   main .section {

@@ -8,11 +8,6 @@ main .section.hero-container {
   padding: 0;
   max-width: unset;
 }
-  
-main .hero {
-  position: relative;
-  padding-bottom: 90px;
-}
 
 main .hero div,
 main .hero picture {
@@ -27,17 +22,6 @@ main .hero img {
   height: 100%;
 }
 
-main .hero::after {
-  display: block;
-  position: absolute;
-  right: 15px;
-  content: '';
-  width: 75px;
-  height: 60px;
-  background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
-  background-size: cover;
-}
-
 @media (min-width: 768px) {
   main .hero div,
   main .hero picture {
@@ -50,22 +34,12 @@ main .hero::after {
   main .hero picture {
     height: 192px;
   }
-
-  main .hero::after {
-    width: 125px;
-    height: 110px;
-    right: calc((100vw - 976px) / 2);
-  }
 }
 
 @media (min-width: 1200px) {
   main .hero div,
   main .hero picture {
     height: 240px;
-  }
-
-  main .hero::after {
-    right: calc((100vw - 1140px) / 2);
   }
 }
 
@@ -74,19 +48,11 @@ main .hero::after {
   main .hero picture {
     height: 288px;
   }
-
-  main .hero::after {
-    right: calc((100vw - 1156px) / 2);
-  }
 }
 
 @media (min-width: 1600px) {
   main .hero div,
   main .hero picture {
     height: 320px;
-  }
-
-  main .hero::after {
-    right: calc((100vw - 1180px) / 2);
   }
 }
