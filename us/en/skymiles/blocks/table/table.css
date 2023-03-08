@@ -15,6 +15,7 @@
 
 .table table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .table tr > :is(th, td) {
@@ -115,6 +116,10 @@
 
 .table.silent :is(table, th, td) {
   border: none;
+}
+
+.table.silent tbody th:has(strong:only-child) {
+  text-align: left;
 }
 
 /* The emphasized table variant. */

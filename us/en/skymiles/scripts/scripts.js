@@ -22,24 +22,66 @@ function buildHeroBlock(main) {
     return;
   }
 
-  const pictures = [];
-  let sibling = h1.previousElementSibling.firstElementChild;
+  const elements = [];
+  let sibling = h1.previousElementSibling;
   while (sibling) {
-    if (sibling.nodeName === 'PICTURE') {
-      pictures.push(sibling);
-      sibling = sibling.nextElementSibling;
-    } else {
-      sibling = null;
-    }
-  }
-
-  if (!pictures.length) {
-    return;
+    elements.push(sibling);
+    sibling = sibling.previousElementSibling;
   }
 
   const section = document.createElement('div');
-  section.append(buildBlock('hero', { elems: pictures }));
+  section.append(buildBlock('hero', { elems: elements }));
   main.prepend(section);
+}
+
+function createResponsiveImage(pictures, breakpoint = 768) {
+  pictures.sort((p1, p2) => {
+    const img1 = p1.querySelector('img');
+    const img2 = p2.querySelector('img');
+    return img1.width < img2.width;
+  });
+
+  const responsivePicture = document.createElement('picture');
+
+  responsivePicture.append(pictures[0].querySelector('source:not([media])'));
+  responsivePicture.append(pictures[0].querySelector('img'));
+
+  pictures[1].querySelectorAll('source[media]').forEach((e) => {
+    e.setAttribute('media', `(min-width: ${breakpoint}px)`);
+    responsivePicture.prepend(e);
+  });
+
+  return responsivePicture;
+}
+
+function decorateResponsiveImages(container) {
+  [...container.querySelectorAll('picture + picture, picture + br + picture')]
+    .map((p) => p.parentElement)
+    .filter((parent) => [...parent.children].every((c) => c.nodeName === 'PICTURE' || c.nodeName === 'BR'))
+    .forEach((parent) => {
+      const responsiveImage = createResponsiveImage([...parent.querySelectorAll('picture')]);
+      parent.innerHTML = responsiveImage.outerHTML;
+    });
+}
+
+function decorateInlineToggles(container) {
+  function createInlineToggle(p) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.innerHTML = p.innerHTML;
+    details.append(summary);
+    let next;
+    do {
+      next = p.nextElementSibling;
+      details.append(next);
+    } while (next);
+    p.replaceWith(details);
+  }
+  container.querySelectorAll('p:has(.icon-toggle:first-child)')
+    .forEach(createInlineToggle);
+  [...container.querySelectorAll('p')]
+    .filter((p) => p.textContent.startsWith('> '))
+    .forEach(createInlineToggle);
 }
 
 function decorateScreenReaderOnly(container) {
@@ -73,8 +115,8 @@ function decorateHyperlinkImages(container) {
     });
 }
 
-function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡¤])/g;
+export function decorateReferences(container) {
+  const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
   [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
@@ -119,7 +161,9 @@ export function decorateMain(main) {
   document.body.classList.add('fresh-air');
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateInlineToggles(main);
   decorateIcons(main);
+  decorateResponsiveImages(main);
   buildAutoBlocks(main);
   decorateScreenReaderOnly(main);
   decorateHyperlinkImages(main);
