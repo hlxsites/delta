@@ -6,14 +6,12 @@ export default function decorate(block) {
       } else {
         div.className = 'blade-body';
         const a = div.lastElementChild.querySelector('a:only-child:last-child');
-        if (a) {
+        if (a.href === a.textContent) {
           block.classList.add('is-link');
           div.addEventListener('click', () => {
             window.location.href = div.querySelector('a').href;
           });
-          if (a.href === a.textContent) {
-            a.parentElement.style.display = 'none';
-          }
+          a.parentElement.style.display = 'none';
         }
       }
     });
