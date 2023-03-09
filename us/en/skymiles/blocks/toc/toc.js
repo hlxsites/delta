@@ -2,6 +2,14 @@ export default function decorate(block) {
   const currentToc = block.querySelector('ul');
 
   if (currentToc) {
+    block.querySelectorAll('a').forEach((a) => {
+      try {
+        const url = new URL(a.href);
+        a.href = url.hash;
+      } catch (err) {
+        // Nothing to do, leave link in place
+      }
+    });
     return;
   }
   const toc = document.createElement('ul');
