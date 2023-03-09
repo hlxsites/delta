@@ -84,6 +84,7 @@ function decorateInlineToggles(container) {
     .forEach(createInlineToggle);
 }
 
+// eslint-disable-next-line no-unused-vars
 function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('del')].forEach((el) => {
     const span = document.createElement('span');
@@ -146,7 +147,8 @@ function buildAutoBlocks(main) {
 
 function decorateEyeBrows(main) {
   main.querySelectorAll('.default-content-wrapper').forEach((dcw) => {
-    if ([...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent) {
+    if (dcw.childElementCount > 1
+      && [...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent) {
       dcw.classList.add('default-content-eyebrow');
     }
   });
