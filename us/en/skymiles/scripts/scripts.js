@@ -173,6 +173,14 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateEyeBrows(main);
+  const badge = document.head.querySelector('meta[name="badge"]');
+  if (badge) {
+    const img = document.createElement('img');
+    img.classList.add('badge');
+    img.src = badge.content;
+    main.firstElementChild.append(img);
+    main.classList.add('has-badge');
+  }
 }
 
 /**
