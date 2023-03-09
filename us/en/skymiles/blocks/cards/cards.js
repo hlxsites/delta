@@ -14,8 +14,13 @@ export default function decorate(block) {
         const a = div.querySelector('p:last-child > a:only-child');
         if (p && a && p.textContent === a.textContent) {
           li.classList.add('is-link');
-          if (a.href === a.textContent) {
-            a.parentElement.style.display = 'none';
+          try {
+            if (a.href === a.textContent
+              || new URL(a.href).pathname === new URL(a.textContent).pathname) {
+              a.parentElement.style.display = 'none';
+            }
+          } catch (err) {
+            // if we don't have valid URLs, just ignore it
           }
           div.addEventListener('click', () => {
             window.location.href = div.querySelector('a').href;
