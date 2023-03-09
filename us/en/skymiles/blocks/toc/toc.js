@@ -7,6 +7,10 @@ export default function decorate(block) {
         const url = new URL(a.href);
         a.href = url.hash;
       } catch (err) {
+        const [hash] = a.href.match('#.*') || [];
+        if (hash) {
+          a.href = hash;
+        }
         // Nothing to do, leave link in place
       }
     });
