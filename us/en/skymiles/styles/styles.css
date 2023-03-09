@@ -45,6 +45,7 @@
   --heading-font-family-alt: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --link-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
+
   /* body sizes */
   --body-font-size-xxl: 24px;
   --body-font-size-xl: 1.25rem;
@@ -68,6 +69,10 @@
 }
 
 /* Main blocks */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -108,6 +113,10 @@ footer {
   background-color: var(--highlight-background-color);
 }
 
+.default-content-wrapper {
+  overflow: auto;
+}
+
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
@@ -117,12 +126,17 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
+h4, h5, h6 {
+  font-family: var(--button-font-family);
+  font-weight: 900;
+}
+
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-s) }
-h5 { font-size: var(--heading-font-size-xs) }
-h6 { font-size: var(--heading-font-size-xxs) }
+h4 { font-size: var(--heading-font-size-m) }
+h5 { font-size: var(--heading-font-size-s) }
+h6 { font-size: var(--heading-font-size-xs) }
 
 p, dl, ol, ul, pre, blockquote {
   font-size: var(--body-font-size-m);
@@ -174,6 +188,31 @@ pre {
   overflow: scroll;
 }
 
+main {
+  padding-bottom: 3rem;
+}
+
+main > .section {
+  position: relative;
+}
+
+main > .section:not(.hero-container):first-child::after,
+main > .section.hero-container + .section::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  content: '';
+  width: 75px;
+  height: 60px;
+  background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
+  background-size: cover;
+}
+
+main sup {
+  font-family: var(--body-font-family);
+}
+
 main strong {
   font-family: var(--button-font-family);
 }
@@ -209,6 +248,51 @@ main figure picture {
 
 main figure figcaption {
   font-size: 1rem;
+}
+
+/* inline accordion toggles */
+
+main details {
+  position: relative;
+}
+
+main details::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  top: 2rem;
+  left: 0;
+  height: 1.5rem;
+  width: 1rem;
+  background-size: contain;
+  background-color: var(--color-delta-red);
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: center / contain no-repeat url('../icons/down-chevron.svg');
+  mask: center / contain no-repeat url('../icons/down-chevron.svg');
+  pointer-events: none;
+}
+
+main details[open]::before {
+  transform: rotate(180deg);
+}
+
+main details summary {
+  display: inline-block;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  color: var(--color-delta-blue);
+  cursor: pointer;
+  font-family: var(--link-font-family);
+  letter-spacing: 1.6px;
+  list-style: none;
+}
+
+main details summary::before {
+  content: 'Show ';
+}
+
+main details[open] summary::before {
+  content: 'Hide ';
 }
 
 /* buttons */
@@ -267,7 +351,8 @@ button:disabled, button:disabled:hover {
   color: var(--text-color)
 }
 
-p em:only-child .button.secondary:only-child {
+p > .button.secondary:only-child,
+p > em:only-child > .button.secondary:only-child {
   margin: 0;
   padding: 0;
   background: none;
@@ -280,7 +365,9 @@ p em:only-child .button.secondary:only-child {
   min-width: 0;
 }
 
-p em:only-child .button.secondary:only-child:hover {
+/* stylelint-disable-next-line no-descending-specificity */
+p > .button.secondary:only-child:hover,
+p > em:only-child > .button.secondary:only-child:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
@@ -324,10 +411,15 @@ main img {
 }
 
 /* Custom overrides for the fresh-air themed pages */
+.fresh-air .hero-container + .section {
+  padding-top: 7.25rem
+}
+
 .fresh-air h1 {
   margin: 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
+  text-transform: uppercase;
 }
 
 .fresh-air h2 {
@@ -363,6 +455,10 @@ main img {
 
 .fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xxl);
+}
+
+.fresh-air .hero-container + .section h1 + h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xl);
 }
 
 .fresh-air .default-content-eyebrow {
@@ -416,16 +512,12 @@ main img {
     margin-top: 5rem;
   }
 
-  .fresh-air .default-content-wrapper h2:first-child {
+  .fresh-air .default-content-wrapper h1 + h2:first-child {
     margin-top: 0;
   }
 
   .fresh-air .hero-container + .section h1 + h2 {
     font-size: var(--heading-font-size-xxl);
-  }
-
-  .fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
-    font-size: var(--body-font-size-xxl);
   }
 }
 
@@ -434,6 +526,12 @@ main img {
     text-align: inherit;
     margin-top: 2rem;
     padding: 0;
+  }
+
+  main > .section:not(.hero-container):first-child::after,
+  main > .section.hero-container + .section::after {
+    width: 125px;
+    height: 110px;
   }
 
   main .section {

@@ -5,6 +5,7 @@
 .columns > div {
     display: flex;
     flex-direction: column;
+    gap: 3rem 0;
     text-align: center;
 }
 
@@ -35,13 +36,14 @@
     }
 
     .columns picture {
-        height: 6rem;
+        min-height: 6rem;
     }
 
     .columns > div {
         display: flex;
         align-items: flex-start;
         flex-direction: unset;
+        gap: unset;
     }
 
     .columns-container .columns-wrapper {

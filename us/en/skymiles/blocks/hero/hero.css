@@ -8,14 +8,10 @@ main .section.hero-container {
   padding: 0;
   max-width: unset;
 }
-  
-main .hero {
-  position: relative;
-  padding-bottom: 90px;
-}
 
 main .hero div,
 main .hero picture {
+  display: block;
   width: 100%;
   height: 324px;
 }
@@ -24,17 +20,6 @@ main .hero img {
   object-fit: cover;
   width: 100%;
   height: 100%;
-}
-
-main .hero::after {
-  display: block;
-  position: absolute;
-  right: 15px;
-  content: '';
-  width: 75px;
-  height: 60px;
-  background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
-  background-size: 75px 60px;
 }
 
 @media (min-width: 768px) {

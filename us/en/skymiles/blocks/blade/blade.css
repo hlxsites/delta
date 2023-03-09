@@ -11,19 +11,25 @@
     align-items: center;
 }
 
+.blade .blade-image {
+    box-sizing: border-box;
+}
+
 .blade .blade-body {
+    box-sizing: border-box;
     padding: 30px 0;
     position: relative;
 }
 
-.blade a:any-link {
-    color: var(--color-delta-blue);
+.blade .button {
+    min-width: auto;
 }
 
 .blade .blade-body :is(h3, h4) {
     margin-top: 0;
     font-family: var(--heading-font-family);
     letter-spacing: 3.2px;
+    text-transform: uppercase;
 }
 
 .blade .blade-body h3 { font-size: var(--body-font-size-xl); }
@@ -34,8 +40,11 @@
 }
 
 .blade .blade-body p {
-    margin-bottom: 0;
     font-size: var(--body-font-size-m);
+}
+
+.blade a:not(.button):any-link {
+    color: var(--link-color);
 }
 
 /* Emphasized variant */
@@ -46,11 +55,13 @@
 }
 
 .blade.emphasized .blade-body :is(h3, h4){
+    font-family: WhitneyCondensed-Semibold, -apple-system, blinkmacsystemfont, 'segoe ui', roboto, 'helvetica neue', arial, sans-serif;
+    font-size: 1rem;
     letter-spacing: 1.4px;
 }
 
-.blade.emphasized .blade-body h3 { font-size: var(--body-font-size-xxl); }
-.blade.emphasized .blade-body h4 { font-size: var(--body-font-size-xl); }
+.blade.emphasized .blade-body h3 { font-size: var(--body-font-size-l); }
+.blade.emphasized .blade-body h4 { font-size: var(--body-font-size-m); }
 
 .blade.emphasized .blade-body :is(h3, h4) a {
     font-family: var(--button-font-family);
@@ -63,6 +74,10 @@
     background-color: var(--color-delta-red);
     height: 3px;
     width: 82px;
+}
+
+.blade.emphasized a:not(.button):any-link {
+    color: var(--color-delta-blue);
 }
 
 .blade.emphasized > div {
@@ -116,6 +131,14 @@
         padding: 4rem 2rem;
     }
 
+    .blade .button-container {
+        margin: 0;
+    }
+
+    .blade .button {
+        min-width: 100%;
+    }
+
     /* Link variant */
 
     .blade.is-link .blade-body::after {
@@ -140,10 +163,21 @@
 
     .blade.emphasized .blade-body {
         flex: 8;
-        padding: 2rem 3rem 3rem;
+        padding: 2rem;
     }
 
     .blade.emphasized .blade-body p {
         font-size: var(--body-font-size-l);
     }
+
+    /* Large variant */
+
+    .blade.large .blade-image {
+        flex: 2 1 600px;
+    }
+
+    .blade.large .blade-body {
+        flex: 1 2 300px;
+    }
+
 }

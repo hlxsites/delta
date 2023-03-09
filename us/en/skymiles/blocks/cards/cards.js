@@ -10,9 +10,17 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else {
         div.className = 'cards-card-body';
-        div.addEventListener('click', () => {
-          window.location.href = div.querySelector('a').href;
-        });
+        const p = div.querySelector('p:last-child');
+        const a = div.querySelector('p:last-child > a:only-child');
+        if (p && a && p.textContent === a.textContent) {
+          li.classList.add('is-link');
+          if (a.href === a.textContent) {
+            a.parentElement.style.display = 'none';
+          }
+          div.addEventListener('click', () => {
+            window.location.href = div.querySelector('a').href;
+          });
+        }
       }
     });
     ul.append(li);

@@ -1,4 +1,5 @@
 import { decorateButtons, decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateReferences } from '../../scripts/scripts.js';
 
 function toggleVisibleColumns(block, indexes) {
   const width = 100 / indexes.length;
@@ -85,6 +86,7 @@ export default function decorate(block) {
 
   decorateIcons(block);
   decorateButtons(block);
+  decorateReferences(block);
 }
 
 window.addEventListener('scroll', () => {
@@ -99,8 +101,10 @@ window.addEventListener('scroll', () => {
       return;
     }
     block.classList.toggle('is-sticky-nav', shouldStickyNav);
-    block.querySelector('button[data-role="next"]').style.right = shouldStickyNav
-      ? `${(window.innerWidth - rect.width) / 2}px`
-      : '';
+    if (block.querySelector('button[data-role="next"]')) {
+      block.querySelector('button[data-role="next"]').style.right = shouldStickyNav
+        ? `${(window.innerWidth - rect.width) / 2}px`
+        : '';
+    }
   });
 }, { passive: true });
