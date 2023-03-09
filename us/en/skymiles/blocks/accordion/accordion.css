@@ -31,6 +31,7 @@
     text-transform: none;
     letter-spacing: 0.01rem;
     font-family: var(--button-font-family);
+    text-decoration: none;
 }
 
 .accordion-wrapper .toolbar .tertiary:hover {
@@ -105,22 +106,8 @@
     font-weight: 1200;
 }
 
-.expand {
-    color: var(--link-color);
-}
-
-.tertiary.light {
-    color: var(--color-delta-blue);  
-}
-
 .tertiary.highlight {
     color: var(--link-color);
-}
-
-.collapse {
-    color: var(--color-delta-blue);
-    text-decoration: none;
-    font-family: var(--heading-font-family);
 }
 
 .bold:hover {

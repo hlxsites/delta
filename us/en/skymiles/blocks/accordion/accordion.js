@@ -34,7 +34,7 @@ export default async function decorate(block) {
       // Create the Expand All button
       const expandButton = document.createElement('button');
       expandButton.classList.add('tertiary');
-      expandButton.classList.add('expand');
+      expandButton.classList.add('expand', 'highlight');
       expandButton.textContent = 'Expand All';
       toolbar.appendChild(expandButton);
 
@@ -50,10 +50,8 @@ export default async function decorate(block) {
 
       // add click events to expand and collapse buttons
       expandButton.addEventListener('click', () => {
-        expandButton.classList.toggle('light');
-        collapseButton.classList.toggle('highlight');
         expandButton.classList.remove('highlight');
-        collapseButton.classList.remove('light');
+        collapseButton.classList.toggle('highlight');
         const texts = wrapper.querySelectorAll('.text');
         for (let j = 0; j < texts.length; j += 1) {
           const text = texts[j];
@@ -65,10 +63,8 @@ export default async function decorate(block) {
       });
 
       collapseButton.addEventListener('click', () => {
-        expandButton.classList.remove('light');
-        collapseButton.classList.remove('highlight');
+        collapseButton.classList.toggle('highlight');
         expandButton.classList.toggle('highlight');
-        collapseButton.classList.toggle('light');
         const texts = wrapper.querySelectorAll('.text');
         for (let j = 0; j < texts.length; j += 1) {
           const text = texts[j];
