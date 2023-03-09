@@ -448,15 +448,15 @@ main img {
   margin-top: 1.25rem;
 }
 
-.fresh-air .hero-container + .section h1 + h2 {
+.fresh-air .section h1 + h2 {
   font-size: var(--heading-font-size-xl);
 }
 
-.fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+.fresh-air .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xxl);
 }
 
-.fresh-air .hero-container + .section h1 + h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+.fresh-air .section h1 + h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xl);
 }
 
@@ -490,8 +490,8 @@ main img {
   }
 
   .button:any-link, button {
-    padding: 1.5rem;
-    min-width: 21.25rem;
+    padding: 1rem 1.5rem;
+    min-width: 17rem;
     vertical-align: bottom;
   }
 
@@ -507,12 +507,12 @@ main img {
     margin-top: 5rem;
   }
 
-  .fresh-air .default-content-wrapper h1 + h2:first-child {
-    margin-top: 0;
+  .fresh-air .section h1 + h2 {
+    font-size: var(--heading-font-size-xxl);
   }
 
-  .fresh-air .hero-container + .section h1 + h2 {
-    font-size: var(--heading-font-size-xxl);
+  .fresh-air .default-content-wrapper h1 + h2:first-child {
+    margin-top: 0;
   }
 }
 
