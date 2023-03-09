@@ -497,6 +497,11 @@ export function decorateButtons(element) {
           } else {
             a.classList.add('primary');
           }
+          // If we have several buttons after one other, then just add them to the same container
+          if (up.previousElementSibling.classList.contains('button-container')) {
+            up.previousElementSibling.append(a);
+            up.remove();
+          }
         }
         if (up.childNodes.length === 1 && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
