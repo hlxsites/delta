@@ -11,8 +11,20 @@ export default async function decorate(block) {
     children[1].classList.add('text');
   }));
 
-  const parentWrapper = document.querySelectorAll('.accordion-wrapper');
+  // creating buttons in text divs
+  const textDiv = block.querySelectorAll('.text');
+  textDiv.forEach((text) => {
+    const textButton = text.querySelectorAll('p > small > strong');
+    textButton.forEach((tb) => {
+      const button = document.createElement('button');
+      button.textContent = tb.textContent;
+      const p = tb.closest('p');
+      p.parentNode.insertBefore(button, p);
+      p.parentNode.removeChild(p);
+    });
+  });
 
+  const parentWrapper = document.querySelectorAll('.accordion-wrapper');
   parentWrapper.forEach((wrapper) => {
     if (!wrapper.querySelector('.toolbar')) {
       // Create the toolbar div
@@ -38,6 +50,10 @@ export default async function decorate(block) {
 
       // add click events to expand and collapse buttons
       expandButton.addEventListener('click', () => {
+        expandButton.classList.toggle('light');
+        collapseButton.classList.toggle('highlight');
+        expandButton.classList.remove('highlight');
+        collapseButton.classList.remove('light');
         const texts = wrapper.querySelectorAll('.text');
         for (let j = 0; j < texts.length; j += 1) {
           const text = texts[j];
@@ -49,6 +65,10 @@ export default async function decorate(block) {
       });
 
       collapseButton.addEventListener('click', () => {
+        expandButton.classList.remove('light');
+        collapseButton.classList.remove('highlight');
+        expandButton.classList.toggle('highlight');
+        collapseButton.classList.toggle('light');
         const texts = wrapper.querySelectorAll('.text');
         for (let j = 0; j < texts.length; j += 1) {
           const text = texts[j];

@@ -30,6 +30,7 @@
     padding: 0.5rem;
     text-transform: none;
     letter-spacing: 0.01rem;
+    font-family: var(--button-font-family);
 }
 
 .accordion-wrapper .toolbar .tertiary:hover {
@@ -53,7 +54,15 @@
 .text {
     display: none;
 }
-  
+
+.visible button,
+.text[aria-expanded="true"] button {
+    min-width: 20rem;
+    width: 20rem;
+    white-space: normal;
+    margin: 5px;
+}
+
 .header {
     position: relative;
     padding: 5px;
@@ -96,6 +105,24 @@
     font-weight: 1200;
 }
 
+.expand {
+    color: var(--link-color);
+}
+
+.tertiary.light {
+    color: var(--color-delta-blue);  
+}
+
+.tertiary.highlight {
+    color: var(--link-color);
+}
+
+.collapse {
+    color: var(--color-delta-blue);
+    text-decoration: none;
+    font-family: var(--heading-font-family);
+}
+
 .bold:hover {
     text-decoration: underline;
 }
@@ -103,12 +130,19 @@
 @media (min-width: 992px) {
     .header {
         border: none;
+        padding: 0;
+        padding-left: 10px;
+        box-sizing: border-box;
     }
 
     .header[aria-expanded="true"] {
-        border: 2px solid lightgrey;
-        padding: 0;
-        padding-left: 10px;
+        outline: 2px solid lightgrey;
+        outline-offset: -2px; 
         border-radius: 5px
+    }
+
+    .header[aria-expanded="true"]::after {
+        transform: rotate(315deg);
+        top: 45%;
     }
 }
