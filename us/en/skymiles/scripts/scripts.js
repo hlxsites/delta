@@ -84,14 +84,14 @@ function decorateInlineToggles(container) {
     .forEach(createInlineToggle);
 }
 
-function decorateScreenReaderOnly(container) {
-  [...container.querySelectorAll('del')].forEach((el) => {
-    const span = document.createElement('span');
-    span.classList.add('sr-only');
-    span.innerHTML = el.innerHTML;
-    el.replaceWith(span);
-  });
-}
+// function decorateScreenReaderOnly(container) {
+//   [...container.querySelectorAll('del')].forEach((el) => {
+//     const span = document.createElement('span');
+//     span.classList.add('sr-only');
+//     span.innerHTML = el.innerHTML;
+//     el.replaceWith(span);
+//   });
+// }
 
 function decorateHyperlinkImages(container) {
   [...container.querySelectorAll('picture + br + a')]
