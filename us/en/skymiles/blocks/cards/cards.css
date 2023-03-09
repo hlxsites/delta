@@ -87,4 +87,9 @@
     .cards > ul > li img {
         height: unset;
     }
+
+    /* Large variant */
+    .cards.large > ul {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
 }

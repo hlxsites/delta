@@ -189,6 +189,7 @@ pre {
 }
 
 main {
+  position: relative;
   padding-bottom: 3rem;
 }
 
@@ -196,8 +197,8 @@ main > .section {
   position: relative;
 }
 
-main > .section:not(.hero-container):first-child::after,
-main > .section.hero-container + .section::after {
+main:not(.has-badge) > .section:not(.hero-container):first-child::after,
+main:not(.has-badge) > .section.hero-container + .section::after {
   display: block;
   position: absolute;
   top: 0;
@@ -214,6 +215,7 @@ main sup {
 }
 
 main strong {
+  color: var(--color-delta-blue);
   font-family: var(--button-font-family);
 }
 
@@ -248,6 +250,18 @@ main figure picture {
 
 main figure figcaption {
   font-size: 1rem;
+}
+
+[data-align="left"] {
+  text-align: left;
+}
+
+[data-align="center"] {
+  text-align: center;
+}
+
+[data-align="right"] {
+  text-align: right;
 }
 
 /* inline accordion toggles */
@@ -410,16 +424,28 @@ main img {
   vertical-align: bottom;
 }
 
+/* Page badge to replace delta logo */
+main > .section > .badge {
+  position: absolute;
+  top: 7rem;
+  right: 1rem;
+  z-index: 2;
+}
+
 /* Custom overrides for the fresh-air themed pages */
 .fresh-air .hero-container + .section {
   padding-top: 7.25rem
 }
 
 .fresh-air h1 {
-  margin: 0;
+  margin: 6rem 0 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
   text-transform: uppercase;
+}
+
+.fresh-air .hero-container + h1 {
+  margin-top: 0;
 }
 
 .fresh-air h2 {
@@ -449,15 +475,25 @@ main img {
   margin-top: 1.25rem;
 }
 
-.fresh-air .hero-container + .section h1 + h2 {
+.fresh-air .section h1 + h2,
+.fresh-air .section h2:first-child {
   font-size: var(--heading-font-size-xl);
 }
 
-.fresh-air .hero-container + .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+.fresh-air .default-content-wrapper p:first-child:has(strong) {
+  margin-top: 3rem;
+}
+
+.fresh-air .default-content-wrapper p:first-child + h2 {
+  margin-top: 0;
+}
+
+.fresh-air .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote),
+.fresh-air .section h2:first-child ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xxl);
 }
 
-.fresh-air .hero-container + .section h1 + h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+.fresh-air .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xl);
 }
 
@@ -490,13 +526,16 @@ main img {
 
 @media (min-width: 768px) {
   .button-container {
-    text-align: inherit;
+    display: flex;
+    gap: .5rem;
     margin-top: 2rem;
+    flex-wrap: wrap;
+    text-align: inherit;
   }
 
   .button:any-link, button {
-    padding: 1.5rem;
-    min-width: 21.25rem;
+    padding: 1rem 1.5rem;
+    min-width: 17rem;
     vertical-align: bottom;
   }
 
@@ -512,12 +551,17 @@ main img {
     margin-top: 5rem;
   }
 
-  .fresh-air .default-content-wrapper h1 + h2:first-child {
+  .fresh-air .section h1 + h2,
+  .fresh-air .section h2:first-child {
+    font-size: var(--heading-font-size-xxl);
+  }
+
+  .fresh-air .default-content-wrapper h2:first-child {
     margin-top: 0;
   }
 
-  .fresh-air .hero-container + .section h1 + h2 {
-    font-size: var(--heading-font-size-xxl);
+  .fresh-air .default-content-wrapper h1 + h2:first-child {
+    margin-top: 0;
   }
 }
 
@@ -528,8 +572,8 @@ main img {
     padding: 0;
   }
 
-  main > .section:not(.hero-container):first-child::after,
-  main > .section.hero-container + .section::after {
+  main:not(.has-badge) > .section:not(.hero-container):first-child::after,
+  main:not(.has-badge) > .section.hero-container + .section::after {
     width: 125px;
     height: 110px;
   }

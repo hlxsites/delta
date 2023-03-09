@@ -84,14 +84,15 @@ function decorateInlineToggles(container) {
     .forEach(createInlineToggle);
 }
 
-// function decorateScreenReaderOnly(container) {
-//   [...container.querySelectorAll('del')].forEach((el) => {
-//     const span = document.createElement('span');
-//     span.classList.add('sr-only');
-//     span.innerHTML = el.innerHTML;
-//     el.replaceWith(span);
-//   });
-// }
+// eslint-disable-next-line no-unused-vars
+function decorateScreenReaderOnly(container) {
+  [...container.querySelectorAll('del')].forEach((el) => {
+    const span = document.createElement('span');
+    span.classList.add('sr-only');
+    span.innerHTML = el.innerHTML;
+    el.replaceWith(span);
+  });
+}
 
 function decorateHyperlinkImages(container) {
   [...container.querySelectorAll('picture + br + a')]
@@ -146,7 +147,8 @@ function buildAutoBlocks(main) {
 
 function decorateEyeBrows(main) {
   main.querySelectorAll('.default-content-wrapper').forEach((dcw) => {
-    if ([...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent) {
+    if (dcw.childElementCount > 1
+      && [...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent) {
       dcw.classList.add('default-content-eyebrow');
     }
   });
@@ -171,6 +173,14 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateEyeBrows(main);
+  const badge = document.head.querySelector('meta[name="badge"]');
+  if (badge) {
+    const img = document.createElement('img');
+    img.classList.add('badge');
+    img.src = badge.content;
+    main.firstElementChild.append(img);
+    main.classList.add('has-badge');
+  }
 }
 
 /**
