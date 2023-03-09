@@ -67,8 +67,12 @@
     font-family: var(--button-font-family);
 }
 
+.blade.emphasized .blade-body .button-container {
+    display: unset;
+}
+
 .blade.emphasized .blade-body .button {
-    min-width: auto;
+    width: 100%;
 }
 
 .blade.emphasized .blade-body > :first-child::after {
