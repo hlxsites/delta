@@ -443,7 +443,7 @@ main > .section > .badge {
   text-transform: uppercase;
 }
 
-.fresh-air .hero-container + h1 {
+.fresh-air .hero-container + .section h1 {
   margin-top: 0;
 }
 
@@ -511,7 +511,6 @@ main > .section > .badge {
   margin: 3rem 0 2rem;
 }
 
-
 /* Responsive adaptation for larger screens. */
 @media (min-width: 375px) {
   main .section {
@@ -565,6 +564,11 @@ main > .section > .badge {
     text-align: inherit;
     margin-top: 2rem;
     padding: 0;
+    gap: 2rem;
+  }
+
+  .button:any-link, button {
+    min-width: 20rem;
   }
 
   main:not(.has-badge) > .section:not(.hero-container):first-child::after,
