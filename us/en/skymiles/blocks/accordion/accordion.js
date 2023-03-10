@@ -82,15 +82,18 @@ export default async function decorate(block) {
   wrappers.forEach((wrapper) => {
     const headers = wrapper.querySelectorAll('.header');
     headers.forEach((header) => {
+      const text = header.nextElementSibling;
       header.setAttribute('role', 'button');
+      header.setAttribute('aria-expanded', 'false');
+      text.setAttribute('aria-expanded', 'false');
       header.addEventListener('click', () => {
-        const text = header.nextElementSibling;
-        text.classList.toggle('visible');
-        const expanded = text.classList.contains('visible');
-        header.setAttribute('aria-expanded', expanded);
-        headers.forEach((otherDiv) => {
-          if (otherDiv !== header) {
-            otherDiv.classList.remove('clicked');
+        const expanded = header.getAttribute('aria-expanded') === 'true';
+        header.setAttribute('aria-expanded', String(!expanded));
+        text.setAttribute('aria-expanded', String(!expanded));
+        headers.forEach((otherHeader) => {
+          if (otherHeader !== header) {
+            otherHeader.setAttribute('aria-expanded', 'false');
+            otherHeader.classList.remove('clicked');
           }
         });
         header.classList.toggle('clicked');

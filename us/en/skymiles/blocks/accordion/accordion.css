@@ -40,6 +40,7 @@
 
 .text[aria-expanded="true"] {
     display: block;
+    color: var(--color-delta-blue)
 }
 
 .text[aria-expanded="false"] {
@@ -49,14 +50,13 @@
 .accordion-section {
     padding-top: 20px;
     padding-bottom: 20px;
-    border-top: .0625rem solid var(--color-delta-border);
+    border-top: .0625rem solid var(--color-delta-gray-middle);
 }
 
 .text {
     display: none;
 }
 
-.visible button,
 .text[aria-expanded="true"] button {
     min-width: 20rem;
     width: 20rem;
@@ -67,6 +67,17 @@
 .header {
     position: relative;
     padding: 5px;
+    color: var(--color-delta-blue);
+}
+
+.header p:nth-child(2) {
+    font-size: 1.4rem;
+    width: 80%;
+    margin-bottom: 0;
+}
+
+.header picture {
+    margin-right: 1rem;
 }
 
 .header h3 {
@@ -97,21 +108,20 @@
     top: 45%;
 }
 
-.visible {
-    display: block;
-    padding-top: 20px;
-}
-
-.bold {
-    font-weight: 1200;
-}
-
 .tertiary.highlight {
     color: var(--link-color);
 }
 
-.bold:hover {
-    text-decoration: underline;
+@media (min-width: 768px) {
+    .header {
+        display: flex;
+        align-items: center;
+    }
+
+    .header p:nth-child(2) {
+        font-size: 1.4rem;
+        width: 70%;
+    }
 }
 
 @media (min-width: 992px) {
@@ -120,6 +130,7 @@
         padding: 0;
         padding-left: 10px;
         box-sizing: border-box;
+        font-size: 1.5rem;
     }
 
     .header[aria-expanded="true"] {
@@ -131,5 +142,9 @@
     .header[aria-expanded="true"]::after {
         transform: rotate(315deg);
         top: 45%;
+    }
+
+    .header p:first-child {
+        padding-top: 15px;
     }
 }
