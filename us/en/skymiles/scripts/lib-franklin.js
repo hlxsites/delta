@@ -498,7 +498,9 @@ export function decorateButtons(element) {
             a.classList.add('primary');
           }
           // If we have several buttons after one other, then just add them to the same container
-          if (up.previousElementSibling && up.previousElementSibling.classList.contains('button-container')) {
+          if (up.previousElementSibling
+            && up.previousElementSibling.classList.contains('button-container')
+            && !up.closest('.table')) {
             up.previousElementSibling.append(a);
             up.remove();
           }
