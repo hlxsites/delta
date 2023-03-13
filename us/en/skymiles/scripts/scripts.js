@@ -6,7 +6,6 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
