@@ -17,11 +17,18 @@
     background-color: var(--overlay-background-color);
 }
 
+.cards.silent > ul > li {
+    background: none;
+}
+
 .cards .cards-card-body {
     padding: 30px;
     position: relative;
-    cursor: pointer;
     padding-bottom: 15px;
+}
+
+.cards .is-link .cards-card-body {
+    cursor: pointer;
 }
 
 .cards .is-link .cards-card-body::after {
