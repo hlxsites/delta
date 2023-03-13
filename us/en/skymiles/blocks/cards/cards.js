@@ -20,6 +20,7 @@ export default function decorate(block) {
               a.parentElement.style.display = 'none';
             }
           } catch (err) {
+            console.error(err);
             // if we don't have valid URLs, just ignore it
           }
           div.addEventListener('click', () => {
