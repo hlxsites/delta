@@ -6,6 +6,7 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
@@ -132,6 +133,32 @@ export function decorateReferences(container) {
     });
 }
 
+export function decorateContainer(container) {
+  decorateButtons(container);
+  decorateInlineToggles(container);
+  decorateIcons(container);
+  decorateResponsiveImages(container);
+  decorateHyperlinkImages(container);
+  decorateReferences(container);
+  // decorateScreenReaderOnly(main);
+}
+
+export async function fetchContent(url) {
+  try {
+    const response = await fetch(`${url}.plain.html`);
+    if (!response.ok) {
+      Promise.reject(new Error(`${response.status} - ${response.statusText}`));
+    }
+    const html = await response.text();
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    decorateContainer(wrapper.firstElementChild);
+    return wrapper.firstElementChild;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -161,15 +188,8 @@ function decorateEyeBrows(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   document.body.classList.add('fresh-air');
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateInlineToggles(main);
-  decorateIcons(main);
-  decorateResponsiveImages(main);
+  decorateContainer(main);
   buildAutoBlocks(main);
-  // decorateScreenReaderOnly(main);
-  decorateHyperlinkImages(main);
-  decorateReferences(main);
   decorateSections(main);
   decorateBlocks(main);
   decorateEyeBrows(main);
