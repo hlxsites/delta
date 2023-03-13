@@ -6,6 +6,7 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
@@ -64,12 +65,31 @@ function decorateResponsiveImages(container) {
     });
 }
 
-function decorateInlineToggles(container) {
-  function createInlineToggle(p) {
+async function decorateInlineToggles(container) {
+  async function createInlineToggle(p) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
     summary.innerHTML = p.innerHTML;
     details.append(summary);
+    if (p.nextElementSibling.children.length === 1 && p.nextElementSibling.firstElementChild.tagName === 'A') {
+      const a = p.nextElementSibling.firstElementChild;
+      try {
+        const path1 = new URL(a.textContent).pathname;
+        const path2 = new URL(a.href).pathname;
+        if (path1 === path2) {
+          // eslint-disable-next-line no-use-before-define
+          const content = await fetchContent(path2);
+          details.appendChild(content);
+          details.querySelectorAll(':scope > div')
+            .forEach(decorateBlock);
+          p.nextElementSibling.remove();
+          p.replaceWith(details);
+          return;
+        }
+      } catch (err) {
+        // Nothing to do here, just continue with regular decoration
+      }
+    }
     let next;
     do {
       next = p.nextElementSibling;
@@ -77,11 +97,11 @@ function decorateInlineToggles(container) {
     } while (next);
     p.replaceWith(details);
   }
-  container.querySelectorAll('p:has(.icon-toggle:first-child)')
-    .forEach(createInlineToggle);
-  [...container.querySelectorAll('p')]
+  await Promise.all([...container.querySelectorAll('p:has(.icon-toggle:first-child)')]
+    .map((el) => createInlineToggle(el)));
+  await Promise.all([...container.querySelectorAll('p')]
     .filter((p) => p.textContent.startsWith('> '))
-    .forEach(createInlineToggle);
+    .map((el) => createInlineToggle(el)));
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -132,9 +152,9 @@ export function decorateReferences(container) {
     });
 }
 
-export function decorateContainer(container) {
+export async function decorateContainer(container) {
   decorateButtons(container);
-  decorateInlineToggles(container);
+  await decorateInlineToggles(container);
   decorateIcons(container);
   decorateResponsiveImages(container);
   decorateHyperlinkImages(container);
@@ -151,7 +171,7 @@ export async function fetchContent(url) {
     const html = await response.text();
     const wrapper = document.createElement('div');
     wrapper.innerHTML = html;
-    decorateContainer(wrapper.firstElementChild);
+    await decorateContainer(wrapper.firstElementChild);
     return wrapper.firstElementChild;
   } catch (err) {
     return Promise.reject(err);
@@ -185,9 +205,9 @@ function decorateEyeBrows(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export async function decorateMain(main) {
   document.body.classList.add('fresh-air');
-  decorateContainer(main);
+  await decorateContainer(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -210,7 +230,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    await decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
