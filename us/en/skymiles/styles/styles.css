@@ -269,6 +269,10 @@ main details {
   position: relative;
 }
 
+main .default-content-wrapper details {
+  margin-bottom: 2rem;
+}
+
 main details::before {
   position: absolute;
   display: inline-block;
@@ -296,6 +300,7 @@ main details summary {
   color: var(--color-delta-blue);
   cursor: pointer;
   font-family: var(--link-font-family);
+  font-size: var(--body-font-size-m);
   letter-spacing: 1.6px;
   list-style: none;
 }
