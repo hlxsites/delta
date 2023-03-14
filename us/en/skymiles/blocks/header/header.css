@@ -5,12 +5,16 @@ header {
   top: 0;
   width: 100%;
   background-color: var(--background-color);
-  border-bottom: 1px solid var(--color-delta-gray-light);
+  border-bottom: 1.5px solid var(--color-delta-gray-middle2);
   z-index: 3;
 }
 
 main {
   margin-top: var(--nav-height);
+}
+
+.header > div:first-child {
+  height: 47px;
 }
 
 .nav-wrapper {
