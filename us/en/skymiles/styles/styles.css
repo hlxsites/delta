@@ -29,7 +29,7 @@
   --overlay-background-color: var(--color-delta-gray-light);
   --highlight-background-color: #11172b;
 
-  /* --highlight-color: #ff; */
+  /* text colors */
   --text-color: #212529;
   --text-color-inverted: #fff;
   --heading-color: var(--color-delta-blue);
