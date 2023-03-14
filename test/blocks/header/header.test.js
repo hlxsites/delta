@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-expressions */
-/* global describe it */
+/* global describe */
 
-import { readFile, setViewport } from '@web/test-runner-commands';
-import { expect } from '@esm-bundle/chai';
+import { readFile } from '@web/test-runner-commands';
 
 document.body.innerHTML = await readFile({ path: '../../scripts/dummy.html' });
 
