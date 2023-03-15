@@ -33,9 +33,22 @@ export default async function decorate(block) {
     li.childNodes[0].replaceWith(toggle);
   });
   menu.addEventListener('click', (ev) => {
+    if (ev.target.tagName !== 'BUTTON') {
+      return;
+    }
     const expanded = ev.target.getAttribute('aria-expanded') === 'true';
+    menu.querySelectorAll('[aria-expanded]').forEach((el) => {
+      el.setAttribute('aria-expanded', false);
+      // Required for animating the height
+      if (el.tagName === 'UL') {
+        el.style.maxHeight = 0;
+      }
+    });
     ev.target.setAttribute('aria-expanded', !expanded);
-    ev.target.parentElement.querySelector('ul').setAttribute('aria-expanded', !expanded);
+    const ul = ev.target.parentElement.querySelector('ul');
+    ul.setAttribute('aria-expanded', !expanded);
+    // Required for animating the height
+    ul.style.maxHeight = expanded ? 0 : `${ul.childElementCount * ul.firstElementChild.getBoundingClientRect().height}px`;
   });
 
   const currentLink = menu.querySelector(`a[href="${window.location.pathname}"]`)
