@@ -183,7 +183,7 @@ export async function decorateTopHeader(block) {
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
-  block.append(navWrapper);
+  block.prepend(navWrapper);
 }
 
 export async function decorateSectionNav(block) {

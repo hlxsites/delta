@@ -567,7 +567,7 @@ main > .section > .badge {
 
 @media (min-width: 992px) {
   :root {
-    --nav-height: 140px;
+    --nav-height: 146.5px;
   }
 
   .button-container {

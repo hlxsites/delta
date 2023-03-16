@@ -41,7 +41,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  transition: max-height .3s ease;
+  transition: max-height .3s ease, padding .3s ease;
   overflow: hidden;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .section-nav-toggle[aria-expanded]::after {
-  top: 1rem;
+  top: 1.2rem;
   right: 2rem;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .section-nav-menu ul ul[aria-expanded="true"] {
-  margin: 1rem 0;
+  padding: 1rem 0;
 }
 
 .section-nav-menu ul ul :is(a, button) {
@@ -169,15 +169,19 @@
     max-width: 976px;
   }
 
-  .section-nav-toggle,
-  .section-nav-toggle:is(:active, :focus, :hover) {
+  .section-nav-toggle {
     flex: 5 0 406.667px;
     flex-basis: 406.667px;
     padding-left: .5rem;
   }
 
+  .section-nav-toggle:is(:active, :focus, :hover) {
+    padding-left: .5rem;
+  }
+
   .section-nav-menu {
     width: 406.667px;
+    top: 72px;
   }
 
   .section-nav-current {
@@ -191,7 +195,7 @@
   }
 
   .section-nav-toggle {
-    flex-basis: 380px;
+    flex: 4 0 380px;
   }
 
   .section-nav-menu {
@@ -217,7 +221,7 @@
   }
 
   .section-nav-current {
-    flex: 8 0 770.667px;
+    flex-basis: 770.667px;
   }
 }
 
@@ -235,6 +239,6 @@
   }
 
   .section-nav-current {
-    flex: 8 0 786.667px;
+    flex-basis: 786.667px;
   }
 }
