@@ -569,6 +569,7 @@ main > .section > .badge {
   :root {
     --nav-height: 140px;
   }
+
   .button-container {
     text-align: inherit;
     margin-top: 2rem;
