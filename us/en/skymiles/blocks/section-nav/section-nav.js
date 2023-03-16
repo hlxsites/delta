@@ -1,4 +1,6 @@
 export default async function decorate(block) {
+  block.innerHTML = '';
+
   const response = await fetch('/us/en/skymiles/sectionav.plain.html');
   if (!response.ok) {
     return;
@@ -65,11 +67,17 @@ export default async function decorate(block) {
   block.append(menu);
   block.append(current);
 
-  window.addEventListener('scroll', () => {
-    const isSticky = block.classList.contains('is-sticky');
-    const shouldSticky = window.scrollY > 64;
-    if (isSticky !== shouldSticky) {
-      block.classList.toggle('is-sticky', shouldSticky);
+  // Hide the menu if we click outside of it
+  document.addEventListener('click', (ev) => {
+    if (ev.target.closest('.header')) {
+      return;
     }
-  }, { passive: true });
+    block.querySelectorAll('[aria-expanded]').forEach((el) => {
+      el.setAttribute('aria-expanded', false);
+      // Required for animating the height
+      if (el.tagName === 'UL') {
+        el.style.maxHeight = 0;
+      }
+    });
+  });
 }
