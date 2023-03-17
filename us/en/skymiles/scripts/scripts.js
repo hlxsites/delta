@@ -90,11 +90,11 @@ async function decorateInlineToggles(container) {
         // Nothing to do here, just continue with regular decoration
       }
     }
-    let next;
-    do {
-      next = p.nextElementSibling;
+    let next = p.nextElementSibling;
+    while (next) {
       details.append(next);
-    } while (next);
+      next = p.nextElementSibling;
+    }
     p.replaceWith(details);
   }
   await Promise.all([...container.querySelectorAll('p:has(.icon-toggle:first-child)')]
