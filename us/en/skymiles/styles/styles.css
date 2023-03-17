@@ -44,9 +44,11 @@
   --heading-font-family-alt: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --link-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
+
   /* body sizes */
-  --body-font-size-xl: 24px;
-  --body-font-size-l: 1.25rem;
+  --body-font-size-xxl: 24px;
+  --body-font-size-xl: 1.25rem;
+  --body-font-size-l: 1.125rem;
   --body-font-size-m: 16px;
   --body-font-size-s: .875rem;
   --body-font-size-xxs: 12px; 
@@ -66,6 +68,10 @@
 }
 
 /* Main blocks */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
@@ -106,6 +112,10 @@ footer {
   background-color: var(--highlight-background-color);
 }
 
+.default-content-wrapper {
+  overflow: auto;
+}
+
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font-family);
@@ -115,16 +125,21 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
+h4, h5, h6 {
+  font-family: var(--button-font-family);
+  font-weight: 900;
+}
+
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-s) }
-h5 { font-size: var(--heading-font-size-xs) }
-h6 { font-size: var(--heading-font-size-xxs) }
+h4 { font-size: var(--heading-font-size-m) }
+h5 { font-size: var(--heading-font-size-s) }
+h6 { font-size: var(--heading-font-size-xs) }
 
 p, dl, ol, ul, pre, blockquote {
   font-size: var(--body-font-size-m);
-  margin: 0 0 .875rem;
+  margin: 0 0 1rem;
 }
 
 li {
@@ -135,6 +150,10 @@ p small {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-style: normal;
+}
+
+p:has(small:only-child) {
+  margin: 0;
 }
 
 a:any-link {
@@ -168,6 +187,37 @@ pre {
   overflow: scroll;
 }
 
+main {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+main > .section {
+  position: relative;
+}
+
+main:not(.has-badge) > .section:not(.hero-container):first-child::after,
+main:not(.has-badge) > .section.hero-container + .section::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  content: '';
+  width: 75px;
+  height: 60px;
+  background-image: url('/us/en/skymiles/icons/info-supergraphic-delta-mark.svg');
+  background-size: cover;
+}
+
+main sup {
+  font-family: var(--body-font-family);
+}
+
+main strong {
+  color: var(--color-delta-blue);
+  font-family: var(--button-font-family);
+}
+
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
@@ -191,6 +241,76 @@ main blockquote p::before {
 main blockquote p::after {
   content: "”";
   line-height: 0;
+}
+
+main figure picture {
+  margin: 2rem 0;
+}
+
+main figure figcaption {
+  font-size: 1rem;
+}
+
+[data-align="left"] {
+  text-align: left;
+}
+
+[data-align="center"] {
+  text-align: center;
+}
+
+[data-align="right"] {
+  text-align: right;
+}
+
+/* inline accordion toggles */
+
+main details {
+  position: relative;
+}
+
+main .default-content-wrapper details {
+  margin-bottom: 2rem;
+}
+
+main details::before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  top: 2rem;
+  left: 0;
+  height: 1.5rem;
+  width: 1rem;
+  background-size: contain;
+  background-color: var(--color-delta-red);
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: center / contain no-repeat url('../icons/down-chevron.svg');
+  mask: center / contain no-repeat url('../icons/down-chevron.svg');
+  pointer-events: none;
+}
+
+main details[open]::before {
+  transform: rotate(180deg);
+}
+
+main details summary {
+  display: inline-block;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  color: var(--color-delta-blue);
+  cursor: pointer;
+  font-family: var(--link-font-family);
+  font-size: var(--body-font-size-m);
+  letter-spacing: 1.6px;
+  list-style: none;
+}
+
+main details summary::before {
+  content: 'Show ';
+}
+
+main details[open] summary::before {
+  content: 'Hide ';
 }
 
 /* buttons */
@@ -249,7 +369,8 @@ button:disabled, button:disabled:hover {
   color: var(--text-color)
 }
 
-p em:only-child .button.secondary:only-child {
+p > .button.secondary:only-child,
+p > em:only-child > .button.secondary:only-child {
   margin: 0;
   padding: 0;
   background: none;
@@ -257,11 +378,14 @@ p em:only-child .button.secondary:only-child {
   color: var(--link-color);
   font-family: var(--link-font-family);
   font-size: 1rem;
+  letter-spacing: unset;
   text-transform: unset;
   min-width: 0;
 }
 
-p em:only-child .button.secondary:only-child:hover {
+/* stylelint-disable-next-line no-descending-specificity */
+p > .button.secondary:only-child:hover,
+p > em:only-child > .button.secondary:only-child:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
@@ -301,13 +425,31 @@ main img {
   max-width: 100%;
   width: auto;
   height: auto;
+  vertical-align: bottom;
+}
+
+/* Page badge to replace delta logo */
+main > .section > .badge {
+  position: absolute;
+  top: 7rem;
+  right: 1rem;
+  z-index: 2;
 }
 
 /* Custom overrides for the fresh-air themed pages */
+.fresh-air .hero-container + .section {
+  padding-top: 7.25rem
+}
+
 .fresh-air h1 {
-  margin: 0;
+  margin: 6rem 0 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
+  text-transform: uppercase;
+}
+
+.fresh-air .hero-container + .section h1 {
+  margin-top: 0;
 }
 
 .fresh-air h2 {
@@ -333,12 +475,45 @@ main img {
   margin-top: 3rem;
 }
 
-.fresh-air .default-content-wrapper h2:first-of-type {
+.fresh-air .default-content-wrapper h1 + h2 {
   margin-top: 1.25rem;
 }
 
-.fresh-air .hero-container + .section h2:first-of-type {
-  font-size: var(--heading-font-size-xxl);
+.fresh-air .section h1 + h2,
+.fresh-air .section h2:first-child {
+  font-size: var(--heading-font-size-xl);
+}
+
+.fresh-air .default-content-wrapper p:first-child:has(strong) {
+  margin-top: 3rem;
+}
+
+.fresh-air .default-content-wrapper p:first-child + h2 {
+  margin-top: 0;
+}
+
+.fresh-air .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote),
+.fresh-air .section h2:first-child ~ :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xxl);
+}
+
+.fresh-air .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xl);
+}
+
+.fresh-air .default-content-eyebrow {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.fresh-air .default-content-eyebrow strong {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xl);
+  font-weight: normal;
+}
+
+.fresh-air .default-content-eyebrow .button-container {
+  margin: 3rem 0 2rem;
 }
 
 .pager-container {
@@ -389,30 +564,42 @@ main img {
 
 @media (min-width: 768px) {
   .button-container {
-    text-align: inherit;
+    display: flex;
+    gap: .5rem;
     margin-top: 2rem;
-    padding: 0 1.5rem;
+    flex-wrap: wrap;
+    text-align: inherit;
   }
 
   .button:any-link, button {
-    padding: 1.5rem;
-    min-width: 21.25rem;
+    padding: 1rem 1.5rem;
+    min-width: 17rem;
+    vertical-align: bottom;
   }
 
   main .section {
     max-width: 730px;
   }
 
+  main figure picture {
+    margin: initial;
+  }
+
   .fresh-air .default-content-wrapper h2 {
     margin-top: 5rem;
+  }
+
+  .fresh-air .section h1 + h2,
+  .fresh-air .section h2:first-child {
+    font-size: var(--heading-font-size-xxl);
   }
 
   .fresh-air .default-content-wrapper h2:first-child {
     margin-top: 0;
   }
 
-  .fresh-air .hero-container + .section :is(p, dl, ol, ul, pre, blockquote) {
-    font-size: var(--body-font-size-xl);
+  .fresh-air .default-content-wrapper h1 + h2:first-child {
+    margin-top: 0;
   }
 }
 
@@ -421,6 +608,17 @@ main img {
     text-align: inherit;
     margin-top: 2rem;
     padding: 0;
+    gap: 2rem;
+  }
+
+  .button:any-link, button {
+    min-width: 20rem;
+  }
+
+  main:not(.has-badge) > .section:not(.hero-container):first-child::after,
+  main:not(.has-badge) > .section.hero-container + .section::after {
+    width: 125px;
+    height: 110px;
   }
 
   main .section {

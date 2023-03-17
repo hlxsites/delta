@@ -6,6 +6,7 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
@@ -17,16 +18,93 @@ const LCP_BLOCKS = ['banner']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture] }));
-    main.prepend(section);
+  const firstHeading = main.querySelector('h1,h2');
+  if (!firstHeading || !firstHeading.previousElementSibling) {
+    return;
   }
+
+  const elements = [];
+  let sibling = firstHeading.previousElementSibling;
+  while (sibling) {
+    elements.push(sibling);
+    sibling = sibling.previousElementSibling;
+  }
+
+  const section = document.createElement('div');
+  section.append(buildBlock('hero', { elems: elements }));
+  main.prepend(section);
 }
 
+function createResponsiveImage(pictures, breakpoint = 768) {
+  pictures.sort((p1, p2) => {
+    const img1 = p1.querySelector('img');
+    const img2 = p2.querySelector('img');
+    return img1.width < img2.width;
+  });
+
+  const responsivePicture = document.createElement('picture');
+
+  responsivePicture.append(pictures[0].querySelector('source:not([media])'));
+  responsivePicture.append(pictures[0].querySelector('img'));
+
+  pictures[1].querySelectorAll('source[media]').forEach((e) => {
+    e.setAttribute('media', `(min-width: ${breakpoint}px)`);
+    responsivePicture.prepend(e);
+  });
+
+  return responsivePicture;
+}
+
+function decorateResponsiveImages(container) {
+  [...container.querySelectorAll('picture + picture, picture + br + picture')]
+    .map((p) => p.parentElement)
+    .filter((parent) => [...parent.children].every((c) => c.nodeName === 'PICTURE' || c.nodeName === 'BR'))
+    .forEach((parent) => {
+      const responsiveImage = createResponsiveImage([...parent.querySelectorAll('picture')]);
+      parent.innerHTML = responsiveImage.outerHTML;
+    });
+}
+
+async function decorateInlineToggles(container) {
+  async function createInlineToggle(p) {
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.innerHTML = p.innerHTML;
+    details.append(summary);
+    if (p.nextElementSibling.children.length === 1 && p.nextElementSibling.firstElementChild.tagName === 'A') {
+      const a = p.nextElementSibling.firstElementChild;
+      try {
+        const path1 = new URL(a.textContent).pathname;
+        const path2 = new URL(a.href).pathname;
+        if (path1 === path2) {
+          // eslint-disable-next-line no-use-before-define
+          const content = await fetchContent(path2);
+          details.appendChild(content);
+          details.querySelectorAll(':scope > div')
+            .forEach(decorateBlock);
+          p.nextElementSibling.remove();
+          p.replaceWith(details);
+          return;
+        }
+      } catch (err) {
+        // Nothing to do here, just continue with regular decoration
+      }
+    }
+    let next;
+    do {
+      next = p.nextElementSibling;
+      details.append(next);
+    } while (next);
+    p.replaceWith(details);
+  }
+  await Promise.all([...container.querySelectorAll('p:has(.icon-toggle:first-child)')]
+    .map((el) => createInlineToggle(el)));
+  await Promise.all([...container.querySelectorAll('p')]
+    .filter((p) => p.textContent.startsWith('> '))
+    .map((el) => createInlineToggle(el)));
+}
+
+// eslint-disable-next-line no-unused-vars
 function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('del')].forEach((el) => {
     const span = document.createElement('span');
@@ -58,9 +136,9 @@ function decorateHyperlinkImages(container) {
     });
 }
 
-function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡])/g;
-  [...container.querySelectorAll('p,a,li')]
+export function decorateReferences(container) {
+  const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
+  [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
       el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
     });
@@ -72,6 +150,32 @@ function decorateReferences(container) {
       small.innerHTML = el.innerHTML.replace(/<\\?em>/g, '');
       el.innerHTML = small.outerHTML;
     });
+}
+
+export async function decorateContainer(container) {
+  decorateButtons(container);
+  await decorateInlineToggles(container);
+  decorateIcons(container);
+  decorateResponsiveImages(container);
+  decorateHyperlinkImages(container);
+  decorateReferences(container);
+  // decorateScreenReaderOnly(main);
+}
+
+export async function fetchContent(url) {
+  try {
+    const response = await fetch(`${url}.plain.html`);
+    if (!response.ok) {
+      Promise.reject(new Error(`${response.status} - ${response.statusText}`));
+    }
+    const html = await response.text();
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    await decorateContainer(wrapper.firstElementChild);
+    return wrapper.firstElementChild;
+  } catch (err) {
+    return Promise.reject(err);
+  }
 }
 
 /**
@@ -88,10 +192,10 @@ function buildAutoBlocks(main) {
 }
 
 function decorateEyeBrows(main) {
-  main.querySelectorAll('.default-content-wrapper strong').forEach((s) => {
-    const p = s.closest('p');
-    if (p && s.textContent === p.textContent) {
-      p.classList.add('default-content-eyebrow');
+  main.querySelectorAll('.default-content-wrapper').forEach((dcw) => {
+    if (dcw.childElementCount > 1
+      && [...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent) {
+      dcw.classList.add('default-content-eyebrow');
     }
   });
 }
@@ -114,18 +218,21 @@ function decoratePagerContainer(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateIcons(main);
+export async function decorateMain(main) {
+  document.body.classList.add('fresh-air');
+  await decorateContainer(main);
   buildAutoBlocks(main);
-  decorateScreenReaderOnly(main);
-  decorateHyperlinkImages(main);
-  decorateReferences(main);
   decorateSections(main);
   decorateBlocks(main);
   decorateEyeBrows(main);
-  decoratePagerContainer(main);
+  const badge = document.head.querySelector('meta[name="badge"]');
+  if (badge) {
+    const img = document.createElement('img');
+    img.classList.add('badge');
+    img.src = badge.content;
+    main.firstElementChild.append(img);
+    main.classList.add('has-badge');
+  }
 }
 
 /**
@@ -136,7 +243,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    await decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }

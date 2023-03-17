@@ -1,0 +1,172 @@
+.table {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.table .button-container:only-child {
+  margin: 0;
+}
+
+.table .button {
+  padding: .5rem;
+  min-width: 0;
+  vertical-align: bottom;
+}
+
+.table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table tr > :is(th, td) {
+  border-bottom: 1px solid var(--color-delta-gray-middle2);
+  color: var(--color-delta-blue);
+}
+
+.table th,
+.table td {
+  padding: 2rem;
+  text-align: center;
+}
+
+.table thead th {
+  font-family: var(--heading-font-family-alt);
+}
+
+.table tbody th:has(strong) {
+  text-align: left;
+}
+
+.table tbody th strong {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.table button[data-role="prev"],
+.table button[data-role="next"] {
+  position: absolute;
+  top: 2rem;
+  border: none;
+  padding: 1rem;
+  min-width: unset;
+  background: none;
+  transition: top .3s ease-out;
+}
+
+.table button[data-role="prev"] {
+  left: 50%;
+}
+
+.table button[data-role="next"] {
+  right: 0;
+}
+
+.table button:is([data-role="prev"], [data-role="next"]) svg {
+  fill: var(--color-delta-red);
+  height: 24px;
+  width: 24px;
+}
+
+.table button:is([data-role="prev"], [data-role="next"]):is(:hover, :focus) {
+  background: none;
+}
+
+.table button:is([data-role="prev"], [data-role="next"]):disabled {
+  opacity: .2;
+}
+
+.table button[data-role="prev"] svg {
+  transform: rotateZ(90deg);
+}
+
+.table button[data-role="next"] svg {
+  transform: rotateZ(-90deg);
+}
+
+.table p {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.table p:only-child {
+  margin: 0;
+}
+
+/* The mobile list variant. */
+
+.table.list dl {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--color-delta-gray-middle2);
+  border-width: 1px 1px 0;
+}
+
+.table.list dl:nth-of-type(2n) {
+  background-color: var(--color-delta-gray-light);
+}
+
+.table.list dt {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-delta-gray-middle2);
+}
+
+.table.list dd {
+  box-sizing: border-box;
+  margin: 0;
+  width: 50%;
+  padding: 1rem;
+  border-left: 1px solid var(--color-delta-gray-middle2);
+  border-bottom: 1px solid var(--color-delta-gray-middle2);
+}
+
+/* The silent table variant. */
+
+.table.silent :is(table, th, td) {
+  border: none;
+}
+
+/* The emphasized table variant. */
+
+.table.emphasized :is(table, th, td) {
+  border: 1px solid var(--color-delta-gray-middle2);
+  border-width: 0 1px 1px;
+}
+
+/* The sticky mobile nav table variant. */
+
+.table.is-sticky-nav button:is([data-role="prev"], [data-role="next"]) {
+  position: fixed;
+  top: 50%;
+}
+
+/* The table variant without headers */
+
+.table.no-headers tbody th {
+  text-align: center;
+}
+
+.table.no-headers tbody th strong {
+  font-family: var(--button-font-family);
+  font-weight: bold;
+}
+
+@media (min-width: 992px) {
+  .table button:is([data-role="prev"], [data-role="next"]) {
+    display: none;
+  }
+
+  .table .button {
+    padding: .5rem 1rem;
+    min-width: 0;
+    vertical-align: bottom;
+  }
+
+  .table:not(.silent, .no-headers) thead th:first-child {
+    padding: 1rem 2rem;
+    font-family: var(--body-font-family);
+    font-size: 2rem;
+    font-weight: 300;
+  }
+}

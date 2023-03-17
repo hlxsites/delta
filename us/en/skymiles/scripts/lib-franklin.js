@@ -480,13 +480,30 @@ export function decorateTemplateAndTheme() {
 export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
     a.title = a.title || a.textContent;
-    if (a.href !== a.textContent) {
+    if (a.href !== a.textContent && !a.classList.contains('button')) {
       const up = a.parentElement;
+      const down = a.firstElementChild;
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button primary'; // default
+          a.className = 'button'; // default
           up.classList.add('button-container');
+          if (a.childElementCount === 1 && down.tagName === 'STRONG') {
+            a.classList.add('cta');
+            a.innerHTML = down.innerHTML;
+          } else if (a.childElementCount === 1 && down.tagName === 'EM') {
+            a.classList.add('secondary');
+            a.innerHTML = down.innerHTML;
+          } else {
+            a.classList.add('primary');
+          }
+          // If we have several buttons after one other, then just add them to the same container
+          if (up.previousElementSibling
+            && up.previousElementSibling.classList.contains('button-container')
+            && !up.closest('.table')) {
+            up.previousElementSibling.append(a);
+            up.remove();
+          }
         }
         if (up.childNodes.length === 1 && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
