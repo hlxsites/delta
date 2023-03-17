@@ -533,10 +533,26 @@ main > .section > .badge {
     text-align: inherit;
   }
 
+  [data-align="left"] .button-container {
+    justify-content: start;
+  }
+
+  [data-align="center"] .button-container {
+    justify-content: center;
+  }
+
+  [data-align="right"] .button-container {
+    justify-content: end;
+  }
+
   .button:any-link, button {
     padding: 1rem 1.5rem;
     min-width: 17rem;
     vertical-align: bottom;
+  }
+
+  p > em:only-child > .button.secondary:only-child {
+    font-size: var(--body-font-size-xl);
   }
 
   main .section {
@@ -572,7 +588,7 @@ main > .section > .badge {
 
   .button-container {
     text-align: inherit;
-    margin-top: 2rem;
+    margin: 2rem 0;
     padding: 0;
     gap: 2rem;
   }
