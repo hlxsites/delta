@@ -29,7 +29,7 @@
   --overlay-background-color: var(--color-delta-gray-light);
   --highlight-background-color: #11172b;
 
-  /* --highlight-color: #ff; */
+  /* text colors */
   --text-color: #212529;
   --text-color-inverted: #fff;
   --heading-color: var(--color-delta-blue);
@@ -431,8 +431,9 @@ main img {
 /* Page badge to replace delta logo */
 main > .section > .badge {
   position: absolute;
-  top: 7rem;
+  top: 1rem;
   right: 1rem;
+  max-height: 4rem;
   z-index: 2;
 }
 
@@ -571,10 +572,26 @@ main > .section > .badge {
     text-align: inherit;
   }
 
+  [data-align="left"] .button-container {
+    justify-content: start;
+  }
+
+  [data-align="center"] .button-container {
+    justify-content: center;
+  }
+
+  [data-align="right"] .button-container {
+    justify-content: end;
+  }
+
   .button:any-link, button {
     padding: 1rem 1.5rem;
     min-width: 17rem;
     vertical-align: bottom;
+  }
+
+  p > em:only-child > .button.secondary:only-child {
+    font-size: var(--body-font-size-xl);
   }
 
   main .section {
@@ -604,9 +621,13 @@ main > .section > .badge {
 }
 
 @media (min-width: 992px) {
+  :root {
+    --nav-height: 146.5px;
+  }
+
   .button-container {
     text-align: inherit;
-    margin-top: 2rem;
+    margin: 2rem 0;
     padding: 0;
     gap: 2rem;
   }
@@ -623,6 +644,11 @@ main > .section > .badge {
 
   main .section {
     max-width: 976px;
+  }
+
+  main > .section > .badge {
+    top: 7rem;
+    max-height: none;
   }
 
   p small {
