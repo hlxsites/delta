@@ -5,7 +5,7 @@ header {
   top: 0;
   width: 100%;
   background-color: var(--background-color);
-  border-bottom: 1px solid var(--color-delta-gray-light);
+  border-bottom: 1.5px solid var(--color-delta-gray-middle2);
   z-index: 3;
 }
 
@@ -18,18 +18,18 @@ main {
   width: 100%;
   max-width: 100vw;
   z-index: 3;
+  border-bottom: 1px solid var(--color-delta-blue-middle);
+  background-color: var(--highlight-background-color);
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
-  height: 47px;
   padding: 0;
   margin: 0;
-  background-color: var(--highlight-background-color);
   grid-template:
     'hamburger tools' 47px
-    'planners planners' 91px / auto auto;
+    'planners planners' 0 / auto auto;
   align-items: center;
   gap: 0 2em;
   max-width: 1264px;
@@ -166,6 +166,7 @@ header nav .nav-brand svg {
 .nav-planners {
   grid-area: planners;
   font-family: var(--button-font-family);
+  display: none;
 }
 
 .nav-planners ul {
@@ -265,6 +266,7 @@ header nav .nav-tools svg {
 
 .nav-planners ul > li > ul > li,
 .nav-sections ul > li > ul > li {
+  padding: 0;
   font-weight: 500;
 }
 
@@ -361,7 +363,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
 
 @media (min-width: 768px) {
   header nav {
-    height: 46px;
+    height: 47px;
     grid-template:
       'hamburger tools' 47px
       'planners planners' 119px / auto auto;
@@ -417,6 +419,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   }
 
   .nav-planners {
+    display: block;
     position: relative;
   }
 
@@ -550,7 +553,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   .nav-planners > ul > li:hover a::after,
   .nav-sections > ul > li:hover a::after,
   .nav-tools > ul > li:hover::after {
-    bottom: -20px;
+    bottom: -21px;
   }
   
   header nav[aria-expanded=true] .nav-planners > ul > li.active a::after,
@@ -612,7 +615,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   .nav-planners > ul > li:hover a::after,
   .nav-sections > ul > li:hover a::after,
   .nav-tools > ul > li:hover::after {
-    bottom: -20px;
+    bottom: -21px;
   }
 }
 

@@ -1,0 +1,244 @@
+.section-nav-wrapper {
+  position: fixed;
+  inset: 47px 0 auto 0;
+}
+
+.section-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: .5rem 0;
+}
+
+.section-nav-toggle,
+.section-nav-toggle:is(:active, :focus, :hover) {
+  position: relative;
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: var(--body-font-size-s);
+  text-align: left;
+}
+
+.section-nav-menu {
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  inset: 66px 0 auto 0;
+  max-height: calc(100vh - var(--nav-height));
+  padding: 0 2rem;
+  background: var(--color-delta-gray-light);
+  overflow-y: auto;
+}
+
+.section-nav-menu[aria-expanded="false"] {
+  display: none;
+}
+
+.section-nav-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: max-height .3s ease, padding .3s ease;
+  overflow: hidden;
+}
+
+.section-nav-menu ul[aria-expanded="false"] {
+  max-height: 0;
+}
+
+.section-nav-menu li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.section-nav-menu :is(a, button) {
+  display: block;
+  max-width: none;
+  color: var(--color-delta-blue);
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--body-font-size-s);
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: none;
+  width: 100%;
+}
+
+.section-nav-menu > ul > li:not(:first-child) {
+  border-top: 1px solid var(--color-delta-gray-middle2);
+}
+
+.section-nav-menu > ul > li > :is(a, button) {
+  position: relative;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+}
+
+.section-nav-toggle[aria-expanded]::after,
+.section-nav-menu > ul > li > :is(a, button)[aria-expanded]::after {
+  position: absolute;
+  display: block;
+  right: .5rem;
+  top: 1.5rem;
+  content: '';
+  border: 1px solid var(--color-delta-red); 
+  border-width: 2px 2px 0 0; 
+  transform: rotate(135deg);
+  color: var(--color-delta-red);
+  height: 8px;
+  width: 8px;
+}
+
+.section-nav-toggle[aria-expanded]::after {
+  top: 1.2rem;
+  right: 2rem;
+}
+
+.section-nav-toggle[aria-expanded="true"]::after {
+    transform: rotate(315deg);
+    top: 1.4rem;
+}
+
+.section-nav-menu > ul > li > :is(a, button)[aria-expanded="true"]::after {
+    transform: rotate(315deg);
+    top: 1.7rem;
+}
+
+.section-nav-menu ul ul[aria-expanded="true"] {
+  padding: 1rem 0;
+}
+
+.section-nav-menu ul ul :is(a, button) {
+  padding: .667rem 0;
+  font-family: var(--body-medium-font-family);
+  letter-spacing: 1px;
+}
+
+.section-nav-current {
+  display: none;
+  color: var(--color-delta-blue);
+  font-family: var(--body-medium-font-family);
+  font-size: var(--body-font-size-s);
+}
+
+@media (min-width: 375px) {
+  .section-nav-menu {
+    margin: 0 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-nav {
+    margin: 0 auto;
+    max-width: 730px;
+    align-items: stretch;
+    flex-direction: row;
+  }
+
+  .section-nav-toggle {
+    flex: 6 0 365px;
+    width: auto;
+  }
+
+  .section-nav-menu {
+    right: auto;
+    margin: 0;
+    width: 365px;
+  }
+
+  .section-nav-current {
+    flex: 6 0 365px;
+    display: block;
+    box-sizing: border-box;
+    padding: 1rem 0 1rem 3rem;
+    border-left: 1px solid var(--color-delta-gray-light);
+  }
+}
+
+@media (min-width: 992px) {
+  .section-nav-wrapper {
+    position: fixed;
+    top: 76px;
+  }
+
+  .section-nav {
+    max-width: 976px;
+  }
+
+  .section-nav-toggle {
+    flex: 5 0 406.667px;
+    flex-basis: 406.667px;
+    padding-left: .5rem;
+  }
+
+  .section-nav-toggle:is(:active, :focus, :hover) {
+    padding-left: .5rem;
+  }
+
+  .section-nav-menu {
+    width: 406.667px;
+    top: 72px;
+  }
+
+  .section-nav-current {
+    flex: 7 0 569.333px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-nav {
+    max-width: 1140px;
+  }
+
+  .section-nav-toggle {
+    flex: 4 0 380px;
+  }
+
+  .section-nav-menu {
+    width: 380px;
+  }
+
+  .section-nav-current {
+    flex: 8 0 760px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section-nav {
+    max-width: 1156px;
+  }
+
+  .section-nav-toggle {
+    flex-basis: 385.333px;
+  }
+
+  .section-nav-menu {
+    width: 385.333px;
+  }
+
+  .section-nav-current {
+    flex-basis: 770.667px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .section-nav {
+    max-width: 1180px;
+  }
+
+  .section-nav-toggle {
+    flex-basis: 393.333px;
+  }
+
+  .section-nav-menu {
+    width: 393.333px;
+  }
+
+  .section-nav-current {
+    flex-basis: 786.667px;
+  }
+}

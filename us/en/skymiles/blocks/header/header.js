@@ -1,4 +1,10 @@
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import {
+  buildBlock,
+  decorateBlock,
+  decorateIcons,
+  getMetadata,
+  loadBlock,
+} from '../../scripts/lib-franklin.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -9,6 +15,7 @@ function decorateCTA(block) {
     strong.parentElement.classList.add('cta');
   });
 }
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -59,7 +66,9 @@ function toggleAllNavSections(sections, expanded = false) {
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+  const expanded = forceExpanded !== null
+    ? !forceExpanded
+    : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
@@ -91,86 +100,114 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+export async function decorateTopHeader(block) {
+  // fetch nav content
+  const navPath = getMetadata('nav') || '/us/en/skymiles/nav';
+  const resp = await fetch(
+    `${navPath}.plain.html`,
+    window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {},
+  );
+
+  if (!resp.ok) {
+    return;
+  }
+
+  const html = await resp.text();
+
+  // decorate nav DOM
+  const nav = document.createElement('nav');
+  nav.id = 'nav';
+  nav.innerHTML = html;
+
+  const classes = ['brand', 'planners', 'sections', 'tools'];
+  classes.forEach((c, i) => {
+    const section = nav.children[i];
+    if (section) section.classList.add(`nav-${c}`);
+  });
+
+  //   const navBrand = nav.querySelector('.nav-brand');
+  //   if (navBrand) {
+  //     const picture = navBrand.querySelector('picture');
+  //     const link = navBrand.querySelector('a');
+  //     if (picture && link) {
+  //       navBrand.innerHTML = '';
+  //       link.innerHTML = '';
+  //       link.append(picture);
+  //       navBrand.append(link);
+  //     }
+  //   }
+
+  //   const navPlanner = nav.querySelector('.nav-planners');
+  //   if (navPlanner) {
+  //     const li = navPlanner.querySelector('li:nth-of-type(2)');
+  //     li.classList.add('active');
+  //   }
+
+  const navSections = nav.querySelector('.nav-sections');
+  if (navSections) {
+    navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      navSection.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const expanded = navSection.getAttribute('aria-expanded') === 'true';
+        toggleAllNavSections(navSections);
+        navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      });
+    });
+    // Hide all section menus when clicking outside of the header
+    document.addEventListener('click', (ev) => {
+      if (ev.target.closest('.header')) {
+        return;
+      }
+      toggleAllNavSections(navSections, false);
+    });
+  }
+
+  // hamburger for mobile
+  const hamburger = document.createElement('div');
+  hamburger.classList.add('nav-hamburger');
+  hamburger.innerHTML = `
+    <button type="button" aria-controls="nav" aria-label="Open navigation">
+      <span class="nav-hamburger-icon"></span>
+    </button>`;
+  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+  nav.prepend(hamburger);
+  nav.setAttribute('aria-expanded', 'false');
+  // prevent mobile nav behavior on window resize
+  toggleMenu(nav, navSections, isDesktop.matches);
+  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+
+  decorateCTA(nav);
+  decorateIcons(nav);
+
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'nav-wrapper';
+  navWrapper.append(nav);
+  block.prepend(navWrapper);
+}
+
+export async function decorateSectionNav(block) {
+  const sectionNav = buildBlock('section-nav', '');
+  block.append(sectionNav);
+
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'section-nav-wrapper';
+  navWrapper.append(sectionNav);
+  block.append(navWrapper);
+
+  decorateBlock(sectionNav);
+  return loadBlock(sectionNav);
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  block.textContent = '';
+  block.innerHTML = '';
 
-  // fetch nav content
-  const navPath = getMetadata('nav') || '/us/en/skymiles/nav';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
-
-  if (resp.ok) {
-    const html = await resp.text();
-
-    // decorate nav DOM
-    const nav = document.createElement('nav');
-    nav.id = 'nav';
-    nav.innerHTML = html;
-
-    const classes = ['brand', 'planners', 'sections', 'tools'];
-    classes.forEach((c, i) => {
-      const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
-    });
-
-    const navBrand = nav.querySelector('.nav-brand');
-    if (navBrand) {
-      const picture = navBrand.querySelector('picture');
-      const link = navBrand.querySelector('a');
-      if (picture && link) {
-        navBrand.innerHTML = '';
-        link.innerHTML = '';
-        link.append(picture);
-        navBrand.append(link);
-      }
-    }
-
-    const navPlanner = nav.querySelector('.nav-planners');
-    if (navPlanner) {
-      const li = navPlanner.querySelector('li:nth-of-type(2)');
-      li.classList.add('active');
-    }
-
-    const navSections = nav.querySelector('.nav-sections');
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-      });
-      // Hide all section menus when clicking outside of the header
-      document.addEventListener('click', (ev) => {
-        if (ev.target.closest('.header')) {
-          return;
-        }
-        toggleAllNavSections(navSections, false);
-      });
-    }
-
-    // hamburger for mobile
-    const hamburger = document.createElement('div');
-    hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-        <span class="nav-hamburger-icon"></span>
-      </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    // prevent mobile nav behavior on window resize
-    toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
-
-    decorateCTA(nav);
-    decorateIcons(nav);
-    const navWrapper = document.createElement('div');
-    navWrapper.className = 'nav-wrapper';
-    navWrapper.append(nav);
-    block.append(navWrapper);
-  }
+  return Promise.all([
+    decorateTopHeader(block),
+    decorateSectionNav(block),
+  ]);
 }
