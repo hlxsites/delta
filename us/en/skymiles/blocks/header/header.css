@@ -369,10 +369,6 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
       'planners planners' 119px / auto auto;
   }
 
-  .nav-planners {
-    display: block;
-  }
-
   .nav-planners ul {
     gap: 0 46px;
     font-size: 13px;
@@ -423,6 +419,7 @@ header nav[aria-expanded=true] .nav-tools li:last-child {
   }
 
   .nav-planners {
+    display: block;
     position: relative;
   }
 
