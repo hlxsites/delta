@@ -53,7 +53,7 @@ export default async function decorate(block) {
     ul.style.maxHeight = expanded ? 0 : `${ul.childElementCount * ul.firstElementChild.getBoundingClientRect().height}px`;
   });
 
-  const currentLink = menu.querySelector(`a[href="${window.location.pathname}"]`)
+  const currentLink = menu.querySelector(`a[href$="${window.location.pathname}"]`)
     || menu.querySelector('a');
   if (!currentLink) {
     return;
