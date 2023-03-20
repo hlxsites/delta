@@ -25,6 +25,39 @@
     margin-top: 30px;
 }
 
+.columns.emphasized > div {
+    display: block;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.columns.emphasized > div > div {
+    border:  1px solid var(--color-delta-gray-middle);
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.columns.emphasized > div > div:first-child {
+    text-align: left;
+}
+
+.columns.emphasized > div > div:last-child {
+    margin-bottom: 40px;
+    margin-left: 0;
+    text-align: left;
+}
+
+.columns.emphasized > div > div > p {
+    color: var(--color-delta-blue);
+    font-size: var(--heading-font-size-m);
+}
+
+.columns.emphasized > div > div > p:first-child {
+    font-family: var(--link-font-family);
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
 @media (min-width: 768px) {
     .columns img {
         width: auto;
@@ -59,5 +92,29 @@
 
     .columns > div > div:first-of-type {
         margin-left: unset;
+    }
+}
+
+@media (min-width: 992px) {
+    .columns.emphasized > div {
+        display: flex;
+        width: 90%;
+    }
+
+    .columns.emphasized > div > div:first-child {
+        flex-basis: 80%;
+    }
+
+    .columns.emphasized > div > div:last-child {
+        text-align: left;
+        flex-basis: 20%;
+    }
+
+    .columns.emphasized > div > div > p {
+        font-size: var(--body-font-size-xl);
+    }
+
+    .columns.emphasized > div > div:last-child > p:last-child {
+        margin-bottom: 10px;
     }
 }
