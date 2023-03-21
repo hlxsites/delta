@@ -18,7 +18,7 @@ export default async function decorate(block) {
   let nextLiElement = parentLiElement.nextElementSibling;
 
   // Switch section nav if last page of the section
-  while (!nextLiElement) {
+  if (!nextLiElement) {
     parentLiElement = parentLiElement.parentElement.parentElement;
     nextLiElement = parentLiElement.nextElementSibling.querySelector('li');
   }
