@@ -517,45 +517,6 @@ main > .section > .badge {
   margin: 3rem 0 2rem;
 }
 
-.pager-container {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.pager-container a {
-  color: var(--color-delta-blue);
-  text-decoration: none;
-}
-
-.pager-container .default-content-wrapper {
-  cursor: pointer;
-}
-
-.pager-container .next > a {
-  margin-bottom: 1.5rem;
-  font-family: sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: .2em;
-}
-
-.pager-container .next-page-name > a {
-  margin-bottom: 1.625rem;
-  font-family: var(--body-font-family);
-  font-size: 2.6rem;
-  font-weight: 300;
-}
-
-.pager-container .next-arrow {
-  margin: 0 auto;
-}
-
-.pager-container svg {
-  height: 18px;
-  width: 24px;
-  fill: var(--color-delta-red);
-}
-
 /* Responsive adaptation for larger screens. */
 @media (min-width: 375px) {
   main .section {
