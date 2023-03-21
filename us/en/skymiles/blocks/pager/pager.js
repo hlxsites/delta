@@ -17,10 +17,14 @@ export default async function decorate(block) {
   let parentLiElement = currentLiElement.parentElement;
   let nextLiElement = parentLiElement.nextElementSibling;
 
-  // Switch section nav if last page of the section
+  // Switch section nav for the last page of the section
   if (!nextLiElement) {
     parentLiElement = parentLiElement.parentElement.parentElement;
     nextLiElement = parentLiElement.nextElementSibling.querySelector('li');
+  
+    // Switch section nav for the overview page
+  } else if (nextLiElement.querySelector('li')) {
+    nextLiElement = nextLiElement.querySelector('li');
   }
 
   const container = document.createElement('div');
