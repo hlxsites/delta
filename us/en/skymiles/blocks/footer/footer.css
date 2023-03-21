@@ -24,7 +24,7 @@ footer .footer-copyright {
   text-align: center;
   padding-top: 2rem;
   font-size: .9rem;
-  font-size: var(--body-font-size-xxs);
+  font-size: var(--body-font-size-xs);
 }
 
 /* terms and conditions */
@@ -32,7 +32,7 @@ footer .footer-legal {
   color: var(--color-delta-gray);
   text-align: center;
   padding-top: .5rem;
-  font-size: var(--body-font-size-xxs);
+  font-size: var(--body-font-size-xs);
 }
 
 /* website feedback */
