@@ -11,7 +11,6 @@ export default async function decorate(block) {
 
   const sectionNavDiv = document.createElement('div');
   sectionNavDiv.innerHTML = html;
-  sectionNavDiv.querySelector('ul,ol').outerHTML;
 
   const currentLink = sectionNavDiv.querySelector(`a[href$="${window.location.pathname}"]`)
     || sectionNavDiv.querySelector('a');
@@ -20,7 +19,7 @@ export default async function decorate(block) {
   }
 
   // Find the next title and link
-  let currentLiElement = sectionNavDiv.querySelector(`li > a[href="${currentLink.href}"]`);
+  const currentLiElement = sectionNavDiv.querySelector(`li > a[href="${currentLink.href}"]`);
   let parentLiElement = currentLiElement.parentElement;
   let nextLiElement = parentLiElement.nextElementSibling;
 
@@ -56,7 +55,6 @@ export default async function decorate(block) {
   link.appendChild(nextArrowDiv);
 
   // Append anchor tag to container div
-  container.appendChild(sectionNavDiv);
   container.appendChild(link);
 
   // Append container div to block body

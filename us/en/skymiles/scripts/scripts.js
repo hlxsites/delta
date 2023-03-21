@@ -200,19 +200,6 @@ function decorateEyeBrows(main) {
   });
 }
 
-function decoratePagerContainer(main) {
-  const lines = ['next', 'next-page-name', 'next-arrow'];
-
-  main.querySelectorAll('.pager-container h3').forEach((h3, i) => {
-    h3.className = lines[i];
-  });
-
-  const wrapperDiv = main.querySelector('.pager-container > .default-content-wrapper');
-  wrapperDiv.addEventListener('click', () => {
-    window.location.href = main.querySelector('.pager-container .next > a').href;
-  });
-}
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
