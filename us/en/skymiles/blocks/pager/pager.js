@@ -12,8 +12,7 @@ export default async function decorate(block) {
   const sectionNavDiv = document.createElement('div');
   sectionNavDiv.innerHTML = html;
 
-  const currentLink = sectionNavDiv.querySelector(`a[href$="${window.location.pathname}"]`)
-    || sectionNavDiv.querySelector('a');
+  const currentLink = sectionNavDiv.querySelector(`a[href$="${window.location.pathname}"]`) || sectionNavDiv.querySelector('a');
   if (!currentLink) {
     return;
   }
