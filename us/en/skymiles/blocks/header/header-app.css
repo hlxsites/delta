@@ -11,6 +11,18 @@
   justify-content: space-between;
 }
 
+.header-bar p,
+.header-bar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.header-wrapper .button-container {
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-font-size-xxs);
+}
+
 .header-wrapper button,
 .header-wrapper .button {
   margin: 0;
@@ -21,6 +33,7 @@
   color: var(--text-color-inverted);
   font-family: var(--heading-font-family-alt);
   font-size: var(--body-font-size-s);
+  letter-spacing: normal;
   line-height: var(--body-font-size-xxs);
 }
 
@@ -46,6 +59,10 @@
   grid-area: brand;
 }
 
+.header-brand .button:first-child {
+  display: none;
+}
+
 .header-links {
   grid-area: links;
   flex-direction: column;
@@ -57,6 +74,7 @@
 .header-links[aria-hidden="false"] {
   display: flex;
   height: calc(100vh - 47px);
+  overflow-y: auto;
 }
 
 :is(.header-brand, .header-tabs, .header-menus) :is(button, .button) {
@@ -66,6 +84,14 @@
   text-align: left;
   border-bottom: 1px solid var(--color-delta-blue-middle);
   font-family: var(--button-font-family);
+}
+
+.header-menus ul {
+  list-style: none;
+}
+
+.header-menus picture {
+  display: none;
 }
 
 .header-help {
