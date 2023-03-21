@@ -449,6 +449,10 @@ main > .section > .badge {
   text-transform: uppercase;
 }
 
+.fresh-air .default-content-eyebrow h1 {
+  margin-bottom: 1rem;
+}
+
 .fresh-air .hero-container + .section h1 {
   margin-top: 0;
 }
@@ -514,7 +518,7 @@ main > .section > .badge {
 }
 
 .fresh-air .default-content-eyebrow .button-container {
-  margin: 3rem 0 2rem;
+  margin: 2rem 0;
 }
 
 /* Responsive adaptation for larger screens. */
