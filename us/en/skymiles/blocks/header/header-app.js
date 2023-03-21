@@ -27,42 +27,6 @@ export default class HeaderComponent extends HTMLElement {
     return template.content;
   }
 
-
-//   <div class="header-toggle">
-//   <button aria-expanded="false" aria-controls="header-links"><span class="icon icon-3line"/></button>
-// </div>
-// <div id="header-links" class="header-links" aria-hidden="true">
-//   <div class="header-brand">
-//     <a class="button" href="/">Home</a>
-//   </div>
-//   <div class="header-tabs">
-//     <button aria-controls="header-book-widget">Book</button>
-//     <button aria-controls="header-checkin-widget">Check-In</button>
-//     <button aria-controls="header-mytrips-widget">My Trips</button>
-//     <button aria-controls="header-flightstatus-widget">Flight Status</button>
-//   </div>
-//   <div class="header-menus">
-//     <div>
-//       <button>Travel Info</button>
-//     </div>
-//     <div>
-//       <button>SkyMiles</button>
-//     </div>
-//     <div>
-//       <button>Need Help?</button>
-//     </div>
-//   </div>
-//   <div class="header-help">
-//     <a class="button" href="https://delta.com/us/en/need-help/overview">Need Help?</a>
-//   </div>
-// </div>
-// <div class="header-tools">
-//   <a data-role="signup" class="button primary" href="#">Sign Up</a>
-//   <a data-role="login" class="button cta" href="#">Log In</a>
-//   <button data-role="notification"><span class="icon icon-bell"/></button>
-//   <button data-role="search"><span class="icon icon-search"/></button>
-// </div>
-
   constructor() {
     super();
     this.codeBasePath = this.getAttribute('basePath') || '';
@@ -202,7 +166,10 @@ export default class HeaderComponent extends HTMLElement {
     await this.lib.decorateButtons(this.shadowRoot);
   }
 
-  async loadDelayed() {}
+  // eslint-disable-next-line class-methods-use-this
+  async loadDelayed() {
+    // Nothing here yet
+  }
 }
 
 customElements.define('header-app', HeaderComponent);

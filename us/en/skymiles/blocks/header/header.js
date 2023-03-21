@@ -5,6 +5,7 @@ import {
   getMetadata,
   loadBlock,
 } from '../../scripts/lib-franklin.js';
+// eslint-disable-next-line no-unused-vars
 import HeaderApp from './header-app.js';
 
 // media query match that indicates mobile/tablet width

@@ -4,7 +4,6 @@
     "toggle tools" min-content
     "links links" 1fr / min-content 1fr;
   box-sizing: border-box;
-  /* height: 46px; */
   border-bottom: 1px solid var(--color-delta-blue-middle);
   align-items: center;
   background-color: var(--color-delta-blue-dark);
