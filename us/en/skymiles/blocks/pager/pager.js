@@ -22,27 +22,30 @@ export default async function decorate(block) {
   let parentLiElement = currentLiElement.parentElement;
   let nextLiElement = parentLiElement.nextElementSibling;
 
-  // Switch section nav
+  // Switch section nav if last page of the section
   while (!nextLiElement) {
     parentLiElement = parentLiElement.parentElement.parentElement;
-    nextLiElement = parentLiElement.nextElementSibling;
-    nextLiElement = nextLiElement.querySelector('li');
+    nextLiElement = parentLiElement.nextElementSibling.querySelector('li');
   }
 
   const container = document.createElement('div');
   container.classList.add('pager-container');
 
+  // Link to next page
   const link = document.createElement('a');
   link.href = nextLiElement.querySelector('a').href;
 
+  // Next
   const nextDiv = document.createElement('div');
   nextDiv.classList.add('next');
   nextDiv.innerText = 'Next';
 
+  // Next page name
   const nextPageNameDiv = document.createElement('div');
   nextPageNameDiv.classList.add('next-page-name');
   nextPageNameDiv.innerText = nextLiElement.textContent;
 
+  // Next arrow
   const ICON = '<span class="icon icon-right-arrow"></span>';
   const nextArrowDiv = document.createElement('div');
   nextArrowDiv.classList.add('next-arrow');
