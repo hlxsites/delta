@@ -5,6 +5,7 @@ import {
   getMetadata,
   loadBlock,
 } from '../../scripts/lib-franklin.js';
+import HeaderApp from './header-app.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
@@ -204,10 +205,10 @@ export async function decorateSectionNav(block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  block.innerHTML = '';
+  block.innerHTML = `<header-app basePath="${window.hlx.codeBasePath}"/>`;
 
   return Promise.all([
-    decorateTopHeader(block),
+    // decorateTopHeader(block),
     decorateSectionNav(block),
   ]);
 }

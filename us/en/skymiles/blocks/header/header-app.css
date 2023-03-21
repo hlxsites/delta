@@ -1,0 +1,115 @@
+.header-bar {
+  display: grid;
+  grid-template:
+    "toggle tools" min-content
+    "links links" 1fr / min-content 1fr;
+  box-sizing: border-box;
+  /* height: 46px; */
+  border-bottom: 1px solid var(--color-delta-blue-middle);
+  align-items: center;
+  background-color: var(--color-delta-blue-dark);
+  justify-content: space-between;
+}
+
+.header-wrapper button,
+.header-wrapper .button {
+  margin: 0;
+  padding: .375rem;
+  min-width: auto;
+  border: none;
+  background: none;
+  color: var(--text-color-inverted);
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-font-size-xxs);
+}
+
+.header-wrapper button.cta,
+.header-wrapper .button.cta {
+  padding: .375rem .75rem;
+  background: var(--color-delta-red);
+}
+
+.header-wrapper button svg,
+.header-wrapper .button svg {
+  height: 18px;
+  width: 18px;
+  fill: var(--text-color-inverted);
+}
+
+.header-toggle {
+  grid-area: toggle;
+  padding: .5rem;
+}
+
+.header-brand {
+  grid-area: brand;
+}
+
+.header-links {
+  grid-area: links;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 2rem;
+  border-top: 1px solid var(--color-delta-blue-middle);
+}
+
+.header-links[aria-hidden="false"] {
+  display: flex;
+  height: calc(100vh - 47px);
+}
+
+:is(.header-brand, .header-tabs, .header-menus) :is(button, .button) {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-delta-blue-middle);
+  font-family: var(--button-font-family);
+}
+
+.header-help {
+  grid-area: help;
+  margin-top: auto;
+  align-self: center;
+}
+
+.header-help .button {
+  padding: 1.5rem;
+  font-family: var(--button-font-family);
+}
+
+.header-tools {
+  grid-area: tools;
+  display: flex;
+  padding: .5rem;
+  align-items: center;
+  justify-content: flex-end;
+  justify-items: center;
+  gap: .5rem;
+}
+
+.header-tools [data-role="search"] {
+  display: none;
+}
+
+.header-widget {
+  position: fixed;
+  inset: 0 0 0 0;
+  padding-top: 46px;
+  background-color: var(--color-delta-blue-dark);
+}
+
+.header-widget::before {
+  position: absolute;
+  content: '';
+  top: 46px;
+  width: 100%;
+  border-bottom: 1px solid var(--color-delta-blue-middle);
+}
+
+.header-widget .header-widget-close {
+  position: absolute;
+  top: 0;
+  margin: .5rem;
+}

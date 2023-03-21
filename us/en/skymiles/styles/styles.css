@@ -51,7 +51,8 @@
   --body-font-size-l: 1.125rem;
   --body-font-size-m: 16px;
   --body-font-size-s: .875rem;
-  --body-font-size-xxs: 12px; 
+  --body-font-size-xs: .75rem;
+  --body-font-size-xxs: .625rem;
 
   /* heading sizes */
   --heading-font-size-xxl: 3.25rem;
@@ -88,6 +89,11 @@ body.appear {
 
 header {
   height: var(--nav-height);
+}
+
+.header header-app {
+  position: relative;
+  z-index: 1;
 }
 
 footer {
@@ -254,6 +260,10 @@ main figure picture {
 
 main figure figcaption {
   font-size: 1rem;
+}
+
+[aria-hidden="true"] {
+  display: none;
 }
 
 [data-align="left"] {
