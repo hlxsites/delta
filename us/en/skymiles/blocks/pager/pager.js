@@ -12,13 +12,8 @@ export default async function decorate(block) {
   const sectionNavDiv = document.createElement('div');
   sectionNavDiv.innerHTML = html;
 
-  const currentLink = sectionNavDiv.querySelector(`a[href$="${window.location.pathname}"]`) || sectionNavDiv.querySelector('a');
-  if (!currentLink) {
-    return;
-  }
-
   // Find the next title and link
-  const currentLiElement = sectionNavDiv.querySelector(`li > a[href="${currentLink.href}"]`);
+  const currentLiElement = sectionNavDiv.querySelector(`li > a[href$="${window.location.pathname}"]`);
   let parentLiElement = currentLiElement.parentElement;
   let nextLiElement = parentLiElement.nextElementSibling;
 
