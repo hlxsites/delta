@@ -145,7 +145,7 @@ export default class HeaderComponent extends HTMLElement {
 
   async #decorateWidgets() {
     const widgets = this.shadowRoot.querySelectorAll('.header-widget');
-    widgets.forEach((widget) => {
+    return Promise.all([...widgets].map(async (widget) => {
       widget.role = 'dialog';
       widget.setAttribute('aria-hidden', true);
       const button = document.createElement('button');
@@ -156,7 +156,8 @@ export default class HeaderComponent extends HTMLElement {
         this.shadowRoot.querySelector(`[aria-controls*="${widget.id}"]`).setAttribute('aria-hidden', false);
       });
       widget.prepend(button);
-    });
+      await this.lib.decorateIcons(button);
+    }));
   }
 
   async connectedCallback() {
@@ -189,16 +190,17 @@ export default class HeaderComponent extends HTMLElement {
     links.append(this.shadowRoot.querySelector('.header-help'));
 
     this.shadowRoot.querySelector('.header-bar').insertBefore(links, this.shadowRoot.querySelector('.header-tools'));
+    await this.lib.decorateIcons(this.shadowRoot);
     await this.#decorateButtonAnchors();
+  }
+
+  async loadLazy() {
     await this.#decorateToggle();
     await this.#decorateTabs();
     await this.#decorateMenus();
     await this.#decorateWidgets();
-    await this.lib.decorateIcons(this.shadowRoot);
     await this.lib.decorateButtons(this.shadowRoot);
   }
-
-  async loadLazy() {}
 
   async loadDelayed() {}
 }

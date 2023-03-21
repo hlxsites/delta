@@ -128,7 +128,7 @@ export function toCamelCase(name) {
  * @param {Element} element
  */
 export function decorateIcons(element = document) {
-  element.querySelectorAll('span.icon').forEach(async (span) => {
+  return Promise.all([...element.querySelectorAll('span.icon')].map(async (span) => {
     if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
       return;
     }
@@ -145,7 +145,7 @@ export function decorateIcons(element = document) {
         span.innerHTML = iconHTML;
       }
     }
-  });
+  }));
 }
 
 /**
