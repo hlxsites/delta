@@ -1,16 +1,33 @@
 const CODE_BASE_PATH = '/us/en/skymiles';
 
-function animateToVisible(el, visible, showHandler, hideHandler) {
-  // Animate the menu
-  if (visible) {
+function isDesktop() {
+  return window.innerWidth >= 992;
+}
+
+async function animateToVisible(el, showHandler) {
+  if (el.getAttribute('aria-hidden') === 'false') {
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    el.setAttribute('aria-hidden', false);
+    window.requestAnimationFrame(() => {
+      showHandler();
+      resolve();
+    });
+  });
+}
+
+async function animateToHidden(el, hideHandler) {
+  if (el.getAttribute('aria-hidden') === 'true') {
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
     window.requestAnimationFrame(hideHandler);
     el.addEventListener('transitionend', () => {
       el.setAttribute('aria-hidden', true);
+      resolve();
     }, { once: true });
-  } else {
-    el.setAttribute('aria-hidden', false);
-    window.requestAnimationFrame(showHandler);
-  }
+  });
 }
 
 export default class HeaderComponent extends HTMLElement {
@@ -23,7 +40,7 @@ export default class HeaderComponent extends HTMLElement {
     return import(`${hostname}${codeBasePath}/scripts/lib-franklin.js`);
   }
 
-  static #template() {
+  static template() {
     const template = document.createElement('template');
     template.innerHTML = `
       <style>@import "${CODE_BASE_PATH}/styles/styles.css";</style>
@@ -46,7 +63,7 @@ export default class HeaderComponent extends HTMLElement {
     this.codeBasePath = this.getAttribute('basePath') || '';
   }
 
-  async #decorateButtonAnchors() {
+  async decorateButtonAnchors() {
     this.shadowRoot.querySelectorAll(':is(p,li)>a[href^="/#"]').forEach((a) => {
       const button = document.createElement('button');
       button.setAttribute('aria-controls', a.href.split('#')[1]);
@@ -67,7 +84,7 @@ export default class HeaderComponent extends HTMLElement {
     });
   }
 
-  async #decorateToggle() {
+  async decorateToggle() {
     const button = this.shadowRoot.querySelector('button');
     button.setAttribute('aria-expanded', 'false');
     button.addEventListener('click', () => {
@@ -76,43 +93,48 @@ export default class HeaderComponent extends HTMLElement {
       button.getAttribute('aria-controls').split(' ').forEach((id) => {
         const target = this.shadowRoot.getElementById(id);
         // Animate the menu
-        animateToVisible(
-          target,
-          expanded,
-          () => { target.style.transform = 'translateX(0)'; },
-          () => { target.style.transform = 'translateX(-100%)'; },
-        );
+        if (expanded) {
+          animateToHidden(target, () => { target.style.transform = 'translateX(-100%)'; });
+        } else {
+          animateToVisible(target, () => { target.style.transform = 'translateX(0)'; });
+        }
       });
     });
   }
 
-  async #decorateTabs() {
+  async decorateTabs() {
     const tabs = this.shadowRoot.querySelector('.header-tabs');
-    tabs.role = 'toolbar';
-    tabs.setAttribute('aria-orientation', 'vertical');
+    tabs.role = isDesktop() ? 'tablist' : 'toolbar';
+    tabs.setAttribute('aria-orientation', isDesktop() ? 'horizontal' : 'vertical');
     tabs.querySelectorAll('button').forEach((tab) => {
-      // tab.role = 'tab';
-      // tab.setAttribute('aria-selected', 'false');
       tab.tabindex = '-1';
+      if (isDesktop()) {
+        tab.role = 'tab';
+      }
       tab.addEventListener('click', (ev) => {
         const id = ev.currentTarget.getAttribute('aria-controls');
         const el = this.shadowRoot.getElementById(id);
         const selected = ev.currentTarget.getAttribute('aria-selected') === 'true';
+        this.hideAllTabs();
+        this.hideAllMenus();
+        ev.currentTarget.setAttribute('aria-selected', !selected);
         el.setAttribute('aria-hidden', selected);
       });
     });
   }
 
-  async #decorateMenus() {
+  async decorateMenus() {
     const menus = this.shadowRoot.querySelector('.header-menus');
     menus.role = 'menubar';
-    menus.setAttribute('aria-orientation', 'vertical');
+    menus.setAttribute('aria-orientation', isDesktop() ? 'horizontal' : 'vertical');
     menus.querySelectorAll('button').forEach((button) => {
       const item = document.createElement('div');
       button.setAttribute('aria-expanded', false);
       button.nextElementSibling.id = button.getAttribute('aria-controls');
       button.nextElementSibling.setAttribute('aria-hidden', true);
-      button.nextElementSibling.style.maxHeight = 0;
+      if (!isDesktop()) {
+        button.nextElementSibling.style.maxHeight = 0;
+      }
       item.prepend(button.nextElementSibling);
       button.replaceWith(item);
       const span = document.createElement('span');
@@ -122,24 +144,29 @@ export default class HeaderComponent extends HTMLElement {
       item.prepend(button);
       item.role = 'menuitem';
       item.tabindex = '-1';
-      button.addEventListener('click', () => {
+      button.addEventListener('click', async () => {
         const id = button.getAttribute('aria-controls');
         const el = this.shadowRoot.getElementById(id);
         const expanded = button.getAttribute('aria-expanded') === 'true';
+        this.hideAllTabs();
+        await this.hideAllMenus();
         button.setAttribute('aria-expanded', !expanded);
+        if (isDesktop()) {
+          el.setAttribute('aria-hidden', expanded);
+          return;
+        }
         // Animate the menu
-        animateToVisible(
-          el,
-          expanded,
-          () => { el.style.maxHeight = `${el.childElementCount * el.firstElementChild.getBoundingClientRect().height}px`; },
-          () => { el.style.maxHeight = 0; },
-        );
+        if (expanded) {
+          animateToHidden(el, () => { el.style.maxHeight = 0; });
+        } else {
+          animateToVisible(el, () => { el.style.maxHeight = `${el.childElementCount * el.firstElementChild.getBoundingClientRect().height}px`; });
+        }
       });
     });
     this.lib.decorateIcons(menus);
   }
 
-  async #decorateWidgets() {
+  async decorateWidgets() {
     const widgets = this.shadowRoot.querySelectorAll('.header-widget');
     return Promise.all([...widgets].map(async (widget) => {
       widget.role = 'dialog';
@@ -156,10 +183,33 @@ export default class HeaderComponent extends HTMLElement {
     }));
   }
 
+  hideAllTabs() {
+    this.shadowRoot.querySelectorAll('.header-tabs button').forEach((button) => {
+      button.setAttribute('aria-selected', false);
+    });
+    this.shadowRoot.querySelectorAll('.header-widget').forEach((widget) => {
+      widget.setAttribute('aria-hidden', true);
+    });
+  }
+
+  async hideAllMenus() {
+    this.shadowRoot.querySelectorAll('.header-menus button[aria-expanded]').forEach((ul) => {
+      ul.setAttribute('aria-expanded', false);
+    });
+    if (isDesktop()) {
+      this.shadowRoot.querySelectorAll('.header-menus ul[aria-hidden]').forEach((ul) => {
+        ul.setAttribute('aria-hidden', true);
+      });
+      return Promise.resolve();
+    }
+    return Promise.all([...this.shadowRoot.querySelectorAll('.header-menus ul[aria-hidden]')]
+      .map((ul) => animateToHidden(ul, () => { ul.style.maxHeight = 0; })));
+  }
+
   async connectedCallback() {
     this.lib = await HeaderComponent.getLibFranklin(this.codeBasePath);
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(HeaderComponent.#template({}).cloneNode(true));
+    shadowRoot.appendChild(HeaderComponent.template({}).cloneNode(true));
     await this.loadEager();
     await this.loadLazy();
     setTimeout(() => {
@@ -179,7 +229,7 @@ export default class HeaderComponent extends HTMLElement {
     const links = document.createElement('div');
     links.id = 'header-links';
     links.classList.add('header-links');
-    links.setAttribute('aria-hidden', true);
+    links.setAttribute('aria-hidden', !isDesktop());
     links.append(this.shadowRoot.querySelector('.header-brand'));
     links.append(this.shadowRoot.querySelector('.header-tabs'));
     links.append(this.shadowRoot.querySelector('.header-menus'));
@@ -187,14 +237,14 @@ export default class HeaderComponent extends HTMLElement {
 
     this.shadowRoot.querySelector('.header-bar').insertBefore(links, this.shadowRoot.querySelector('.header-tools'));
     await this.lib.decorateIcons(this.shadowRoot);
-    await this.#decorateButtonAnchors();
+    await this.decorateButtonAnchors();
   }
 
   async loadLazy() {
-    await this.#decorateToggle();
-    await this.#decorateTabs();
-    await this.#decorateMenus();
-    await this.#decorateWidgets();
+    await this.decorateToggle();
+    await this.decorateTabs();
+    await this.decorateMenus();
+    await this.decorateWidgets();
     await this.lib.decorateButtons(this.shadowRoot);
   }
 
