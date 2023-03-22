@@ -189,7 +189,8 @@ pre {
 
 main {
   position: relative;
-  padding-bottom: 3rem;
+
+  /* padding-bottom: 3rem; */
 }
 
 main > .section {
