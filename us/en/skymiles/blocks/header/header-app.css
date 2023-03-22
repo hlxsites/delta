@@ -4,9 +4,7 @@
     "toggle tools" min-content
     "links links" 1fr / min-content 1fr;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--color-delta-blue-middle);
   align-items: center;
-  background-color: var(--color-delta-blue-dark);
   justify-content: space-between;
 }
 
@@ -52,6 +50,16 @@
 .header-toggle {
   grid-area: toggle;
   padding: .5rem;
+  border-bottom: 1px solid var(--color-delta-blue-middle);
+  background-color: var(--color-delta-blue-dark);
+}
+
+.header-toggle button[aria-expanded="true"] .icon-hamburger {
+  display: none;
+}
+
+.header-toggle button[aria-expanded="false"] .icon-x {
+  display: none;
 }
 
 .header-brand {
@@ -67,7 +75,9 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 2rem;
-  border-top: 1px solid var(--color-delta-blue-middle);
+  background-color: var(--color-delta-blue-dark);
+  transition: transform .3s ease;
+  transform: translateX(-100%);
 }
 
 .header-links[aria-hidden="false"] {
@@ -93,6 +103,29 @@
   display: none;
 }
 
+.header-menus button[aria-expanded] {
+  position: relative;
+}
+
+.header-menus button[aria-expanded] .icon {
+  position: absolute;
+  top: 1.3rem;
+  right: 1.5rem;
+}
+
+.header-menus button[aria-expanded] + ul {
+  transition: max-height .3s ease, padding .3s ease;
+  overflow: hidden;
+}
+
+.header-menus button[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+
+.header-menus button[aria-expanded] .icon svg {
+  width: 11px;
+}
+
 .header-help {
   grid-area: help;
   margin-top: auto;
@@ -108,13 +141,19 @@
   grid-area: tools;
   display: flex;
   padding: .5rem;
+  border-bottom: 1px solid var(--color-delta-blue-middle);
   align-items: center;
+  background-color: var(--color-delta-blue-dark);
   justify-content: flex-end;
   justify-items: center;
   gap: .5rem;
 }
 
-.header-tools [data-role="search"] {
+.header-links[aria-hidden="true"] + .header-tools button[aria-controls="search"] {
+  display: none;
+}
+
+.header-links[aria-hidden="false"] + .header-tools > *:not(button[aria-controls="search"]) {
   display: none;
 }
 

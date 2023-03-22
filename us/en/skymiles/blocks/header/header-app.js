@@ -1,5 +1,18 @@
 const CODE_BASE_PATH = '/us/en/skymiles';
 
+function animateToVisible(el, visible, showHandler, hideHandler) {
+  // Animate the menu
+  if (visible) {
+    window.requestAnimationFrame(hideHandler);
+    el.addEventListener('transitionend', () => {
+      el.setAttribute('aria-hidden', true);
+    }, { once: true });
+  } else {
+    el.setAttribute('aria-hidden', false);
+    window.requestAnimationFrame(showHandler);
+  }
+}
+
 export default class HeaderComponent extends HTMLElement {
   static async getLibFranklin(codeBasePath) {
     const hostname = window.location.hostname === 'localhost'
@@ -12,18 +25,19 @@ export default class HeaderComponent extends HTMLElement {
 
   static #template() {
     const template = document.createElement('template');
-    template.innerHTML = `<style>@import "${CODE_BASE_PATH}/styles/styles.css";</style>
-<style>@import "${CODE_BASE_PATH}/blocks/header/header-app.css";</style>
-<div class="header-wrapper">
-  <div class="header-bar">
-  </div>
-  <div class="header-widgets">
-    <div class="header-widget" id="header-book-widget"></div>
-    <div class="header-widget" id="header-checkin-widget"></div>
-    <div class="header-widget" id="header-mytrips-widget"></div>
-    <div class="header-widget" id="header-flightstatus-widget"></div>
-  </div>
-</div>`;
+    template.innerHTML = `
+      <style>@import "${CODE_BASE_PATH}/styles/styles.css";</style>
+      <style>@import "${CODE_BASE_PATH}/blocks/header/header-app.css";</style>
+      <div class="header-wrapper">
+        <div class="header-bar">
+        </div>
+        <div class="header-widgets">
+          <div class="header-widget" id="header-book-widget"></div>
+          <div class="header-widget" id="header-checkin-widget"></div>
+          <div class="header-widget" id="header-mytrips-widget"></div>
+          <div class="header-widget" id="header-flightstatus-widget"></div>
+        </div>
+      </div>`;
     return template.content;
   }
 
@@ -61,7 +75,13 @@ export default class HeaderComponent extends HTMLElement {
       button.setAttribute('aria-expanded', !expanded);
       button.getAttribute('aria-controls').split(' ').forEach((id) => {
         const target = this.shadowRoot.getElementById(id);
-        target.setAttribute('aria-hidden', expanded);
+        // Animate the menu
+        animateToVisible(
+          target,
+          expanded,
+          () => { target.style.transform = 'translateX(0)'; },
+          () => { target.style.transform = 'translateX(-100%)'; },
+        );
       });
     });
   }
@@ -92,8 +112,13 @@ export default class HeaderComponent extends HTMLElement {
       button.setAttribute('aria-expanded', false);
       button.nextElementSibling.id = button.getAttribute('aria-controls');
       button.nextElementSibling.setAttribute('aria-hidden', true);
+      button.nextElementSibling.style.maxHeight = 0;
       item.prepend(button.nextElementSibling);
       button.replaceWith(item);
+      const span = document.createElement('span');
+      span.classList.add('icon');
+      span.classList.add('icon-down-chevron');
+      button.append(span);
       item.prepend(button);
       item.role = 'menuitem';
       item.tabindex = '-1';
@@ -102,9 +127,16 @@ export default class HeaderComponent extends HTMLElement {
         const el = this.shadowRoot.getElementById(id);
         const expanded = button.getAttribute('aria-expanded') === 'true';
         button.setAttribute('aria-expanded', !expanded);
-        el.setAttribute('aria-hidden', expanded);
+        // Animate the menu
+        animateToVisible(
+          el,
+          expanded,
+          () => { el.style.maxHeight = `${el.childElementCount * el.firstElementChild.getBoundingClientRect().height}px`; },
+          () => { el.style.maxHeight = 0; },
+        );
       });
     });
+    this.lib.decorateIcons(menus);
   }
 
   async #decorateWidgets() {
