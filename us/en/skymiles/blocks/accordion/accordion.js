@@ -10,6 +10,11 @@ export default async function decorate(block) {
   const parents = block.querySelectorAll('.accordion-section');
   parents.forEach((({ children }) => {
     children[0].classList.add('header');
+    if (children[0].querySelector(':scope > br ')) {
+      const p = document.createElement('p');
+      p.innerHTML = children[0].innerHTML;
+      children[0].innerHTML = p.outerHTML;
+    }
     children[0].setAttribute('aria-expanded', 'false');
     children[1].classList.add('text');
   }));
