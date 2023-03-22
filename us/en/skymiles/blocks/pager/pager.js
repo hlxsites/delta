@@ -21,7 +21,7 @@ export default async function decorate(block) {
   if (!nextLiElement) {
     parentLiElement = parentLiElement.parentElement.parentElement;
     nextLiElement = parentLiElement.nextElementSibling.querySelector('li');
-  
+
     // Switch section nav for the overview page
   } else if (nextLiElement.querySelector('li')) {
     nextLiElement = nextLiElement.querySelector('li');
