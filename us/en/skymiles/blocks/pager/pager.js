@@ -14,6 +14,9 @@ export default async function decorate(block) {
 
   // Find the next title and link
   const currentLiElement = sectionNavDiv.querySelector(`li > a[href$="${window.location.pathname}"]`);
+  if (!currentLiElement) {
+    return;
+  }
   let parentLiElement = currentLiElement.parentElement;
   let nextLiElement = parentLiElement.nextElementSibling;
 
