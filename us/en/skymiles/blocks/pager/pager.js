@@ -28,7 +28,6 @@ export default async function decorate(block) {
   }
 
   const container = document.createElement('div');
-  container.classList.add('pager-container');
 
   // Link to next page
   const link = document.createElement('a');
@@ -59,7 +58,7 @@ export default async function decorate(block) {
   container.appendChild(link);
 
   // Append container div to block body
-  block.innerHTML = container.outerHTML;
+  block.innerHTML = container.innerHTML;
 
   decorateIcons(block);
 }
