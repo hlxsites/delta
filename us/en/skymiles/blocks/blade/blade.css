@@ -91,7 +91,7 @@
 
 /* Link variant */
 
-.blade.is-link .blade-body::after {
+.blade .is-link .blade-body::after {
     position: absolute;
     height: .7rem;
     width: .7rem;
@@ -104,7 +104,7 @@
     right: 1.5rem;
 }
 
-.blade.is-link .blade-body {
+.blade .is-link .blade-body {
     cursor: pointer;
 }
 
