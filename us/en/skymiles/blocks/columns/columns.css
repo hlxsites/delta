@@ -106,12 +106,12 @@
     }
 
     .columns.emphasized > div > div:first-child {
-        flex-basis: 80%;
+        flex-basis: 75%;
     }
 
     .columns.emphasized > div > div:last-child {
         text-align: left;
-        flex-basis: 20%;
+        flex-basis: 25%;
     }
 
     .columns.emphasized > div > div > p {
