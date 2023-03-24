@@ -219,6 +219,10 @@ main strong {
   font-family: var(--button-font-family);
 }
 
+main a strong {
+  color: inherit;
+}
+
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
