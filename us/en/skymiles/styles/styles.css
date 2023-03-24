@@ -88,7 +88,21 @@ body.appear {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: var(--nav-height);
+  background-color: var(--background-color);
+  border-bottom: 1.5px solid var(--color-delta-gray-middle2);
+  z-index: 3;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 47px;
+  background-color: var(--color-delta-blue-dark);
 }
 
 .header header-app {
@@ -195,8 +209,7 @@ pre {
 
 main {
   position: relative;
-
-  /* padding-bottom: 3rem; */
+  margin-top: var(--nav-height);
 }
 
 main > .section {
@@ -544,6 +557,10 @@ main > .section > .badge {
 }
 
 @media (min-width: 768px) {
+  header::before {
+    height: 76px;
+  }
+
   .button-container {
     display: flex;
     gap: .5rem;
