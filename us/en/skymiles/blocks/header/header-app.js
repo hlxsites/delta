@@ -220,6 +220,8 @@ export default class HeaderComponent extends HTMLElement {
   async loadEager() {
     const response = await fetch('/drafts/julien/nav.plain.html');
     const content = await response.text();
+    const wrapper = this.shadowRoot.querySelector('.header-wrapper');
+    wrapper.style.visibility = 'hidden';
     this.shadowRoot.querySelector('.header-bar').innerHTML = content;
     const sections = ['toggle', 'brand', 'tabs', 'menus', 'help', 'tools'];
     [...this.shadowRoot.querySelector('.header-bar').children].forEach((el, i) => {
@@ -238,6 +240,7 @@ export default class HeaderComponent extends HTMLElement {
     this.shadowRoot.querySelector('.header-bar').insertBefore(links, this.shadowRoot.querySelector('.header-tools'));
     await this.lib.decorateIcons(this.shadowRoot);
     await this.decorateButtonAnchors();
+    wrapper.style.visibility = 'visible';
   }
 
   async loadLazy() {
