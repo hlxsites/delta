@@ -130,12 +130,14 @@ export default class HeaderComponent extends HTMLElement {
     menus.querySelectorAll('button').forEach((button) => {
       const item = document.createElement('div');
       button.setAttribute('aria-expanded', false);
-      button.nextElementSibling.id = button.getAttribute('aria-controls');
-      button.nextElementSibling.setAttribute('aria-hidden', true);
+      const wrapper = document.createElement('div');
+      wrapper.id = button.getAttribute('aria-controls');
+      wrapper.setAttribute('aria-hidden', true);
       if (!isDesktop()) {
-        button.nextElementSibling.style.maxHeight = 0;
+        wrapper.style.maxHeight = 0;
       }
-      item.prepend(button.nextElementSibling);
+      wrapper.append(button.nextElementSibling);
+      item.prepend(wrapper);
       button.replaceWith(item);
       const span = document.createElement('span');
       span.classList.add('icon');
@@ -159,7 +161,11 @@ export default class HeaderComponent extends HTMLElement {
         if (expanded) {
           animateToHidden(el, () => { el.style.maxHeight = 0; });
         } else {
-          animateToVisible(el, () => { el.style.maxHeight = `${el.childElementCount * el.firstElementChild.getBoundingClientRect().height}px`; });
+          animateToVisible(el, () => {
+            const list = el.firstElementChild;
+            const items = list.querySelectorAll('li li');
+            el.style.maxHeight = `${items.length * items[0].getBoundingClientRect().height}px`;
+          });
         }
       });
     });
@@ -193,17 +199,17 @@ export default class HeaderComponent extends HTMLElement {
   }
 
   async hideAllMenus() {
-    this.shadowRoot.querySelectorAll('.header-menus button[aria-expanded]').forEach((ul) => {
+    this.shadowRoot.querySelectorAll('.header-menus button[aria-expanded="true"]').forEach((ul) => {
       ul.setAttribute('aria-expanded', false);
     });
     if (isDesktop()) {
-      this.shadowRoot.querySelectorAll('.header-menus ul[aria-hidden]').forEach((ul) => {
-        ul.setAttribute('aria-hidden', true);
+      this.shadowRoot.querySelectorAll('.header-menus div[aria-hidden]').forEach((el) => {
+        el.setAttribute('aria-hidden', true);
       });
       return Promise.resolve();
     }
-    return Promise.all([...this.shadowRoot.querySelectorAll('.header-menus ul[aria-hidden]')]
-      .map((ul) => animateToHidden(ul, () => { ul.style.maxHeight = 0; })));
+    return Promise.all([...this.shadowRoot.querySelectorAll('.header-menus div[aria-hidden]')]
+      .map((el) => animateToHidden(el, () => { el.style.maxHeight = 0; })));
   }
 
   async connectedCallback() {
