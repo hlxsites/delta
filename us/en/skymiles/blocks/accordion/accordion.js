@@ -39,6 +39,8 @@ export default async function decorate(block) {
           .forEach(decorateBlock);
         hasAsyncBlocks = true;
       } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('Could not load accordion content.', err);
         text.parentElement.remove();
       }
     }
