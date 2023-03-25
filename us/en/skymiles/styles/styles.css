@@ -187,6 +187,12 @@ a:hover {
   text-decoration: underline;
 }
 
+a:focus-visible {
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px var(--color-delta-gray);
+}
+
 code, pre, samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
@@ -391,6 +397,11 @@ button:disabled, button:disabled:hover {
   border-color: var(--color-delta-red-dark);
 }
 
+button.cta:focus-visible,
+.button.cta:focus-visible {
+  box-shadow: 0 0 0 3px rgba(229,25,55,.5)
+}
+
 .button.secondary, button.secondary {
   background-color: unset;
   border-color: currentcolor;
@@ -557,10 +568,6 @@ main > .section > .badge {
 }
 
 @media (min-width: 768px) {
-  header::before {
-    height: 76px;
-  }
-
   .button-container {
     display: flex;
     gap: .5rem;
@@ -620,6 +627,10 @@ main > .section > .badge {
 @media (min-width: 992px) {
   :root {
     --nav-height: 146.5px;
+  }
+
+  header::before {
+    height: 76px;
   }
 
   .button-container {

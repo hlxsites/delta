@@ -61,6 +61,7 @@ export default class HeaderComponent extends HTMLElement {
   constructor() {
     super();
     this.codeBasePath = this.getAttribute('basePath') || '';
+    this.isDesktop = isDesktop();
   }
 
   async decorateButtonAnchors() {
@@ -175,7 +176,7 @@ export default class HeaderComponent extends HTMLElement {
   async decorateWidgets() {
     const widgets = this.shadowRoot.querySelectorAll('.header-widget');
     return Promise.all([...widgets].map(async (widget) => {
-      widget.role = 'dialog';
+      widget.role = isDesktop() ? 'tabpanel' : 'dialog';
       widget.setAttribute('aria-hidden', true);
       const button = document.createElement('button');
       button.classList.add('header-widget-close');
@@ -202,25 +203,18 @@ export default class HeaderComponent extends HTMLElement {
     this.shadowRoot.querySelectorAll('.header-menus button[aria-expanded="true"]').forEach((ul) => {
       ul.setAttribute('aria-expanded', false);
     });
+    const menus = this.shadowRoot.querySelectorAll('.header-menus div[aria-hidden="false"]');
+    if (!menus.length) {
+      return Promise.resolve();
+    }
     if (isDesktop()) {
-      this.shadowRoot.querySelectorAll('.header-menus div[aria-hidden]').forEach((el) => {
+      menus.forEach((el) => {
         el.setAttribute('aria-hidden', true);
       });
       return Promise.resolve();
     }
-    return Promise.all([...this.shadowRoot.querySelectorAll('.header-menus div[aria-hidden]')]
+    return Promise.all([...menus]
       .map((el) => animateToHidden(el, () => { el.style.maxHeight = 0; })));
-  }
-
-  async connectedCallback() {
-    this.lib = await HeaderComponent.getLibFranklin(this.codeBasePath);
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(HeaderComponent.template({}).cloneNode(true));
-    await this.loadEager();
-    await this.loadLazy();
-    setTimeout(() => {
-      this.loadDelayed();
-    }, 3000);
   }
 
   async loadEager() {
@@ -260,6 +254,52 @@ export default class HeaderComponent extends HTMLElement {
   // eslint-disable-next-line class-methods-use-this
   async loadDelayed() {
     // Nothing here yet
+  }
+
+  attachListeners() {
+    window.addEventListener('resize', async () => {
+      const shouldDesktop = isDesktop();
+      this.hideAllTabs();
+      await this.hideAllMenus();
+      if (this.isDesktop !== shouldDesktop) {
+        this.isDesktop = shouldDesktop;
+
+        const toggle = this.shadowRoot.querySelector('.header-toggle > button');
+        toggle.setAttribute('aria-expanded', false);
+
+        const links = this.shadowRoot.querySelector('.header-links');
+        links.setAttribute('aria-hidden', !shouldDesktop);
+        links.style.transform = shouldDesktop ? 'none' : 'translateX(-100%)';
+
+        const tabs = this.shadowRoot.querySelector('.header-tabs');
+        tabs.role = shouldDesktop ? 'tablist' : 'toolbar';
+        tabs.setAttribute('aria-orientation', shouldDesktop ? 'horizontal' : 'vertical');
+        tabs.querySelectorAll(':scope > button').forEach((b) => {
+          b.role = shouldDesktop ? 'tab' : 'button';
+        });
+        this.shadowRoot.querySelectorAll('.header-widget').forEach((div) => {
+          div.role = shouldDesktop ? 'tabpanel' : 'dialog';
+        });
+
+        const menus = this.shadowRoot.querySelector('.header-menus');
+        menus.setAttribute('aria-orientation', shouldDesktop ? 'horizontal' : 'vertical');
+        menus.querySelectorAll(':scope > [role="menuitem"] > [aria-hidden]').forEach((div) => {
+          div.style.maxHeight = shouldDesktop ? 'none' : '0px';
+        });
+      }
+    }, { passive: true });
+  }
+
+  async connectedCallback() {
+    this.lib = await HeaderComponent.getLibFranklin(this.codeBasePath);
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(HeaderComponent.template({}).cloneNode(true));
+    await this.loadEager();
+    await this.loadLazy();
+    this.attachListeners();
+    setTimeout(() => {
+      this.loadDelayed();
+    }, 3000);
   }
 }
 
