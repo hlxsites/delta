@@ -576,16 +576,6 @@ main > .section > .badge {
     margin: initial;
   }
 
-  main.has-badge .section:first-of-type h2:first-of-type {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-  }
-
-  main.has-badge .badge {
-    margin-top: 0;
-  }
-
   .fresh-air .default-content-wrapper h2 {
     margin-top: 5rem;
   }
@@ -601,6 +591,16 @@ main > .section > .badge {
 
   .fresh-air .default-content-wrapper h1 + h2:first-child {
     margin-top: 0;
+  }
+
+  main.has-badge .badge {
+    margin-top: 0;
+  }
+
+  main.has-badge .section:first-of-type h2:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
   }
 }
 
