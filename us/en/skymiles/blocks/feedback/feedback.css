@@ -5,7 +5,7 @@ main .feedback-container {
   max-width: none;
 }
 
-#acknowledgeText, .acknowledge-question {
+#acknowledge-text, .acknowledge-question {
   font-family: var(--body-font-family);
   font-size: 1.5rem;
   line-height: 2.125rem;
