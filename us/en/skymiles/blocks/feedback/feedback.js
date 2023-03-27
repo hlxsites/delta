@@ -1,3 +1,11 @@
+function showAcknowledgeText() {
+  // Replace question with acknowledge text
+  var acknowledgeText = document.getElementById('acknowledgeText');
+  var questionContainer = document.querySelector('.question-container');
+  questionContainer.setAttribute('hidden', 'true');
+  acknowledgeText.removeAttribute('hidden');
+}
+
 export default async function decorate(block) {
   block.innerHTML = '';
   const divSectionFeedback = document.createElement('div');
@@ -30,7 +38,7 @@ export default async function decorate(block) {
   const yesButton = document.createElement('a');
   yesButton.setAttribute('id', 'yesBtn');
   yesButton.classList.add('button', 'primary');
-  yesButton.setAttribute('href', 'javascript:void(0)');
+  yesButton.setAttribute('href', '');
   yesButton.textContent = 'Yes';
 
   divYesButton.appendChild(yesButton);
@@ -42,7 +50,7 @@ export default async function decorate(block) {
   const noButton = document.createElement('a');
   noButton.setAttribute('id', 'noBtn');
   noButton.classList.add('button', 'primary');
-  noButton.setAttribute('href', 'javascript:void(0)');
+  noButton.setAttribute('href', '');
   noButton.textContent = 'No';
 
   divNoButton.appendChild(noButton);
@@ -58,24 +66,18 @@ export default async function decorate(block) {
   block.innerHTML = divSectionFeedback.innerHTML;
 
   // Add click event listener to 'Yes' button
-  document.getElementById('yesBtn').addEventListener('click', () => {
+  document.getElementById('yesBtn').addEventListener('click', (event) => {
+    event.preventDefault();
     showAcknowledgeText();
   });
 
   // Add click event listener to 'No' button
-  document.getElementById('noBtn').addEventListener('click', () => {
+  document.getElementById('noBtn').addEventListener('click', (event) => {
+    event.preventDefault();
     showAcknowledgeText();
   });
 
   // Add section class to fix the div width
-  const feedbackWrapper = document.querySelector('.feedback-wrapper');
+  let feedbackWrapper = document.querySelector('.feedback-wrapper');
   feedbackWrapper.classList.add('section');
-}
-
-function showAcknowledgeText() {
-  // Replace question with acknowledge text
-  var acknowledgeText = document.getElementById('acknowledgeText');
-  var questionContainer = document.querySelector('.question-container');
-  questionContainer.setAttribute('hidden', 'true');
-  acknowledgeText.removeAttribute('hidden');
 }
