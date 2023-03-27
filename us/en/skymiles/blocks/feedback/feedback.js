@@ -1,7 +1,7 @@
 function showAcknowledgeText() {
   // Replace question with acknowledge text
-  var acknowledgeText = document.getElementById('acknowledgeText');
-  var questionContainer = document.querySelector('.question-container');
+  const acknowledgeText = document.getElementById('acknowledgeText');
+  const questionContainer = document.querySelector('.question-container');
   questionContainer.setAttribute('hidden', 'true');
   acknowledgeText.removeAttribute('hidden');
 }
@@ -78,6 +78,6 @@ export default async function decorate(block) {
   });
 
   // Add section class to fix the div width
-  let feedbackWrapper = document.querySelector('.feedback-wrapper');
+  const feedbackWrapper = document.querySelector('.feedback-wrapper');
   feedbackWrapper.classList.add('section');
 }
