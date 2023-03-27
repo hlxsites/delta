@@ -108,7 +108,7 @@
     cursor: pointer;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px) {
     .blade > div {
         flex-direction: unset;
         align-items: stretch;
