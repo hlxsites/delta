@@ -210,6 +210,10 @@ main:not(.has-badge) > .section.hero-container + .section::after {
   background-size: cover;
 }
 
+main.has-badge .badge {
+  margin-top: 1rem;
+}
+
 main sup {
   font-family: var(--body-font-family);
 }
@@ -572,6 +576,16 @@ main > .section > .badge {
     margin: initial;
   }
 
+  main.has-badge .section:first-of-type h2:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  main.has-badge .badge {
+    margin-top: 0;
+  }
+
   .fresh-air .default-content-wrapper h2 {
     margin-top: 5rem;
   }
@@ -614,11 +628,6 @@ main > .section > .badge {
 
   main .section {
     max-width: 976px;
-  }
-
-  main > .section > .badge {
-    top: 7rem;
-    max-height: none;
   }
 
   p small {

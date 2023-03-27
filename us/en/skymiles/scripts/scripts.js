@@ -217,7 +217,7 @@ export async function decorateMain(main) {
     const img = document.createElement('img');
     img.classList.add('badge');
     img.src = badge.content;
-    main.firstElementChild.append(img);
+    main.querySelector('h2').append(img);
     main.classList.add('has-badge');
   }
 }
