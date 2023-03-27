@@ -116,13 +116,21 @@ function decorateScreenReaderOnly(container) {
 
 function decorateHyperlinkImages(container) {
   [...container.querySelectorAll('picture + br + a')]
-    .filter((a) => a.href === a.textContent)
+    .filter((a) => {
+      try {
+        return new URL(a.href).pathname === new URL(a.textContent).pathname;
+      } catch (err) {
+        return false;
+      }
+    })
     .forEach((a) => {
       const picture = a.previousElementSibling.previousElementSibling;
       picture.remove();
       a.previousElementSibling.remove();
       const oncle = a.parentElement.nextElementSibling;
-      if (oncle.childElementCount === 1 && oncle.firstElementChild.nodeName === 'A') {
+      if (oncle.nextElementSibling === null
+        && oncle.childElementCount === 1
+        && oncle.firstElementChild.nodeName === 'A') {
         const figure = document.createElement('figure');
         figure.append(picture);
         const caption = document.createElement('figcaption');
