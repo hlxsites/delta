@@ -399,6 +399,26 @@ p > em:only-child > .button.secondary:only-child:hover {
 }
 
 /* Utility classes */
+.sr-focusable a,
+a.sr-focusable {
+  transform: translateY(-100%);
+  position: absolute;
+}
+
+.sr-focusable a:active,
+.sr-focusable a:focus,
+a.sr-focusable:active,
+a.sr-focusable:focus {
+  z-index: 9999;
+  padding: .1875rem;
+  background-color: var(--color-delta-red);
+  color: var(--text-color-inverted);
+  font-family: var(--body-medium-font-family);
+  font-size: var(--body-font-size-s);
+  text-transform: uppercase;
+  transform: none;
+}
+
 .sr-only:not(:focus, :active) {
   clip: rect(0 0 0 0); 
   clip-path: inset(50%);
