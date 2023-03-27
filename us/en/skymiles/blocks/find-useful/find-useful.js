@@ -7,8 +7,15 @@ function showAcknowledgeText() {
 }
 
 export default async function decorate(block) {
+  let defaultQuestion = 'Did you find the information you were looking for on this page?';
+  const currentFindUseful = block.querySelector('.find-useful > div > div');
+
+  if (currentFindUseful) {
+    defaultQuestion = currentFindUseful.textContent;
+  }
+
   block.innerHTML = '';
-  const divSectionFeedback = document.createElement('div');
+  const divSectionFindUseful = document.createElement('div');
 
   const spanAckText = document.createElement('span');
   spanAckText.setAttribute('id', 'acknowledge-text');
@@ -26,44 +33,44 @@ export default async function decorate(block) {
 
   const spanAckQuestion = document.createElement('span');
   spanAckQuestion.classList.add('acknowledge-question');
-  spanAckQuestion.textContent = 'Did you find the information you were looking for on this page?';
+  spanAckQuestion.textContent = defaultQuestion;
 
-  const divFeedbackButtonsContainer = document.createElement('div');
-  divFeedbackButtonsContainer.classList.add('feedback-buttons-container');
+  const divFindUsefulButtonsContainer = document.createElement('div');
+  divFindUsefulButtonsContainer.classList.add('find-useful-buttons-container');
 
   // Yes button
   const divYesButton = document.createElement('div');
-  divYesButton.classList.add('feedback-button');
+  divYesButton.classList.add('find-useful-button');
 
-  const yesButton = document.createElement('a');
+  const yesButton = document.createElement('button');
   yesButton.setAttribute('id', 'yesBtn');
   yesButton.classList.add('button', 'primary');
-  yesButton.setAttribute('href', '');
+  yesButton.setAttribute('type', 'button');
   yesButton.textContent = 'Yes';
 
   divYesButton.appendChild(yesButton);
 
   // No button
   const divNoButton = document.createElement('div');
-  divNoButton.classList.add('feedback-button');
+  divNoButton.classList.add('find-useful-button');
 
-  const noButton = document.createElement('a');
+  const noButton = document.createElement('button');
   noButton.setAttribute('id', 'noBtn');
   noButton.classList.add('button', 'primary');
-  noButton.setAttribute('href', '');
+  noButton.setAttribute('type', 'button');
   noButton.textContent = 'No';
 
   divNoButton.appendChild(noButton);
 
-  divSectionFeedback.appendChild(spanAckText);
-  divSectionFeedback.appendChild(inputSurveyID);
-  divSectionFeedback.appendChild(divQuestionContainer);
+  divSectionFindUseful.appendChild(spanAckText);
+  divSectionFindUseful.appendChild(inputSurveyID);
+  divSectionFindUseful.appendChild(divQuestionContainer);
   divQuestionContainer.appendChild(spanAckQuestion);
-  divQuestionContainer.appendChild(divFeedbackButtonsContainer);
-  divFeedbackButtonsContainer.appendChild(divYesButton);
-  divFeedbackButtonsContainer.appendChild(divNoButton);
+  divQuestionContainer.appendChild(divFindUsefulButtonsContainer);
+  divFindUsefulButtonsContainer.appendChild(divYesButton);
+  divFindUsefulButtonsContainer.appendChild(divNoButton);
 
-  block.innerHTML = divSectionFeedback.innerHTML;
+  block.innerHTML = divSectionFindUseful.innerHTML;
 
   // Add click event listener to 'Yes' button
   document.getElementById('yesBtn').addEventListener('click', (event) => {
@@ -78,6 +85,6 @@ export default async function decorate(block) {
   });
 
   // Add section class to fix the div width
-  const feedbackWrapper = document.querySelector('.feedback-wrapper');
-  feedbackWrapper.classList.add('section');
+  const findUsefulWrapper = document.querySelector('.find-useful-wrapper');
+  findUsefulWrapper.classList.add('section');
 }

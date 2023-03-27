@@ -1,4 +1,4 @@
-main .feedback-container {
+main .find-useful-container {
   border-top: 2px solid var(--color-delta-gray-middle2);
   border-bottom: 2px solid var(--color-delta-gray-middle2);;
   padding: 23px 0;
@@ -14,18 +14,18 @@ main .feedback-container {
   font-weight: bolder;
 }
 
-.feedback-buttons-container {
+.find-useful-buttons-container {
   display: flex;
   flex-direction: column;
   margin: 2rem -1rem;
 }
 
-.feedback-button {
+.find-useful-button {
   margin: 1rem 20px;
 }
 
 @media (min-width: 992px) {
-  .feedback-buttons-container {
+  .find-useful-buttons-container {
     flex-direction: row;
   }
 }
