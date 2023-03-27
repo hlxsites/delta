@@ -2,8 +2,8 @@ function showAcknowledgeText() {
   // Replace question with acknowledge text
   const acknowledgeText = document.getElementById('acknowledge-text');
   const questionContainer = document.querySelector('.question-container');
-  questionContainer.setAttribute('hidden', 'true');
-  acknowledgeText.removeAttribute('hidden');
+  questionContainer.setAttribute('aria-hidden', 'true');
+  acknowledgeText.removeAttribute('aria-hidden');
 }
 
 export default async function decorate(block) {
@@ -20,7 +20,7 @@ export default async function decorate(block) {
   const spanAckText = document.createElement('span');
   spanAckText.setAttribute('id', 'acknowledge-text');
   spanAckText.textContent = 'Thank you for your feedback.';
-  spanAckText.setAttribute('hidden', 'true');
+  spanAckText.setAttribute('aria-hidden', 'true');
 
   const inputSurveyID = document.createElement('input');
   inputSurveyID.setAttribute('type', 'hidden');

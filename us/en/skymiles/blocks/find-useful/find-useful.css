@@ -1,8 +1,12 @@
 main .find-useful-container {
   border-top: 2px solid var(--color-delta-gray-middle2);
   border-bottom: 2px solid var(--color-delta-gray-middle2);;
-  padding: 23px 0;
+  padding: 1.5rem 0;
   max-width: none;
+}
+
+[aria-hidden="true"] {
+  display: none;
 }
 
 #acknowledge-text, .acknowledge-question {
@@ -21,7 +25,7 @@ main .find-useful-container {
 }
 
 .find-useful-button {
-  margin: 1rem 20px;
+  margin: 1rem 1.25rem;
 }
 
 @media (min-width: 992px) {
