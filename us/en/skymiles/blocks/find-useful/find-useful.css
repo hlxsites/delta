@@ -1,0 +1,35 @@
+main .find-useful-container {
+  border-top: 2px solid var(--color-delta-gray-middle2);
+  border-bottom: 2px solid var(--color-delta-gray-middle2);;
+  padding: 1.5rem 0;
+  max-width: none;
+}
+
+[aria-hidden="true"] {
+  display: none;
+}
+
+#acknowledge-text, .acknowledge-question {
+  font-family: var(--body-font-family);
+  font-size: 1.5rem;
+  line-height: 2.125rem;
+  color: var(--color-delta-blue);
+  letter-spacing: 0;
+  font-weight: bolder;
+}
+
+.find-useful-buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem -1rem;
+}
+
+.find-useful-button {
+  margin: 1rem 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .find-useful-buttons-container {
+    flex-direction: row;
+  }
+}

@@ -1,7 +1,6 @@
 main .pager-container {
   max-width: none;
   background-color: var(--color-delta-gray-light);
-  margin-top: 2em;
   padding: 0.8rem 0;
 }
 
