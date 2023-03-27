@@ -399,7 +399,7 @@ button:disabled, button:disabled:hover {
 
 button.cta:focus-visible,
 .button.cta:focus-visible {
-  box-shadow: 0 0 0 3px rgba(229,25,55,.5)
+  box-shadow: 0 0 0 3px rgba(229 25 55 50%)
 }
 
 .button.secondary, button.secondary {

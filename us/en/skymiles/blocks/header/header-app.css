@@ -17,7 +17,7 @@
 }
 
 .header-bar .cta:focus-visible {
-  box-shadow: 0 0 0 3px rgba(229,25,55,.5)
+  box-shadow: 0 0 0 3px rgba(229 25 55 50%)
 }
 
 .header-bar p,
@@ -171,7 +171,7 @@
 }
 
 .header-menus [role="menuitem"] > div > ul {
-  padding: 1.5rem 0 0 0;
+  padding: 1.5rem 0 0;
 }
 
 .header-menus [role="menuitem"] > div > ul > li a {
@@ -299,6 +299,9 @@
 
   .header-tabs button {
     position: relative;
+    padding: .5rem .4rem;
+    width: auto;
+    border: none;
     overflow: unset;
   }
 
@@ -391,12 +394,6 @@
   .header-tabs,
   .header-menus {
     display: flex;
-  }
-
-  .header-tabs button {
-    padding: .5rem .4rem;
-    width: auto;
-    border: none;
   }
 
   .header-menus [role="menuitem"] {
