@@ -36,11 +36,9 @@ export default async function decorate(block) {
   spanAckQuestion.textContent = defaultQuestion;
 
   const divFindUsefulButtonsContainer = document.createElement('div');
-  divFindUsefulButtonsContainer.classList.add('find-useful-buttons-container');
+  divFindUsefulButtonsContainer.classList.add('button-container');
 
   // Yes button
-  const divYesButton = document.createElement('div');
-  divYesButton.classList.add('find-useful-button');
 
   const yesButton = document.createElement('button');
   yesButton.setAttribute('id', 'yesBtn');
@@ -48,11 +46,9 @@ export default async function decorate(block) {
   yesButton.setAttribute('type', 'button');
   yesButton.textContent = 'Yes';
 
-  divYesButton.appendChild(yesButton);
+  divFindUsefulButtonsContainer.appendChild(yesButton);
 
   // No button
-  const divNoButton = document.createElement('div');
-  divNoButton.classList.add('find-useful-button');
 
   const noButton = document.createElement('button');
   noButton.setAttribute('id', 'noBtn');
@@ -60,15 +56,13 @@ export default async function decorate(block) {
   noButton.setAttribute('type', 'button');
   noButton.textContent = 'No';
 
-  divNoButton.appendChild(noButton);
+  divFindUsefulButtonsContainer.appendChild(noButton);
 
   divSectionFindUseful.appendChild(spanAckText);
   divSectionFindUseful.appendChild(inputSurveyID);
   divSectionFindUseful.appendChild(divQuestionContainer);
   divQuestionContainer.appendChild(spanAckQuestion);
   divQuestionContainer.appendChild(divFindUsefulButtonsContainer);
-  divFindUsefulButtonsContainer.appendChild(divYesButton);
-  divFindUsefulButtonsContainer.appendChild(divNoButton);
 
   block.innerHTML = divSectionFindUseful.innerHTML;
 

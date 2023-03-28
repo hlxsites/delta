@@ -12,14 +12,13 @@
 }
 
 .toc ul li {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-family: var(--body-font-family);
   padding-bottom: 0.5rem;
 }
 
 .toc ul li a {
   padding-bottom: 0.2em;
-  margin-left: 0.6em;
   color: var(--color-delta-blue);
   border-bottom: 1px dotted var(--color-delta-blue);
   line-height: 2.125rem;
@@ -33,5 +32,14 @@
 @media (min-width: 768px) {
   .toc ul {
     column-count: 2;
+  }
+
+  .toc ul li {
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .toc ul li a {
+    margin-left: 0.6em;
   }
 }

@@ -47,8 +47,9 @@
   position: absolute;
   top: 2rem;
   border: none;
-  padding: 1rem;
+  padding: 0;
   min-width: unset;
+  width: auto;
   background: none;
   transition: top .3s ease-out;
 }

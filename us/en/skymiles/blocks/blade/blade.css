@@ -20,9 +20,10 @@
 }
 
 .blade .blade-body {
+    position: relative;
     box-sizing: border-box;
     padding: 2rem 0;
-    position: relative;
+    width: 100%;
 }
 
 .blade .blade-body :is(h3, h4) {
@@ -73,6 +74,7 @@
 
 .blade.emphasized .blade-body .button {
     width: 100%;
+    min-width: auto;
 }
 
 .blade.emphasized .blade-body > :first-child::after {

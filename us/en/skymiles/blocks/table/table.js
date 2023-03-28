@@ -95,7 +95,7 @@ window.addEventListener('scroll', () => {
   }
   document.querySelectorAll('.table').forEach((block) => {
     const rect = block.getBoundingClientRect();
-    const shouldStickyNav = rect.top < 100 && rect.height + rect.y > 100;
+    const shouldStickyNav = rect.top < 100 && rect.height + rect.y > (window.innerHeight / 2);
     const isAlreadyStickyNav = block.classList.contains('is-sticky-nav');
     if (isAlreadyStickyNav === shouldStickyNav) {
       return;

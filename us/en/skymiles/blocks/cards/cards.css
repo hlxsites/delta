@@ -1,5 +1,9 @@
+.cards-wrapper {
+    overflow: auto;
+}
+
 .cards {
-    margin: 30px auto;
+    margin: 2rem auto;
 }
 
 .cards > ul {
@@ -8,7 +12,7 @@
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     max-width: 1200px;
     justify-content: center;
 }
@@ -47,10 +51,13 @@
 }
 
 .cards .cards-card-body p {
-    padding-right: 30px;
-    font-size: 15.5px;
     color: var(--color-delta-blue);
+    font-size: 1rem;
     font-weight: 700;
+}
+
+.cards .is-link .cards-card-body p {
+    padding-right: 2rem;
 }
 
 .cards .cards-card-image {
@@ -80,7 +87,11 @@
     color: var(--link-color);
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) {
+    .cards > ul {
+        gap: 2rem;
+    }
+
     .cards > ul > li img {
         height: 480px;
     }

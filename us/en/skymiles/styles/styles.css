@@ -30,7 +30,7 @@
   --highlight-background-color: #11172b;
 
   /* text colors */
-  --text-color: #212529;
+  --text-color: var(--color-delta-blue); /* #212529; */
   --text-color-inverted: #fff;
   --heading-color: var(--color-delta-blue);
   --button-color: var(--color-delta-blue);
@@ -98,7 +98,7 @@ footer {
 .section {
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 1rem;
   width: 100%;
 }
 
@@ -113,6 +113,7 @@ footer {
 }
 
 .default-content-wrapper {
+  padding: 2rem 0;
   overflow: auto;
 }
 
@@ -272,6 +273,10 @@ main figure figcaption {
   text-align: right;
 }
 
+[aria-hidden="true"] {
+  display: none;
+}
+
 /* inline accordion toggles */
 
 main details {
@@ -324,6 +329,10 @@ main details[open] summary::before {
 
 /* buttons */
 .button-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  gap: 1rem 0;
   text-align: center;
 }
 
@@ -346,6 +355,7 @@ main details[open] summary::before {
   text-decoration: none;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .button:hover, .button:focus, button:hover, button:focus  {
@@ -377,6 +387,10 @@ button:disabled, button:disabled:hover {
   color: var(--text-color)
 }
 
+p > em:only-child {
+  text-align: left;
+}
+
 p > .button.secondary:only-child,
 p > em:only-child > .button.secondary:only-child {
   margin: 0;
@@ -389,6 +403,7 @@ p > em:only-child > .button.secondary:only-child {
   letter-spacing: unset;
   text-transform: unset;
   min-width: 0;
+  width: auto;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -447,7 +462,7 @@ main > .section > .badge {
 
 /* Custom overrides for the fresh-air themed pages */
 .fresh-air .hero-container + .section {
-  padding-top: 7.25rem
+  padding-top: 5rem
 }
 
 .fresh-air h1 {
@@ -481,16 +496,16 @@ main > .section > .badge {
   width: 82px;
 }
 
+.fresh-air .section h1 + h2 {
+  margin-top: 0;
+}
+
 .fresh-air :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-l);
 }
 
 .fresh-air .default-content-wrapper h2 {
   margin-top: 3rem;
-}
-
-.fresh-air .default-content-wrapper h1 + h2 {
-  margin-top: 1.25rem;
 }
 
 .fresh-air .section h1 + h2,
@@ -526,10 +541,6 @@ main > .section > .badge {
   font-weight: normal;
 }
 
-.fresh-air .default-content-eyebrow .button-container {
-  margin: 2rem 0;
-}
-
 /* Responsive adaptation for larger screens. */
 @media (min-width: 375px) {
   main .section {
@@ -538,30 +549,11 @@ main > .section > .badge {
 }
 
 @media (min-width: 768px) {
-  .button-container {
-    display: flex;
-    gap: .5rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    text-align: inherit;
-  }
-
-  [data-align="left"] .button-container {
-    justify-content: start;
-  }
-
-  [data-align="center"] .button-container {
-    justify-content: center;
-  }
-
-  [data-align="right"] .button-container {
-    justify-content: end;
-  }
-
   .button:any-link, button {
     padding: 1rem 1.5rem;
     min-width: 17rem;
     vertical-align: bottom;
+    width: auto;
   }
 
   p > em:only-child > .button.secondary:only-child {
@@ -570,10 +562,15 @@ main > .section > .badge {
 
   main .section {
     max-width: 730px;
+    padding: 0 1rem;
   }
 
   main figure picture {
     margin: initial;
+  }
+
+  .fresh-air h1 {
+    margin-top: 4rem;
   }
 
   .fresh-air .default-content-wrapper h2 {
@@ -585,11 +582,11 @@ main > .section > .badge {
     font-size: var(--heading-font-size-xxl);
   }
 
-  .fresh-air .default-content-wrapper h2:first-child {
-    margin-top: 0;
+  .fresh-air .section h1 + h2 {
+    margin-top: 1.25rem;
   }
 
-  .fresh-air .default-content-wrapper h1 + h2:first-child {
+  .fresh-air .default-content-wrapper h2:first-child {
     margin-top: 0;
   }
 
@@ -608,16 +605,28 @@ main > .section > .badge {
   :root {
     --nav-height: 146.5px;
   }
-
   .button-container {
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
     text-align: inherit;
-    margin: 2rem 0;
-    padding: 0;
-    gap: 2rem;
+  }
+
+  [data-align="left"] .button-container {
+    justify-content: start;
+  }
+
+  [data-align="center"] .button-container {
+    justify-content: center;
+  }
+
+  [data-align="right"] .button-container {
+    justify-content: end;
   }
 
   .button:any-link, button {
-    min-width: 20rem;
+    min-width: 18rem;
+    padding: 1.5rem;
   }
 
   main:not(.has-badge) > .section:not(.hero-container):first-child::after,
@@ -633,6 +642,10 @@ main > .section > .badge {
   p small {
     font-size: var(--body-font-size-m);
     font-style: normal;
+  }
+
+  main.has-badge .badge {
+    margin: -.5rem 0 -2.5rem;
   }
 }
 

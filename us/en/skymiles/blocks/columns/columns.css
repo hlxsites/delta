@@ -2,6 +2,10 @@
     margin-bottom: 3rem;
 }
 
+.columns {
+    margin: 2rem auto;
+}
+
 .columns > div {
     display: flex;
     flex-direction: column;
