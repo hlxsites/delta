@@ -27,6 +27,27 @@ footer .footer-copyright {
   font-size: var(--body-font-size-xxs);
 }
 
+footer .footer-links a {
+  text-decoration: none;
+  font-family: var(--body-medium-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 400;
+  line-height: var(--heading-font-size-s);
+}
+
+footer .footer-social-int a {
+  color: white;
+  vertical-align: middle;
+}
+
+footer .footer-copyright p,
+footer .footer-legal p,
+footer .footer-legal p a {
+  font-family: var(--heading-font-family);
+  font-size: 0.75rem;
+  line-height: 1.3rem;
+}
+
 /* terms and conditions */
 footer .footer-legal {
   color: var(--color-delta-gray);
@@ -39,7 +60,13 @@ footer .footer-legal {
 footer .footer-feedback {
   color: white;
   text-align: center;
-  padding-top: 1.2em;
+  padding-top: 1.5em;
+  padding-bottom: 1.2em;
+}
+
+footer .footer-feedback p {
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 /* social and language links - last */
@@ -57,23 +84,13 @@ footer .footer-links > ul > li {
   padding-left: 0;
 }
 
-footer .footer-social-int li:not(:first-child) {
+footer .footer-social-int li.color {
   display: inline-block;
-}
-
-footer .footer-social-int a {
-  color: white;
-  vertical-align: middle;
 }
 
 footer .icon > svg {
   vertical-align: middle;
   padding: .25rem;
-}
-
-/* globe icon only */
-footer .icon-globe > svg {
-  fill: white;
 }
 
 /* Info modal */
@@ -106,13 +123,14 @@ footer .footer-links > ul > li .menu {
   padding-left: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
+  transition: max-height 0.4s ease-in;
   border-bottom: 1px solid grey;
+  margin-top: 1.375rem;
 }
 
-footer .footer-links > ul > li > .menu.show {
+footer .footer-links > ul > li > .menu[aria-expanded="true"] {
   max-height: 300px;
-  transition: max-height 0.8s ease-out;
+  transition: max-height 0.8s fade-in-out;
 }
 
 footer .footer-links > ul > li .heading {
@@ -132,19 +150,16 @@ footer .footer-links > ul > li .heading .caret.up {
   top: 4px;
 }
 
-footer .footer-links a {
-  text-decoration: none;
-  line-height: 2.2rem;
-}
-
 footer .footer-links a:hover, footer .footer-social-int a:hover {
   text-decoration: none;
 }
 
 footer .footer-links strong {
   color: var(--color-delta-gray);
-  font-family: var(--heading-bold-font-family);
+  font-family: var(--heading-font-family-alt);
   letter-spacing: 1px;
+  line-height: 1.125rem;
+  font-size: var(--heading-font-size-s);
   cursor: pointer;
 }
 
@@ -158,10 +173,12 @@ footer .footer-search-help-topics {
 footer .footer-search-help-topics ul {
   list-style: none;
   margin-top: unset;
+  padding-left: 0;
 }
 
 footer .footer-search-help-topics .first-row {
   display: flex;
+  gap: 40px;
   justify-content: center;
   margin-bottom: 20px;
   align-items: center;
@@ -173,7 +190,7 @@ footer .footer-search-help-topics .first-row ul {
 }
 
 footer .footer-search-help-topics .first-row .heading {
-  font-size: 46px;
+  font-size: 1.5rem;
 }
 
 footer .footer-search-help-topics svg {
@@ -183,10 +200,7 @@ footer .footer-search-help-topics svg {
 }
 
 footer .footer-search-help-topics .second-row {
-  display: inline-flex;
-  font-size: 1.125rem;
-  color: var(--color-delta-gray);;
-  margin-bottom: 20px;
+  display: none;
 }
 
 footer .footer-search-help-topics .second-row .heading {
@@ -196,6 +210,13 @@ footer .footer-search-help-topics .second-row .heading {
 footer .footer-search-help-topics .second-row a {
   font-family: var(--heading-font-family);
   font-size: 1.125rem;
+}
+
+footer .footer-social-int li.color a,
+footer .footer-social-int li.color svg {
+  color: var(--color-delta-gray);
+  font-size: var(--heading-font-size-xs);
+  fill: var(--color-delta-gray);
 }
 
 footer .footer-search-help-topics .second-row a:hover {
@@ -208,16 +229,21 @@ footer .footer-search-help-topics .second-row ul {
   gap: 40px;
 }
 
-footer .footer-search-help-topics::after {
-  content: '';
-  display: block;
-  background-color: var(--color-delta-gray);
-  height: 0.5px;
-  margin-left: max(40px, calc((100% - 1200px) / 2));
-  margin-right: max(40px, calc((100% - 1200px) / 2));
+footer .footer-social-int li.color svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+footer .footer-search-help-topics .first-row ul svg {
+  width: 25px;
+  height: 25px;
 }
 
 @media (min-width: 768px) {
+  footer .footer {
+    max-width: 730px;
+  }
+
   footer .footer > div > div {
     width: unset;
     margin: unset;
@@ -232,7 +258,18 @@ footer .footer-search-help-topics::after {
     display: inline-block;
     margin: 0 1rem;
   }
+
+  footer .footer-links > ul > li {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 25%;
+  }
   
+  footer .footer-social-int li:nth-child(2) {
+    padding-left: 2rem;
+    border-left: 1px solid var(--color-delta-gray);
+  }
+
   footer .footer-links {
     width: unset;
     margin: 0 auto;
@@ -247,7 +284,7 @@ footer .footer-search-help-topics::after {
     border-bottom: none;
   }
 
-  footer .footer-links > ul > li > .menu.show {
+  footer .footer-links > ul > li > .menu[aria-expanded="true"] {
     max-height: none;
     transition: none;
   }
@@ -267,33 +304,44 @@ footer .footer-search-help-topics::after {
   footer .footer-links > ul {
     flex-direction: unset;
   }
-  
-  footer .footer-links > ul > li {
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  footer .footer {
-      max-width: 750px;
-    }
-}
-
-  @media (min-width: 900px) {
-    footer .footer {
-      max-width: 1200px;
-    }
-  }
-
-@media (max-width: 900px) {
   footer .footer-search-help-topics .first-row .heading {
-    font-size: 24px;
+    font-size: 2.875em;
+  }
+
+  footer .footer-search-help-topics ul {
+    list-style: none;
+    margin-top: unset;
+    padding-left: 40px;
+  }
+
+  footer .footer-search-help-topics .first-row ul {
+    padding-left: 5px;
+  }
+
+  footer .footer-search-help-topics .first-row ul svg {
+    width: 40px;
+    height: 40px;
   }
 
   footer .footer-search-help-topics .second-row {
-    display: none;
+    display: inline-flex;
+    font-size: 1.125rem;
+    color: var(--color-delta-gray);;
+    margin-bottom: 20px;
   }
-  
-  footer .footer-search-help-topics::after {
-    display: none;
+
+  footer .footer-search-help-topics .second-row .heading {
+    font-family: var(--body-medium-font-family);
+  }
+
+  footer .footer-search-help-topics {
+    border-bottom: 1px solid var(--color-delta-gray);
+  }
+}
+
+@media (min-width: 992px) {
+  footer .footer {
+    max-width: 976px;
   }
 }
