@@ -277,17 +277,22 @@ footer .footer-search-help-topics .first-row ul svg {
     gap: 0 2rem;
   }
 
-  footer .footer-links .heading::after {
-    display: none;
-  }
-
   footer .footer-links > ul > li {
     flex-basis: 25%;
+  }
+
+  footer .footer-social-int li:first-child {
+    border-left: 0;
+    border-left: none;
   }
 
   footer .footer-links > ul > li .heading {
     min-height: 2.25rem;
     position: unset;
+  }
+
+  footer .footer-links .heading::after {
+    display: none;
   }
 
   footer .footer-links > ul > li .menu {
@@ -302,11 +307,6 @@ footer .footer-search-help-topics .first-row ul svg {
   footer .footer-links > ul > li > .menu[aria-expanded="true"] {
     max-height: none;
     transition: none;
-  }
-
-  footer .footer-social-int li:first-child {
-    border-left: 0;
-    border-left: none;
   }
   
   footer .footer-links strong {
