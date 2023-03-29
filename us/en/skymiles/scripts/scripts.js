@@ -35,6 +35,25 @@ function buildHeroBlock(main) {
   main.prepend(section);
 }
 
+function createA11yQuickNav(links = []) {
+  const nav = document.createElement('nav');
+  nav.classList.add('a11y-quicknav', 'sr-focusable');
+  links.forEach((l) => {
+    const a = document.createElement('a');
+    a.href = `#${l.id}`;
+    a.textContent = l.label;
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const el = document.getElementById(ev.currentTarget.href.split('#')[1]);
+      el.setAttribute('tabindex', 0);
+      el.focus();
+      el.addEventListener('focusout', () => { el.setAttribute('tabindex', -1); }, { once: true });
+    });
+    nav.append(a);
+  });
+  document.body.prepend(nav);
+}
+
 function createResponsiveImage(pictures, breakpoint = 768) {
   pictures.sort((p1, p2) => {
     const img1 = p1.querySelector('img');
@@ -214,7 +233,11 @@ function decorateEyeBrows(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function decorateMain(main) {
+  main.id = 'main';
   document.body.classList.add('fresh-air');
+  createA11yQuickNav([
+    { id: 'main', label: 'Skip to main content' },
+  ]);
   await decorateContainer(main);
   buildAutoBlocks(main);
   decorateSections(main);
