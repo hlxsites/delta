@@ -57,23 +57,20 @@ export default async function decorate(block) {
   const menuHeadings = footer.querySelectorAll('.heading');
   const menuLists = footer.querySelectorAll('.menu');
   menuHeadings.forEach((heading) => {
-    const caret = document.createElement('span');
-    caret.classList.add('caret');
-    caret.innerHTML = '&#8964;';
-    heading.appendChild(caret);
     heading.addEventListener('click', () => {
       const menuList = heading.nextElementSibling;
       const isMenuListExpanded = menuList.getAttribute('aria-expanded') === 'true';
       if (menuList && menuList.classList.contains('menu')) {
+        heading.setAttribute('aria-expanded', 'false');
         menuList.setAttribute('aria-expanded', 'false');
         menuLists.forEach((ul) => {
           if (ul !== menuList && ul.getAttribute('aria-expanded') === 'true') {
+            ul.previousElementSibling.setAttribute('aria-expanded', 'false');
             ul.setAttribute('aria-expanded', 'false');
-            ul.previousElementSibling.querySelector('.caret').classList.remove('up');
           }
         });
+        heading.setAttribute('aria-expanded', !isMenuListExpanded);
         menuList.setAttribute('aria-expanded', !isMenuListExpanded);
-        caret.classList.toggle('up', !isMenuListExpanded);
       }
     });
   });
