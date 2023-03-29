@@ -8,46 +8,6 @@
     margin-right: 0;
 }
 
-.accordion-wrapper [role="group"] {
-    text-align: right;
-}
-
-.accordion-wrapper [role="group"] button {
-    position: relative;
-    appearance: none;
-    border: none;
-    background: none;
-    margin: 1rem 0 1rem 1rem;
-    min-width: 4rem;
-    padding: 0;
-    text-transform: none;
-    letter-spacing: 1.5px;
-    color: var(--link-color);
-    font-family: var(--button-font-family);
-    text-decoration: none;
-    overflow: visible;
-    width: auto;
-}
-
-.accordion-wrapper [role="group"] button:first-child::after {
-    position: absolute;
-    content: '';
-    height: 1rem;
-    right: -.5rem;
-    top: 50%;
-    border-right: 2px solid;
-    transform: translateY(-.5rem);
-}
-
-.accordion-wrapper [role="group"] button:hover {
-    text-decoration: underline;
-}
-
-.accordion-wrapper [role="group"] button:disabled {
-    font-family: var(--heading-font-family);
-    text-decoration: none;
-}
-
 .accordion-section {
     padding: 1.5rem 1rem;
     border-top: .0625rem solid var(--color-delta-gray-middle);
@@ -123,6 +83,46 @@
 .accordion button[aria-expanded="true"]::after {
     transform: rotate(315deg);
     top: 45%;
+}
+
+.accordion-wrapper [role="group"] {
+    text-align: right;
+}
+
+.accordion-wrapper [role="group"] button {
+    position: relative;
+    appearance: none;
+    border: none;
+    background: none;
+    margin: 1rem 0 1rem 1rem;
+    min-width: 4rem;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: 1.5px;
+    color: var(--link-color);
+    font-family: var(--button-font-family);
+    text-decoration: none;
+    overflow: visible;
+    width: auto;
+}
+
+.accordion-wrapper [role="group"] button:first-child::after {
+    position: absolute;
+    content: '';
+    height: 1rem;
+    right: -.5rem;
+    top: 50%;
+    border-right: 2px solid;
+    transform: translateY(-.5rem);
+}
+
+.accordion-wrapper [role="group"] button:hover {
+    text-decoration: underline;
+}
+
+.accordion-wrapper [role="group"] button:disabled {
+    font-family: var(--heading-font-family);
+    text-decoration: none;
 }
 
 .accordion .tertiary.highlight {
