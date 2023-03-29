@@ -34,6 +34,14 @@ export default async function decorate(block) {
     div.className = rowNames[i];
   });
 
+  const footerSocialInt = footer.querySelector('.footer-social-int');
+  const searchSocialInt = footerSocialInt.querySelectorAll('ul > li');
+  searchSocialInt.forEach((div) => {
+    if (div !== footerSocialInt.querySelector('ul > li:first-child')) {
+      div.className = 'color';
+    }
+  });
+
   const firstFooterDiv = footer.querySelector('.footer-links');
   firstFooterDiv.classList.add('footer-menu');
   const headings = firstFooterDiv.querySelectorAll('ul > li > strong');
@@ -48,27 +56,21 @@ export default async function decorate(block) {
 
   const menuHeadings = footer.querySelectorAll('.heading');
   const menuLists = footer.querySelectorAll('.menu');
-  menuHeadings.forEach((heading, index) => {
-    const caret = document.createElement('span');
-    caret.classList.add('caret');
-    caret.innerHTML = '&#8964;';
-    heading.appendChild(caret);
+  menuHeadings.forEach((heading) => {
     heading.addEventListener('click', () => {
-      const menuList = menuLists[index];
-      const isMenuListVisible = menuList.classList.contains('show');
-      menuLists.forEach((ul) => {
-        if (ul !== menuList && ul.classList.contains('show')) {
-          ul.classList.remove('show');
-          ul.previousElementSibling.querySelector('.caret').classList.remove('up');
-        }
-      });
-
-      if (!isMenuListVisible) {
-        menuList.classList.add('show');
-        caret.classList.add('up');
-      } else {
-        menuList.classList.remove('show');
-        caret.classList.remove('up');
+      const menuList = heading.nextElementSibling;
+      const isMenuListExpanded = menuList.getAttribute('aria-expanded') === 'true';
+      if (menuList && menuList.classList.contains('menu')) {
+        heading.setAttribute('aria-expanded', 'false');
+        menuList.setAttribute('aria-expanded', 'false');
+        menuLists.forEach((ul) => {
+          if (ul !== menuList && ul.getAttribute('aria-expanded') === 'true') {
+            ul.previousElementSibling.setAttribute('aria-expanded', 'false');
+            ul.setAttribute('aria-expanded', 'false');
+          }
+        });
+        heading.setAttribute('aria-expanded', !isMenuListExpanded);
+        menuList.setAttribute('aria-expanded', !isMenuListExpanded);
       }
     });
   });
