@@ -496,16 +496,16 @@ main > .section > .badge {
   width: 82px;
 }
 
+.fresh-air .default-content-wrapper h2 {
+  margin-top: 3rem;
+}
+
 .fresh-air .section h1 + h2 {
   margin-top: 0;
 }
 
 .fresh-air :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-l);
-}
-
-.fresh-air .default-content-wrapper h2 {
-  margin-top: 3rem;
 }
 
 .fresh-air .section h1 + h2,
@@ -577,13 +577,13 @@ main > .section > .badge {
     margin-top: 5rem;
   }
 
+  .fresh-air .section h1 + h2 {
+    margin-top: 1.25rem;
+  }
+
   .fresh-air .section h1 + h2,
   .fresh-air .section h2:first-child {
     font-size: var(--heading-font-size-xxl);
-  }
-
-  .fresh-air .section h1 + h2 {
-    margin-top: 1.25rem;
   }
 
   .fresh-air .default-content-wrapper h2:first-child {
@@ -605,10 +605,10 @@ main > .section > .badge {
   :root {
     --nav-height: 146.5px;
   }
+
   .button-container {
-    flex-direction: row;
+    flex-flow: row wrap;
     gap: 1rem;
-    flex-wrap: wrap;
     text-align: inherit;
   }
 
