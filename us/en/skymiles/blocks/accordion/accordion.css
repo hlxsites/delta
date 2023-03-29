@@ -2,6 +2,57 @@
     margin-bottom: 20px;
 }
 
+.accordion-wrapper {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.accordion-wrapper [role="group"] {
+    text-align: right;
+}
+
+.accordion-wrapper [role="group"] button {
+    position: relative;
+    appearance: none;
+    border: none;
+    background: none;
+    margin: 1rem 0 1rem 1rem;
+    min-width: 4rem;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: 1.5px;
+    color: var(--link-color);
+    font-family: var(--button-font-family);
+    text-decoration: none;
+    overflow: visible;
+    width: auto;
+}
+
+.accordion-wrapper [role="group"] button:first-child::after {
+    position: absolute;
+    content: '';
+    height: 1rem;
+    right: -.5rem;
+    top: 50%;
+    border-right: 2px solid;
+    transform: translateY(-.5rem);
+}
+
+.accordion-wrapper [role="group"] button:hover {
+    text-decoration: underline;
+}
+
+.accordion-wrapper [role="group"] button:disabled {
+    font-family: var(--heading-font-family);
+    text-decoration: none;
+}
+
+.accordion-section {
+    padding: 1.5rem 1rem;
+    border-top: .0625rem solid var(--color-delta-gray-middle);
+}
+
 .accordion .text p {
     font-family: var(--heading-font-family);
     font-size: 1rem;
@@ -11,53 +62,7 @@
     padding: 10px;
 }
 
-.accordion-wrapper {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.accordion-wrapper .toolbar {
-    text-align: right;
-}
-
-.accordion-wrapper .toolbar .tertiary {
-    appearance: none;
-    border: none;
-    background: none;
-    margin: 0;
-    min-width: 4rem;
-    padding: 0.5rem;
-    text-transform: none;
-    letter-spacing: 0.01rem;
-    font-family: var(--button-font-family);
-    text-decoration: none;
-}
-
-.accordion-wrapper .toolbar .tertiary:hover {
-    text-decoration: underline;
-}
-
-.accordion .text[aria-expanded="true"] {
-    display: block;
-    color: var(--color-delta-blue)
-}
-
-.accordion .text[aria-expanded="false"] {
-    display: none;
-}
-
-.accordion-section {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top: .0625rem solid var(--color-delta-gray-middle);
-}
-
-.accordion .text {
-    display: none;
-}
-
-.accordion .text[aria-expanded="true"] button {
+.accordion .text button {
     min-width: 20rem;
     width: 20rem;
     white-space: normal;
@@ -89,7 +94,19 @@
     cursor: pointer;
 }
 
-.accordion .header::after {
+.accordion button[aria-expanded] {
+    position: relative;
+    padding: 0;
+    border: none;
+    width: 100%;
+}
+
+.accordion button[aria-expanded]:focus,
+.accordion button[aria-expanded]:hover {
+    background: inherit;
+}
+
+.accordion button[aria-expanded]::after {
     content: '';
     border: 1px solid var(--color-delta-red); 
     border-width: 2px 2px 0 0; 
@@ -103,7 +120,7 @@
     top: 40%;
 }
 
-.accordion .header[aria-expanded="true"]::after {
+.accordion button[aria-expanded="true"]::after {
     transform: rotate(315deg);
     top: 45%;
 }
@@ -125,7 +142,7 @@
 }
 
 @media (min-width: 992px) {
-    .header {
+    .accordion .header {
         border: none;
         padding: 0;
         padding-left: 10px;
@@ -133,18 +150,12 @@
         font-size: 1.5rem;
     }
 
-    .header[aria-expanded="true"] {
-        outline: 2px solid lightgrey;
-        outline-offset: -2px; 
-        border-radius: 5px
+    .accordion button[aria-expanded]:focus {
+        outline: 2px solid var(--color-delta-blue);
+        border-radius: 5px;
     }
 
-    .header[aria-expanded="true"]::after {
-        transform: rotate(315deg);
-        top: 45%;
-    }
-
-    .header p:first-child {
+    .accordion .header p:first-child {
         padding-top: 15px;
     }
 }

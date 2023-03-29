@@ -234,7 +234,8 @@ export async function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  const lang = document.querySelector('head>meta[name="lang"]');
+  document.documentElement.lang = lang ? lang.content : 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
