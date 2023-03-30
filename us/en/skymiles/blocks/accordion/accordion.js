@@ -1,5 +1,5 @@
 import { decorateBlock, loadBlocks } from '../../scripts/lib-franklin.js';
-import { fetchContent } from '../../scripts/scripts.js';
+import { decorateContainer, fetchContent } from '../../scripts/scripts.js';
 import { constants } from './aria-accordion.js';
 
 export default async function decorate(block) {
@@ -46,14 +46,5 @@ export default async function decorate(block) {
     await loadBlocks(document.querySelector('main'));
   }
 
-  textDivs.forEach((text) => {
-    const textButton = text.querySelectorAll('p > small > strong');
-    textButton.forEach((tb) => {
-      const button = document.createElement('button');
-      button.textContent = tb.textContent;
-      const p = tb.closest('p');
-      p.parentNode.insertBefore(button, p);
-      p.parentNode.removeChild(p);
-    });
-  });
+  return Promise.all([...textDivs].map((el) => decorateContainer(el)));
 }
