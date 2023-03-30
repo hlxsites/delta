@@ -19,6 +19,7 @@
 
 .cards > ul > li {
     background-color: var(--overlay-background-color);
+    margin-bottom: 3rem;
 }
 
 .cards.silent > ul > li {
