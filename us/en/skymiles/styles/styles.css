@@ -152,7 +152,7 @@ p small {
   font-size: var(--body-font-size-s);
   font-style: normal;
   display: block;
-  margin-bottom: 1.063rem;
+  margin-bottom: 1rem;
 }
 
 p:has(small:only-child) {
