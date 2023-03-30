@@ -1,3 +1,5 @@
+const HEADINGS_SELECTOR = 'h1,h2,h3,h4,h5,h6';
+
 export const constants = {
   tagName: 'hlx-aria-accordion',
   withControls: 'with-controls',
@@ -22,6 +24,10 @@ export class AriaAccordion extends HTMLElement {
       });
       item.addEventListener('keydown', (ev) => {
         switch (ev.key) {
+          case 'Home':
+            ev.preventDefault();
+            this.focusItem(0);
+            break;
           case 'ArrowUp':
             ev.preventDefault();
             this.focusItem(this.selectedIndex - 1);
@@ -29,6 +35,10 @@ export class AriaAccordion extends HTMLElement {
           case 'ArrowDown':
             ev.preventDefault();
             this.focusItem(this.selectedIndex + 1);
+            break;
+          case 'End':
+            ev.preventDefault();
+            this.focusItem(this.itemsCount - 1);
             break;
           default:
             break;
@@ -45,17 +55,25 @@ export class AriaAccordion extends HTMLElement {
   async decorate() {
     let idBtn;
     let idPnl;
+    const previousHeadings = [...document.querySelectorAll(HEADINGS_SELECTOR)]
+      // eslint-disable-next-line no-bitwise
+      .filter((h) => h.compareDocumentPosition(this) & Node.DOCUMENT_POSITION_FOLLOWING);
+    const headingLevel = previousHeadings.length
+      ? Number(previousHeadings.pop().tagName.substring(1)) + 1
+      : 1;
     [...this.children].forEach((el, i) => {
       idBtn = Math.random().toString(32).substring(2);
       idPnl = Math.random().toString(32).substring(2);
 
+      const heading = document.createElement(`h${headingLevel}`);
       const button = document.createElement('button');
       button.id = idBtn;
       button.setAttribute('aria-expanded', false);
       button.setAttribute('aria-controls', idPnl);
       button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
       button.innerHTML = el.firstElementChild.outerHTML;
-      el.firstElementChild.replaceWith(button);
+      heading.append(button);
+      el.firstElementChild.replaceWith(heading);
 
       const panel = document.createElement('div');
       panel.id = idPnl;
@@ -85,7 +103,7 @@ export class AriaAccordion extends HTMLElement {
   toggleAll(visible) {
     this.querySelectorAll('button[aria-expanded]').forEach((btn) => {
       btn.setAttribute('aria-expanded', visible);
-      btn.nextElementSibling.setAttribute('aria-hidden', !visible);
+      btn.parentElement.nextElementSibling.setAttribute('aria-hidden', !visible);
     });
     if (this.attributes[constants.withControls].value) {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
@@ -101,7 +119,7 @@ export class AriaAccordion extends HTMLElement {
     }
     const expanded = el.getAttribute('aria-expanded') === 'true';
     el.setAttribute('aria-expanded', !expanded);
-    el.nextElementSibling.setAttribute('aria-hidden', expanded);
+    el.parentElement.nextElementSibling.setAttribute('aria-hidden', expanded);
     if (this.attributes[constants.withControls].value) {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.disabled = !this.querySelector('button[aria-expanded="false"]');

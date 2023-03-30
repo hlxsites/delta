@@ -13,6 +13,15 @@
     border-top: .0625rem solid var(--color-delta-gray-middle);
 }
 
+.accordion-section > h1,
+.accordion-section > h2,
+.accordion-section > h3,
+.accordion-section > h4,
+.accordion-section > h5,
+.accordion-section > h6 {
+    margin: 0;
+}
+
 .accordion .text p {
     font-family: var(--heading-font-family);
     font-size: 1rem;
