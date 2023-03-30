@@ -65,8 +65,9 @@
 
 .accordion button[aria-expanded] {
     position: relative;
-    padding: 0;
+    padding: 0 3rem 0 0;
     border: none;
+    text-align: left;
     width: 100%;
 }
 
