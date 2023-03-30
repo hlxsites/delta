@@ -1,23 +1,12 @@
-export const TAG = 'hlx-aria-accordion';
-
 export const constants = {
   tagName: 'hlx-aria-accordion',
-  codeBasePath: 'base-path',
   withControls: 'with-controls',
 };
 
 export class AriaAccordion extends HTMLElement {
-  constructor() {
-    super();
-    this.options = {
-      codeBasePath: this.getAttribute('base-path'),
-      itemsCount: this.children.length,
-      selectedIndex: 0,
-      withControls: this.getAttribute('with-controls'),
-    };
-  }
-
-  async connectedCallback() {
+  connectedCallback() {
+    this.selectedIndex = 0;
+    this.itemsCount = this.children.length;
     this.decorate();
     this.attachListeners();
   }
@@ -27,23 +16,26 @@ export class AriaAccordion extends HTMLElement {
     items.forEach((item) => {
       item.addEventListener('click', (ev) => {
         this.toggleItem(ev.currentTarget);
+        if (!ev.detail) { // it was triggered via keyboard space/enter
+          ev.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
       item.addEventListener('keydown', (ev) => {
         switch (ev.key) {
           case 'ArrowUp':
             ev.preventDefault();
-            this.focusItem(this.options.selectedIndex - 1);
+            this.focusItem(this.selectedIndex - 1);
             break;
           case 'ArrowDown':
             ev.preventDefault();
-            this.focusItem(this.options.selectedIndex + 1);
+            this.focusItem(this.selectedIndex + 1);
             break;
           default:
             break;
         }
       });
     });
-    if (this.options.withControls) {
+    if (this.attributes[constants.withControls].value) {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.addEventListener('click', () => this.toggleAll(true));
       collapse.addEventListener('click', () => this.toggleAll(false));
@@ -61,7 +53,7 @@ export class AriaAccordion extends HTMLElement {
       button.id = idBtn;
       button.setAttribute('aria-expanded', false);
       button.setAttribute('aria-controls', idPnl);
-      button.setAttribute('tabindex', i === this.options.selectedIndex ? 0 : -1);
+      button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
       button.innerHTML = el.firstElementChild.outerHTML;
       el.firstElementChild.replaceWith(button);
 
@@ -73,7 +65,7 @@ export class AriaAccordion extends HTMLElement {
       panel.innerHTML = el.firstElementChild.nextElementSibling.outerHTML;
       el.firstElementChild.nextElementSibling.replaceWith(panel);
     });
-    if (this.options.withControls) {
+    if (this.attributes[constants.withControls].value) {
       const ids = [...this.querySelectorAll('[role="region"]')].map((el) => el.id).join(' ');
       const div = document.createElement('div');
       div.role = 'group';
@@ -95,7 +87,7 @@ export class AriaAccordion extends HTMLElement {
       btn.setAttribute('aria-expanded', visible);
       btn.nextElementSibling.setAttribute('aria-hidden', !visible);
     });
-    if (this.options.withControls) {
+    if (this.attributes[constants.withControls].value) {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.disabled = visible;
       collapse.disabled = !visible;
@@ -104,13 +96,13 @@ export class AriaAccordion extends HTMLElement {
 
   toggleItem(el) {
     const index = [...this.querySelectorAll('button[aria-expanded]')].indexOf(el);
-    if (index !== this.options.selectedIndex) {
+    if (index !== this.selectedIndex) {
       this.focusItem(index);
     }
     const expanded = el.getAttribute('aria-expanded') === 'true';
     el.setAttribute('aria-expanded', !expanded);
     el.nextElementSibling.setAttribute('aria-hidden', expanded);
-    if (this.options.withControls) {
+    if (this.attributes[constants.withControls].value) {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.disabled = !this.querySelector('button[aria-expanded="false"]');
       collapse.disabled = !this.querySelector('button[aria-expanded="true"]');
@@ -120,17 +112,16 @@ export class AriaAccordion extends HTMLElement {
   focusItem(index) {
     let rotationIndex = index;
     if (index < 0) {
-      rotationIndex = this.options.itemsCount - 1;
-    } else if (index > this.options.itemsCount - 1) {
+      rotationIndex = this.itemsCount - 1;
+    } else if (index > this.itemsCount - 1) {
       rotationIndex = 0;
     }
     const buttons = this.querySelectorAll('button[aria-expanded]');
-    buttons[this.options.selectedIndex].setAttribute('tabindex', -1);
-    this.options.selectedIndex = rotationIndex;
-    buttons[this.options.selectedIndex].setAttribute('tabindex', 0);
-    buttons[this.options.selectedIndex].focus();
-    buttons[this.options.selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    buttons[this.selectedIndex].setAttribute('tabindex', -1);
+    this.selectedIndex = rotationIndex;
+    buttons[this.selectedIndex].setAttribute('tabindex', 0);
+    buttons[this.selectedIndex].focus();
   }
 }
 
-customElements.define(TAG, AriaAccordion);
+customElements.define(constants.tagName, AriaAccordion);

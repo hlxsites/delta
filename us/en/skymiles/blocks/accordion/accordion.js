@@ -9,11 +9,12 @@ export default async function decorate(block) {
     accordion.firstElementChild.classList.add('header');
     accordion.firstElementChild.nextElementSibling.classList.add('text');
   });
-  const test = `
-    <${constants.tagName} ${constants.codeBasePath}="/us/en/skymiles" ${constants.withControls}="${block.classList.contains('with-controls')}">
-      ${block.innerHTML}
-    </${constants.tagName}>`;
-  block.innerHTML = test + block.innerHTML;
+
+  const element = document.createElement(constants.tagName);
+  element.setAttribute(constants.withControls, block.classList.contains('with-controls'));
+  element.innerHTML = block.innerHTML;
+  block.innerHTML = '';
+  block.append(element);
 
   const textDivs = block.querySelectorAll('.text');
 
