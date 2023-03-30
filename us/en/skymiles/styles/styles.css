@@ -601,9 +601,6 @@ main > .section > .badge {
 
   .fresh-air .section h1 + h2 {
     margin-top: 1.25rem;
-  }
-
-  .fresh-air .section h1 + h2 {
     font-size: var(--heading-font-size-xxl);
   }
 
