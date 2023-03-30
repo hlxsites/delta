@@ -62,14 +62,21 @@ function createResponsiveImage(pictures, breakpoint = 768) {
   });
 
   const responsivePicture = document.createElement('picture');
+  const defaultImage = pictures[0].querySelector('img');
 
   responsivePicture.append(pictures[0].querySelector('source:not([media])'));
-  responsivePicture.append(pictures[0].querySelector('img'));
+  responsivePicture.append(defaultImage);
 
   pictures[1].querySelectorAll('source[media]').forEach((e) => {
     e.setAttribute('media', `(min-width: ${breakpoint}px)`);
     responsivePicture.prepend(e);
   });
+
+  // mark image as decorative if it doesn't have an alternative description
+  if (!defaultImage.alt) {
+    defaultImage.role = 'presentation';
+    defaultImage.alt = '';
+  }
 
   return responsivePicture;
 }
