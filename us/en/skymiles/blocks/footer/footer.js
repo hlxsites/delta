@@ -36,7 +36,13 @@ export default async function decorate(block) {
 
   const footerSocialInt = footer.querySelector('.footer-social-int');
   const searchSocialInt = footerSocialInt.querySelectorAll('ul > li');
-  searchSocialInt.forEach((div) => {
+  searchSocialInt.forEach((div, i) => {
+    if (i === 0) {
+      div.querySelectorAll('a').forEach((a) => {
+        const product = a.querySelector('.icon').classList.item(1).split('-')[1];
+        a.setAttribute('aria-label', `Go to our ${product} page.`);
+      });
+    }
     if (div !== footerSocialInt.querySelector('ul > li:first-child')) {
       div.className = 'color';
     }
