@@ -151,6 +151,8 @@ p small {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-style: normal;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 p:has(small:only-child) {
@@ -560,7 +562,7 @@ main > .section > .badge {
 }
 
 .fresh-air .default-content-eyebrow {
-  margin-top: 2.5rem;
+  /* margin-top: 2.5rem; */
   margin-bottom: 3rem;
 }
 
@@ -608,10 +610,6 @@ main > .section > .badge {
 
   .fresh-air .section h1 + h2 {
     margin-top: 1.25rem;
-  }
-
-  .fresh-air .section h1 + h2,
-  .fresh-air .section h2:first-child {
     font-size: var(--heading-font-size-xxl);
   }
 

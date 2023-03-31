@@ -1,6 +1,6 @@
-.columns-container {
+/* .columns-container {
     margin-bottom: 3rem;
-}
+} */
 
 .columns {
     margin: 2rem auto;
@@ -64,6 +64,10 @@
 
 .columns .button-container {
     justify-content: center;
+}
+
+.columns .button-container em {
+    text-align: center;
 }
 
 @media (min-width: 768px) {
