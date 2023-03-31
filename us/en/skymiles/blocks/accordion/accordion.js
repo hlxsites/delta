@@ -21,6 +21,7 @@ export default async function decorate(block) {
   // fetch dynamic content
   let hasAsyncBlocks = false;
   await Promise.all([...textDivs].map(async (text) => {
+    text.parentElement.setAttribute('aria-live', 'off');
     if (text.children.length === 1 && text.firstElementChild.tagName === 'A') {
       try {
         const path1 = new URL(text.firstElementChild.textContent).pathname;

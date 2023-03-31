@@ -79,7 +79,7 @@ export class AriaAccordion extends HTMLElement {
         button.innerHTML = el.firstElementChild.outerHTML;
         const heading = document.createElement(`h${headingLevel}`);
         heading.id = toClassName(button.textContent);
-        heading.append(button);
+        heading.innerHTML = button.outerHTML;
         el.firstElementChild.replaceWith(heading);
       }
 
