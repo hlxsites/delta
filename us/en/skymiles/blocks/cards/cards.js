@@ -21,6 +21,7 @@ export default function decorate(block) {
               a.parentElement.style.display = 'none';
             }
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.error(err);
             // if we don't have valid URLs, just ignore it
           }
