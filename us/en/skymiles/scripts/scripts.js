@@ -72,12 +72,6 @@ function createResponsiveImage(pictures, breakpoint = 768) {
     responsivePicture.prepend(e);
   });
 
-  // mark image as decorative if it doesn't have an alternative description
-  if (!defaultImage.alt) {
-    defaultImage.role = 'presentation';
-    defaultImage.alt = '';
-  }
-
   return responsivePicture;
 }
 
@@ -140,34 +134,58 @@ function decorateScreenReaderOnly(container) {
   });
 }
 
-function decorateHyperlinkImages(container) {
-  [...container.querySelectorAll('picture + br + a')]
-    .filter((a) => {
-      try {
-        return new URL(a.href).pathname === new URL(a.textContent).pathname;
-      } catch (err) {
-        return false;
-      }
-    })
-    .forEach((a) => {
-      const picture = a.previousElementSibling.previousElementSibling;
-      picture.remove();
-      a.previousElementSibling.remove();
-      const oncle = a.parentElement.nextElementSibling;
-      if (oncle.nextElementSibling === null
-        && oncle.childElementCount === 1
-        && oncle.firstElementChild.nodeName === 'A') {
-        const figure = document.createElement('figure');
+function decorateFigures(container) {
+  [...container.querySelectorAll('picture')].forEach((picture) => {
+    if (picture.closest('figure')) {
+      return;
+    }
+    const oncle1 = picture.parentElement.nextElementSibling
+      || picture.parentElement.querySelector('picture + br + a');
+    if (!oncle1 || (oncle1.tagName !== 'P' && oncle1.tagName !== 'A')) {
+      return;
+    }
+    const oncle2 = oncle1.nextElementSibling;
+    if (oncle2 && (!oncle1.classList.contains('button-container') || oncle2.nextElementSibling)) {
+      return;
+    }
+    if (oncle2 && oncle2.classList.contains('button-container') && oncle1.querySelector('a').href !== oncle2.querySelector('a').href) {
+      return;
+    }
+
+    const figure = document.createElement('figure');
+    const caption = document.createElement('figcaption');
+    if (oncle2) {
+      const isOncle2Link = oncle2.classList.contains('button-container');
+      caption.innerHTML = isOncle2Link
+        ? oncle2.querySelector('a').innerHTML
+        : oncle2.innerHTML;
+      oncle1.innerHTML = '';
+      if (isOncle2Link) {
+        oncle1.append(figure);
         figure.append(picture);
-        const caption = document.createElement('figcaption');
-        caption.innerHTML = oncle.firstElementChild.innerHTML;
-        figure.append(caption);
-        a.innerHTML = figure.outerHTML;
-        oncle.remove();
       } else {
-        a.innerHTML = picture.outerHTML;
+        oncle1.append(picture);
+        figure.innerHTML = oncle1.outerHTML;
+        oncle1.replaceWith(figure);
       }
-    });
+      figure.append(caption);
+    } else if (oncle1.classList.contains('button-container') && !oncle1.textContent.match(/https?:\/\//)) {
+      caption.innerHTML = oncle1.querySelector('a').innerHTML;
+      figure.append(picture);
+      figure.append(caption);
+      oncle1.querySelector('a').innerHTML = figure.outerHTML;
+    } else if (oncle1.classList.contains('button-container')) {
+      oncle1.innerHTML = '';
+      oncle1.append(picture);
+    } else {
+      caption.innerHTML = oncle1.innerHTML;
+      figure.append(picture);
+      figure.append(caption);
+      oncle1.innerHTML = '';
+      oncle1.append(figure);
+    }
+    oncle1.previousElementSibling.remove();
+  });
 }
 
 export function decorateReferences(container) {
@@ -191,7 +209,7 @@ export async function decorateContainer(container) {
   await decorateInlineToggles(container);
   decorateIcons(container);
   decorateResponsiveImages(container);
-  decorateHyperlinkImages(container);
+  decorateFigures(container);
   decorateReferences(container);
   // decorateScreenReaderOnly(main);
 }
@@ -245,6 +263,11 @@ export async function decorateMain(main) {
   createA11yQuickNav([
     { id: 'main', label: 'Skip to main content' },
   ]);
+  // mark image as decorative if it doesn't have an alternative description
+  document.querySelectorAll('img:not([alt])').forEach((img) => {
+    img.role = 'presentation';
+    img.alt = '';
+  });
   await decorateContainer(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -255,6 +278,8 @@ export async function decorateMain(main) {
     const img = document.createElement('img');
     img.classList.add('badge');
     img.src = badge.content;
+    img.role = 'presentation';
+    img.alt = '';
     main.querySelector('h2').append(img);
     main.classList.add('has-badge');
   }

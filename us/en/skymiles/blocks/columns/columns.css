@@ -21,6 +21,10 @@
     max-width: 50%;
 }
 
+.columns figcaption {
+    font-size: inherit;
+}
+
 .columns p {
     line-height: 2rem;
 }
