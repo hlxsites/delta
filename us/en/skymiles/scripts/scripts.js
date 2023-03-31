@@ -266,9 +266,6 @@ function decorateEyeBrows(main) {
 export async function decorateMain(main) {
   main.id = 'main';
   document.body.classList.add('fresh-air');
-  createA11yQuickNav([
-    { id: 'main', label: 'Skip to main content' },
-  ]);
   // mark image as decorative if it doesn't have an alternative description
   document.querySelectorAll('img:not([alt])').forEach((img) => {
     img.role = 'presentation';
@@ -334,6 +331,9 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  createA11yQuickNav([
+    { id: 'main', label: 'Skip to main content' },
+  ]);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`);

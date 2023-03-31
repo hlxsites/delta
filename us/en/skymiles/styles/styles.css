@@ -421,9 +421,11 @@ p > em:only-child > .button.secondary:only-child:hover {
 
 .sr-focusable a,
 a.sr-focusable {
-  transform: translateY(-100%);
   position: absolute;
+  opacity: 0;
+  transform: translateY(-100%);
   white-space: nowrap;
+  z-index: -1;
 }
 
 .sr-focusable a:active,
@@ -436,6 +438,7 @@ a.sr-focusable:focus {
   color: var(--text-color-inverted);
   font-family: var(--body-medium-font-family);
   font-size: var(--body-font-size-s);
+  opacity: 1;
   text-transform: uppercase;
   transform: none;
 }
