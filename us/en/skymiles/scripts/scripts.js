@@ -139,16 +139,19 @@ function decorateFigures(container) {
     if (picture.closest('figure')) {
       return;
     }
-    const oncle1 = picture.parentElement.nextElementSibling
-      || picture.parentElement.querySelector('picture + br + a');
+    const oncle1 = picture.parentElement.querySelector('picture + br + a')
+      || picture.parentElement.nextElementSibling;
     if (!oncle1 || (oncle1.tagName !== 'P' && oncle1.tagName !== 'A')) {
       return;
     }
-    const oncle2 = oncle1.nextElementSibling;
-    if (oncle2 && (!oncle1.classList.contains('button-container') || oncle2.nextElementSibling)) {
+    const oncle2 = oncle1.tagName === 'A' ? oncle1.parentElement.nextElementSibling : oncle1.nextElementSibling;
+    if (oncle2 && oncle1.tagName !== 'A' && (!oncle1.classList.contains('button-container') || oncle2.nextElementSibling)) {
       return;
     }
-    if (oncle2 && oncle2.classList.contains('button-container') && oncle1.querySelector('a').href !== oncle2.querySelector('a').href) {
+    if (oncle2 && oncle2.classList.contains('button-container') && (
+      (oncle1.href !== oncle2.querySelector('a').href)
+      || (oncle1.tagName !== 'A' && oncle1.querySelector('a').href !== oncle2.querySelector('a').href)
+    )) {
       return;
     }
 
@@ -160,6 +163,7 @@ function decorateFigures(container) {
         ? oncle2.querySelector('a').innerHTML
         : oncle2.innerHTML;
       oncle1.innerHTML = '';
+      oncle2.remove();
       if (isOncle2Link) {
         oncle1.append(figure);
         figure.append(picture);
@@ -184,7 +188,9 @@ function decorateFigures(container) {
       oncle1.innerHTML = '';
       oncle1.append(figure);
     }
-    oncle1.previousElementSibling.remove();
+    if (oncle1.tagName !== 'A') {
+      oncle1.previousElementSibling.remove();
+    }
   });
 }
 
