@@ -1,3 +1,5 @@
+import { toClassName } from '../../scripts/lib-franklin.js';
+
 const HEADINGS_SELECTOR = 'h1,h2,h3,h4,h5,h6';
 
 export const constants = {
@@ -65,15 +67,21 @@ export class AriaAccordion extends HTMLElement {
       idBtn = Math.random().toString(32).substring(2);
       idPnl = Math.random().toString(32).substring(2);
 
-      const heading = document.createElement(`h${headingLevel}`);
       const button = document.createElement('button');
       button.id = idBtn;
       button.setAttribute('aria-expanded', false);
       button.setAttribute('aria-controls', idPnl);
       button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
-      button.innerHTML = el.firstElementChild.outerHTML;
-      heading.append(button);
-      el.firstElementChild.replaceWith(heading);
+      if (el.firstElementChild.matches(HEADINGS_SELECTOR)) {
+        button.innerHTML = el.firstElementChild.innerHTML;
+        el.firstElementChild.innerHTML = button.outerHTML;
+      } else {
+        button.innerHTML = el.firstElementChild.outerHTML;
+        const heading = document.createElement(`h${headingLevel}`);
+        heading.id = toClassName(button.textContent);
+        heading.append(button);
+        el.firstElementChild.replaceWith(heading);
+      }
 
       const panel = document.createElement('div');
       panel.id = idPnl;
