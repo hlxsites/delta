@@ -21,6 +21,10 @@
     max-width: 50%;
 }
 
+.columns figcaption {
+    font-size: inherit;
+}
+
 .columns p {
     line-height: 2rem;
 }
@@ -29,6 +33,7 @@
     display: block;
     width: 85%;
     margin: 0 auto;
+    gap: 0;
 }
 
 .columns.emphasized > div > div {
@@ -81,7 +86,7 @@
 
     .columns > div {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         flex-direction: unset;
         gap: 2rem;
     }
@@ -89,7 +94,6 @@
     .columns > div > div {
         flex: 1;
         margin-bottom: 1rem;
-        align-self: flex-start;
     }
 }
 
@@ -106,6 +110,7 @@
     .columns.emphasized > div > div:last-child {
         text-align: left;
         flex-basis: 25%;
+        margin-bottom: 0;
     }
 
     .columns.emphasized > div > div > p {

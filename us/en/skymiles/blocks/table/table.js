@@ -41,7 +41,7 @@ export default function decorate(block) {
   [...block.children].forEach((row, i) => {
     const tr = document.createElement('tr');
     [...row.children].forEach((c, j) => {
-      const cell = document.createElement(i > 0 && j > 0 ? 'td' : 'th');
+      const cell = document.createElement((i > 0 && j > 0) || !c.textContent.trim() ? 'td' : 'th');
       cell.innerHTML = `<p>${c.innerHTML}</p>`;
       tr.append(cell);
     });
