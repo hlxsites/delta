@@ -90,6 +90,7 @@ async function decorateInlineToggles(container) {
     const details = document.createElement('details');
     const summary = document.createElement('summary');
     summary.innerHTML = p.innerHTML;
+    summary.querySelector('.icon-toggle').remove();
     details.append(summary);
     if (p.nextElementSibling.children.length === 1 && p.nextElementSibling.firstElementChild.tagName === 'A') {
       const a = p.nextElementSibling.firstElementChild;
