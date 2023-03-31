@@ -49,6 +49,8 @@ export default async function decorate(block) {
   });
 
   const firstFooterDiv = footer.querySelector('.footer-links');
+  firstFooterDiv.role = 'navigation';
+  firstFooterDiv.setAttribute('aria-label', 'Footer navigation');
   firstFooterDiv.classList.add('footer-menu');
   const headings = firstFooterDiv.querySelectorAll('ul > li > strong');
   headings.forEach((div) => {
