@@ -248,7 +248,7 @@ footer .footer-search-help-topics .first-row ul svg {
 
   footer .footer > div > div {
     width: unset;
-    padding: 0 1rem;
+    padding: 0 1rem 0 3.5rem;
   }
 
   /* social and language links - last */
@@ -355,5 +355,23 @@ footer .footer-search-help-topics .first-row ul svg {
 @media (min-width: 992px) {
   footer .footer {
     max-width: 976px;
+  }
+}
+
+@media (min-width: 1200px) {
+  footer .footer {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1440px) {
+  footer .footer {
+    max-width: 1156px;
+  }
+}
+
+@media (min-width: 1600px) {
+  footer .footer {
+    max-width: 1180px;
   }
 }
