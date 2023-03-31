@@ -414,10 +414,16 @@ p > em:only-child > .button.secondary:only-child:hover {
 }
 
 /* Utility classes */
+.sr-focusable {
+  position: absolute;
+  top: var(--nav-height);
+}
+
 .sr-focusable a,
 a.sr-focusable {
   transform: translateY(-100%);
   position: absolute;
+  white-space: nowrap;
 }
 
 .sr-focusable a:active,
