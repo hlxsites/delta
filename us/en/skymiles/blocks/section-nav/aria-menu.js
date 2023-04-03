@@ -63,6 +63,9 @@ export class AriaMenu extends HTMLElement {
             break;
           case 'ArrowLeft': {
             ev.preventDefault();
+            if (ev.currentTarget.getAttribute('aria-expanded') === 'true') {
+              this.toggleMenu(ev.currentTarget);
+            }
             const parentMenu = ev.currentTarget.closest('[role="menu"]');
             if (!parentMenu) {
               return;
@@ -84,9 +87,30 @@ export class AriaMenu extends HTMLElement {
         }
       });
     });
+
+    // Hide the menu if we click outside of it, unless autohide is explicitly set to false
+    if (this.attributes.getNamedItem('autohide').value === 'false') {
+      return;
+    }
+    document.addEventListener('click', (ev) => {
+      if (ev.target.closest('hlx-aria-menu')) {
+        return;
+      }
+      this.querySelectorAll('[aria-expanded="true"]').forEach((el) => {
+        el.setAttribute('aria-expanded', false);
+      });
+      this.querySelectorAll('[aria-hidden="false"]').forEach((el) => {
+        el.setAttribute('aria-hidden', true);
+        // Required for animating the height
+        if (el.tagName === 'UL') {
+          el.style.maxHeight = 0;
+        }
+      });
+    });
   }
 
   async decorate() {
+    this.role = 'navigation';
     const button = document.createElement('button');
     button.innerHTML = this.firstElementChild.outerHTML;
     button.setAttribute('aria-expanded', false);
@@ -130,7 +154,15 @@ export class AriaMenu extends HTMLElement {
 
   async open(menu) {
     menu.setAttribute('aria-hidden', false);
-    return this.onToggle ? this.onToggle(menu, true) : Promise.resolve();
+    if (this.onToggle) {
+      return new Promise((resolve) => {
+        window.requestAnimationFrame(() => {
+          this.onToggle(menu, true)
+            .then(resolve);
+        });
+      });
+    }
+    return Promise.resolve();
   }
 
   closeAll() {
