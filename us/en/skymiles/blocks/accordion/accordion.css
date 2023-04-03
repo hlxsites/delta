@@ -40,8 +40,12 @@
 
 .accordion .header {
     position: relative;
-    padding: 5px 2.5rem 5px 5px;
     color: var(--color-delta-blue);
+    font-family: var(--body-font-family);
+    font-size: var(--heading-font-size-l);
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .accordion .header p:last-child {
@@ -155,9 +159,7 @@
     .accordion .header {
         border: none;
         padding: 0;
-        padding-left: 10px;
         box-sizing: border-box;
-        font-size: 1.5rem;
     }
 
     .accordion button[aria-expanded]:focus {
