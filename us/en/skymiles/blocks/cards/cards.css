@@ -93,6 +93,10 @@
         gap: 2rem;
     }
 
+    .cards > ul > li {
+        margin-bottom: 0;
+    }
+
     .cards > ul > li img {
         height: 480px;
     }
