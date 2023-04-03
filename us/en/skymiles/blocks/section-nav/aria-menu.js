@@ -1,5 +1,3 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
-
 export const constants = {
   tagName: 'hlx-aria-menu',
   withControls: 'with-controls',
@@ -125,18 +123,27 @@ export class AriaMenu extends HTMLElement {
     this.querySelector('[role="menuitem"]').tabIndex = 0;
   }
 
+  async close(menu) {
+    return (this.onToggle ? this.onToggle(menu, false) : Promise.resolve())
+      .then(() => { menu.setAttribute('aria-hidden', true); });
+  }
+
+  async open(menu) {
+    menu.setAttribute('aria-hidden', false);
+    return this.onToggle ? this.onToggle(menu, true) : Promise.resolve();
+  }
+
   closeAll() {
     this.querySelectorAll('[role="menuitem"][aria-expanded="true"]').forEach((item) => {
       item.setAttribute('aria-expanded', false);
       item.tabIndex = -1;
     });
-    this.querySelectorAll('[role="menu"][aria-hidden="false"]').forEach((item) => {
-      item.setAttribute('aria-hidden', true);
-    });
+    this.querySelectorAll('[role="menu"][aria-hidden="false"]').forEach(this.close.bind(this));
     this.firstElementChild.setAttribute('aria-expanded', false);
     this.firstElementChild.focus();
   }
 
+  // eslint-disable-next-line class-methods-use-this
   focusItem(menu, index) {
     const items = [...menu.querySelectorAll(':scope > [role="none"] > [role="menuitem"]')];
     let i = index;
@@ -153,14 +160,14 @@ export class AriaMenu extends HTMLElement {
     items[i].focus();
   }
 
-  toggleMenu(item) {
-    const expanded = item.getAttribute('arie-expanded') === 'true';
+  async toggleMenu(item) {
+    const expanded = item.getAttribute('aria-expanded') === 'true';
     const menu = document.getElementById(item.getAttribute('aria-controls'));
     if (!menu) {
       return;
     }
-    item.setAttribute('arie-expanded', !expanded);
-    menu.setAttribute('aria-hidden', expanded);
+    item.setAttribute('aria-expanded', !expanded);
+    await (expanded ? this.close(menu) : this.open(menu));
     if (expanded) {
       item.tabIndex = 0;
       item.focus();
