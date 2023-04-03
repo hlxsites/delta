@@ -199,7 +199,9 @@ export function decorateReferences(container) {
   const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
   [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
-      el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
+      if (el.innerHTML.match(REFERENCE_TOKENS)) {
+        el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
+      }
     });
   [...container.querySelectorAll('p')]
     .filter((p) => !p.classList.contains('button-container'))
