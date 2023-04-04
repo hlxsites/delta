@@ -4,9 +4,11 @@ import { constants } from './aria-tabs.js';
 
 export default async function decorate(block) {
   const element = document.createElement(constants.tagName);
+  element.setAttribute(constants.withControls, true);
   element.innerHTML = block.innerHTML;
   block.innerHTML = '';
   block.append(element);
+  block.querySelectorAll('p:empty').forEach((el) => el.remove());
 
   element.querySelector('[role="tablist"]').classList.add('tabs-buttons');
   element.querySelectorAll('[role="tab"]').forEach((el) => {
@@ -42,7 +44,7 @@ export default async function decorate(block) {
         const content = await fetchContent(path2);
         panel.innerHTML = '';
         panel.appendChild(content);
-        panel.querySelectorAll(':scope > div')
+        panel.querySelectorAll(':scope > div > div')
           .forEach(decorateBlock);
         hasAsyncBlocks = true;
       } catch (err) {
