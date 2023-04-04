@@ -5,20 +5,45 @@
 }
 
 .tabs-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    border-bottom: 1px solid #e9ecef;
-    width: fit-content;
-    margin-left: 25rem;
+  display: flex;
+  gap: 1rem;
+  padding: 0 calc(50% - 3rem);
+  margin: 0 auto 1rem;
+  max-width: 100%;
+  border-bottom: 1px solid #e9ecef;
+  justify-content: start;
+  overflow-x: hidden;
 }
 
 .tab-button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    min-width: 0;
-    text-decoration: none;
+  flex: 0 0 6rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.tabs-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.tabs-controls button {
+  padding: 0;
+  min-width: 0;
+  width: auto;
+  border: none;
+  background: none;
+}
+
+.tabs-controls button:first-child::before {
+  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Left.png);
+}
+
+.tabs-controls button:last-child::before {
+  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Right.png);
 }
 
 .active {
@@ -47,17 +72,16 @@ figcaption {
   padding-top: 1.25rem;
 }
 
-
-@media (min-width: 992) {
-  .header {
-    height: 100%;
-  }
-  
-}
-
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .tabs-buttons {
-    list-style-type: none;
-    margin: auto;
+    padding: 0 4rem;
+    justify-content: center;
+    width: fit-content;
+    max-width: none;
+    overflow-x: visible;
+  }
+
+  .tabs-controls {
+    display: none;
   }
 }

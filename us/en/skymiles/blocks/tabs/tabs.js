@@ -11,6 +11,16 @@ export default async function decorate(block) {
   block.querySelectorAll('p:empty').forEach((el) => el.remove());
 
   element.querySelector('[role="tablist"]').classList.add('tabs-buttons');
+  element.querySelector('[role="tablist"]').nextElementSibling.classList.add('tabs-controls');
+  element.querySelectorAll('.tabs-controls button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const tab = document.querySelector('.tab-button[aria-selected="true"]');
+      block.querySelector('.tabs-buttons').scrollTo({
+        left: tab.offsetLeft - (window.innerWidth - tab.clientWidth) / 2,
+        behavior: 'smooth',
+      });
+    });
+  });
   element.querySelectorAll('[role="tab"]').forEach((el) => {
     el.classList.add('tab-button');
   });

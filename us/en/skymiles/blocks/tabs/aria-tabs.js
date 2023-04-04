@@ -1,9 +1,8 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 
-const HEADINGS_SELECTOR = 'h1,h2,h3,h4,h5,h6';
-
 export const constants = {
   tagName: 'hlx-aria-tabs',
+  withControls: 'with-controls',
 };
 
 export class AriaTabs extends HTMLElement {
@@ -46,10 +45,25 @@ export class AriaTabs extends HTMLElement {
         }
       });
     });
+
+    if (this.attributes.getNamedItem(constants.withControls).value === 'true') {
+      const [prev, next] = this.querySelectorAll('[role="tablist"] + div > button');
+      prev.addEventListener('click', () => {
+        this.focusItem(this.selectedIndex - 1);
+        this.selectItem(this.querySelectorAll('[role="tab"')[this.selectedIndex]);
+        prev.focus();
+      });
+      next.addEventListener('click', () => {
+        this.focusItem(this.selectedIndex + 1);
+        this.selectItem(this.querySelectorAll('[role="tab"')[this.selectedIndex]);
+        next.focus();
+      });
+    }
   }
 
   async decorate() {
     const tablist = document.createElement('div');
+    tablist.id = AriaTabs.getId();
     tablist.role = 'tablist';
     tablist.setAttribute('aria-orientation', 'horizontal');
     [...this.children].forEach((el, i) => {
@@ -70,6 +84,26 @@ export class AriaTabs extends HTMLElement {
       panel.setAttribute('aria-labelledby', id1);
       panel.setAttribute('aria-hidden', i !== this.selectedIndex);
     });
+
+    if (this.attributes.getNamedItem(constants.withControls).value === 'true') {
+      const div = document.createElement('div');
+
+      const previous = document.createElement('button');
+      previous.setAttribute('aria-controls', tablist.id);
+      previous.setAttribute('aria-label', 'Show previous tab');
+      div.append(previous);
+
+      const current = document.createElement('div');
+      current.setAttribute('aria-label', `Showing tab ${this.selectedIndex} out of ${tablist.childElementCount}`);
+      div.append(current);
+
+      const next = document.createElement('button');
+      next.setAttribute('aria-controls', tablist.id);
+      next.setAttribute('aria-label', 'Show next tab');
+      div.append(next);
+
+      this.prepend(div);
+    }
     this.prepend(tablist);
   }
 
