@@ -13,11 +13,6 @@ footer {
   margin: 0;
 }
 
-.footer a:any-link {
-  color: #fff;
-  text-decoration-thickness: unset;
-}
-
 /* Copyright */
 .footer-copyright {
   color: var(--color-delta-gray);
@@ -46,6 +41,11 @@ footer {
   font-family: var(--heading-font-family);
   font-size: 0.75rem;
   line-height: 1.3rem;
+}
+
+.footer a:any-link {
+  color: #fff;
+  text-decoration-thickness: unset;
 }
 
 /* terms and conditions */
@@ -190,7 +190,7 @@ footer .icon > svg {
   font-size: 1.5rem;
 }
 
-.footer-search-help-topics svg {
+.footer-search-help-topics .icon svg {
   height: 32px;
   width: 32px;
   fill: var(--text-color-inverted);
@@ -281,9 +281,13 @@ footer .icon > svg {
   min-width: 0;
 }
 
-.footer [role="dialog"] button:focus,
-.footer [role="dialog"] button:hover {
+.footer [role="dialog"] > div > button {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
   background: none;
+  line-height: 1rem;
+  border-radius: 50%;
 }
 
 .footer [role="dialog"] .field-group button {
@@ -291,6 +295,16 @@ footer .icon > svg {
   flex: 1 0 auto;
   outline-offset: -.5rem;
   transition: outline-offset .3s ease;
+}
+
+.footer [role="dialog"] button:focus,
+.footer [role="dialog"] button:hover {
+  background: none;
+}
+
+.footer [role="dialog"] > div > button:focus-visible {
+  outline: 2px solid var(--color-delta-gray);
+  outline-offset: 2px;
 }
 
 .footer [role="dialog"] .field-group button:focus-visible {
@@ -321,20 +335,6 @@ footer .icon > svg {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-l);
   text-decoration: none;
-}
-
-.footer [role="dialog"] > div > button {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-  background: none;
-  line-height: 1rem;
-  border-radius: 50%;
-}
-
-.footer [role="dialog"] > div > button:focus-visible {
-  outline: 2px solid var(--color-delta-gray);
-  outline-offset: 2px;
 }
 
 .footer [role="dialog"] > div > button .icon {
