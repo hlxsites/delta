@@ -8,7 +8,7 @@ export default async function decorate(block) {
   block.innerHTML = '';
   block.append(element);
 
-  element.querySelector('[role="tablist"]').classList.add('tab-buttons');
+  element.querySelector('[role="tablist"]').classList.add('tabs-buttons');
   element.querySelectorAll('[role="tab"]').forEach((el) => {
     el.classList.add('tab-button');
   });
