@@ -187,7 +187,8 @@ footer .icon > svg {
 }
 
 .footer-search-help-topics .first-row .heading {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
+  font-weight: 400;
 }
 
 .footer-search-help-topics .icon svg {
@@ -237,7 +238,7 @@ footer .icon > svg {
 }
 
 .footer hlx-aria-dialog > button {
-  padding: .5rem 1.5rem;
+  padding: .5rem 0;
   background: none;
   border: none;
   color: inherit;
@@ -263,6 +264,7 @@ footer .icon > svg {
   display: flex;
   align-items: center;
   gap: 0 .5rem;
+  justify-content: stretch;
 }
 
 .footer [role="dialog"] input {
@@ -270,10 +272,11 @@ footer .icon > svg {
   padding: 2px 2rem 2px .5rem;
   border: none;
   border-bottom: 2px solid var(--color-delta-gray-middle2);
-  width: calc(100% - 2rem);
+  width: auto;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-l);
   line-height: 3em;
+  flex: 1 0 auto;
 }
 
 .footer [role="dialog"] input::placeholder {
@@ -306,13 +309,15 @@ footer .icon > svg {
   background: none;
   line-height: 1rem;
   border-radius: 50%;
+  width: auto;
 }
 
 .footer [role="dialog"] .field-group button {
   border-radius: 50%;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   outline-offset: -.5rem;
   transition: outline-offset .3s ease;
+  width: auto;
 }
 
 .footer [role="dialog"] button:focus,
@@ -372,15 +377,16 @@ footer .icon > svg {
 
 .footer [role="dialog"][aria-modal="true"] {
   position: fixed;
-  inset: 0 auto;
+  inset: 0;
   z-index: 9999;
+  justify-items: stretch;
 }
 
 .footer [role="dialog"][aria-modal="true"] > div {
   position: relative;
   box-sizing: border-box;
-  padding: 4rem;
-  margin: auto;
+  padding: 2rem;
+  width: 100%;
   border: 1px solid rgb(0 0 0 / 20%);
   background: var(--background-color);
 }
@@ -392,6 +398,18 @@ footer .icon > svg {
   z-index: -1;
   background-color: rgb(0 0 0 / 30%);
   content: '';
+}
+
+.footer-search-help-topics .first-row .heading::after {
+  display: inline-block;
+  margin-left: 2rem;
+  width: 2rem;
+  height: 2rem;
+  background: var(--text-color-inverted);
+  content: '';
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: center / contain no-repeat url('../../icons/search.svg');
+  mask: center / contain no-repeat url('../../icons/search.svg');
 }
 
 @media (min-width: 768px) {
@@ -473,18 +491,6 @@ footer .icon > svg {
 
   .footer-search-help-topics .first-row .heading {
     font-size: 2.875em;
-    font-weight: 400;
-  }
-
-  .footer-search-help-topics .first-row .heading::after {
-    display: inline-block;
-    margin-left: 2rem;
-    width: 2rem;
-    height: 2rem;
-    background: var(--text-color-inverted);
-    content: '';
-    -webkit-mask: center / contain no-repeat url('../../icons/search.svg');
-    mask: center / contain no-repeat url('../../icons/search.svg');
   }
 
   .footer-search-help-topics ul {
@@ -516,15 +522,30 @@ footer .icon > svg {
   .footer .footer-feedback {
     display: none;
   }
-
-  .footer [role="dialog"][aria-modal="true"] > div {
-    min-width: 445px;
-  }
 }
 
 @media (min-width: 992px) {
   .footer {
     max-width: 976px;
+  }
+
+  .footer hlx-aria-dialog > button {
+    padding: .5rem 1.5rem;
+  }
+
+  .footer [role="dialog"] input {
+    width: calc(100% - 2rem);
+  }
+
+  .footer [role="dialog"][aria-modal="true"] {
+    inset: 0 auto;
+  }
+
+  .footer [role="dialog"][aria-modal="true"] > div {
+    padding: 4rem;
+    margin: auto;
+    width: auto;
+    min-width: 445px;
   }
 }
 
