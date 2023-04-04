@@ -8,6 +8,9 @@
     display: flex;
     gap: 1rem;
     justify-content: center;
+    border-bottom: 1px solid #e9ecef;
+    width: fit-content;
+    margin-left: 25rem;
 }
 
 .tab-button {
@@ -15,7 +18,14 @@
     padding: 0;
     border: none;
     min-width: 0;
+    text-decoration: none;
 }
+
+.active {
+    border-bottom: 3px solid var(--link-color);
+    text-transform: capitalize;
+}
+
 
 .tab-button figure {
   margin: 0;
@@ -27,7 +37,14 @@
   font-weight: 300;
   line-height: 2.125rem;
   color: var(--color-delta-blue);
-  padding: 10px;
+}
+
+.tab-panel {
+  padding-top: 30px;
+}
+
+figcaption {
+  padding-top: 1.25rem;
 }
 
 
@@ -36,4 +53,11 @@
     height: 100%;
   }
   
+}
+
+@media (max-width: 768px) {
+  .tabs-buttons {
+    list-style-type: none;
+    margin: auto;
+  }
 }
