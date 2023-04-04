@@ -512,13 +512,13 @@ main > .section > .badge {
   margin-top: 0;
 }
 
-.fresh-air h2 {
+.fresh-air main h2 {
   position: relative;
   margin: 0 0 2rem;
   padding-bottom: 2rem;
 }
 
-.fresh-air h2::after {
+.fresh-air main h2::after {
   content: '';
   position: absolute;
   left: 0;
