@@ -37,7 +37,7 @@ export default async function decorate(block) {
   searchForm.innerHTML = `
     <label for="searchTerm">Search for topic…</label>
     <div class="field-group">
-      <input id="searchTerm" name="searchTerm" type="search"/>
+      <input id="searchTerm" name="searchTerm" type="search" placeholder="Search for topic…"/>
       <button aria-label="Submit Search" type="submit">
         <span class="icon icon-search"></span>
       </button>

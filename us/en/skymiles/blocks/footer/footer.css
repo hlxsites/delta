@@ -236,6 +236,15 @@ footer .icon > svg {
   height: 25px;
 }
 
+.footer hlx-aria-dialog > button {
+  padding: .5rem 1.5rem;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: var(--heading-font-family);
+  text-transform: none;
+}
+
 .footer [role="dialog"] {
   color: var(--text-color);
   text-align: left;
@@ -244,6 +253,10 @@ footer .icon > svg {
 .footer [role="dialog"] label {
   font-family: var(--button-font-family);
   font-size: var(--heading-font-size-xxs);
+}
+
+.footer [role="dialog"] label:has( + .field-group :placeholder-shown) {
+  opacity: 0;
 }
 
 .footer [role="dialog"] .field-group {
@@ -261,6 +274,11 @@ footer .icon > svg {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-l);
   line-height: 3em;
+}
+
+.footer [role="dialog"] input::placeholder {
+  color: var(--color-delta-gray);
+  font-size: 1.5rem;
 }
 
 .footer [role="dialog"] input::-webkit-search-cancel-button {
@@ -317,7 +335,7 @@ footer .icon > svg {
 }
 
 .footer [role="dialog"] h2 {
-  margin: 1.25rem 0 .5rem;
+  margin: 1.25rem 0;
   font-family: var(--button-font-family);
   font-size: var(--body-font-size-l);
 }
@@ -327,6 +345,7 @@ footer .icon > svg {
 }
 
 .footer [role="dialog"] li {
+  padding-bottom: .8125rem;
   line-height: 1.15rem;
 }
 
@@ -454,6 +473,18 @@ footer .icon > svg {
 
   .footer-search-help-topics .first-row .heading {
     font-size: 2.875em;
+    font-weight: 400;
+  }
+
+  .footer-search-help-topics .first-row .heading::after {
+    display: inline-block;
+    margin-left: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background: var(--text-color-inverted);
+    content: '';
+    -webkit-mask: center / contain no-repeat url('../../icons/search.svg');
+    mask: center / contain no-repeat url('../../icons/search.svg');
   }
 
   .footer-search-help-topics ul {
