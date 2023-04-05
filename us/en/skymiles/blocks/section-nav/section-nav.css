@@ -8,44 +8,39 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: .5rem 0;
+  padding: .5rem 1rem;
 }
 
-.section-nav-toggle,
-.section-nav-toggle:is(:active, :focus, :hover) {
+.section-nav hlx-aria-menu {
   position: relative;
-  padding: 1rem 2rem;
-  background: none;
-  border: none;
-  width: 100%;
-  font-size: var(--body-font-size-s);
-  text-align: left;
 }
 
 .section-nav-menu {
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
-  inset: 66px 0 auto 0;
+  inset: 57px -1rem auto -1rem;
   max-height: calc(100vh - var(--nav-height));
-  padding: 0 2rem;
+  padding: 0 2rem 1rem;
   background: var(--color-delta-gray-light);
   overflow-y: auto;
 }
 
-.section-nav-menu[aria-expanded="false"] {
-  display: none;
+.section-nav-menu,
+.section-nav-menu ul {
+  list-style: none;
+  transition: max-height .3s ease;
+  overflow: auto;
 }
 
 .section-nav-menu ul {
   margin: 0;
   padding: 0;
-  list-style: none;
-  transition: max-height .3s ease, padding .3s ease;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
-.section-nav-menu ul[aria-expanded="false"] {
+.section-nav-menu[aria-hidden="true"],
+.section-nav-menu ul[aria-hidden="true"] {
   max-height: 0;
 }
 
@@ -55,7 +50,8 @@
   padding: 0;
 }
 
-.section-nav-menu :is(a, button) {
+.section-nav-menu a,
+.section-nav-menu button {
   display: block;
   max-width: none;
   color: var(--color-delta-blue);
@@ -67,19 +63,53 @@
   width: 100%;
 }
 
-.section-nav-menu > ul > li:not(:first-child) {
+.section-nav-menu ul a,
+.section-nav-menu ul button {
+  padding: .667rem 0;
+  font-family: var(--body-medium-font-family);
+  letter-spacing: 1px;
+}
+
+.section-nav-menu > li:not(:first-child) {
   border-top: 1px solid var(--color-delta-gray-middle2);
 }
 
-.section-nav-menu > ul > li > :is(a, button) {
+.section-nav-menu > li > a,
+.section-nav-menu > li > button {
   position: relative;
   padding: 1.5rem 0;
   background: none;
   border: none;
 }
 
-.section-nav-toggle[aria-expanded]::after,
-.section-nav-menu > ul > li > :is(a, button)[aria-expanded]::after {
+.section-nav-menu a:active,
+.section-nav-menu a:hover {
+  text-decoration: none;
+}
+
+.section-nav-toggle {
+  box-sizing: border-box;
+  padding: 1rem 4rem 1rem 2rem;
+  border: none;
+  font-family: var(--button-font-family);
+  font-size: var(--heading-font-size-s);
+  letter-spacing: 1px;
+  text-align: left;
+  width: 100%;
+}
+
+.section-nav-toggle:hover {
+  background-color: inherit;
+}
+
+.section-nav-toggle h2 {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.section-nav-toggle::after,
+.section-nav-menu > li > button[aria-expanded]::after {
   position: absolute;
   display: block;
   right: .5rem;
@@ -94,28 +124,18 @@
 }
 
 .section-nav-toggle[aria-expanded]::after {
-  top: 1.2rem;
-  right: 2rem;
+  top: 1.6rem;
+  right: 2.5rem;
 }
 
 .section-nav-toggle[aria-expanded="true"]::after {
     transform: rotate(315deg);
-    top: 1.4rem;
+    top: 1.9rem;
 }
 
-.section-nav-menu > ul > li > :is(a, button)[aria-expanded="true"]::after {
+.section-nav-menu > li > button[aria-expanded="true"]::after {
     transform: rotate(315deg);
     top: 1.7rem;
-}
-
-.section-nav-menu ul ul[aria-expanded="true"] {
-  padding: 1rem 0;
-}
-
-.section-nav-menu ul ul :is(a, button) {
-  padding: .667rem 0;
-  font-family: var(--body-medium-font-family);
-  letter-spacing: 1px;
 }
 
 .section-nav-current {
@@ -127,19 +147,22 @@
 
 @media (min-width: 375px) {
   .section-nav-menu {
-    margin: 0 1rem;
+    inset: 57px 0 auto 0;
   }
 }
 
 @media (min-width: 768px) {
   .section-nav {
+    box-sizing: border-box;
+    padding: 1rem;
     margin: 0 auto;
     max-width: 730px;
     align-items: stretch;
     flex-direction: row;
   }
 
-  .section-nav-toggle {
+  hlx-aria-menu {
+    position: relative;
     flex: 6 0 365px;
     width: auto;
   }
@@ -157,6 +180,14 @@
     padding: 1rem 0 1rem 3rem;
     border-left: 1px solid var(--color-delta-gray-light);
   }
+
+  .section-nav-toggle[aria-expanded]::after {
+    top: 1.1rem;
+  }
+
+  .section-nav-toggle[aria-expanded="true"]::after {
+    top: 1.3rem;
+  }
 }
 
 @media (min-width: 992px) {
@@ -169,19 +200,14 @@
     max-width: 976px;
   }
 
-  .section-nav-toggle {
+  hlx-aria-menu {
     flex: 5 0 406.667px;
     flex-basis: 406.667px;
-    padding-left: .5rem;
-  }
-
-  .section-nav-toggle:is(:active, :focus, :hover) {
-    padding-left: .5rem;
   }
 
   .section-nav-menu {
     width: 406.667px;
-    top: 72px;
+    top: 56px;
   }
 
   .section-nav-current {
@@ -194,7 +220,7 @@
     max-width: 1140px;
   }
 
-  .section-nav-toggle {
+  hlx-aria-menu {
     flex: 4 0 380px;
   }
 
@@ -212,7 +238,7 @@
     max-width: 1156px;
   }
 
-  .section-nav-toggle {
+  hlx-aria-menu {
     flex-basis: 385.333px;
   }
 
@@ -230,7 +256,7 @@
     max-width: 1180px;
   }
 
-  .section-nav-toggle {
+  hlx-aria-menu {
     flex-basis: 393.333px;
   }
 
