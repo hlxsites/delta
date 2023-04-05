@@ -24,27 +24,6 @@ footer {
   line-height: 1.875rem;
 }
 
-.search-suggestions .no-results {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--heading-font-size-s);
-}
-
-.search-suggestions .no-results .icon {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: var(--color-delta-gray-light);
-  border-radius: 50%;
-}
-
-.search-suggestions .no-results .icon svg {
-  width: 3rem;
-  height: 3rem;
-}
-
 /* Copyright */
 .footer-copyright {
   color: var(--color-delta-gray);
@@ -284,6 +263,27 @@ footer .icon > svg {
   color: inherit;
   font-family: var(--heading-font-family);
   text-transform: none;
+}
+
+.search-suggestions .no-results {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--heading-font-size-s);
+}
+
+.search-suggestions .no-results .icon {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--color-delta-gray-light);
+  border-radius: 50%;
+}
+
+.search-suggestions .no-results .icon svg {
+  width: 3rem;
+  height: 3rem;
 }
 
 .footer [role="dialog"] {
