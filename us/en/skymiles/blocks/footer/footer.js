@@ -1,4 +1,5 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { constants } from './aria-dialog.js';
 
 /**
  * loads and decorates the footer
@@ -10,8 +11,8 @@ export default async function decorate(block) {
   block.textContent = '';
 
   const footerPath = cfg.footer || '/us/en/skymiles/footer';
-  const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
-  const html = await resp.text();
+  let resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
+  let html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
 
@@ -27,6 +28,28 @@ export default async function decorate(block) {
   searchPlaceholder.forEach((div) => {
     div.className = 'heading';
   });
+
+  resp = await fetch('/us/en/skymiles/footer-search-dialog.plain.html');
+  html = await resp.text();
+
+  const searchForm = document.createElement('form');
+  searchForm.classList.add('search-form');
+  searchForm.innerHTML = `
+    <label for="searchTerm">Search for topic…</label>
+    <div class="field-group">
+      <input id="searchTerm" name="searchTerm" type="search" placeholder="Search for topic…"/>
+      <button aria-label="Submit Search" type="submit">
+        <span class="icon icon-search"></span>
+      </button>
+    </div>`;
+  searchForm.setAttribute('action', 'https://www.delta.com/site-search');
+  searchForm.setAttribute('method', 'GET');
+
+  const element = document.createElement(constants.tagName);
+  element.innerHTML = searchHelpTopicsDiv.querySelector('.heading').outerHTML + html;
+  element.setAttribute('modal', true);
+  element.firstElementChild.nextElementSibling.prepend(searchForm);
+  searchHelpTopicsDiv.querySelector('li').innerHTML = element.outerHTML;
 
   const rowNames = ['first-row', 'second-row'];
   const searchRows = footer.querySelectorAll('.footer-search-help-topics > ul > li');
@@ -83,6 +106,6 @@ export default async function decorate(block) {
     });
   });
 
-  decorateIcons(footer);
   block.append(footer);
+  decorateIcons(footer);
 }
