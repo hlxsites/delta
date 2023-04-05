@@ -89,7 +89,8 @@ export class AriaMenu extends HTMLElement {
     });
 
     // Hide the menu if we click outside of it, unless autohide is explicitly set to false
-    if (this.attributes.getNamedItem('autohide').value === 'false') {
+    if (!this.attributes.getNamedItem('autohide')
+      || this.attributes.getNamedItem('autohide').value === 'false') {
       return;
     }
     document.addEventListener('click', (ev) => {
