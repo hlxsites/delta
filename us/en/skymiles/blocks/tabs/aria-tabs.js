@@ -48,7 +48,8 @@ export class AriaTabs extends HTMLElement {
       });
     });
 
-    if (this.attributes.getNamedItem(constants.withControls).value === 'true') {
+    if (this.attributes.getNamedItem(constants.withControls)
+      && this.attributes.getNamedItem(constants.withControls).value === 'true') {
       const [prev, next] = this.querySelectorAll('[role="tablist"] + div > button');
       prev.addEventListener('click', () => {
         this.focusItem(this.selectedIndex - 1);
@@ -87,7 +88,8 @@ export class AriaTabs extends HTMLElement {
       panel.setAttribute('aria-hidden', i !== this.selectedIndex);
     });
 
-    if (this.attributes.getNamedItem(constants.withControls).value === 'true') {
+    if (this.attributes.getNamedItem(constants.withControls)
+      && this.attributes.getNamedItem(constants.withControls).value === 'true') {
       const div = document.createElement('div');
 
       const previous = document.createElement('button');
