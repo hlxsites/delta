@@ -35,19 +35,6 @@ export default async function decorate(block) {
   const panels = block.querySelectorAll('[role="tabpanel"]');
   panels.forEach((el) => el.classList.add('tab-panel'));
 
-  // add class active to active tab
-  const activeTab = element.querySelector('[aria-selected="true"]');
-  activeTab.classList.add('active');
-  element.querySelectorAll('[role="tab"]').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      element.querySelectorAll('[role="tab"]').forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-
-
-
-
   // fetch dynamic content
   let hasAsyncBlocks = false;
   await Promise.all([...panels].map(async (panel) => {

@@ -16,63 +16,46 @@
 }
 
 .tab-button {
-  flex: 0 0 6rem;
-  margin: 0;
-  padding: 0;
-  border: none;
-  min-width: 0;
-  text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
 }
 
-.tabs-controls {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.tabs-controls button {
-  padding: 0;
-  min-width: 0;
-  width: auto;
-  border: none;
-  background: none;
-}
-
-.tabs-controls button:first-child::before {
-  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Left.png);
-}
-
-.tabs-controls button:last-child::before {
-  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Right.png);
-}
-
-.active {
+.tab-button[aria-selected="true"] {
     border-bottom: 3px solid var(--link-color);
-    text-transform: capitalize;
 }
-
 
 .tab-button figure {
   margin: 0;
-}
-
-.tabs p {
-  font-family: var(--heading-font-family);
-  font-size: 1.2rem;
-  font-weight: 300;
-  line-height: 2.125rem;
-  color: var(--color-delta-blue);
 }
 
 .tab-panel {
   padding-top: 30px;
 }
 
-figcaption {
+.tab-button figcaption {
   padding-top: 1.25rem;
+  padding-bottom: 1rem;
+  font-family: var(--body-font-family);
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  color: var(--color-delta-blue);
+  letter-spacing: 0;
 }
 
-@media (min-width: 768px) {
+.tab-button[arial-selected="true"] figcaption {
+  font-weight: bold;
+}
+
+@media (min-width: 992) {
+  .header {
+    height: 100%;
+  }
+  
+}
+
+@media (max-width: 768px) {
   .tabs-buttons {
     padding: 0 4rem;
     justify-content: center;
