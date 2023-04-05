@@ -4,7 +4,7 @@
     color: var(--color-delta-blue);
 }
 
-.blade > div {
+.blade > div > a {
     display: flex;
     border-bottom: 1px solid var(--color-delta-gray-middle2);
     flex-direction: column;
@@ -110,69 +110,58 @@
     cursor: pointer;
 }
 
+.blade.emphasized > div > a:hover {
+    text-decoration: none;
+}
+
 @media (min-width: 992px) {
     .blade > div {
         flex-direction: unset;
         align-items: stretch;
     }
 
-    .blade {
-        max-width: 1200px;
+    .blade.emphasized > div > a {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .blade.emphasized > div > a > div {
+        height: 200px;
     }
 
     .blade .blade-image {
         position: relative;
-        flex: 5;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        width: 25%;
     }
 
-    .blade .blade-image .button {
-        margin: 0;
+    .blade .blade-body {
+        width: 75%;
+        padding: 4rem 2rem;
+    }
+
+    .blade {
+        max-width: 1200px;
     }
 
     .blade .blade-image picture,
     .blade .blade-image img {
-        position: absolute;
         height: 100%;
         width: 100%;
-        object-fit: scale-down;
-    }
-    
-    .blade .blade-body {
-        flex: 7;
-        padding: 4rem 2rem;
+        box-sizing: border-box;
     }
 
     .blade .button-container {
         margin: 0;
     }
 
+    .blade.emphasized .blade-body p {
+        font-size: var(--body-font-size-l);
+    }
+
     /* Alternating rows variant */
 
     .blade.alternate > div:nth-child(2n) {
         flex-direction: row-reverse;
-    }
-
-    /* Emphasized variant */
-
-    .blade.emphasized .blade-image {
-        flex: 4;
-    }
-
-    .blade.emphasized .blade-image img {
-        object-fit: cover;
-    }
-
-    .blade.emphasized .blade-body {
-        flex: 8;
-        padding: 2rem;
-    }
-
-    .blade.emphasized .blade-body p {
-        font-size: var(--body-font-size-l);
     }
 
     /* Large variant */
@@ -184,5 +173,6 @@
     .blade.large .blade-body {
         flex: 1 2 300px;
     }
-
 }
+
+
