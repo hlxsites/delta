@@ -42,6 +42,8 @@
 
 .blade .blade-body p {
     font-size: var(--body-font-size-m);
+    font-family: var(--heading-font-family);
+    color: var(--text-color);
 }
 
 .blade a:not(.button):any-link {
@@ -126,16 +128,16 @@
     }
 
     .blade.emphasized > div > a > div {
-        height: 200px;
+        height: 230px;
     }
 
     .blade .blade-image {
         position: relative;
-        width: 25%;
+        width: 30%;
     }
 
     .blade .blade-body {
-        width: 75%;
+        width: 70%;
         padding: 4rem 2rem;
     }
 
