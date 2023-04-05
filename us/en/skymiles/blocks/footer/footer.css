@@ -187,8 +187,11 @@ footer .icon > svg {
 }
 
 .footer-search-help-topics .first-row .heading {
-  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
   font-weight: 400;
+  justify-content: space-between;
 }
 
 .footer-search-help-topics .icon svg {
@@ -235,6 +238,11 @@ footer .icon > svg {
 .footer-search-help-topics .first-row ul svg {
   width: 25px;
   height: 25px;
+}
+
+.footer hlx-aria-dialog {
+  margin-top: .5rem;
+  width: 100%;
 }
 
 .footer hlx-aria-dialog > button {
