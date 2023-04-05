@@ -496,7 +496,7 @@ main > .section > .badge {
   padding-top: 5rem
 }
 
-.fresh-air h1 {
+.fresh-air main h1 {
   margin: 6rem 0 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
