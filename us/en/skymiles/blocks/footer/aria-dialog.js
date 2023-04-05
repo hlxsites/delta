@@ -35,23 +35,19 @@ export class AriaDialog extends HTMLElement {
           break;
       }
     });
-    const focusables = this.getFocusables();
-    if (focusables.length) {
-      focusables[0].addEventListener('keydown', (ev) => {
-        if (ev.key !== 'Tab' || !ev.shiftKey) {
-          return;
-        }
+    this.querySelector('[role="dialog"]').addEventListener('keydown', (ev) => {
+      if (ev.key !== 'Tab') {
+        return;
+      }
+      const focusables = this.getFocusables();
+      if (ev.target === focusables[0] && ev.shiftKey) {
         ev.preventDefault();
         [...this.getFocusables()].pop().focus();
-      });
-      focusables[focusables.length - 1].addEventListener('keydown', (ev) => {
-        if (ev.key !== 'Tab' || ev.shiftKey) {
-          return;
-        }
+      } else if (ev.target === focusables[focusables.length - 1] && !ev.shiftKey) {
         ev.preventDefault();
         this.getFocusables()[0].focus();
-      });
-    }
+      }
+    });
   }
 
   getFocusables() {
