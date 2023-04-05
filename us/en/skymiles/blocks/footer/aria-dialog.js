@@ -78,7 +78,8 @@ export class AriaDialog extends HTMLElement {
     dialog.role = 'dialog';
     dialog.setAttribute('aria-hidden', true);
     dialog.setAttribute('aria-labelledby', id1);
-    dialog.setAttribute('aria-modal', this.attributes.getNamedItem('modal').value === 'true');
+    dialog.setAttribute('aria-modal', this.attributes.getNamedItem('modal')
+      && this.attributes.getNamedItem('modal').value === 'true');
     dialog.innerHTML = this.firstElementChild.nextElementSibling.outerHTML;
     dialog.firstElementChild.prepend(close);
     this.firstElementChild.nextElementSibling.replaceWith(dialog);
