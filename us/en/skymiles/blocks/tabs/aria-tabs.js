@@ -20,6 +20,8 @@ export class AriaTabs extends HTMLElement {
   attachListeners() {
     this.querySelectorAll('[role="tab"]').forEach((tab) => {
       tab.addEventListener('click', (ev) => {
+        const buttons = [...this.querySelectorAll('[role="tab"]')];
+        this.focusItem(buttons.indexOf(ev.currentTarget));
         this.selectItem(ev.currentTarget);
       });
       tab.addEventListener('keydown', (ev) => {

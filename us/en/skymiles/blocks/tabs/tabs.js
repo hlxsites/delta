@@ -2,6 +2,13 @@ import { decorateBlock, loadBlocks } from '../../scripts/lib-franklin.js';
 import { fetchContent } from '../../scripts/scripts.js';
 import { constants } from './aria-tabs.js';
 
+function scrollTabIntoView(block, el) {
+  block.querySelector('.tabs-buttons').scrollTo({
+    left: el.offsetLeft - (window.innerWidth - el.clientWidth) / 2,
+    behavior: 'smooth',
+  });
+}
+
 export default async function decorate(block) {
   const element = document.createElement(constants.tagName);
   element.setAttribute(constants.withControls, true);
@@ -10,19 +17,20 @@ export default async function decorate(block) {
   block.append(element);
   block.querySelectorAll('p:empty').forEach((el) => el.remove());
 
-  element.querySelector('[role="tablist"]').classList.add('tabs-buttons');
-  element.querySelector('[role="tablist"]').nextElementSibling.classList.add('tabs-controls');
+  const tablist = element.querySelector('[role="tablist"]');
+  tablist.classList.add('tabs-buttons');
+  tablist.nextElementSibling.classList.add('tabs-controls');
   element.querySelectorAll('.tabs-controls button').forEach((button) => {
     button.addEventListener('click', () => {
       const tab = document.querySelector('.tab-button[aria-selected="true"]');
-      block.querySelector('.tabs-buttons').scrollTo({
-        left: tab.offsetLeft - (window.innerWidth - tab.clientWidth) / 2,
-        behavior: 'smooth',
-      });
+      scrollTabIntoView(block, tab);
     });
   });
   element.querySelectorAll('[role="tab"]').forEach((el) => {
     el.classList.add('tab-button');
+    el.addEventListener('click', (ev) => {
+      scrollTabIntoView(block, ev.currentTarget);
+    });
   });
   const panels = block.querySelectorAll('[role="tabpanel"]');
   panels.forEach((el) => el.classList.add('tab-panel'));
