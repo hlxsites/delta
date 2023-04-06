@@ -134,7 +134,6 @@ export class AriaTabs extends HTMLElement {
 
     const current = this.querySelector('[aria-label^="Showing tab"]');
     current.textContent = `${this.selectedIndex + 1}/${this.itemsCount}`;
-
   }
 }
 
