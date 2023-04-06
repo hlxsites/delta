@@ -1,6 +1,5 @@
 export const constants = {
   tagName: 'hlx-aria-menu',
-  withControls: 'with-controls',
 };
 
 export class AriaMenu extends HTMLElement {
