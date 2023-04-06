@@ -97,6 +97,7 @@ export class AriaTabs extends HTMLElement {
 
       const current = document.createElement('div');
       current.setAttribute('aria-label', `Showing tab ${this.selectedIndex} out of ${tablist.childElementCount}`);
+      current.textContent = `${this.selectedIndex + 1}/${this.itemsCount}`;
       div.append(current);
 
       const next = document.createElement('button');
@@ -107,6 +108,7 @@ export class AriaTabs extends HTMLElement {
       this.prepend(div);
     }
     this.prepend(tablist);
+
   }
 
   focusItem(index) {
@@ -129,6 +131,10 @@ export class AriaTabs extends HTMLElement {
     button.setAttribute('aria-selected', true);
     const panel = document.getElementById(button.getAttribute('aria-controls'));
     panel.setAttribute('aria-hidden', false);
+
+    const current = this.querySelector('[aria-label^="Showing tab"]');
+    current.textContent = `${this.selectedIndex + 1}/${this.itemsCount}`;
+
   }
 }
 

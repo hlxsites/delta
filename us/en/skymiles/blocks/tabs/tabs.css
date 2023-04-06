@@ -15,6 +15,14 @@
   overflow-x: hidden;
 }
 
+.tab-button:hover {
+  background: none;
+}
+
+.tab-button:focus {
+  background: none;
+}
+
 .tab-button {
   flex: 0 0 6rem;
   margin: 0;
@@ -46,11 +54,25 @@
   content: url("https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Right.png");
 }
 
-.active {
-    border-bottom: 3px solid var(--link-color);
-    text-transform: capitalize;
+.tabs-controls[aria-labels="Showing tab 0 out of 5"] {
+  font-family: var(--heading-font-family);
 }
 
+.tab-button {
+  font-family: var(--body-font-family);
+}
+
+.tab-button[aria-selected="true"] {
+  border-bottom: 3px solid var(--link-color);
+}
+
+.tab-button[aria-selected="true"] figcaption {
+  font-family: var(--body-medium-font-family);
+}
+
+.tabs-controls div[aria-label] {
+  font-family: var(--heading-font-family);
+}
 
 .tab-button figure {
   margin: 0;
