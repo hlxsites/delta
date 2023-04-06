@@ -1,6 +1,9 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import { constants } from './aria-dialog.js';
 
+const INLINE_SEARCH_URL = 'https://www.googleapis.com/customsearch/v1/siterestrict?fields=searchInformation(totalResults,formattedTotalResults),items(title,htmlTitle,link,snippet,htmlSnippet)&cx=d232b51a93511032c';
+const INLINE_SEARCH_API_KEY = 'AIzaSyCVB0Y8AM7cMbWtVwTx2s02n4zymHrEFz8';
+
 /**
  * loads and decorates the footer
  * @param {Element} block The header block element
@@ -46,10 +49,17 @@ export default async function decorate(block) {
   searchForm.setAttribute('method', 'GET');
 
   const element = document.createElement(constants.tagName);
-  element.innerHTML = searchHelpTopicsDiv.querySelector('.heading').outerHTML + html;
+  element.innerHTML = `${searchHelpTopicsDiv.querySelector('.heading').outerHTML}<div>${html}</div>`;
   element.setAttribute('modal', true);
   element.firstElementChild.nextElementSibling.prepend(searchForm);
   searchHelpTopicsDiv.querySelector('li').innerHTML = element.outerHTML;
+
+  const suggestions = document.createElement('div');
+  suggestions.classList.add('search-suggestions');
+  suggestions.role = 'region';
+  suggestions.setAttribute('aria-live', 'polite');
+  suggestions.style.display = 'none';
+  searchHelpTopicsDiv.querySelector('hlx-aria-dialog > div').append(suggestions);
 
   const rowNames = ['first-row', 'second-row'];
   const searchRows = footer.querySelectorAll('.footer-search-help-topics > ul > li');
@@ -107,5 +117,38 @@ export default async function decorate(block) {
   });
 
   block.append(footer);
+
+  footer.querySelector('#searchTerm').addEventListener('input', async (ev) => {
+    const popularTopics = document.querySelector('.search-form').nextElementSibling;
+    const suggestionsList = document.querySelector('.search-suggestions');
+    if (ev.currentTarget.value.length < 3) {
+      popularTopics.style.display = '';
+      suggestionsList.style.display = 'none';
+      return;
+    }
+    popularTopics.style.display = 'none';
+    suggestionsList.style.display = '';
+
+    const reponse = await fetch(`${INLINE_SEARCH_URL}&key=${INLINE_SEARCH_API_KEY}&q=${ev.currentTarget.value}`);
+    const json = await reponse.json();
+
+    suggestionsList.innerHTML = '';
+    if (!json.items || !json.items.length) {
+      suggestionsList.innerHTML = '<div class="no-results"><span class="icon icon-search"></span>There are no matches for your search</div>';
+      decorateIcons(suggestionsList);
+      return;
+    }
+
+    const ul = document.createElement('ul');
+    json.items.forEach((item) => {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = item.link;
+      link.textContent = item.title;
+      li.append(link);
+      ul.append(li);
+    });
+    suggestionsList.append(ul);
+  });
   decorateIcons(footer);
 }
