@@ -108,7 +108,6 @@ export class AriaTabs extends HTMLElement {
       this.prepend(div);
     }
     this.prepend(tablist);
-
   }
 
   focusItem(index) {
