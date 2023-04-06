@@ -480,7 +480,13 @@ export function decorateTemplateAndTheme() {
 
 export function decorateButtons(element) {
   element.querySelectorAll('a').forEach((a) => {
-    if (a.href !== a.textContent && !a.classList.contains('button')) {
+    let text = a.textContent;
+    try {
+      text = new URL(a.textContent).pathname;
+    } catch (err) {
+      // do nothing
+    }
+    if (new URL(a.href).pathname !== text && !a.classList.contains('button')) {
       const up = a.parentElement;
       const down = a.firstElementChild;
       const twoup = a.parentElement.parentElement;

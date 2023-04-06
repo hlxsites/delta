@@ -4,11 +4,23 @@
     color: var(--color-delta-blue);
 }
 
-.blade > div > a {
+.blade > div {
     display: flex;
     border-bottom: 1px solid var(--color-delta-gray-middle2);
     flex-direction: column;
     align-items: center;
+}
+
+.blade > div > a:any-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    border: none;
+}
+
+.blade > div > a:hover {
+    text-decoration: none;
 }
 
 .blade .blade-image {
@@ -112,23 +124,11 @@
     cursor: pointer;
 }
 
-.blade.emphasized > div > a:hover {
-    text-decoration: none;
-}
-
 @media (min-width: 992px) {
-    .blade > div {
+    .blade > div,
+    .blade > div > a:any-link {
         flex-direction: unset;
         align-items: stretch;
-    }
-
-    .blade.emphasized > div > a {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .blade.emphasized > div > a > div {
-        height: 230px;
     }
 
     .blade .blade-image {
@@ -150,6 +150,7 @@
         height: 100%;
         width: 100%;
         box-sizing: border-box;
+        object-fit: cover;
     }
 
     .blade .button-container {
