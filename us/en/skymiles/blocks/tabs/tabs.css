@@ -39,11 +39,11 @@
 }
 
 .tabs-controls button:first-child::before {
-  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Left.png);
+  content: url("https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Left.png");
 }
 
 .tabs-controls button:last-child::before {
-  content: url(https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Right.png);
+  content: url("https://www.delta.com/content/dam/delta-www/responsive/apps/stackcard/Right.png");
 }
 
 .active {
