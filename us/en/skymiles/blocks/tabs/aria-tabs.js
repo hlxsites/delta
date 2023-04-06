@@ -1,5 +1,3 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
-
 export const constants = {
   tagName: 'hlx-aria-tabs',
   withControls: 'with-controls',
