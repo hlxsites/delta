@@ -16,16 +16,21 @@
 
 .tab-button {
   flex: 0 0 max-content;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: .375rem .75rem;
   border: none;
   min-width: 0;
   border-bottom: 3px solid transparent;
   font-family: var(--body-font-family);
+  justify-content: end;
   text-decoration: none;
 }
 
-.tab-button[aria-selected="true"] {
+.tab-button[aria-selected="true"],
+.tab-button[aria-selected="true"]:focus,
+.tab-button[aria-selected="true"]:hover {
   border-bottom: 3px solid var(--link-color);
 }
 
@@ -45,12 +50,10 @@ figcaption {
   margin: 0;
 }
 
-.tab-button:focus {
-  background: none;
-}
-
+.tab-button:focus,
 .tab-button:hover {
   background: none;
+  border-color: transparent;
 }
 
 .tabs-controls {
