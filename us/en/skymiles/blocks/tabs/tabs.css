@@ -6,7 +6,6 @@
 
 .tabs-buttons {
   display: flex;
-  gap: 1rem;
   padding: 0 calc(50% - 3rem);
   margin: 0 auto 1rem;
   max-width: 100%;
@@ -16,13 +15,14 @@
 }
 
 .tab-button {
-  flex: 0 0 auto;
+  flex: 0 0 max-content;
   margin: 0;
-  padding: 0;
+  padding: .375rem .75rem;
   border: none;
   min-width: 0;
-  text-decoration: none;
+  border-bottom: 3px solid transparent;
   font-family: var(--body-font-family);
+  text-decoration: none;
 }
 
 .tab-button[aria-selected="true"] {
@@ -93,7 +93,7 @@ figcaption {
 
 @media (min-width: 768px) {
   .tabs-buttons {
-    padding: 0 4rem;
+    padding: 0 1rem;
     justify-content: center;
     width: fit-content;
     max-width: none;

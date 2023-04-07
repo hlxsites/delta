@@ -4,7 +4,7 @@ import { constants } from './aria-tabs.js';
 
 function scrollTabIntoView(block, el) {
   block.querySelector('.tabs-buttons').scrollTo({
-    left: el.offsetLeft - (window.innerWidth - el.clientWidth) / 2,
+    left: el.offsetLeft - el.parentElement.firstElementChild.offsetLeft,
     behavior: 'smooth',
   });
 }
