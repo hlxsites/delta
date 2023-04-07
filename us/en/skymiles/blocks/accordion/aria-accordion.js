@@ -73,14 +73,15 @@ export class AriaAccordion extends HTMLElement {
       button.setAttribute('aria-controls', idPnl);
       button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
       if (el.firstElementChild.matches(HEADINGS_SELECTOR)) {
-        button.innerHTML = el.firstElementChild.innerHTML;
-        el.firstElementChild.innerHTML = button.outerHTML;
+        button.append = el.firstElementChild.innerHTML;
+        el.firstElementChild.innerHTML = '';
+        el.firstElementChild.append(button);
       } else {
-        button.innerHTML = el.firstElementChild.outerHTML;
+        button.append(el.firstElementChild);
         const heading = document.createElement(`h${headingLevel}`);
         heading.id = toClassName(button.textContent);
-        heading.innerHTML = button.outerHTML;
-        el.firstElementChild.replaceWith(heading);
+        heading.append(button);
+        el.prepend(heading);
       }
 
       const panel = document.createElement('div');
@@ -88,8 +89,8 @@ export class AriaAccordion extends HTMLElement {
       panel.role = 'region';
       panel.setAttribute('aria-hidden', true);
       panel.setAttribute('aria-labelledby', idBtn);
-      panel.innerHTML = el.firstElementChild.nextElementSibling.outerHTML;
-      el.firstElementChild.nextElementSibling.replaceWith(panel);
+      panel.append(el.firstElementChild.nextElementSibling);
+      el.append(panel);
     });
     if (this.attributes[constants.withControls].value) {
       const ids = [...this.querySelectorAll('[role="region"]')].map((el) => el.id).join(' ');
