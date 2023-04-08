@@ -96,7 +96,7 @@ export class AriaTabs extends HTMLElement {
       div.append(previous);
 
       const current = document.createElement('div');
-      current.setAttribute('aria-label', `Showing tab ${this.selectedIndex} out of ${tablist.childElementCount}`);
+      current.setAttribute('aria-label', `Showing tab ${this.selectedIndex + 1} out of ${tablist.childElementCount}`);
       current.textContent = `${this.selectedIndex + 1}/${this.itemsCount}`;
       div.append(current);
 
