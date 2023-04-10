@@ -18,12 +18,13 @@ export default function decorate(block) {
           try {
             if (a.href === a.textContent
               || new URL(a.href).pathname === new URL(a.textContent).pathname) {
-              a.classList.add('wrap');
-              a.parentElement.style.display = 'none';
+              a.parentElement.classList.add('wrap');
+              a.innerHTML = li.innerHTML;
+              a.querySelector('a').remove();
+              li.innerHTML = a.outerHTML;
+              li.querySelector('.wrap').remove();
             }
           } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error(err);
             // if we don't have valid URLs, just ignore it
           }
           div.addEventListener('click', () => {
@@ -32,21 +33,6 @@ export default function decorate(block) {
         }
       }
     });
-    const body = li.querySelector('.cards-card-body');
-    const image = li.querySelector('.cards-card-image');
-    const link = body.querySelector('.wrap');
-    const href = link.getAttribute('href');
-    link.remove();
-    const p = body.querySelector('p:last-child');
-    if (p) {
-      p.remove(); // Remove the p tag which originally contained the anchor tag
-    }
-    const newLink = document.createElement('a');
-    newLink.classList.add('link');
-    newLink.setAttribute('href', href);
-    li.insertBefore(newLink, image);
-    newLink.appendChild(image);
-    newLink.appendChild(body);
     ul.append(li);
   });
   ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));

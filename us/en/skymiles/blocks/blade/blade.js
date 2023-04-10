@@ -9,11 +9,6 @@ export default function decorate(block) {
         a.classList.add('wrap');
         try {
           if (a && new URL(a.href).pathname === new URL(a.textContent).pathname) {
-            // div.parentElement.classList.add('is-link');
-            // div.addEventListener('click', () => {
-            //   window.location.href = div.querySelector('a').href;
-            // });
-            // a.parentElement.style.display = 'none';
             div.parentElement.classList.add('is-link');
             a.innerHTML = row.innerHTML;
             a.querySelector('a').remove();
