@@ -498,10 +498,23 @@ main > .section > .badge {
 
 .fresh-air main h1 {
   margin: 6rem 0 0;
-  font-family: var(--heading-font-family-alt);
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-font-size-xxl);
   letter-spacing: 1.4px;
+  margin-bottom: 20px;
+}
+
+.fresh-air main .default-content-eyebrow p strong {
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
   text-transform: uppercase;
+}
+
+.fresh-air main h1::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  border-bottom: 3px solid var(--color-delta-red);
+  width: 82px;
 }
 
 .fresh-air .default-content-eyebrow h1 {
