@@ -5,14 +5,14 @@ export default class HeaderAppWrapper extends HTMLElement {
     document.head.append(p);
   }
 
-  static async loadScript(src, options = {}) {
+  static async loadScript(tag) {
     const script = document.createElement('script');
-    script.src = src;
-    if (options.defer) {
-      script.defer = options.defer;
+    script.src = tag.src;
+    if (tag.defer) {
+      script.defer = tag.defer;
     }
-    if (options.async) {
-      script.async = options.async;
+    if (tag.async) {
+      script.async = tag.async;
     }
     return new Promise((resolve) => {
       script.onload = () => resolve(script);
@@ -28,9 +28,9 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://tms.delta.com/delta/dl_bastian/Bootstrap.js"></script>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js"></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/runtime.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/polyfills.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/main.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/runtime.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/polyfills.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/main.js" defer></script>
     <header-app/>`;
     return template.content;
   }
@@ -45,20 +45,18 @@ export default class HeaderAppWrapper extends HTMLElement {
 
   async connectedCallback() {
     HeaderAppWrapper.setBase();
-    this.innerHTML = `<link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air/css/fresh-air.css"/>
-    <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air-core/23.3.0/fonts/fresh-air-fonts.css"/>
-    <header-app/>`;
     this.setInitialState();
-    await Promise.all([
-      'https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js',
-      'https://tms.delta.com/delta/dl_bastian/Bootstrap.js',
-      'https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js'
-    ].map((src) => HeaderAppWrapper.loadScript(src)));
-    await Promise.all([
-      'https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/runtime.js',
-      'https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/polyfills.js',
-      'https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/main.js'
-    ].map((src) => HeaderAppWrapper.loadScript(src, { defer: true })));
+    this.classList.add('fresh-air');
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(HeaderAppWrapper.template({}).cloneNode(true));
+    await Promise.all([...shadowRoot.querySelectorAll('script[src]:not([defer],[async]')].map((script) => {
+      script.remove();
+      return HeaderAppWrapper.loadScript(script);
+    }));
+    await Promise.all([...shadowRoot.querySelectorAll('script[src]')].map((script) => {
+      script.remove();
+      return HeaderAppWrapper.loadScript(script);
+    }));
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
   }
