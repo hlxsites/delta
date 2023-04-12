@@ -208,6 +208,10 @@ export async function decorateSectionNav(block) {
  */
 export default async function decorate(block) {
   const usp = new URLSearchParams(window.location.search);
+  if (usp.get('header') === 'delta' && usp.get('type') === 'shadowdom') {
+    block.innerHTML = '<header-app-wrapper use-shadow-dom="true"/>';
+    return decorateSectionNav(block);
+  }
   if (usp.get('header') === 'delta') {
     block.innerHTML = '<header-app-wrapper/>';
     return decorateSectionNav(block);

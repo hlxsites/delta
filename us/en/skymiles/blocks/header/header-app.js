@@ -5,14 +5,14 @@ export default class HeaderAppWrapper extends HTMLElement {
     document.head.append(p);
   }
 
-  static async loadScript(tag) {
+  static async loadScript(src, options = {}) {
     const script = document.createElement('script');
-    script.src = tag.src;
-    if (tag.defer) {
-      script.defer = tag.defer;
+    script.src = src;
+    if (options.defer) {
+      script.defer = options.defer;
     }
-    if (tag.async) {
-      script.async = tag.async;
+    if (options.async) {
+      script.async = options.async;
     }
     return new Promise((resolve) => {
       script.onload = () => resolve(script);
@@ -28,10 +28,11 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://tms.delta.com/delta/dl_bastian/Bootstrap.js"></script>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js"></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/runtime.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/polyfills.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/main.js" defer></script>`;
-    return template.content;
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/runtime.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/polyfills.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/main.js" defer></script>
+    <header-app/>`;
+    return template;
   }
 
   setInitialState() {
@@ -45,19 +46,23 @@ export default class HeaderAppWrapper extends HTMLElement {
   async connectedCallback() {
     HeaderAppWrapper.setBase();
     this.setInitialState();
-    this.classList.add('fresh-air');
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(HeaderAppWrapper.template({}).cloneNode(true));
-    await Promise.all([...shadowRoot.querySelectorAll('script[src]:not([defer],[async]')].map((script) => {
+    const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
+    if (useShadowDom) {
+      this.classList.add('fresh-air');
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.appendChild(HeaderAppWrapper.template({}).content.cloneNode(true));
+    } else {
+      this.innerHTML = HeaderAppWrapper.template({}).innerHTML;
+    }
+    const container = useShadowDom ? this.shadowRoot : this;
+    await Promise.all([...container.querySelectorAll('script[src]:not([defer],[async]')].map((script) => {
       script.remove();
-      return HeaderAppWrapper.loadScript(script);
+      return HeaderAppWrapper.loadScript(script.src, script);
     }));
-    await Promise.all([...shadowRoot.querySelectorAll('script[src]')].map((script) => {
+    await Promise.all([...container.querySelectorAll('script[src]')].map((script) => {
       script.remove();
-      return HeaderAppWrapper.loadScript(script);
+      return HeaderAppWrapper.loadScript(script.src, script);
     }));
-    const customEl = document.createElement('header-app');
-    this.shadowRoot.append(customEl);
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
   }
