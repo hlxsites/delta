@@ -30,8 +30,7 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js"></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/runtime.js" defer></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/polyfills.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/main.js" defer></script>
-    <header-app/>`;
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.4.6/main.js" defer></script>`;
     return template.content;
   }
 
@@ -57,6 +56,8 @@ export default class HeaderAppWrapper extends HTMLElement {
       script.remove();
       return HeaderAppWrapper.loadScript(script);
     }));
+    const customEl = document.createElement('header-app');
+    this.shadowRoot.append(customEl);
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
   }
