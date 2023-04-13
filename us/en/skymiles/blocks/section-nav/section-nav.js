@@ -1,5 +1,6 @@
 import { constants } from './aria-menu.js';
 
+let lastScrollPosition;
 export default async function decorate(block) {
   block.innerHTML = '';
 
@@ -17,6 +18,9 @@ export default async function decorate(block) {
   element.setAttribute('aria-label', 'Site Section Navigation');
   element.querySelectorAll('ul').forEach((menu) => { menu.style.maxHeight = 0; });
   element.onToggle = (submenu, expanded) => {
+    if (expanded && submenu === element.querySelector('.section-nav-menu')) {
+      lastScrollPosition = window.scrollY;
+    }
     if (!expanded) {
       submenu.style.maxHeight = 0;
       return new Promise((resolve) => {
@@ -50,3 +54,13 @@ export default async function decorate(block) {
 
   block.append(current);
 }
+
+window.addEventListener('scroll', () => {
+  const menu = document.querySelector('.section-nav [role="menu"][aria-hidden="false"]');
+  if (!menu) {
+    return;
+  }
+  if (Math.abs(lastScrollPosition - window.scrollY) > 50) {
+    menu.closest('hlx-aria-menu').closeAll();
+  }
+}, { passive: true });
