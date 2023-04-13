@@ -46,7 +46,7 @@
 
 
   /* body sizes */
-  --body-font-size-xxl: 24px;
+  --body-font-size-xxl: 1.5rem;
   --body-font-size-xl: 1.25rem;
   --body-font-size-l: 1.125rem;
   --body-font-size-m: 16px;
@@ -504,10 +504,6 @@ main > .section > .badge {
   text-transform: uppercase;
 }
 
-.fresh-air .default-content-eyebrow h1 {
-  margin-bottom: 1rem;
-}
-
 .fresh-air .hero-container + .section h1 {
   margin-top: 0;
 }
@@ -531,6 +527,30 @@ main > .section > .badge {
   margin-top: 3rem;
 }
 
+.fresh-air .default-content-eyebrow {
+  margin-bottom: 3rem;
+}
+
+.fresh-air .default-content-eyebrow p {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xxl);
+  font-weight: normal;
+}
+
+.fresh-air .default-content-eyebrow h2,
+.fresh-air .default-content-eyebrow h3 {
+  margin: 0;
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--heading-font-size-s);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.fresh-air .default-content-eyebrow strong {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .fresh-air .section h1 + h2 {
   margin-top: 0;
 }
@@ -548,6 +568,7 @@ main > .section > .badge {
   margin-top: 3rem;
 }
 
+.fresh-air .default-content-eyebrow p:first-child:has(strong),
 .fresh-air .default-content-wrapper p:first-child + h2 {
   margin-top: 0;
 }
@@ -559,17 +580,6 @@ main > .section > .badge {
 
 .fresh-air .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xl);
-}
-
-.fresh-air .default-content-eyebrow {
-  /* margin-top: 2.5rem; */
-  margin-bottom: 3rem;
-}
-
-.fresh-air .default-content-eyebrow strong {
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xl);
-  font-weight: normal;
 }
 
 /* Responsive adaptation for larger screens. */
