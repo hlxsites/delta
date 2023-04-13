@@ -12,7 +12,8 @@ export default function decorate(block) {
             div.parentElement.classList.add('is-link');
             a.innerHTML = row.innerHTML;
             a.querySelector('a').remove();
-            row.innerHTML = a.outerHTML;
+            row.innerHTML = '';
+            row.append(a);
             row.querySelector('strong').remove();
           }
         } catch (err) {
