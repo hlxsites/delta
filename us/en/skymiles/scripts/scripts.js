@@ -255,7 +255,7 @@ function buildAutoBlocks(main) {
 function decorateEyeBrows(main) {
   main.querySelectorAll('.default-content-wrapper').forEach((dcw) => {
     if (dcw.childElementCount > 1
-      && ([...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent || dcw.querySelector('h1') !== null)) {
+      && ([...dcw.querySelectorAll('strong')].map((s) => s.textContent).join('') === dcw.textContent)) {
       dcw.classList.add('default-content-eyebrow');
     }
   });
