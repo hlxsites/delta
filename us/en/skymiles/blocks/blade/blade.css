@@ -48,6 +48,33 @@
     color: var(--link-color);
 }
 
+/* Silent variant */
+
+.blade.silent > div {
+    border-bottom: none;
+}
+
+.blade.silent .blade-body {
+    padding: 4rem 1rem;
+}
+
+.blade.silent .blade-body h3,
+.blade.silent .blade-body h4 {
+    margin-bottom: .5rem;
+    font-family: var(--heading-font-family-alt);
+    font-size: var(--heading-font-size-s);
+    letter-spacing: 1.4px;
+}
+
+.blade.silent .blade-body strong {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.blade.silent .blade-body p {
+    font-size: var(--body-font-size-xxl);
+}
+
 /* Emphasized variant */
 
 .blade.emphasized .blade-body {
