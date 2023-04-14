@@ -6,6 +6,9 @@ import {
   loadBlock,
 } from '../../scripts/lib-franklin.js';
 
+// eslint-disable-next-line no-unused-vars
+import HeaderApp from './header-app.js';
+
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 992px)');
 
@@ -204,7 +207,15 @@ export async function decorateSectionNav(block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  block.innerHTML = '';
+  const usp = new URLSearchParams(window.location.search);
+  if (usp.get('header') === 'delta' && usp.get('type') === 'shadowdom') {
+    block.innerHTML = '<header-app-wrapper use-shadow-dom="true"/>';
+    return decorateSectionNav(block);
+  }
+  if (usp.get('header') === 'delta') {
+    block.innerHTML = '<header-app-wrapper/>';
+    return decorateSectionNav(block);
+  }
 
   return Promise.all([
     decorateTopHeader(block),

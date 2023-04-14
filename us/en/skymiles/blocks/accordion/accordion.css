@@ -22,6 +22,10 @@
     margin: 0;
 }
 
+.accordion .header figure {
+    margin: 0;
+}
+
 .accordion .text p {
     font-family: var(--heading-font-family);
     font-size: 1rem;
@@ -144,14 +148,23 @@
 }
 
 @media (min-width: 768px) {
-    .accordion .header {
+    .accordion .header,
+    .accordion .header figure {
         display: flex;
         align-items: center;
     }
 
-    .accordion .header p:nth-child(2) {
+    .accordion .header figure {
+        gap: 0 1rem;
+    }
+
+    .accordion .header p:nth-child(2){
         font-size: 1.4rem;
         width: 70%;
+    }
+
+    .accordion .header figcaption {
+        font-size: 1.75rem;
     }
 }
 

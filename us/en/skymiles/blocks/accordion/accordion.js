@@ -15,6 +15,7 @@ export default async function decorate(block) {
   element.innerHTML = block.innerHTML;
   block.innerHTML = '';
   block.append(element);
+  block.querySelectorAll('p:empty').forEach((el) => el.remove());
 
   const textDivs = block.querySelectorAll('.text');
 
