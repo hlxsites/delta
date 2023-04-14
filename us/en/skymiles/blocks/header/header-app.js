@@ -53,6 +53,7 @@ export default class HeaderAppWrapper extends HTMLElement {
       this.shadowRoot.appendChild(HeaderAppWrapper.template({}).content.cloneNode(true));
     } else {
       this.innerHTML = HeaderAppWrapper.template({}).innerHTML;
+      document.querySelector('footer').innerHTML += '<footer-app/>';
     }
     const container = useShadowDom ? this.shadowRoot : this;
     await Promise.all([...container.querySelectorAll('script[src]:not([defer],[async]')].map((script) => {
