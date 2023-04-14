@@ -45,7 +45,6 @@ export default class HeaderAppWrapper extends HTMLElement {
 
   async connectedCallback() {
     HeaderAppWrapper.setBase();
-    this.setInitialState();
     const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
     if (useShadowDom) {
       this.classList.add('fresh-air');
@@ -55,6 +54,7 @@ export default class HeaderAppWrapper extends HTMLElement {
       this.innerHTML = HeaderAppWrapper.template({}).innerHTML;
       document.querySelector('footer').innerHTML += '<footer-app/>';
     }
+    this.setInitialState();
     const container = useShadowDom ? this.shadowRoot : this;
     await Promise.all([...container.querySelectorAll('script[src]:not([defer],[async]')].map((script) => {
       script.remove();
