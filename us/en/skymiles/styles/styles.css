@@ -79,11 +79,6 @@ body {
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--background-color);
-  visibility: hidden;
-}
-
-body.appear {
-  visibility: unset;
 }
 
 body > header {
