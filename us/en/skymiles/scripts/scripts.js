@@ -270,9 +270,9 @@ export async function decorateMain(main) {
   main.id = 'main';
   main.classList.add('skymiles');
   // mark image as decorative if it doesn't have an alternative description
-  document.querySelectorAll('img:not([alt])').forEach((img) => {
+  document.querySelectorAll('img:not([alt],img[alt=""]').forEach((img) => {
     img.role = 'presentation';
-    img.alt = '';
+    img.alt = ' ';
   });
   await decorateContainer(main);
   buildAutoBlocks(main);
