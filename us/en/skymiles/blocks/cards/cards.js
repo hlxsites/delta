@@ -21,7 +21,8 @@ export default function decorate(block) {
               a.parentElement.classList.add('wrap');
               a.innerHTML = li.innerHTML;
               a.querySelector('a').remove();
-              li.innerHTML = a.outerHTML;
+              li.innerHTML = '';
+              li.append(a);
               li.querySelector('.wrap').remove();
             }
           } catch (err) {

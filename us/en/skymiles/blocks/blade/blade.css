@@ -11,18 +11,6 @@
     align-items: center;
 }
 
-.blade > div > a:any-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    border: none;
-}
-
-.blade > div > a:hover {
-    text-decoration: none;
-}
-
 .blade .blade-image {
     box-sizing: border-box;
 }
@@ -54,12 +42,37 @@
 
 .blade .blade-body p {
     font-size: var(--body-font-size-m);
-    font-family: var(--heading-font-family);
-    color: var(--text-color);
 }
 
 .blade a:not(.button):any-link {
     color: var(--link-color);
+}
+
+/* Silent variant */
+
+.blade.silent > div {
+    border-bottom: none;
+}
+
+.blade.silent .blade-body {
+    padding: 4rem 1rem;
+}
+
+.blade.silent .blade-body h3,
+.blade.silent .blade-body h4 {
+    margin-bottom: .5rem;
+    font-family: var(--heading-font-family-alt);
+    font-size: var(--heading-font-size-s);
+    letter-spacing: 1.4px;
+}
+
+.blade.silent .blade-body strong {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.blade.silent .blade-body p {
+    font-size: var(--body-font-size-xxl);
 }
 
 /* Emphasized variant */
@@ -125,46 +138,68 @@
 }
 
 @media (min-width: 992px) {
-    .blade > div,
-    .blade > div > a:any-link {
+    .blade > div {
         flex-direction: unset;
         align-items: stretch;
-    }
-
-    .blade .blade-image {
-        position: relative;
-        width: 30%;
-    }
-
-    .blade .blade-body {
-        width: 70%;
-        padding: 4rem 2rem;
     }
 
     .blade {
         max-width: 1200px;
     }
 
+    .blade .blade-image {
+        position: relative;
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .blade .blade-image .button {
+        margin: 0;
+    }
+
     .blade .blade-image picture,
     .blade .blade-image img {
+        position: absolute;
         height: 100%;
         width: 100%;
-        box-sizing: border-box;
-        object-fit: cover;
+        object-fit: scale-down;
+    }
+    
+    .blade .blade-body {
+        flex: 7;
+        padding: 4rem 2rem;
     }
 
     .blade .button-container {
         margin: 0;
     }
 
-    .blade.emphasized .blade-body p {
-        font-size: var(--body-font-size-l);
-    }
-
     /* Alternating rows variant */
 
     .blade.alternate > div:nth-child(2n) {
         flex-direction: row-reverse;
+    }
+
+    /* Emphasized variant */
+
+    .blade.emphasized .blade-image {
+        flex: 4;
+    }
+
+    .blade.emphasized .blade-image img {
+        object-fit: cover;
+    }
+
+    .blade.emphasized .blade-body {
+        flex: 8;
+        padding: 2rem;
+    }
+
+    .blade.emphasized .blade-body p {
+        font-size: var(--body-font-size-l);
     }
 
     /* Large variant */
@@ -176,6 +211,5 @@
     .blade.large .blade-body {
         flex: 1 2 300px;
     }
+
 }
-
-
