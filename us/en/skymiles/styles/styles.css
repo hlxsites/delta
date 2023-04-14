@@ -88,6 +88,15 @@ body.appear {
 
 body > header {
   height: var(--nav-height);
+  border-bottom: 1.5px solid var(--color-delta-gray-middle2);
+}
+
+body > header::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 46px;
+  background-color: var(--color-delta-blue-dark);
 }
 
 body > footer {
@@ -649,6 +658,10 @@ main > .section > .badge {
 @media (min-width: 992px) {
   :root {
     --nav-height: 137.5px;
+  }
+
+  body > header::before {
+    height: 76px;
   }
 
   .button-container {

@@ -5,8 +5,11 @@
   top: 0;
   width: 100%;
   background-color: var(--background-color);
-  border-bottom: 1.5px solid var(--color-delta-gray-middle2);
   z-index: 3;
+}
+
+.header-wrapper::before {
+  display: none;
 }
 
 .header-wrapper > .header {
