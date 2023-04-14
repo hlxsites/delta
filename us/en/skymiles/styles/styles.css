@@ -79,18 +79,18 @@ body {
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--background-color);
-  display: none;
+  opacity: 0;
 }
 
 body.appear {
-  display: unset;
+  opacity: 1;
 }
 
-header {
+body > header {
   height: var(--nav-height);
 }
 
-footer {
+body > footer {
   background-color: var(--highlight-background-color);
   color: var(--highlight-color);
 }
@@ -118,7 +118,7 @@ footer {
 }
 
 /* Typography styles */
-h1, h2, h3, h4, h5, h6 {
+main :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--heading-font-family);
   font-weight: 500;
   color: var(--heading-color);
@@ -126,28 +126,28 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h4, h5, h6 {
+main :is(h4, h5, h6) {
   font-family: var(--button-font-family);
   font-weight: 900;
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+main h1 { font-size: var(--heading-font-size-xxl) }
+main h2 { font-size: var(--heading-font-size-xl) }
+main h3 { font-size: var(--heading-font-size-l) }
+main h4 { font-size: var(--heading-font-size-m) }
+main h5 { font-size: var(--heading-font-size-s) }
+main h6 { font-size: var(--heading-font-size-xs) }
 
-p, dl, ol, ul, pre, blockquote {
+main :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-m);
   margin: 0 0 1rem;
 }
 
-li {
+main li {
   padding: 0 0 .5rem;
 }
 
-p small {
+main p small {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-style: normal;
@@ -155,39 +155,61 @@ p small {
   margin-bottom: 1rem;
 }
 
-p:has(small:only-child) {
+main p:has(small:only-child) {
   margin: 0;
 }
 
-a:any-link {
+main a:any-link {
   color: var(--link-color);
   font-family: var(--link-font-family);
   text-decoration: none;
 }
 
-a:hover {
+main a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
 
-code, pre, samp {
+main :is(code, pre, samp) {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
+main code,
+main samp {
   padding: .125em;
 }
 
-hr {
+main hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-pre {
-  overflow: scroll;
+main pre {
+  background-color: var(--overlay-background-color);
+  padding: 1em;
+  border-radius: .25em;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+main blockquote {
+  font-style: italic;
+  margin: 3rem;
+  text-indent: -1rem;
+  hanging-punctuation: first;
+}
+
+main blockquote p::before {
+  content: "“";
+  line-height: 0;
+}
+
+main blockquote p::after {
+  content: "”";
+  line-height: 0;
 }
 
 main {
@@ -228,31 +250,6 @@ main strong {
 
 main a strong {
   color: inherit;
-}
-
-main pre {
-  background-color: var(--overlay-background-color);
-  padding: 1em;
-  border-radius: .25em;
-  overflow-x: auto;
-  white-space: pre;
-}
-
-main blockquote {
-  font-style: italic;
-  margin: 3rem;
-  text-indent: -1rem;
-  hanging-punctuation: first;
-}
-
-main blockquote p::before {
-  content: "“";
-  line-height: 0;
-}
-
-main blockquote p::after {
-  content: "”";
-  line-height: 0;
 }
 
 main figure picture {
@@ -506,7 +503,7 @@ main > .section > .badge {
   padding-top: 5rem
 }
 
-.skymiles main h1 {
+.skymiles h1 {
   margin: 6rem 0 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
@@ -518,13 +515,13 @@ main > .section > .badge {
   margin-top: 0;
 }
 
-.skymiles main h2 {
+.skymiles h2 {
   position: relative;
   margin: 0 0 2rem;
   padding-bottom: 2rem;
 }
 
-.skymiles main h2::after {
+.skymiles h2::after {
   content: '';
   position: absolute;
   left: 0;
@@ -651,7 +648,7 @@ main > .section > .badge {
 
 @media (min-width: 992px) {
   :root {
-    --nav-height: 146.5px;
+    --nav-height: 137.5px;
   }
 
   .button-container {

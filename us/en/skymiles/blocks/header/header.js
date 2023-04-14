@@ -207,18 +207,11 @@ export async function decorateSectionNav(block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const usp = new URLSearchParams(window.location.search);
-  if (usp.get('header') === 'delta' && usp.get('type') === 'shadowdom') {
-    block.innerHTML = '<header-app-wrapper use-shadow-dom="true"/>';
-    return decorateSectionNav(block);
-  }
-  if (usp.get('header') === 'delta') {
+  block.closest('header').classList.add('fresh-air');
+  if (window.location.hostname.endsWith('delta.com')) {
     block.innerHTML = '<header-app-wrapper/>';
-    return decorateSectionNav(block);
+  } else {
+    block.innerHTML = '';
   }
-
-  return Promise.all([
-    decorateTopHeader(block),
-    decorateSectionNav(block),
-  ]);
+  return decorateSectionNav(block);
 }

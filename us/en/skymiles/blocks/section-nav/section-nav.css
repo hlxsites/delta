@@ -1,6 +1,7 @@
 .section-nav-wrapper {
   position: fixed;
   inset: 47px 0 auto 0;
+  z-index: 3;
 }
 
 .section-nav {
@@ -91,6 +92,7 @@
   box-sizing: border-box;
   padding: 1rem 4rem 1rem 2rem;
   border: none;
+  background: none;
   font-family: var(--button-font-family);
   font-size: var(--heading-font-size-s);
   letter-spacing: 1px;
@@ -155,7 +157,7 @@
 @media (min-width: 768px) {
   .section-nav {
     box-sizing: border-box;
-    padding: 1rem;
+    padding: .3rem 1rem;
     margin: 0 auto;
     max-width: 730px;
     align-items: stretch;
