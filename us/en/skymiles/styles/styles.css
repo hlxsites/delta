@@ -79,7 +79,13 @@ body {
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--background-color);
+
+  /* display: none; FIXME: add back when delta header supports it */
 }
+
+/* body.appear {
+  display: unset;
+} */
 
 body > header {
   height: var(--nav-height);
