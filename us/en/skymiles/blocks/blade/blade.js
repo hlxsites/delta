@@ -6,13 +6,15 @@ export default function decorate(block) {
       } else {
         div.className = 'blade-body';
         const a = div.lastElementChild.querySelector('a:only-child:last-child');
+        a.classList.add('wrap');
         try {
           if (a && new URL(a.href).pathname === new URL(a.textContent).pathname) {
             div.parentElement.classList.add('is-link');
-            div.addEventListener('click', () => {
-              window.location.href = div.querySelector('a').href;
-            });
-            a.parentElement.style.display = 'none';
+            a.innerHTML = row.innerHTML;
+            a.querySelector('a').remove();
+            row.innerHTML = '';
+            row.append(a);
+            row.querySelector('strong').remove();
           }
         } catch (err) {
           // ignore, we just have an invalid link

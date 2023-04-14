@@ -18,11 +18,14 @@ export default function decorate(block) {
           try {
             if (a.href === a.textContent
               || new URL(a.href).pathname === new URL(a.textContent).pathname) {
-              a.parentElement.style.display = 'none';
+              a.parentElement.classList.add('wrap');
+              a.innerHTML = li.innerHTML;
+              a.querySelector('a').remove();
+              li.innerHTML = '';
+              li.append(a);
+              li.querySelector('.wrap').remove();
             }
           } catch (err) {
-            // eslint-disable-next-line no-console
-            console.error(err);
             // if we don't have valid URLs, just ignore it
           }
           div.addEventListener('click', () => {
