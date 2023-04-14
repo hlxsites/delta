@@ -46,8 +46,8 @@ export default class HeaderAppWrapper extends HTMLElement {
   async connectedCallback() {
     HeaderAppWrapper.setBase();
     const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
+    this.classList.add('fresh-air');
     if (useShadowDom) {
-      this.classList.add('fresh-air');
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(HeaderAppWrapper.template({}).content.cloneNode(true));
     } else {

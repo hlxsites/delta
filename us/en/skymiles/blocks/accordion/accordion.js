@@ -24,13 +24,22 @@ export default async function decorate(block) {
   await Promise.all([...textDivs].map(async (text) => {
     text.parentElement.setAttribute('aria-live', 'off');
     if (text.children.length === 1 && text.firstElementChild.tagName === 'A') {
+      let path;
       try {
         const path1 = new URL(text.firstElementChild.textContent).pathname;
         const path2 = new URL(text.firstElementChild.href).pathname;
         if (path1 !== path2) {
           return;
         }
-        const content = await fetchContent(path2);
+        path = path2;
+      } catch (err) {
+        // Invalid url, do nothing
+      }
+      if (!path) {
+        return;
+      }
+      try {
+        const content = await fetchContent(path);
         text.classList.remove('button-container');
         text.innerHTML = '';
         text.appendChild(content);

@@ -338,7 +338,8 @@ main details[open] summary::before {
   text-align: center;
 }
 
-.button:any-link, button {
+main .button:any-link,
+main button {
   display: inline-block;
   box-sizing: border-box;
   padding: 1.5rem .75rem;
@@ -360,41 +361,50 @@ main details[open] summary::before {
   width: 100%;
 }
 
-.button:hover, .button:focus, button:hover, button:focus  {
+main .button:hover,
+main .button:focus,
+main button:hover,
+main button:focus  {
   background-color: var(--color-delta-gray-middle2);
   border-color: var(--color-delta-blue);
   cursor: pointer;
   text-decoration: none;
 }
 
-button:disabled, button:disabled:hover {
+main button:disabled,
+main button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-.button.cta, button.cta {
+main .button.cta,
+main button.cta {
   background-color: var(--color-delta-red);
   border-color: var(--color-delta-red);
   color: var(--text-color-inverted);
 }
 
-.button.cta:hover, .button.cta:focus, button.cta:hover, button.cta:focus {
+main .button.cta:hover,
+main .button.cta:focus,
+main button.cta:hover,
+main button.cta:focus {
   background-color: var(--color-delta-red-dark);
   border-color: var(--color-delta-red-dark);
 }
 
-.button.secondary, button.secondary {
+main .button.secondary,
+main button.secondary {
   background-color: unset;
   border-color: currentcolor;
   color: var(--text-color)
 }
 
-p > em:only-child {
+main p > em:only-child {
   text-align: left;
 }
 
-p > .button.secondary:only-child,
-p > em:only-child > .button.secondary:only-child {
+main p > .button.secondary:only-child,
+main p > em:only-child > .button.secondary:only-child {
   margin: 0;
   padding: 0;
   background: none;
@@ -409,8 +419,8 @@ p > em:only-child > .button.secondary:only-child {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-p > .button.secondary:only-child:hover,
-p > em:only-child > .button.secondary:only-child:hover {
+main p > .button.secondary:only-child:hover,
+main p > em:only-child > .button.secondary:only-child:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
@@ -492,11 +502,11 @@ main > .section > .badge {
 }
 
 /* Custom overrides for the fresh-air themed pages */
-.fresh-air .hero-container + .section {
+.skymiles .hero-container + .section {
   padding-top: 5rem
 }
 
-.fresh-air main h1 {
+.skymiles main h1 {
   margin: 6rem 0 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
@@ -504,17 +514,17 @@ main > .section > .badge {
   text-transform: uppercase;
 }
 
-.fresh-air .hero-container + .section h1 {
+.skymiles .hero-container + .section h1 {
   margin-top: 0;
 }
 
-.fresh-air main h2 {
+.skymiles main h2 {
   position: relative;
   margin: 0 0 2rem;
   padding-bottom: 2rem;
 }
 
-.fresh-air main h2::after {
+.skymiles main h2::after {
   content: '';
   position: absolute;
   left: 0;
@@ -523,22 +533,22 @@ main > .section > .badge {
   width: 82px;
 }
 
-.fresh-air .default-content-wrapper h2 {
+.skymiles .default-content-wrapper h2 {
   margin-top: 3rem;
 }
 
-.fresh-air .default-content-eyebrow {
+.skymiles .default-content-eyebrow {
   margin-bottom: 3rem;
 }
 
-.fresh-air .default-content-eyebrow p {
+.skymiles .default-content-eyebrow p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-xxl);
   font-weight: normal;
 }
 
-.fresh-air .default-content-eyebrow h2,
-.fresh-air .default-content-eyebrow h3 {
+.skymiles .default-content-eyebrow h2,
+.skymiles .default-content-eyebrow h3 {
   margin: 0;
   font-family: var(--heading-font-family-alt);
   font-size: var(--heading-font-size-s);
@@ -546,39 +556,39 @@ main > .section > .badge {
   text-transform: uppercase;
 }
 
-.fresh-air .default-content-eyebrow strong {
+.skymiles .default-content-eyebrow strong {
   font-family: inherit;
   font-size: inherit;
 }
 
-.fresh-air .section h1 + h2 {
+.skymiles .section h1 + h2 {
   margin-top: 0;
 }
 
-.fresh-air :is(p, dl, ol, ul, pre, blockquote) {
+.skymiles :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-l);
 }
 
-.fresh-air .section h1 + h2,
-.fresh-air .section h2:first-child {
+.skymiles .section h1 + h2,
+.skymiles .section h2:first-child {
   font-size: var(--heading-font-size-xl);
 }
 
-.fresh-air .default-content-wrapper p:first-child:has(strong) {
+.skymiles .default-content-wrapper p:first-child:has(strong) {
   margin-top: 3rem;
 }
 
-.fresh-air .default-content-eyebrow p:first-child:has(strong),
-.fresh-air .default-content-wrapper p:first-child + h2 {
+.skymiles .default-content-eyebrow p:first-child:has(strong),
+.skymiles .default-content-wrapper p:first-child + h2 {
   margin-top: 0;
 }
 
-.fresh-air .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote),
-.fresh-air .section h2:first-child ~ :is(p, dl, ol, ul, pre, blockquote) {
+.skymiles .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote),
+.skymiles .section h2:first-child ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xxl);
 }
 
-.fresh-air .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
+.skymiles .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
   font-size: var(--body-font-size-xl);
 }
 
@@ -590,14 +600,15 @@ main > .section > .badge {
 }
 
 @media (min-width: 768px) {
-  .button:any-link, button {
+  main .button:any-link,
+  main button {
     padding: 1rem 1.5rem;
     min-width: 17rem;
     vertical-align: bottom;
     width: auto;
   }
 
-  p > em:only-child > .button.secondary:only-child {
+  main p > em:only-child > .button.secondary:only-child {
     font-size: var(--body-font-size-xl);
   }
 
@@ -610,20 +621,20 @@ main > .section > .badge {
     margin: initial;
   }
 
-  .fresh-air h1 {
+  .skymiles h1 {
     margin-top: 4rem;
   }
 
-  .fresh-air .default-content-wrapper h2 {
+  .skymiles .default-content-wrapper h2 {
     margin-top: 5rem;
   }
 
-  .fresh-air .section h1 + h2 {
+  .skymiles .section h1 + h2 {
     margin-top: 1.25rem;
     font-size: var(--heading-font-size-xxl);
   }
 
-  .fresh-air .default-content-wrapper h2:first-child {
+  .skymiles .default-content-wrapper h2:first-child {
     margin-top: 0;
   }
 
@@ -649,19 +660,20 @@ main > .section > .badge {
     text-align: inherit;
   }
 
-  [data-align="left"] .button-container {
+  main [data-align="left"] .button-container {
     justify-content: start;
   }
 
-  [data-align="center"] .button-container {
+  main [data-align="center"] .button-container {
     justify-content: center;
   }
 
-  [data-align="right"] .button-container {
+  main [data-align="right"] .button-container {
     justify-content: end;
   }
 
-  .button:any-link, button {
+  main .button:any-link,
+  main button {
     min-width: 18rem;
     padding: 1.5rem;
   }
@@ -676,7 +688,7 @@ main > .section > .badge {
     max-width: 976px;
   }
 
-  p small {
+  main p small {
     font-size: var(--body-font-size-m);
     font-style: normal;
   }

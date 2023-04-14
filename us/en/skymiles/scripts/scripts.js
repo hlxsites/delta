@@ -268,7 +268,7 @@ function decorateEyeBrows(main) {
 // eslint-disable-next-line import/prefer-default-export
 export async function decorateMain(main) {
   main.id = 'main';
-  document.body.classList.add('fresh-air');
+  main.classList.add('skymiles');
   // mark image as decorative if it doesn't have an alternative description
   document.querySelectorAll('img:not([alt])').forEach((img) => {
     img.role = 'presentation';
