@@ -1,5 +1,5 @@
-footer {
-  padding: 2rem;
+.footer-wrapper {
+  padding: 2rem 2rem 4rem;
   background-color: var(--color-delta-blue-dark);
   font-size: var(--body-font-size-s);
 }
@@ -56,7 +56,11 @@ footer {
 
 .footer a:any-link {
   color: #fff;
-  text-decoration-thickness: unset;
+  text-decoration: none;
+}
+
+.footer li {
+  margin-bottom: .5rem;
 }
 
 /* terms and conditions */
@@ -470,6 +474,10 @@ footer .icon > svg {
     padding: 0 1rem 0 3.5rem;
   }
 
+  .footer .footer-copyright {
+    padding-top: 2rem;
+  }
+
   /* social and language links - last */
   .footer-social-int {
     margin: 1.5rem 1rem 1rem;
@@ -533,7 +541,7 @@ footer .icon > svg {
   }
 
   .footer-search-help-topics .first-row .heading {
-    font-size: 2.875em;
+    font-size: 2.875rem;
   }
 
   .footer-search-help-topics ul {
@@ -551,7 +559,7 @@ footer .icon > svg {
     display: inline-flex;
     font-size: 1.125rem;
     color: var(--color-delta-gray);;
-    margin-bottom: 20px;
+    margin: .5rem 0 2rem;
   }
 
   .footer-search-help-topics .second-row .heading {

@@ -9,7 +9,7 @@ main .pager-container {
   margin: 2.5rem 1.875rem;
 }
 
-.pager a {
+.pager a:any-link {
   display: block;
   max-width: 45rem;
   margin: 0 auto;
