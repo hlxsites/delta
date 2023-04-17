@@ -207,8 +207,9 @@ export async function decorateSectionNav(block) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  const usp = new URLSearchParams(window.location.search);
   block.closest('header').classList.add('fresh-air');
-  if (window.location.hostname.endsWith('delta.com')) {
+  if (window.location.hostname.endsWith('delta.com') && usp.get('header') !== 'off') {
     block.innerHTML = '<header-app-wrapper/>';
   } else {
     block.innerHTML = '';
