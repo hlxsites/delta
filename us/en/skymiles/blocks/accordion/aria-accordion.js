@@ -47,7 +47,7 @@ export class AriaAccordion extends HTMLElement {
         }
       });
     });
-    if (this.attributes[constants.withControls].value) {
+    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.addEventListener('click', () => this.toggleAll(true));
       collapse.addEventListener('click', () => this.toggleAll(false));
@@ -92,7 +92,7 @@ export class AriaAccordion extends HTMLElement {
       panel.append(el.firstElementChild.nextElementSibling);
       el.append(panel);
     });
-    if (this.attributes[constants.withControls].value) {
+    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
       const ids = [...this.querySelectorAll('[role="region"]')].map((el) => el.id).join(' ');
       const div = document.createElement('div');
       div.role = 'group';
@@ -114,7 +114,7 @@ export class AriaAccordion extends HTMLElement {
       btn.setAttribute('aria-expanded', visible);
       btn.parentElement.nextElementSibling.setAttribute('aria-hidden', !visible);
     });
-    if (this.attributes[constants.withControls].value) {
+    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.disabled = visible;
       collapse.disabled = !visible;
@@ -129,7 +129,7 @@ export class AriaAccordion extends HTMLElement {
     const expanded = el.getAttribute('aria-expanded') === 'true';
     el.setAttribute('aria-expanded', !expanded);
     el.parentElement.nextElementSibling.setAttribute('aria-hidden', expanded);
-    if (this.attributes[constants.withControls].value) {
+    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
       const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
       expand.disabled = !this.querySelector('button[aria-expanded="false"]');
       collapse.disabled = !this.querySelector('button[aria-expanded="true"]');
