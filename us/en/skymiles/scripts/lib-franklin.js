@@ -486,7 +486,7 @@ export function decorateButtons(element) {
     } catch (err) {
       // do nothing
     }
-    if (new URL(a.href).pathname !== text && !a.classList.contains('button')) {
+    if (a.href && new URL(a.href).pathname !== text && !a.classList.contains('button')) {
       const up = a.parentElement;
       const down = a.firstElementChild;
       const twoup = a.parentElement.parentElement;

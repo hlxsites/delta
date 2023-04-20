@@ -429,6 +429,7 @@ main p > em:only-child > .button.secondary:only-child:hover {
   top: var(--nav-height);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .sr-focusable a,
 a.sr-focusable {
   position: absolute;
