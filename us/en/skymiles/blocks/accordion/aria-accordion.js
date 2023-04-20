@@ -79,7 +79,13 @@ export class AriaAccordion extends HTMLElement {
       } else {
         button.append(el.firstElementChild);
         const heading = document.createElement(`h${headingLevel}`);
-        heading.id = toClassName(button.textContent);
+        let content = button.textContent.trim();
+        if (!content) {
+          const labelEl = button.querySelector('[title],[alt]');
+          content = labelEl.title || labelEl.alt || '';
+          heading.setAttribute('aria-label', content);
+        }
+        heading.id = toClassName(content);
         heading.append(button);
         el.prepend(heading);
       }
