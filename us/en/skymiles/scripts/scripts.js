@@ -335,7 +335,7 @@ const hreflangMap = {
   'en-GB': 'https://www.delta.com/gb/en',
   'fr-CA': 'https://fr.delta.com/ca/fr',
   'x-default': 'https://www.delta.com',
-}
+};
 
 /**
  * loads everything that doesn't need to be delayed.
