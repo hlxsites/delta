@@ -322,6 +322,21 @@ export function addFavIcon(href) {
   }
 }
 
+const hreflangMap = {
+  'it-IT': 'https://it.delta.com/eu/it',
+  'de-DE': 'https://de.delta.com/eu/de',
+  'en-CA': 'https://www.delta.com/ca/en',
+  'pt-BR': 'https://pt.delta.com/br/pt',
+  'ko-KR': 'https://ko.delta.com/kr/ko',
+  'fr-FR': 'https://fr.delta.com/fr/fr',
+  'zh-CN': 'https://zh.delta.com/cn/zh',
+  'es-MX': 'https://es.delta.com/mx/es',
+  'ja-JP': 'https://ja.delta.com/jp/ja',
+  'en-GB': 'https://www.delta.com/gb/en',
+  'fr-CA': 'https://fr.delta.com/ca/fr',
+  'x-default': 'https://www.delta.com',
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -344,6 +359,14 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  Object.keys(hreflangMap).forEach((key, value)  => {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'alternate');
+    link.setAttribute('hreflang', key);
+    link.setAttribute('href', window.location.href.replace(/https:\/\/(www\.)?delta\.com\/us\/en/, value));
+    document.head.appendChild(link);
+  });
 }
 
 /**
