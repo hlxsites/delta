@@ -360,7 +360,7 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 
-  Object.keys(hreflangMap).forEach((key, value)  => {
+  Object.keys(hreflangMap).forEach((key, value) => {
     const link = document.createElement('link');
     link.setAttribute('rel', 'alternate');
     link.setAttribute('hreflang', key);
