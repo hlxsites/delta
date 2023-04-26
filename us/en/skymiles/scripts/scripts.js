@@ -125,15 +125,6 @@ async function decorateInlineToggles(container) {
     .map((el) => createInlineToggle(el)));
 }
 
-// eslint-disable-next-line no-unused-vars
-function decorateScreenReaderOnly(container) {
-  [...container.querySelectorAll('del')].forEach((el) => {
-    const span = document.createElement('span');
-    span.classList.add('sr-only');
-    span.innerHTML = el.innerHTML;
-    el.replaceWith(span);
-  });
-}
 
 function decorateFigures(container) {
   [...container.querySelectorAll('picture')].forEach((picture) => {
@@ -213,6 +204,16 @@ export function decorateReferences(container) {
     });
 }
 
+export function decorateScreenReaderOnly(container) {
+  const srOnly = /\[(.*?)\]/g;
+  [...container.querySelectorAll('a')]
+    .forEach((el) => {
+      if (el.innerHTML.match(srOnly)) {
+        el.innerHTML = el.innerHTML.replace(srOnly, (text) => `<span class="sr-only">${text}</span>`);
+      }
+    });
+  };
+
 export async function decorateContainer(container) {
   decorateButtons(container);
   await decorateInlineToggles(container);
@@ -220,7 +221,7 @@ export async function decorateContainer(container) {
   decorateResponsiveImages(container);
   decorateFigures(container);
   decorateReferences(container);
-  // decorateScreenReaderOnly(main);
+  decorateScreenReaderOnly(container);
 }
 
 export async function fetchContent(url) {
