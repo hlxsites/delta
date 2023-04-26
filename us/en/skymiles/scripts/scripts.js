@@ -125,7 +125,6 @@ async function decorateInlineToggles(container) {
     .map((el) => createInlineToggle(el)));
 }
 
-
 function decorateFigures(container) {
   [...container.querySelectorAll('picture')].forEach((picture) => {
     if (picture.closest('figure')) {
@@ -212,7 +211,7 @@ export function decorateScreenReaderOnly(container) {
         el.innerHTML = el.innerHTML.replace(srOnly, (text) => `<span class="sr-only">${text}</span>`);
       }
     });
-  };
+  }
 
 export async function decorateContainer(container) {
   decorateButtons(container);
