@@ -208,7 +208,7 @@ export function decorateScreenReaderOnly(container) {
   [...container.querySelectorAll('a')]
     .forEach((el) => {
       if (el.innerHTML.match(srOnly)) {
-        el.innerHTML = el.innerHTML.replace(srOnly, (text) => `<span class="sr-only">${text}</span>`);
+        el.innerHTML = el.innerHTML.replace(srOnly, (text) => `<span class="sr-only">${text.slice(1, -1)}</span>`);
       }
     });
 }
