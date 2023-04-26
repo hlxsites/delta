@@ -38,11 +38,11 @@ export default async function decorate(block) {
   // fetch dynamic content
   let hasAsyncBlocks = false;
   await Promise.all([...panels].map(async (panel) => {
-    if (panel.children.length === 1 && panel.firstElementChild.classList.contains('button-container')) {
+    if (panel.children.length === 1 && panel.firstElementChild.querySelector(':scope > a:only-child')) {
       panel.parentElement.setAttribute('aria-live', 'off');
       try {
-        const path1 = new URL(panel.querySelector('.button').textContent).pathname;
-        const path2 = new URL(panel.querySelector('.button').href).pathname;
+        const path1 = new URL(panel.querySelector('a').textContent).pathname;
+        const path2 = new URL(panel.querySelector('a').href).pathname;
         if (path1 !== path2) {
           return;
         }
