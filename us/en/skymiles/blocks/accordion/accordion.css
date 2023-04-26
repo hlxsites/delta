@@ -143,6 +143,10 @@
     text-decoration: none;
 }
 
+.accordion-wrapper [role="group"] button:disabled:hover {
+    background: none;
+}
+
 .accordion .tertiary.highlight {
     color: var(--link-color);
 }
