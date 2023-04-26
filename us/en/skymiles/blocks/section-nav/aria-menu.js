@@ -81,6 +81,9 @@ export class AriaMenu extends HTMLElement {
             ev.preventDefault();
             this.focusItem(menu, items.length - 1);
             break;
+          case 'Tab':
+            this.closeAll(false);
+            break;
           default:
             break;
         }
@@ -165,14 +168,16 @@ export class AriaMenu extends HTMLElement {
     return Promise.resolve();
   }
 
-  closeAll() {
+  closeAll(focusToggle = true) {
     this.querySelectorAll('[role="menuitem"][aria-expanded="true"]').forEach((item) => {
       item.setAttribute('aria-expanded', false);
       item.tabIndex = -1;
     });
     this.querySelectorAll('[role="menu"][aria-hidden="false"]').forEach(this.close.bind(this));
     this.firstElementChild.setAttribute('aria-expanded', false);
-    this.firstElementChild.focus();
+    if (focusToggle) {
+      this.firstElementChild.focus();
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
