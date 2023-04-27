@@ -24,7 +24,7 @@ export default class HeaderAppWrapper extends HTMLElement {
     const HEADER_APP_VERSION = '23.6.100';
     const template = document.createElement('template');
     template.innerHTML = `
-    <link rel="stylesheet" type="text/css" href="/content/dam/delta-applications/ui-kit/23.5.11/variables.css" data-css-include="true"/>
+    <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/ui-kit/23.5.11/variables.css" data-css-include="true"/>
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air/css/fresh-air.css"/>
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air-core/23.3.0/fonts/fresh-air-fonts.css"/>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js"></script>
