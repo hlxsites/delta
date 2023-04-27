@@ -21,7 +21,7 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   static template() {
-    const HEADER_APP_VERSION = '23.4.1';
+    const HEADER_APP_VERSION = '23.5.0';
     const template = document.createElement('template');
     template.innerHTML = `
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air/css/fresh-air.css"/>
@@ -32,7 +32,9 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/runtime.js" defer></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/polyfills.js" defer></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/main.js" defer></script>
-    <header-app/>`;
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/23.5.13/element.js" defer></script>
+    <header-app/>
+    <idp-login-modal-profile-selector></idp-login-modal-profile-selector>`;
     return template;
   }
 
