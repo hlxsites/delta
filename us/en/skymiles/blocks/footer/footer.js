@@ -56,7 +56,7 @@ export default async function decorate(block) {
 
   const suggestions = document.createElement('div');
   suggestions.classList.add('search-suggestions');
-  suggestions.role = 'region';
+  suggestions.setAttribute('role', 'region');
   suggestions.setAttribute('aria-live', 'polite');
   suggestions.style.display = 'none';
   searchHelpTopicsDiv.querySelector('hlx-aria-dialog > div').append(suggestions);
@@ -82,7 +82,7 @@ export default async function decorate(block) {
   });
 
   const firstFooterDiv = footer.querySelector('.footer-links');
-  firstFooterDiv.role = 'navigation';
+  firstFooterDiv.setAttribute('role', 'navigation');
   firstFooterDiv.setAttribute('aria-label', 'Footer navigation');
   firstFooterDiv.classList.add('footer-menu');
   const headings = firstFooterDiv.querySelectorAll('ul > li > strong');

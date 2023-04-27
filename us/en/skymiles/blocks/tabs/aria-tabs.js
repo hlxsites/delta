@@ -8,10 +8,10 @@ export class AriaTabs extends HTMLElement {
     return Math.random().toString(32).substring(2);
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.selectedIndex = 0;
     this.itemsCount = this.children.length;
-    this.decorate();
+    await this.decorate();
     this.attachListeners();
   }
 
@@ -65,14 +65,14 @@ export class AriaTabs extends HTMLElement {
   async decorate() {
     const tablist = document.createElement('div');
     tablist.id = AriaTabs.getId();
-    tablist.role = 'tablist';
+    tablist.setAttribute('role', 'tablist');
     tablist.setAttribute('aria-orientation', 'horizontal');
     [...this.children].forEach((el, i) => {
       const id1 = AriaTabs.getId();
       const id2 = AriaTabs.getId();
       const button = document.createElement('button');
       button.id = id1;
-      button.role = 'tab';
+      button.setAttribute('role', 'tab');
       button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
       button.setAttribute('aria-selected', i === this.selectedIndex);
       button.setAttribute('aria-controls', id2);
@@ -81,7 +81,7 @@ export class AriaTabs extends HTMLElement {
 
       const panel = el;
       panel.id = id2;
-      panel.role = 'tabpanel';
+      panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('aria-labelledby', id1);
       panel.setAttribute('aria-hidden', i !== this.selectedIndex);
     });

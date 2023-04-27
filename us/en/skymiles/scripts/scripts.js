@@ -118,7 +118,8 @@ async function decorateInlineToggles(container) {
     }
     p.replaceWith(details);
   }
-  await Promise.all([...container.querySelectorAll('p:has(.icon-toggle:first-child)')]
+  await Promise.all([...container.querySelectorAll('p')]
+    .filter((p) => !!p.querySelector('.icon-toggle:first-child'))
     .map((el) => createInlineToggle(el)));
   await Promise.all([...container.querySelectorAll('p')]
     .filter((p) => p.textContent.startsWith('> '))
@@ -271,7 +272,7 @@ export async function decorateMain(main) {
   main.classList.add('skymiles');
   // mark image as decorative if it doesn't have an alternative description
   document.querySelectorAll('img:not([alt],img[alt=""]').forEach((img) => {
-    img.role = 'presentation';
+    img.setAttribute('role', 'presentation');
     img.alt = ' ';
   });
   await decorateContainer(main);
@@ -284,7 +285,7 @@ export async function decorateMain(main) {
     const img = document.createElement('img');
     img.classList.add('badge');
     img.src = badge.content;
-    img.role = 'presentation';
+    img.setAttribute('role', 'presentation');
     img.alt = '';
     main.querySelector('h2').append(img);
     main.classList.add('has-badge');

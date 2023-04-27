@@ -144,7 +144,7 @@ export function decorateIcons(element = document) {
       } else {
         span.innerHTML = iconHTML;
       }
-      span.role = 'presentation';
+      span.setAttribute('role', 'presentation');
     }
   });
 }

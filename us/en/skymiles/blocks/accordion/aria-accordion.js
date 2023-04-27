@@ -86,7 +86,7 @@ export class AriaAccordion extends HTMLElement {
 
       const panel = document.createElement('div');
       panel.id = idPnl;
-      panel.role = 'region';
+      panel.setAttribute('role', 'region');
       panel.setAttribute('aria-hidden', true);
       panel.setAttribute('aria-labelledby', idBtn);
       panel.append(el.firstElementChild.nextElementSibling);
@@ -95,7 +95,7 @@ export class AriaAccordion extends HTMLElement {
     if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
       const ids = [...this.querySelectorAll('[role="region"]')].map((el) => el.id).join(' ');
       const div = document.createElement('div');
-      div.role = 'group';
+      div.setAttribute('role', 'group');
       const expand = document.createElement('button');
       expand.setAttribute('aria-controls', ids);
       expand.textContent = 'Expand All';
