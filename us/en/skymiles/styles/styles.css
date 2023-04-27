@@ -659,6 +659,10 @@ main > .section > .badge {
     text-align: inherit;
   }
 
+  .default-content-wrapper {
+    padding: 0;
+  }
+
   main [data-align="left"] .button-container {
     justify-content: start;
   }

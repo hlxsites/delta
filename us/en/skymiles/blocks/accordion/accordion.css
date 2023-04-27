@@ -1,16 +1,17 @@
-.accordion-container {
-    margin-bottom: 20px;
-}
-
 .accordion-wrapper {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 20px;
 }
 
 .accordion-section {
     padding: 1.5rem 1rem;
     border-top: .0625rem solid var(--color-delta-gray-middle);
+}
+
+.accordion-section:last-of-type {
+    border-bottom: .0625rem solid var(--color-delta-gray-middle);
 }
 
 .accordion-section > h1,
