@@ -32,7 +32,7 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/runtime.js" defer></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/polyfills.js" defer></script>
     <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/main.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/login-modal/23.5.13/element.js" defer></script>
+    <script type="text/javascript" src="https://qat3-content.delta.com/content/dam/delta-applications/login-modal/23.5.13/element.js" defer></script>
     <header-app></header-app>
     <idp-login-modal-profile-selector></idp-login-modal-profile-selector>`;
     return template;
