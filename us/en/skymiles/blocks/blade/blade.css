@@ -4,7 +4,8 @@
     color: var(--color-delta-blue);
 }
 
-.blade > div {
+.blade > div,
+.blade > .is-link > a {
     display: flex;
     border-bottom: 1px solid var(--color-delta-gray-middle2);
     flex-direction: column;
@@ -134,11 +135,23 @@
 }
 
 .blade .is-link .blade-body {
+    color: var(--color-delta-blue);
     cursor: pointer;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
+.blade .is-link > a {
+    font-family: inherit;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.blade .is-link > a:hover {
+    text-decoration: none;
+}
+
 @media (min-width: 992px) {
-    .blade > div {
+    .blade > div,
+    .blade > .is-link > a {
         flex-direction: unset;
         align-items: stretch;
     }
