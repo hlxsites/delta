@@ -59,14 +59,16 @@ export default class HeaderAppWrapper extends HTMLElement {
     }
     this.setInitialState();
     const container = useShadowDom ? this.shadowRoot : this;
+    // Load sync scripts in sequence
     await [...container.querySelectorAll('script[src]:not([defer],[async]')].reduce((promise, script) => {
       script.remove();
       return promise.then(() => HeaderAppWrapper.loadScript(script.src, script));
     }, Promise.resolve());
-    await Promise.all([...container.querySelectorAll('script[src]')].map((script) => {
+    // Load async scripts in sequence
+    await [...container.querySelectorAll('script[src]')].reduce((promise, script) => {
       script.remove();
-      return HeaderAppWrapper.loadScript(script.src, script);
-    }));
+      return promise.then(() => HeaderAppWrapper.loadScript(script.src, script));
+    }, Promise.resolve());
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
   }
