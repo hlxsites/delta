@@ -21,6 +21,7 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   static template() {
+    const HEADER_APP_VERSION = '23.4.1';
     const template = document.createElement('template');
     template.innerHTML = `
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air/css/fresh-air.css"/>
@@ -28,9 +29,9 @@ export default class HeaderAppWrapper extends HTMLElement {
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://tms.delta.com/delta/dl_bastian/Bootstrap.js"></script>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js"></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/runtime.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/polyfills.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/main.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/runtime.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/polyfills.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/main.js" defer></script>
     <header-app/>`;
     return template;
   }
