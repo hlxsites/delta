@@ -48,6 +48,7 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   async connectedCallback() {
+    document.documentElement.classList.add('hp-legacy');
     HeaderAppWrapper.setBase();
     const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
     if (useShadowDom) {
