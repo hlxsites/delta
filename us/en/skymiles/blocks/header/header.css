@@ -33,3 +33,8 @@ main {
   }
 }
 
+
+/* stylelint-disable-next-line selector-class-pattern */
+header-app-wrapper .calenderDepartSpan[aria-hidden] {
+  display: block;
+}
