@@ -74,6 +74,11 @@ export default class HeaderAppWrapper extends HTMLElement {
     }, Promise.resolve());
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
+    // The widgets are force-hidden by default to avoid flicker in the UI
+    // This resets them to visible
+    setTimeout(() => {
+      document.querySelector('.fresh-air ngc-global-nav header > div > .main-container').style.display = 'unset';
+    }, 100);
   }
 }
 
