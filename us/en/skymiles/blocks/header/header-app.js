@@ -48,6 +48,8 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   async connectedCallback() {
+    // Legacy class added for backward ompatibility with Delta header
+    // and used with modal dialogs to control scroll behavior
     document.documentElement.classList.add('hp-legacy');
     HeaderAppWrapper.setBase();
     const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
