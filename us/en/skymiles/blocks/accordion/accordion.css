@@ -167,6 +167,10 @@
         gap: 0 1rem;
     }
 
+    .accordion .header figcaption {
+        padding-top: 0;
+    }
+
     .accordion .header p:nth-child(2){
         font-size: 1.4rem;
         width: 70%;
