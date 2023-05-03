@@ -197,10 +197,10 @@ function decorateFigures(container) {
 }
 
 export function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
+  const REFERENCE_TOKENS = /(?!<sup>)(\*+|[†‡¤]|\(\d+\))/g;
   [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
-      if (el.innerHTML.match(REFERENCE_TOKENS)) {
+      if (!el.querySelector('sup') && el.innerHTML.match(REFERENCE_TOKENS)) {
         el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
       }
     });
