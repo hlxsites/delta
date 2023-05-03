@@ -23,10 +23,6 @@
     margin: 0;
 }
 
-.accordion .header figure {
-    margin: 0;
-}
-
 .accordion .text p {
     font-family: var(--heading-font-family);
     font-size: 1rem;
@@ -53,6 +49,10 @@
     text-transform: none;
 }
 
+.accordion .header figure {
+    margin: 0;
+}
+
 .accordion .header figcaption {
     font-size: 1.75rem;
 }
@@ -74,6 +74,23 @@
 
 .accordion .header:hover {
     cursor: pointer;
+}
+
+.accordion .header.is-multiline {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem 0;
+}
+
+.accordion .header.is-multiline br {
+    display: none;
+}
+
+.accordion .header.is-multiline strong {
+    font-family: var(--heading-font-family-alt);
+    font-size: var(--body-font-size-l);
+    letter-spacing: 1.3px;
 }
 
 .accordion button[aria-expanded] {
