@@ -53,6 +53,10 @@
     text-transform: none;
 }
 
+.accordion .header figcaption {
+    font-size: 1.75rem;
+}
+
 .accordion .header p:last-child {
     font-size: 1.4rem;
     width: 80%;
@@ -166,10 +170,6 @@
     .accordion .header p:nth-child(2){
         font-size: 1.4rem;
         width: 70%;
-    }
-
-    .accordion .header figcaption {
-        font-size: 1.75rem;
     }
 }
 
