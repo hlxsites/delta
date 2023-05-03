@@ -36,6 +36,7 @@
 
 .table thead th {
   font-family: var(--heading-font-family-alt);
+  vertical-align: bottom;
 }
 
 .table tbody th:has(strong) {
