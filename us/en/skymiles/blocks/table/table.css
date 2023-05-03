@@ -26,7 +26,12 @@
 .table th,
 .table td {
   padding: 2rem;
+  line-height: 1.5rem;
   text-align: center;
+}
+
+.table th :is(h3, h4, h5, h6) {
+  font-family: inherit;
 }
 
 .table thead th {
@@ -87,10 +92,7 @@
 .table p {
   font-family: inherit;
   font-size: inherit;
-}
-
-.table p:only-child {
-  margin: 0;
+  line-height: inherit !important;
 }
 
 /* The mobile list variant. */
