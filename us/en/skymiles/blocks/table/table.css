@@ -13,10 +13,6 @@
   vertical-align: bottom;
 }
 
-.table p:only-child {
-  margin: 0;
-}
-
 .table table {
   border-collapse: collapse;
   width: 100%;
@@ -104,6 +100,10 @@
   font-family: inherit;
   font-size: inherit;
   line-height: inherit !important;
+}
+
+.table p:only-child {
+  margin: 0;
 }
 
 /* The mobile list variant. */

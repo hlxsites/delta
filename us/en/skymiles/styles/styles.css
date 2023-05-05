@@ -126,11 +126,6 @@ main :is(h1, h2, h3, h4, h5, h6) {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-main h3 {
-  font-family: var(--body-font-family);
-  font-weight: 500;
-}
-
 main :is(h4, h5, h6) {
   font-family: var(--button-font-family);
   font-weight: 900;
@@ -138,7 +133,13 @@ main :is(h4, h5, h6) {
 
 main h1 { font-size: var(--heading-font-size-xxl) }
 main h2 { font-size: var(--heading-font-size-xl) }
-main h3 { font-size: var(--heading-font-size-l) }
+
+main h3 {    
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+}
+
 main h4 { font-size: var(--heading-font-size-m) }
 main h5 { font-size: var(--heading-font-size-s) }
 main h6 { font-size: var(--heading-font-size-xs) }
@@ -653,10 +654,6 @@ main > .section > .badge {
     margin-top: 1.25rem;
   }
 
-  .skymiles .section:first-child .default-content-wrapper h2:first-child {
-    margin-top: 0;
-  }
-
   main.has-badge .badge {
     margin-top: 0;
   }
@@ -665,6 +662,10 @@ main > .section > .badge {
     display: flex;
     justify-content: space-between;
     align-items: start;
+  }
+
+  .skymiles .section:first-child .default-content-wrapper h2:first-child {
+    margin-top: 0;
   }
 }
 
