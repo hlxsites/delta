@@ -71,7 +71,7 @@ export class AriaDialog extends HTMLElement {
 
     const dialog = document.createElement('div');
     dialog.id = id2;
-    dialog.role = 'dialog';
+    dialog.setAttribute('role', 'dialog');
     dialog.setAttribute('aria-hidden', true);
     dialog.setAttribute('aria-labelledby', id1);
     dialog.setAttribute('aria-modal', this.attributes.getNamedItem('modal')

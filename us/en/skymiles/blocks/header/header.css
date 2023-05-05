@@ -33,3 +33,12 @@ main {
   }
 }
 
+/* Additional styles to address inegration fine-tuning with global header */
+
+/* stylelint-disable-next-line selector-class-pattern */
+header-app-wrapper .calenderDepartSpan[aria-hidden] {
+  display: block;
+}
+
+.fresh-air .d-lg-block { display: none; }
+.fresh-air ngc-global-nav header > div > .main-container { display: none; }

@@ -82,7 +82,7 @@ figcaption {
   font-family: var(--heading-font-family);
 }
 
-.tabs p {
+.tabs .tab p {
   font-family: var(--heading-font-family);
   font-size: 1.2rem;
   font-weight: 300;

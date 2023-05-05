@@ -55,6 +55,12 @@
   text-decoration: none;
 }
 
+.section-nav-menu a[aria-current] {
+  box-sizing: border-box;
+  padding-left: .5rem;
+  background: rgb(40 47 67 / 16%);
+}
+
 .section-nav-menu a,
 .section-nav-menu button {
   display: block;
@@ -111,8 +117,14 @@
 
 .section-nav .section-nav-toggle h2 {
   margin: 0;
-  font-family: inherit;
+  font-family: var(--link-font-family);
   font-size: inherit;
+  text-transform: uppercase;
+  color: var(--color-delta-blue);
+}
+
+.section-nav .section-nav-toggle h2:hover {
+  cursor: pointer;
 }
 
 .section-nav-toggle::after,
@@ -137,7 +149,7 @@
 
 .section-nav-toggle[aria-expanded="true"]::after {
     transform: rotate(315deg);
-    top: 1.9rem;
+    top: 1.5rem;
 }
 
 .section-nav-menu > li > button[aria-expanded="true"]::after {
@@ -155,6 +167,7 @@
 @media (min-width: 375px) {
   .section-nav-menu {
     inset: 57px 0 auto 0;
+    margin-top: 0;
   }
 }
 

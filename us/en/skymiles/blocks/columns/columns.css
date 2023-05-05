@@ -21,10 +21,6 @@
     max-width: 50%;
 }
 
-.columns figcaption {
-    font-size: inherit;
-}
-
 .columns p {
     line-height: 2rem;
 }
@@ -72,7 +68,7 @@
 
 @media (min-width: 768px) {
     .columns img {
-        max-width: auto;
+        max-width: initial;
         object-fit: scale-down;
     }
 

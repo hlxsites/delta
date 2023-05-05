@@ -1,16 +1,17 @@
-.accordion-container {
-    margin-bottom: 20px;
-}
-
 .accordion-wrapper {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 20px;
 }
 
 .accordion-section {
     padding: 1.5rem 1rem;
     border-top: .0625rem solid var(--color-delta-gray-middle);
+}
+
+.accordion-section:last-of-type {
+    border-bottom: .0625rem solid var(--color-delta-gray-middle);
 }
 
 .accordion-section > h1,
@@ -22,17 +23,13 @@
     margin: 0;
 }
 
-.accordion .header figure {
-    margin: 0;
+.accordion .text {
+    padding-top: 1rem;
 }
 
 .accordion .text p {
-    font-family: var(--heading-font-family);
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 2.125rem;
     color: var(--color-delta-blue);
-    padding: 10px;
+    padding: 1rem 0;
 }
 
 .accordion .text button {
@@ -52,6 +49,14 @@
     text-transform: none;
 }
 
+.accordion .header figure {
+    margin: 0;
+}
+
+.accordion .header figcaption {
+    font-size: 1.75rem;
+}
+
 .accordion .header p:last-child {
     font-size: 1.4rem;
     width: 80%;
@@ -69,6 +74,23 @@
 
 .accordion .header:hover {
     cursor: pointer;
+}
+
+.accordion .header.is-multiline {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem 0;
+}
+
+.accordion .header.is-multiline br {
+    display: none;
+}
+
+.accordion .header.is-multiline strong {
+    font-family: var(--heading-font-family-alt);
+    font-size: var(--body-font-size-l);
+    letter-spacing: 1.3px;
 }
 
 .accordion button[aria-expanded] {
@@ -162,13 +184,13 @@
         gap: 0 1rem;
     }
 
+    .accordion .header figcaption {
+        padding-top: 0;
+    }
+
     .accordion .header p:nth-child(2){
         font-size: 1.4rem;
         width: 70%;
-    }
-
-    .accordion .header figcaption {
-        font-size: 1.75rem;
     }
 }
 

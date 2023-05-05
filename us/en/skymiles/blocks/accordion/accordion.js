@@ -7,6 +7,9 @@ export default async function decorate(block) {
   accordions.forEach((accordion) => {
     accordion.classList.add('accordion-section');
     accordion.firstElementChild.classList.add('header');
+    if (accordion.firstElementChild.querySelector('br')) {
+      accordion.firstElementChild.classList.add('is-multiline');
+    }
     accordion.firstElementChild.nextElementSibling.classList.add('text');
   });
 

@@ -26,11 +26,17 @@
 .table th,
 .table td {
   padding: 2rem;
+  line-height: 1.5rem;
   text-align: center;
+}
+
+.table th :is(h3, h4, h5, h6) {
+  font-family: inherit;
 }
 
 .table thead th {
   font-family: var(--heading-font-family-alt);
+  vertical-align: bottom;
 }
 
 .table tbody th:has(strong) {
@@ -40,6 +46,12 @@
 .table tbody th strong {
   font-family: inherit;
   font-weight: inherit;
+}
+
+.table .button:any-link {
+  padding: 1rem;
+  min-width: 0;
+  vertical-align: bottom;
 }
 
 .table button[data-role="prev"],
@@ -87,6 +99,7 @@
 .table p {
   font-family: inherit;
   font-size: inherit;
+  line-height: inherit !important;
 }
 
 .table p:only-child {
@@ -158,16 +171,11 @@
     display: none;
   }
 
-  .table .button {
-    padding: .5rem 1rem;
-    min-width: 0;
-    vertical-align: bottom;
-  }
-
   .table:not(.silent, .no-headers) thead th:first-child {
     padding: 1rem 2rem;
     font-family: var(--body-font-family);
     font-size: 2rem;
     font-weight: 300;
+    line-height: 1.5;
   }
 }

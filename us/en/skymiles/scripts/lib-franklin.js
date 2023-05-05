@@ -144,7 +144,7 @@ export function decorateIcons(element = document) {
       } else {
         span.innerHTML = iconHTML;
       }
-      span.role = 'presentation';
+      span.setAttribute('role', 'presentation');
     }
   });
 }
@@ -503,10 +503,13 @@ export function decorateButtons(element) {
           } else {
             a.classList.add('primary');
           }
-          // If we have several buttons after one other, then just add them to the same container
+          // If we have several primary buttons after one other
+          // then just add them to the same container
           if (up.previousElementSibling
             && up.previousElementSibling.classList.contains('button-container')
-            && !up.closest('.table')) {
+            && !up.closest('.table')
+            && !a.classList.contains('secondary')
+            && !up.previousElementSibling.querySelector('.button.secondary')) {
             up.previousElementSibling.append(a);
             up.remove();
           }

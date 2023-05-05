@@ -118,7 +118,8 @@ async function decorateInlineToggles(container) {
     }
     p.replaceWith(details);
   }
-  await Promise.all([...container.querySelectorAll('p:has(.icon-toggle:first-child)')]
+  await Promise.all([...container.querySelectorAll('p')]
+    .filter((p) => !!p.querySelector('.icon-toggle:first-child'))
     .map((el) => createInlineToggle(el)));
   await Promise.all([...container.querySelectorAll('p')]
     .filter((p) => p.textContent.startsWith('> '))
@@ -196,15 +197,15 @@ function decorateFigures(container) {
 }
 
 export function decorateReferences(container) {
-  const REFERENCE_TOKENS = /(\*+|[†‡¤]|\(\d+\))/g;
+  const REFERENCE_TOKENS = /(?!<sup>)(\*+|[†‡¤]|\(\d+\))/g;
   [...container.querySelectorAll('p,a,li,h3,h4,h5,h6')]
     .forEach((el) => {
-      if (el.innerHTML.match(REFERENCE_TOKENS)) {
+      if (!el.querySelector('sup') && el.innerHTML.match(REFERENCE_TOKENS)) {
         el.innerHTML = el.innerHTML.replace(REFERENCE_TOKENS, (token) => `<sup>${token}</sup>`);
       }
     });
   [...container.querySelectorAll('p')]
-    .filter((p) => !p.classList.contains('button-container'))
+    .filter((p) => !p.classList.contains('button-container') && !p.querySelector('.button'))
     .filter((p) => p.children.length && [...p.children].every((c) => c.nodeName === 'EM' || (c.firstChild && c.firstChild.nodeName === 'EM')))
     .forEach((el) => {
       const small = document.createElement('small');
@@ -271,7 +272,7 @@ export async function decorateMain(main) {
   main.classList.add('skymiles');
   // mark image as decorative if it doesn't have an alternative description
   document.querySelectorAll('img:not([alt],img[alt=""]').forEach((img) => {
-    img.role = 'presentation';
+    img.setAttribute('role', 'presentation');
     img.alt = ' ';
   });
   await decorateContainer(main);
@@ -284,7 +285,7 @@ export async function decorateMain(main) {
     const img = document.createElement('img');
     img.classList.add('badge');
     img.src = badge.content;
-    img.role = 'presentation';
+    img.setAttribute('role', 'presentation');
     img.alt = '';
     main.querySelector('h2').append(img);
     main.classList.add('has-badge');
@@ -322,6 +323,21 @@ export function addFavIcon(href) {
   }
 }
 
+const hreflangMap = {
+  'it-IT': 'https://it.delta.com/eu/it',
+  'de-DE': 'https://de.delta.com/eu/de',
+  'en-CA': 'https://www.delta.com/ca/en',
+  'pt-BR': 'https://pt.delta.com/br/pt',
+  'ko-KR': 'https://ko.delta.com/kr/ko',
+  'fr-FR': 'https://fr.delta.com/fr/fr',
+  'zh-CN': 'https://zh.delta.com/cn/zh',
+  'es-MX': 'https://es.delta.com/mx/es',
+  'ja-JP': 'https://ja.delta.com/jp/ja',
+  'en-GB': 'https://www.delta.com/gb/en',
+  'fr-CA': 'https://fr.delta.com/ca/fr',
+  'x-default': 'https://www.delta.com',
+};
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -344,6 +360,14 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  Object.entries(hreflangMap).forEach(([key, value]) => {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'alternate');
+    link.setAttribute('hreflang', key);
+    link.setAttribute('href', `${value}${window.location.pathname.replace(/\/us\/en/, '')}`);
+    document.head.appendChild(link);
+  });
 }
 
 /**

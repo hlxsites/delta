@@ -81,6 +81,9 @@ export class AriaMenu extends HTMLElement {
             ev.preventDefault();
             this.focusItem(menu, items.length - 1);
             break;
+          case 'Tab':
+            this.closeAll(false);
+            break;
           default:
             break;
         }
@@ -110,7 +113,7 @@ export class AriaMenu extends HTMLElement {
   }
 
   async decorate() {
-    this.role = 'navigation';
+    this.setAttribute('role', 'navigation');
     const button = document.createElement('button');
     button.innerHTML = this.firstElementChild.outerHTML;
     button.setAttribute('aria-expanded', false);
@@ -118,18 +121,18 @@ export class AriaMenu extends HTMLElement {
     this.firstElementChild.replaceWith(button);
     button.nextElementSibling.setAttribute('aria-label', 'Section navigation');
     this.querySelectorAll('li').forEach((item) => {
-      item.role = 'none';
+      item.setAttribute('role', 'none');
       item.childNodes.forEach((child, i) => {
         if (child.nodeType === Node.TEXT_NODE && i === 0) {
           const toggle = document.createElement('button');
-          toggle.role = 'menuitem';
+          toggle.setAttribute('role', 'menuitem');
           toggle.tabIndex = -1;
           toggle.textContent = child.nodeValue;
           child.replaceWith(toggle);
         } else if (child.nodeType === Node.TEXT_NODE && !child.nodeValue.trim()) {
           child.remove();
         } else if (child.nodeName === 'A') {
-          child.role = 'menuitem';
+          child.setAttribute('role', 'menuitem');
           child.tabIndex = -1;
         } else if ((child.nodeName === 'UL' || child.nodeName === 'OL')) {
           child.previousSibling.setAttribute('aria-expanded', false);
@@ -140,7 +143,7 @@ export class AriaMenu extends HTMLElement {
     this.querySelectorAll('ul,ol').forEach((list) => {
       const id = AriaMenu.getId();
       list.id = id;
-      list.role = 'menu';
+      list.setAttribute('role', 'menu');
       list.setAttribute('aria-hidden', true);
       list.previousElementSibling.setAttribute('aria-controls', id);
     });
@@ -165,14 +168,16 @@ export class AriaMenu extends HTMLElement {
     return Promise.resolve();
   }
 
-  closeAll() {
+  closeAll(focusToggle = true) {
     this.querySelectorAll('[role="menuitem"][aria-expanded="true"]').forEach((item) => {
       item.setAttribute('aria-expanded', false);
       item.tabIndex = -1;
     });
     this.querySelectorAll('[role="menu"][aria-hidden="false"]').forEach(this.close.bind(this));
     this.firstElementChild.setAttribute('aria-expanded', false);
-    this.firstElementChild.focus();
+    if (focusToggle) {
+      this.firstElementChild.focus();
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this

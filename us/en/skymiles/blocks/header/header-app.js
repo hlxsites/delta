@@ -21,17 +21,21 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   static template() {
+    const HEADER_APP_VERSION = '23.6.100';
     const template = document.createElement('template');
     template.innerHTML = `
+    <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/ui-kit/23.5.11/variables.css" data-css-include="true"/>
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air/css/fresh-air.css"/>
     <link rel="stylesheet" type="text/css" href="https://st.delta.com/content/dam/delta-applications/fresh-air-core/23.3.0/fonts/fresh-air-fonts.css"/>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta/fresh-air/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://tms.delta.com/delta/dl_bastian/Bootstrap.js"></script>
     <script type="text/javascript" src="https://content.delta.com/content/dam/delta-applications/js/sitewide/v22.8.0/swrcq.js"></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/runtime.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/polyfills.js" defer></script>
-    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/20.2.54/main.js" defer></script>
-    <header-app/>`;
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/runtime.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/polyfills.js" defer></script>
+    <script type="text/javascript" src="https://st.delta.com/content/dam/delta-applications/homepage/header/${HEADER_APP_VERSION}/main.js" defer></script>
+    <script type="text/javascript" src="https://qat3-content.delta.com/content/dam/delta-applications/login-modal/23.5.13/element.js" defer></script>
+    <header-app></header-app>
+    <idp-login-modal-profile-selector></idp-login-modal-profile-selector>`;
     return template;
   }
 
@@ -44,6 +48,9 @@ export default class HeaderAppWrapper extends HTMLElement {
   }
 
   async connectedCallback() {
+    // Legacy class added for backward ompatibility with Delta header
+    // and used with modal dialogs to control scroll behavior
+    document.documentElement.classList.add('hp-legacy');
     HeaderAppWrapper.setBase();
     const useShadowDom = this.attributes.getNamedItem('use-shadow-dom')?.value === 'true';
     if (useShadowDom) {
@@ -55,16 +62,23 @@ export default class HeaderAppWrapper extends HTMLElement {
     }
     this.setInitialState();
     const container = useShadowDom ? this.shadowRoot : this;
+    // Load sync scripts in sequence
     await [...container.querySelectorAll('script[src]:not([defer],[async]')].reduce((promise, script) => {
       script.remove();
       return promise.then(() => HeaderAppWrapper.loadScript(script.src, script));
     }, Promise.resolve());
-    await Promise.all([...container.querySelectorAll('script[src]')].map((script) => {
+    // Load async scripts in sequence
+    await [...container.querySelectorAll('script[src]')].reduce((promise, script) => {
       script.remove();
-      return HeaderAppWrapper.loadScript(script.src, script);
-    }));
+      return promise.then(() => HeaderAppWrapper.loadScript(script.src, script));
+    }, Promise.resolve());
     // manually trigger header initialization
     document.dispatchEvent(new Event('DOMContentLoaded'));
+    // The widgets are force-hidden by default to avoid flicker in the UI
+    // This resets them to visible
+    setTimeout(() => {
+      document.querySelector('.fresh-air ngc-global-nav header > div > .main-container').style.display = 'unset';
+    }, 100);
   }
 }
 
