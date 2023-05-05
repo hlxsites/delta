@@ -55,6 +55,12 @@
   text-decoration: none;
 }
 
+.section-nav-menu a[aria-current] {
+  box-sizing: border-box;
+  padding-left: .5rem;
+  background: rgb(40 47 67 / 16%);
+}
+
 .section-nav-menu a,
 .section-nav-menu button {
   display: block;

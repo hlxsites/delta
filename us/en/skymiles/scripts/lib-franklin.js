@@ -508,6 +508,7 @@ export function decorateButtons(element) {
           if (up.previousElementSibling
             && up.previousElementSibling.classList.contains('button-container')
             && !up.closest('.table')
+            && !a.classList.contains('secondary')
             && !up.previousElementSibling.querySelector('.button.secondary')) {
             up.previousElementSibling.append(a);
             up.remove();

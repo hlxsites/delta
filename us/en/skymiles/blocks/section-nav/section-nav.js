@@ -51,6 +51,7 @@ export default async function decorate(block) {
   const current = document.createElement('div');
   current.classList.add('section-nav-current');
   current.textContent = currentLink.textContent;
+  currentLink.setAttribute('aria-current', 'page');
 
   block.append(current);
 }
@@ -64,3 +65,15 @@ window.addEventListener('scroll', () => {
     menu.closest('hlx-aria-menu').closeAll();
   }
 }, { passive: true });
+
+document.addEventListener('click', (ev) => {
+  const menu = document.querySelector('.section-nav [role="menu"][aria-hidden="false"]');
+  if (!menu) {
+    return;
+  }
+  const sectioNav = ev.target.closest('.section-nav');
+  if (sectioNav) {
+    return;
+  }
+  menu.closest('hlx-aria-menu').closeAll();
+});

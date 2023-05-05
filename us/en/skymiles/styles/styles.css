@@ -133,7 +133,13 @@ main :is(h4, h5, h6) {
 
 main h1 { font-size: var(--heading-font-size-xxl) }
 main h2 { font-size: var(--heading-font-size-xl) }
-main h3 { font-size: var(--heading-font-size-l) }
+
+main h3 {    
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+}
+
 main h4 { font-size: var(--heading-font-size-m) }
 main h5 { font-size: var(--heading-font-size-s) }
 main h6 { font-size: var(--heading-font-size-xs) }
@@ -541,7 +547,7 @@ main > .section > .badge {
 
 .skymiles .default-content-eyebrow p {
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xxl);
+  font-size: var(--body-font-size-xl);
   font-weight: normal;
 }
 
@@ -563,31 +569,44 @@ main > .section > .badge {
   margin-top: 0;
 }
 
-.skymiles :is(p, dl, ol, ul, pre, blockquote) {
-  font-size: var(--body-font-size-l);
+.skymiles :is(p, dl, ol, ul, pre, blockquote, figcaption) {
+  font-size: var(--body-font-size-xl);
 }
 
-.skymiles .section h1 + h2,
-.skymiles .section h2:first-child {
-  font-size: var(--heading-font-size-xl);
+.skymiles .section.large h2 {
+  font-size: var(--heading-font-size-xxl);
+}
+
+.skymiles .section.large :is(p, [data-align], figcaption) {
+  font-size: var(--body-font-size-xxl);
+}
+
+.skymiles .section.large :is(dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-xl);
+  line-height: 1.7;
+}
+
+.skymiles .section.large div > a {
+  font-size: var(--body-font-size-xl);
+}
+
+.skymiles .section.small :is(p, dl, ol, ul, pre, blockquote) {
+  font-size: var(--body-font-size-m);
 }
 
 .skymiles .default-content-wrapper p:first-child:has(strong) {
   margin-top: 3rem;
 }
 
+.skymiles .default-content-wrapper:not(.default-content-eyebrow) p:first-child > strong:only-child {
+  font-family: var(--heading-font-family-alt);
+  font-size: var(--heading-font-size-s);
+  letter-spacing: 1.4px;
+}
+
 .skymiles .default-content-eyebrow p:first-child:has(strong),
 .skymiles .default-content-wrapper p:first-child + h2 {
   margin-top: 0;
-}
-
-.skymiles .section h1 + h2 ~ :is(p, dl, ol, ul, pre, blockquote),
-.skymiles .section h2:first-child ~ :is(p, dl, ol, ul, pre, blockquote) {
-  font-size: var(--body-font-size-xxl);
-}
-
-.skymiles .section h2 ~ h2 ~ :is(p, dl, ol, ul, pre, blockquote) {
-  font-size: var(--body-font-size-xl);
 }
 
 /* Responsive adaptation for larger screens. */
@@ -598,6 +617,10 @@ main > .section > .badge {
 }
 
 @media (min-width: 768px) {
+  body {
+    font-size: var(--body-font-size-xl);
+  }
+
   main .button:any-link,
   main button {
     padding: 1rem 1.5rem;
@@ -608,6 +631,10 @@ main > .section > .badge {
 
   main p > em:only-child > .button.secondary:only-child {
     font-size: var(--body-font-size-xl);
+  }
+
+  main table p > em:only-child > .button.secondary:only-child {
+    font-size: unset;
   }
 
   main .section {
@@ -623,17 +650,8 @@ main > .section > .badge {
     margin-top: 4rem;
   }
 
-  .skymiles .default-content-wrapper h2 {
-    margin-top: 5rem;
-  }
-
   .skymiles .section h1 + h2 {
     margin-top: 1.25rem;
-    font-size: var(--heading-font-size-xxl);
-  }
-
-  .skymiles .default-content-wrapper h2:first-child {
-    margin-top: 0;
   }
 
   main.has-badge .badge {
@@ -644,6 +662,10 @@ main > .section > .badge {
     display: flex;
     justify-content: space-between;
     align-items: start;
+  }
+
+  .skymiles .section:first-child .default-content-wrapper h2:first-child {
+    margin-top: 0;
   }
 }
 
