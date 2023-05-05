@@ -37,6 +37,7 @@
   .toc ul li {
     font-size: 1.25rem;
     padding-bottom: 0.5rem;
+    break-inside: avoid;
   }
 
   .toc ul li a {

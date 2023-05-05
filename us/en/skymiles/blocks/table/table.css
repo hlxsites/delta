@@ -13,6 +13,10 @@
   vertical-align: bottom;
 }
 
+.table p:only-child {
+  margin: 0;
+}
+
 .table table {
   border-collapse: collapse;
   width: 100%;
@@ -46,6 +50,12 @@
 .table tbody th strong {
   font-family: inherit;
   font-weight: inherit;
+}
+
+.table .button:any-link {
+  padding: 1rem;
+  min-width: 0;
+  vertical-align: bottom;
 }
 
 .table button[data-role="prev"],
@@ -161,16 +171,11 @@
     display: none;
   }
 
-  .table .button {
-    padding: .5rem 1rem;
-    min-width: 0;
-    vertical-align: bottom;
-  }
-
   .table:not(.silent, .no-headers) thead th:first-child {
     padding: 1rem 2rem;
     font-family: var(--body-font-family);
     font-size: 2rem;
     font-weight: 300;
+    line-height: 1.5;
   }
 }
