@@ -128,24 +128,6 @@ export async function decorateTopHeader(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  //   const navBrand = nav.querySelector('.nav-brand');
-  //   if (navBrand) {
-  //     const picture = navBrand.querySelector('picture');
-  //     const link = navBrand.querySelector('a');
-  //     if (picture && link) {
-  //       navBrand.innerHTML = '';
-  //       link.innerHTML = '';
-  //       link.append(picture);
-  //       navBrand.append(link);
-  //     }
-  //   }
-
-  //   const navPlanner = nav.querySelector('.nav-planners');
-  //   if (navPlanner) {
-  //     const li = navPlanner.querySelector('li:nth-of-type(2)');
-  //     li.classList.add('active');
-  //   }
-
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
@@ -208,9 +190,8 @@ export async function decorateSectionNav(block) {
  */
 export default async function decorate(block) {
   const usp = new URLSearchParams(window.location.search);
-  block.closest('header').classList.add('fresh-air');
   if (window.location.hostname.endsWith('delta.com') && usp.get('header') !== 'off') {
-    block.innerHTML = '<header-app-wrapper/>';
+    block.innerHTML = '<header-app-wrapper class="fresh-air"/>';
   } else {
     block.innerHTML = '';
   }

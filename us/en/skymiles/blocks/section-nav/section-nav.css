@@ -59,6 +59,7 @@
   box-sizing: border-box;
   padding-left: .5rem;
   background: rgb(40 47 67 / 16%);
+  border-radius: 4px;
 }
 
 .section-nav-menu a,
@@ -81,6 +82,10 @@
   letter-spacing: 1px;
 }
 
+.section-nav-menu > li {
+  padding: 1rem 0;
+}
+
 .section-nav-menu > li:not(:first-child) {
   border-top: 1px solid var(--color-delta-gray-middle2);
 }
@@ -88,7 +93,7 @@
 .section-nav-menu > li > a,
 .section-nav-menu > li > button {
   position: relative;
-  padding: 1.5rem 0;
+  padding: .5rem 0;
   background: none;
   border: none;
 }
@@ -132,7 +137,7 @@
   position: absolute;
   display: block;
   right: .5rem;
-  top: 1.5rem;
+  top: .5rem;
   content: '';
   border: 1px solid var(--color-delta-red); 
   border-width: 2px 2px 0 0; 

@@ -23,7 +23,7 @@
   --color-delta-red-dark: #98012e;
 
   /* semantic colors */
-  --link-color: #4470c3;
+  --link-color: #4470c3 !important; /* important needed to avoid clash with freshair's variable.css */
   --link-hover-color: #2d4f8d;
   --background-color: #fff;
   --overlay-background-color: var(--color-delta-gray-light);
