@@ -37,11 +37,11 @@
   --hero-button-color: var(--color-delta-red);
 
   /* fonts */
-  --body-font-family: whitney-light, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --body-font-family: whitney-light, whitney-light-fallback, sans-serif;
   --body-medium-font-family: whitney-medium, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
   --button-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --heading-font-family: whitney-book, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
-  --heading-font-family-alt: whitney-bold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
+  --heading-font-family: whitney-book, whitney-book-fallback, sans-serif;
+  --heading-font-family-alt: whitney-bold, whitney-bold-fallback, sans-serif;
   --link-font-family: whitney-semibold, -apple-system, blinkmacsystemfont, segoe ui, roboto, helvetica neue, arial, sans-serif;
 
 
@@ -65,6 +65,25 @@
   /* nav height */
   --nav-height: 111px;
 
+}
+
+/* fallback fonts */
+@font-face {
+  font-family: whitney-light-fallback;
+  size-adjust: 91.66%;
+  src: local("Helvetica");
+}
+
+@font-face {
+  font-family: whitney-book-fallback;
+  size-adjust: 92.44%;
+  src: local("Arial");
+}
+
+@font-face {
+  font-family: whitney-bold-fallback;
+  size-adjust: 81.22%;
+  src: local("Arial Black");
 }
 
 /* Main blocks */
