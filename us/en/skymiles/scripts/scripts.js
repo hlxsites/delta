@@ -286,6 +286,7 @@ export async function decorateMain(main) {
     const picture = createOptimizedPicture(badge.content, ' ', { width: '350' });
     picture.classList.add('badge');
     picture.setAttribute('role', 'presentation');
+    picture.setAttribute('width', '350');
     main.querySelector('h2').append(picture);
     main.classList.add('has-badge');
   }
