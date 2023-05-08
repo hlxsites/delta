@@ -62,15 +62,15 @@ function createResponsiveImage(pictures, breakpoint = 768) {
   });
 
   const responsivePicture = document.createElement('picture');
-  const defaultImage = pictures[0].querySelector('img');
-
-  responsivePicture.append(pictures[0].querySelector('source:not([media])'));
-  responsivePicture.append(defaultImage);
 
   pictures[1].querySelectorAll('source[media]').forEach((e) => {
     e.setAttribute('media', `(min-width: ${breakpoint}px)`);
-    responsivePicture.prepend(e);
+    responsivePicture.append(e);
   });
+
+  const defaultImage = pictures[0].querySelector('img');
+  responsivePicture.append(pictures[0].querySelector('source:not([media])'));
+  responsivePicture.append(defaultImage);
 
   return responsivePicture;
 }
