@@ -36,7 +36,14 @@ main {
 /* Additional styles to address inegration fine-tuning with global header */
 
 /* stylelint-disable-next-line selector-class-pattern */
-header-app-wrapper .calenderDepartSpan[aria-hidden] {
+.fresh-air .calenderDepartSpan[aria-hidden] {
+  display: block;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.fresh-air .recovery-options__options idp-radio-button div.idp-form-grouped label.idp-radio-button__label span[aria-hidden=true],
+.fresh-air i.idp-icon-alert[aria-hidden],
+.fresh-air i.idp-icon-success[aria-hidden] {
   display: block;
 }
 
