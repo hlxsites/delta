@@ -1,6 +1,7 @@
 import {
   sampleRUM,
   buildBlock,
+  createOptimizedPicture,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -282,12 +283,10 @@ export async function decorateMain(main) {
   decorateEyeBrows(main);
   const badge = document.head.querySelector('meta[name="badge"]');
   if (badge) {
-    const img = document.createElement('img');
-    img.classList.add('badge');
-    img.src = badge.content;
-    img.setAttribute('role', 'presentation');
-    img.alt = '';
-    main.querySelector('h2').append(img);
+    const picture = createOptimizedPicture(badge.content, ' ', { width: '350' });
+    picture.classList.add('badge');
+    picture.setAttribute('role', 'presentation');
+    main.querySelector('h2').append(picture);
     main.classList.add('has-badge');
   }
 }
