@@ -159,14 +159,11 @@
 .accordion-wrapper [role="group"] button:disabled {
     font-family: var(--heading-font-family);
     text-decoration: none;
+    display: none;
 }
 
 .accordion-wrapper [role="group"] button:disabled:hover {
     background: none;
-}
-
-.accordion-wrapper [role="group"] button:disabled {
-    display: none;
 }
 
 .accordion .tertiary.highlight {
