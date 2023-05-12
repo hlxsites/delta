@@ -49,3 +49,29 @@ main {
 
 .fresh-air .d-lg-block { display: none; }
 .fresh-air ngc-global-nav header > div > .main-container { display: none; }
+
+.fresh-air bs-modal-backdrop.modal-backdrop.show {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+  opacity: .3 !important;
+}
+
+.fresh-air modal-container.modal.show.fresh-air.d-block.notification-header-modal {
+  display: block !important;
+}
+
+.hp-legacy .fresh-air .modal-open .modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  outline: 0;
+}
