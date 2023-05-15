@@ -191,7 +191,9 @@ export async function decorateSectionNav(block) {
 export default async function decorate(block) {
   const usp = new URLSearchParams(window.location.search);
   if (window.location.hostname.endsWith('delta.com') && usp.get('header') !== 'off') {
-    block.innerHTML = '<header-app-wrapper class="fresh-air"/>';
+    // Needs to be on the parent element for the header modals to work
+    block.parentElement.classList.add('fresh-air');
+    block.innerHTML = '<header-app-wrapper/>';
   } else {
     block.innerHTML = '';
   }
