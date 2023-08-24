@@ -385,6 +385,16 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+
+  if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
+    const host = window.location.hostname === ('localhost') ? "http://localhost:4000" : "https://salmon-pebble-015589f10-dev.centralus.3.azurestaticapps.net";
+    const script = document.createElement("script");
+    script.setAttribute("src", `${host}/static/js/bundle.js`);
+    script.setAttribute("type", "text/javascript");
+    script.setAttribute("async", true);
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+  }
 }
 
 loadPage();
