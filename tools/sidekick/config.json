@@ -1,11 +1,11 @@
 {
-  "project": "XSC Demo",
+  "project": "Delta",
   "plugins": [
     {
       "id": "asset-library",
       "title": "AEM Assets Library",
       "environments": [
-        "edit", "preview"
+        "edit"
       ],
       "url": "https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/franklin/asset-selector.html",
       "isPalette": true,
